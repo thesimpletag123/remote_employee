@@ -57,12 +57,15 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('submit_full_project', 'JobPostController@submit_full_project')->name('submit_full_project');
 	
 	Route::post('assign_job_to_emp', 'JobPostController@assign_job_to_emp')->name('assign_job_to_emp');
+	Route::get('myprofile', 'HomeController@myprofile')->name('myprofile');
 	
 	Route::middleware(['isEmployee'])->group(function () {
 		Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
 		Route::get('update_job_by_employee/{id}', 'JobPostController@viewjobemployee')->name('update_job_by_employee');
 		Route::get('viewjobemployee/{id}', 'JobPostController@viewjobemployee')->name('viewjobemployee');
 		Route::post('employeetimeupdate', 'JobTrackerController@employeetimeupdate')->name('employeetimeupdate');
+		Route::post('employeeprofileupdate', 'HomeController@employeeprofileupdate')->name('employeeprofileupdate');
+		
 	});
 	Route::middleware(['isEmployer'])->group(function () {
 		Route::get('employerdashboard', 'JobPostController@employerdashboard')->name('employerdashboard');

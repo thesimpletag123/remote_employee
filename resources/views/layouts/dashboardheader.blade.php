@@ -32,9 +32,9 @@
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								
 								@if(Route::is('employerdashboard'))
-									<a class="dropdown-item" href="#">My Profile</a>
+									<a class="dropdown-item" href="{{route('myprofile')}}">My Profile</a>
 								@else
-									<a class="dropdown-item" href="#">My Profile</a>
+									<a class="dropdown-item" href="{{route('myprofile')}}">My Profile</a>
 									<a class="dropdown-item" href="{{route('employerdashboard')}}">Go to Dashboard</a>
 								@endif
 								<a class="dropdown-item" href="#" onclick="open_jobpost_popup()">Post a new Job</a>
@@ -42,9 +42,9 @@
 						@else
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								@if(Route::is('dashboard'))
-									<a class="dropdown-item" href="#">My Profile</a>
+									<a class="dropdown-item" href="{{route('myprofile')}}">My Profile</a>
 								@else
-									<a class="dropdown-item" href="#">My Profile</a>
+									<a class="dropdown-item" href="{{route('myprofile')}}">My Profile</a>
 									<a class="dropdown-item" href="{{route('dashboard')}}">Go to Dashboard</a>
 								@endif
 							</div>

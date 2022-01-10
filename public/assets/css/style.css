@@ -2024,3 +2024,9 @@ section.parttime {
     font-weight: 400;
     line-height: 1.5;    
 }
+.toggle_skill_onoff_div {
+	display: none;
+}
+  .slow  .toggle-group { transition: left 1s; -webkit-transition: left 1s; }
+  .fast  .toggle-group { transition: left 0.5s; -webkit-transition: left 0.5s; }
+  .quick .toggle-group { transition: none;      -webkit-transition: none; }

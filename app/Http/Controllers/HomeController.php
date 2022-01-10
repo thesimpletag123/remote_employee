@@ -217,10 +217,88 @@ class HomeController extends Controller
 				$data['message'] = 'Failed.. please retry';
 
 				return response()->json($data);
-			}			
+			}
+		}
 		
+		public function myprofile(){
+			$user = Auth::user();
+			
+			if($user->user_type == "employer"){
+				$date = Carbon::now($user->country);		
+				$availablejob = new JobPost;
+				$employerposts = $availablejob->GetJobsOfEmployer($user->id);
+				
+				$currencynew = new CurrencyType();
+				$currencies = $currencynew->currencyList();
+
+				$skillsnew = new Skills();
+				$skillsets = $skillsnew->skillnames();
+				
+				$allinvoicenew = new JobPost;
+				$allinvoice = $allinvoicenew->GetInvoiceWithDetails();
+				
+				$employeeavailablenew = new Employee;
+				$employeeavailable = $employeeavailablenew->AvailableEmployees();
+				
+				
+				$useremployees = User::all();
+				
+				$assignedemployeenew = new JobPost;
+				$assignedemployee = $assignedemployeenew->AssignedEmployees();		
+				
+				return view('employer-profile', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skillsets' => $skillsets, 'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
+			} else if ($user->user_type == "employee"){
+				
+				$date = Carbon::now($user->country);		
+				$Countriesnew = new Countries();
+				$countries = $Countriesnew->countrylist();
+
+				$currencynew = new CurrencyType();
+				$currencies = $currencynew->currencyList();
+
+				$employeenew = new Employee();
+				$employeies = $employeenew->employeeList();
+
+				$professionalfieldsnew = new ProfessionalFields();
+				$professional_fields = $professionalfieldsnew->professionalfieldnames();
+
+				$skillsnew = new Skills();
+				$skills = $skillsnew->skillnames();
+				
+				$alljobsnew = new JobPost();
+				$alljobslist = $alljobsnew->GetAllJobsList();
+				
+				return view('employee-profile', ['user' => $user, 'countries' =>$countries, 'currencies' =>$currencies, 'employeies' =>$employeies, 'professional_fields' =>$professional_fields, 'skills' =>$skills, 'date' => $date, 'alljobslist' => $alljobslist]);
+			} else {
+				return redirect('/home')->with('success', 'No UserType assigned to you.');
+			}
+		}
 		
+	public function employeeprofileupdate(Request $request){
+		$user = Auth::user();
+		$name = $request->name;
+		$my_skills = $request->my_skills;
+		$contact = $request->contact;
+		$experience = $request->experience;
 		
+		$getmypreviousskills = new Employee;
+		$mypreviousskills = $getmypreviousskills->GetCurrentUserSkill();
 		
+		if($my_skills !=''){
+			$addskill = implode('-',$my_skills);
+			$newskillset = $mypreviousskills.'-'.$addskill;
+		} else {
+			$newskillset = $mypreviousskills;
+		}
+		User::where('id' , $user->id)->update(['name' => $name]); 
+		Employee::where('user_id', $user->id)
+					->update([
+					'full_name' => $name, 
+					'contact_no' => $contact,
+					'skills' => $newskillset,
+					'experience_in_month' => $experience,
+					]);
+		
+		return redirect()->back()->with('success', 'Profile Updated..');
 	}
 }
