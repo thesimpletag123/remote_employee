@@ -42,8 +42,8 @@ class EmployeeController extends Controller
 		if (Auth::user()) {
 			$user = Auth::user();
 			User::where(['id' => $user->id])->update([
+													'name' => $emp_fname,
 													'user_type' => 'employee',
-													'name' => $request->emp_fname,
 													'country' => $request->emp_country
 													]);
 		

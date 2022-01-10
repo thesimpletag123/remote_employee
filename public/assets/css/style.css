@@ -2013,3 +2013,14 @@ section.parttime {
 .one-line {
     display: flex;
 }
+.form-group input#name::placeholder {
+	color: #DBDBDC;
+	font-size: 14px;
+}
+.form-group input#name {
+    background-color: #1c1c1c;
+	color: #fff;
+	font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;    
+}
