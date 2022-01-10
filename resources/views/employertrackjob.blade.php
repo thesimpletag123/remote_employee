@@ -61,7 +61,7 @@ select#emp_skills {
 					<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
 				</div>
 				<div class="col-lg-12 custom_div">
-					<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}]
+					<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
 				</div>
 				<div class="col-lg-12 custom_div">
 					<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}}

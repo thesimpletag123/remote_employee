@@ -447,6 +447,11 @@ var i = 1;
 		$('.swiper-button-next').css('pointer-events', 'none');
 		$('.swiper-button-next').css('opacity', '0.35');
 	});
+
+	$(".swiper-button-prev").click(function() {
+		$('.swiper-button-next').css('pointer-events', '');
+		$('.swiper-button-next').css('opacity', '1');
+	});
 	$('#fulltime_job_skills').change(function() {
 		CheckSkillEmployerPost()
 	});
