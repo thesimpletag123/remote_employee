@@ -171,8 +171,10 @@ class JobPostController extends Controller
 		$updateemp = Employee::where(['user_id' => $user->id])->update(['is_verified' => true]);
 		//$deletedfromotp = GenerateOtp::where('user_id', $user->id)->delete();
 
-		$addnewjobskill = new Skills;
-		$newskill = $addnewjobskill->CheckAndUpdateSkill($request->fulltime_job_extra_skill);
+		if($request->fulltime_job_extra_skill){
+			$addnewjobskill = new Skills;
+			$newskill = $addnewjobskill->CheckAndUpdateSkill($request->fulltime_job_extra_skill);
+		}
 		
 		if(is_array($request->fulltime_job_skills)){
 			$fulltime_job_skills = implode('-', $request->fulltime_job_skills);

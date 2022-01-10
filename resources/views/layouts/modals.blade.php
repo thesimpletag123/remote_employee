@@ -119,6 +119,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 												<img src="{{ asset('assets/images/linkedin-logo.png') }}">
 											</div>
 											
+											
 										</div>
 										<br>
 										<br>
@@ -541,7 +542,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							<div class="form-group">
 								<!--<a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="social-icon"><img src="{{ asset('assets/images/google-logo.png') }}"></a>-->
 								<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-								<a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_reg"><img src="{{ asset('assets/images/linkedin-logo.png') }}"></a>            
+								<a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login"><img src="{{ asset('assets/images/linkedin-logo.png') }}"></a>            
 							</div>						
 						</form>
 					</div>
@@ -903,7 +904,12 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                         </ul>
                         <div class="swiper-pagination"></div>
                         <!-- Add Arrows -->
-                        <div class="swiper-button-next " style="pointer-events: none; opacity: 0.35;">NEXT</div>
+						@if (session('fulltime_job_min'))
+							<div class="swiper-button-next " style="pointer-events: all; opacity: 1;">NEXT</div>
+						@else
+							<div class="swiper-button-next " style="pointer-events: none; opacity: 0.35;">NEXT</div>
+						@endif
+                        
                         <div class="swiper-button-prev" >BACK</div>
                     </div>
                 </div>
