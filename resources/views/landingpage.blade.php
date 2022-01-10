@@ -13,7 +13,7 @@
 </style>
 @endsection
 @section('content')
-        <!-- starting menu-links -->as
+        <!-- starting menu-links -->asss
         @if (Auth::check())
 			<section class="menu-links">
 				<span class="closbtn"><i class="fas fa-times"></i></span>
