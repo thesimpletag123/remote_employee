@@ -83,7 +83,7 @@ class SocialAuthController extends Controller
                 $user->name = $linkdinUser->name;
                 $user->email = $linkdinUser->email;
                 $user->linkedin_id = $linkdinUser->id;
-                $user->user_type = 'employer';
+                //$user->user_type = 'employer';
                 $user->password = Hash::make('password');
                 $user->save();
                 Auth::loginUsingId($user->id);
@@ -124,7 +124,7 @@ class SocialAuthController extends Controller
 					$userupdate = User::find($existUser->id);
 					$userupdate->google_id = $gprofileid;
 					$userupdate->is_verified = true;
-					$userupdate->user_type = 'employer';
+					//$userupdate->user_type = 'employer';
 					
 					$userupdate->save();
 				}
@@ -138,7 +138,7 @@ class SocialAuthController extends Controller
 					'email' => $gemail,
 					'google_id'=> $gprofileid,
 					'is_verified' => true,
-					'user_type' => 'employer',
+					//'user_type' => 'employer',
 					'password' => Hash::make('password')
 				]);
 
