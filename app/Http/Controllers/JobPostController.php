@@ -231,7 +231,7 @@ class JobPostController extends Controller
 		$currencies = $currencynew->currencyList();
 
 		$skillsnew = new Skills();
-		$skillsets = $skillsnew->skillnames();
+		$allskills = $skillsnew->skillnames();
 		
 		$allinvoicenew = new JobPost;
 		$allinvoice = $allinvoicenew->GetInvoiceWithDetails();
@@ -254,7 +254,7 @@ class JobPostController extends Controller
 		die();*/
 		
 		
-		return view('employerdashboard', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skillsets' => $skillsets, 'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
+		return view('employerdashboard', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'allskills' => $allskills, 'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
 
 	}
 	

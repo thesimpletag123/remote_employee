@@ -47,6 +47,11 @@ class User extends Authenticatable
 		return $this->belongsTo('App\JobPost', 'assigned_to_id');
 	}
 	
+	public function employerjobpost()
+	{
+		return $this->belongsTo('App\JobPost', 'id', 'posted_by_id');
+	}
+	
 	public function GetUserById($id)
 	{
 		$user = User::where('id',$id)->first();

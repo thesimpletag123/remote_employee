@@ -669,8 +669,9 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 												
 												?>
 												
-                                            <select id="fulltime_job_skills" multiple>		@if(Route::is('employerdashboard'))
-												<?php $skills = $skillsets; ?>
+                                            <select id="fulltime_job_skills" multiple>
+											@if(Route::is('employerdashboard'))
+												<?php $skills = $allskills; ?>
 											@endif
 												@if(isset($skills))
 													@foreach($skills as $value)

@@ -232,21 +232,29 @@ class HomeController extends Controller
 				$currencies = $currencynew->currencyList();
 
 				$skillsnew = new Skills();
-				$skillsets = $skillsnew->skillnames();
+				$skills = $skillsnew->skillnames();
 				
 				$allinvoicenew = new JobPost;
 				$allinvoice = $allinvoicenew->GetInvoiceWithDetails();
 				
+				$employeenew = new Employee();
+				$employeies = $employeenew->employeeList();
+				
 				$employeeavailablenew = new Employee;
 				$employeeavailable = $employeeavailablenew->AvailableEmployees();
 				
+				$alljobsnew = new JobPost();
+				$alljobslist = $alljobsnew->GetAllJobsList();
 				
 				$useremployees = User::all();
 				
 				$assignedemployeenew = new JobPost;
-				$assignedemployee = $assignedemployeenew->AssignedEmployees();		
+				$assignedemployee = $assignedemployeenew->AssignedEmployees();
+
+				$getjobwithidnew = new JobPost;
+				$getjobbyid = $getjobwithidnew->GetJobByID(1);
 				
-				return view('employer-profile', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skillsets' => $skillsets, 'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
+				return view('employer-profile', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skills' => $skills, 'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee, 'employeies'=> $employeies, 'alljobslist' => $alljobslist]);
 			} else if ($user->user_type == "employee"){
 				
 				$date = Carbon::now($user->country);		
@@ -300,5 +308,15 @@ class HomeController extends Controller
 					]);
 		
 		return redirect()->back()->with('success', 'Profile Updated..');
+	}
+	
+	public function employerprofileupdate(Request $request){
+		$user = Auth::user();
+		$prename = $user->name;
+		$name = $request->name;
+		User::where('id' , $user->id)->update(['name' => $name]);
+		JobPost::where('posted_by_id' , $user->id)->update(['posted_by_username' => $name]);
+		$msg = "ConGratulation. You have successfylly modified your name from '".$prename."' to '".$name."'";
+		return redirect()->back()->with('success', $msg);
 	}
 }

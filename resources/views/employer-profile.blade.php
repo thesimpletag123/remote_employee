@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Track Job')
+@section('title', 'Profile')
 @section('pagecss')
 <style>
 div#modal-profile-setting {
@@ -50,125 +50,96 @@ select#emp_skills {
 				<p>{{$user->email}}</p>
 			</div>
 		</div>
-		
-	
+
 	<hr>
-	
-		@foreach($getjobupdatebyid as $jobupdate)
-			<div class="mysidebardiv comment-show-hide-div" id="comment-{{$jobupdate->id}}">
-				<b>By: {{$jobupdate->user->name}}</b>
-				<div class="col-lg-12 custom_div">
-					<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
-				</div>
-				<div class="col-lg-12 custom_div">
-					<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
-				</div>
-				<div class="col-lg-12 custom_div">
-					<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}}
-				</div>			
-			</div>
-				
-		@endforeach
+	<?php $i = 1; ?>
+		@if(isset($alljobslist))
+			@foreach($alljobslist as $singlejob)
+				@if($singlejob['posted_by_id'] == $user->id)
+					@if($i == 1)
+						
+					@endif
+					<div class="mysidebardiv job-show-hide-div" id="job-{{$singlejob['id']}}">
+						<b>{{$singlejob['job_title']}}</b>
+						<div class="col-lg-12 custom_div">
+							
+								<b><label>Description :</label></b>{{$singlejob['project_description']}}
+							
+						</div>
+						<div class="col-lg-12 custom_div">
+							@if($singlejob['assigned_to_username'] != '')
+								<b><label>Assigned to :</label></b>{{$singlejob['assigned_to_username']}}
+							@else
+								<b><label style="color:red;">Not Assigned Yet.</label></b>
+							@endif
+						</div>
+						<div class="col-lg-12 custom_div">
+							<b><label>Skill Required:</label></b> <?=str_replace('-', ' , ', $singlejob['required_skills'])?>
+						</div>
+					</div>
+					
+				@endif	
+			@endforeach
+		@endif
 	</div>
 </div>
 							
 							<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
-								<h5>Track Job</h5>
-								<form id="employeetimeupdate" name="employeetimeupdate" method="post" action="{{route('employeetimeupdate')}}">
+								<h5>My Profile</h5>
+								<form id="employerprofileupdate" name="employerprofileupdate" method="post" action="{{route('employerprofileupdate')}}" enctype="multipart/form-data">
 								@csrf
 									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
-									<input type="hidden" id="hidden_jobid" name="hidden_jobid" value="{{$getjobbyid->id}}">
 									<div class="col-auto">
 										<div class="col-lg-8 custom_div">
-											<label for="job_title" class="form-label">Job Title</label>
-											<input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job Title here" readonly value="{{$getjobbyid->job_title}}">
+											<label for="name" class="form-label">Name</label>
+											<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$user->name}}">
 										</div>
 										<div class="col-lg-8 custom_div">
-										  <label for="job_desc" class="form-label">Job Description</label>
-										  <textarea class="form-control" id="job_desc" name="job_desc" rows="3" readonly>{{$getjobbyid->project_description}}</textarea>
+										  <label for="email" class="form-label">Email ID</label>
+										  <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" readonly>
 										</div>
 										<div class="col-lg-8 custom_div">
-											<div class="col-md-12 padding_none">
-												<label for="job_skills" class="form-label">Required Skills:</label>
-											</div>
+											<label for="experience" class="form-label">Joined Remote Employee</label>
 											<?php
-												$skill = null;												
-												$required_skills = $getjobbyid->required_skills;
-												$required_skills_array = [];
-												$required_skills_array = explode('-' , $required_skills);
-											
+												$monthNum  = $user->created_at->month;
+												$dateObj   = DateTime::createFromFormat('!m', $monthNum);
+												$monthName = $dateObj->format('F');
+												$usersince = $monthName.', '.$user->created_at->year;
 											?>
-											
-												@if(is_array($required_skills_array))													
-													@foreach($required_skills_array as $skill)
-														<br>
-														<i class="fas fa-star"></i> {{$skill}}
-													@endforeach
-												@else
-													<option>No Skills required</option>
-												@endif                                                        
-											
-											
-										</div>
-											<?php 
-												$project_budget = $getjobbyid->project_budget;
-												$project_rate_min = $getjobbyid->hourly_rate_min;
-											?>
-										<div class="col-lg-8 custom_div">
-											@if( $project_budget != null )													
-												<div class="col-md-12">
-													<label for="job_budget" class="form-label">Project Budget :</label>
-												</div>
-												<input type="text" class="form-control" id="job_budget" name="job_budget" placeholder="Project Budget" value="{{$project_budget}}" readonly>
-											@endif
-												
+											<input type="text" step=1 class="form-control" value="{{$usersince}}" readonly>
 										</div>
 										<div class="col-lg-8 custom_div">
-											@if( $project_rate_min != null )
-												<div class="col-md-12">
-													<label for="job_budget" class="form-label">Project Min. Rate :</label>
-												</div>
-												<input type="text" class="form-control" id="job_budget" name="job_budget" placeholder="Project Budget" value="{{$project_rate_min}}" readonly>													
-											@endif
+											<input type="submit" value="Update Name" class="btn btn-primary">
 										</div>
-										<div class="col-lg-8 custom_div">
-											<label for="job_deadline" class="form-label">Project Deadline</label>
-											<input type="date" class="form-control" id="job_deadline" name="job_deadline" placeholder="Project Deadline" readonly value="{{$getjobbyid->deadline}}" readonly>
-										</div>
-										
-										
 									</div>
-									<hr>
-									<div class="col-auto mother-commentdiv">
-										<?php
-											$totaltime = 0;
-										?>
-										@if(isset($getjobupdatebyid))
-											<h5>Updates about this </h5>
-											@foreach($getjobupdatebyid as $update)
-												<div class="commentdiv" id="{{$update->id}}" onClick="show_comment_on_click(this.id)">
-													<div class="col-lg-8 custom_div">											
-														Headline : {{$update->jobupdate_headline}}
-													</div>
-													<div class="col-lg-8 custom_div">
-														Time Worked : {{$update->jobupdate_time}} Hours
-													</div>
-													<?php 
-														
-														$totaltime = $totaltime + $update->jobupdate_time;
-													?>
-												</div>
-											@endforeach
-										@endif
-											<br>
-												Total worked time : <?php echo $totaltime;?> Hours
-											
-									</div>
+									
+									
 								</form>
-								<br>
-								<div class="col-lg-8 custom_div">
-									<a href="{{route('employerdashboard')}}" class="btn btn-primary">Back to Dashboard</a>
+								<hr>
+								<div class="col-auto mother-jobdiv">
+									@if(isset($alljobslist))
+										@foreach($alljobslist as $singlejob)
+											@if($singlejob['posted_by_id'] == $user->id)
+												@if($i == 1)
+													<h5> Posted Jobs: </h5>
+												@endif
+												<div class="jobdiv" id="{{$singlejob['id']}}" onClick="show_job_on_click(this.id)">
+													<b>{{$singlejob['job_title']}}</b>
+													<div class="col-lg-12 custom_div">
+														@if($singlejob['assigned_to_username'] != '')
+															<b><label>Assigned to :</label></b>{{$singlejob['assigned_to_username']}}
+														@else
+															<b><label style="color:red;">Not Assigned Yet.</label></b>
+														@endif
+													</div>
+												</div>
+												<?php $i++; ?>
+											@endif	
+										@endforeach
+									@endif
+									
 								</div>
+								
 							</div>
 							
 						</div>
@@ -184,21 +155,6 @@ select#emp_skills {
 
 @section('pagescript')
 <script>
-$('#job_budget_currency').on('change', function() {
-	var job_budget_currency = $('#job_budget_currency').val();
-	var job_min_rate_currency = $('#job_min_rate_currency').val();
 
-	if(job_budget_currency != job_min_rate_currency){
-		$('#job_min_rate_currency').val(job_budget_currency);
-	}
-});
-$('#job_min_rate_currency').on('change', function() {
-	var job_budget_currency = $('#job_budget_currency').val();
-	var job_min_rate_currency = $('#job_min_rate_currency').val();
-
-	if(job_budget_currency != job_min_rate_currency){
-		$('#job_budget_currency').val(job_min_rate_currency);
-	}
-});
 </script>
 @endsection

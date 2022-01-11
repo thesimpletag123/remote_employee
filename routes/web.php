@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('employeetimeupdate', 'JobTrackerController@employeetimeupdate')->name('employeetimeupdate');
 		Route::post('employeeprofileupdate', 'HomeController@employeeprofileupdate')->name('employeeprofileupdate');
 		
+		
 	});
 	Route::middleware(['isEmployer'])->group(function () {
 		Route::get('employerdashboard', 'JobPostController@employerdashboard')->name('employerdashboard');
@@ -73,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('editjobrequest', 'JobPostController@editjobrequest')->name('editjobrequest');
 		Route::post('delete_job', 'JobPostController@delete_job')->name('delete_job');
 		Route::get('trackjob/{jobid}', 'JobTrackerController@trackjob')->name('trackjob');
+		Route::post('employerprofileupdate', 'HomeController@employerprofileupdate')->name('employerprofileupdate');
 	});
 });
 

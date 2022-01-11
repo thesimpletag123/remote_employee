@@ -351,12 +351,17 @@ new WOW().init();
 	function show_comment_on_click(commentid){
 		event.preventDefault();
 		$('.comment-show-hide-div').hide();
-		$('#comment-'+commentid).show();
-		
-		
-		
+		$('#comment-'+commentid).show();		
+	}
+
+//Show Jobs in full sidebar Employer
+	function show_job_on_click(commentid){
+		event.preventDefault();
+		$('.job-show-hide-div').hide();
+		$('#job-'+commentid).show();		
 	}
 	
+
 // Landing page Employee modal next disabled - step 1
 $('#emp_name').keyup(function() {
 CheckNameNEmail();

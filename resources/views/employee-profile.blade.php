@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Track Job')
+@section('title', 'Profile')
 @section('pagecss')
 <style>
 div#modal-profile-setting {
@@ -74,25 +74,24 @@ select#emp_skills {
 				</p>
 			</div>
 		</div>
-		
-	
 	<hr>
-	
+	<?php $i = 1; ?>
 		@if(isset($alljobslist))
 			@foreach($alljobslist as $singlejob)
 				@if($singlejob['assigned_to_id'] == $user->id)
-					<div class="mysidebardiv comment-show-hide-div" id="comment-{{$jobupdate->id}}">
-						<b>Job : {{$singlejob['job_title']}}</b>
+					@if($i == 1)
+						<h5> Assigned Jobs to you </h5>
+					@endif
+					<div class="mysidebardiv" id="comment-{{$singlejob['id']}}">
+						<b>{{$singlejob['job_title']}}</b>
 						<div class="col-lg-12 custom_div">
-							<b><label>Assigned By :</label></b>$singlejob['assigned_by_username']
+							<b><label>Assigned By :</label></b>{{$singlejob['posted_by_username']}}
 						</div>
 						<div class="col-lg-12 custom_div">
-							<b><label>Description:</label></b> $singlejob['project_description']
-						</div>
-						<div class="col-lg-12 custom_div">
-							<b><label>My Skill:</label></b> $user->employee->skills
+							<b><label>Skill Required:</label></b> <?=str_replace('-', ' , ', $singlejob['required_skills'])?>
 						</div>
 					</div>
+					<?php $i++; ?>
 				@endif	
 			@endforeach
 		@endif
@@ -100,7 +99,7 @@ select#emp_skills {
 </div>
 							
 							<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
-								<h5>Track Job</h5>
+								<h5>My Profile</h5>
 								<form id="employeeprofileupdate" name="employeeprofileupdate" method="post" action="{{route('employeeprofileupdate')}}" enctype="multipart/form-data">
 								@csrf
 									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
@@ -192,21 +191,6 @@ select#emp_skills {
 
 @section('pagescript')
 <script>
-$('#job_budget_currency').on('change', function() {
-	var job_budget_currency = $('#job_budget_currency').val();
-	var job_min_rate_currency = $('#job_min_rate_currency').val();
 
-	if(job_budget_currency != job_min_rate_currency){
-		$('#job_min_rate_currency').val(job_budget_currency);
-	}
-});
-$('#job_min_rate_currency').on('change', function() {
-	var job_budget_currency = $('#job_budget_currency').val();
-	var job_min_rate_currency = $('#job_min_rate_currency').val();
-
-	if(job_budget_currency != job_min_rate_currency){
-		$('#job_budget_currency').val(job_min_rate_currency);
-	}
-});
 </script>
 @endsection
