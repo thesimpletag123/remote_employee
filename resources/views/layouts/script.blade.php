@@ -16,6 +16,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <script>
 new WOW().init();
 
@@ -350,12 +351,17 @@ new WOW().init();
 	function show_comment_on_click(commentid){
 		event.preventDefault();
 		$('.comment-show-hide-div').hide();
-		$('#comment-'+commentid).show();
-		
-		
-		
+		$('#comment-'+commentid).show();		
+	}
+
+//Show Jobs in full sidebar Employer
+	function show_job_on_click(commentid){
+		event.preventDefault();
+		$('.job-show-hide-div').hide();
+		$('#job-'+commentid).show();		
 	}
 	
+
 // Landing page Employee modal next disabled - step 1
 $('#emp_name').keyup(function() {
 CheckNameNEmail();
@@ -525,6 +531,18 @@ var i = 1;
 		$('.swiper-button-next').css('opacity', '0.35');		
 	});
 	
+// Employee Profile page add more skill div on-off toggle button
+$('#toggle_skill_onoff_btn').change(function() {
+check = $("#toggle_skill_onoff_btn").is(":checked");
+    if(check) {
+        $('.toggle_skill_onoff_div').show();
+		 $("#my_skills").attr('required',true);
+    } else {
+		$("#my_skills").val([]);
+		$('.toggle_skill_onoff_div').hide();
+		 $("#my_skills").attr('required',false);
+    }
+});
 </script>
         
         <!-- End scripts -->

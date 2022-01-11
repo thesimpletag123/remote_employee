@@ -1970,7 +1970,7 @@ section.parttime {
     z-index: 0 !important;
 }*/
 .custom_div {
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 }
 .alert.alert-success {
     top: 100px;
@@ -1998,13 +1998,13 @@ section.parttime {
 .col-md-12.padding-top {
     padding-top: 25px;
 }
-.commentdiv, .mysidebardiv {
+.commentdiv, .mysidebardiv, .jobdiv {
     border: 1px solid darkgray;
     margin-bottom: 10px;
     border-radius: 10px;
 	padding: 10px;
 }
-.comment-show-hide-div {
+.comment-show-hide-div, .job-show-hide-div {
 	display:none;
 }
 .jopboard {
@@ -2012,4 +2012,29 @@ section.parttime {
 }
 .one-line {
     display: flex;
+}
+.form-group input#name::placeholder {
+	color: #DBDBDC;
+	font-size: 14px;
+}
+.form-group input#name {
+    background-color: #1c1c1c;
+	color: #fff;
+	font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;    
+}
+.toggle_skill_onoff_div {
+	display: none;
+}
+  .slow  .toggle-group { transition: left 1s; -webkit-transition: left 1s; }
+  .fast  .toggle-group { transition: left 0.5s; -webkit-transition: left 0.5s; }
+  .quick .toggle-group { transition: none;      -webkit-transition: none; }
+ 
+ .jobdiv:hover,  .commentdiv:hover {
+    background-color: #FFFFDD;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
 }

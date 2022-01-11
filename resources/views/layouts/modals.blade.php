@@ -169,19 +169,12 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 										
                                         </div>
                                         <div class="form-group">
-											@if (Auth::check())
-												 @if(isset($user->name))
-													<input type="text" name="name" id="emp_name" value="{{$user->name}}">
-												@else
-													<input type="text" name="name" id="emp_name">
-												@endif
-											@else
+											
 												<input type="text" name="name" id="emp_name" placeholder="Enter Your Name">
-											@endif
                                         </div>
                                         <div class="form-group">
 											@if (Auth::check())
-												@if(isset($user->name))
+												@if(isset($user->email))
 													<input type="email" name="email" id="emp_email" readonly value="{{$user->email}}">
 												@else
 													<input type="email" name="email" id="emp_email">
@@ -211,7 +204,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 												}
 												?>
                                                 <div class="col-3"><input type="number" name="" placeholder="+91" id="emp_phone_ext"></div>
-                                                <div class="col-6"><input type="number" value="{{$emp_contact_no}}" placeholder="Contact number" id="emp_phone_no"></div>
+                                                <div class="col-6"><input type="number" value="" placeholder="Contact number" id="emp_phone_no"></div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -495,7 +488,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                         @csrf
 
 							<div class="form-group row">
-								<i class="fas fa-envelope" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-user" style="width: 0%; left: 1px;"></i>
 								<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" Placeholder="Enter Your Name" autofocus style="padding-left: 35px;">
 
                                 @error('name')
@@ -506,7 +499,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							</div>
 
 							<div class="form-group row">
-								<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-envelope" style="width: 0%; left: 1px;"></i>
 								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your Email" />
 
 								@error('email')
@@ -517,7 +510,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							</div>
 							<div class="form-group row">
 								<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
-								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Type Password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -527,7 +520,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							</div>
 							<div class="form-group row">
 								<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
-								<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+								<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Re-Type Password">
 							</div>
 
 							<div class="form-group">
@@ -675,8 +668,9 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 												
 												?>
 												
-                                            <select id="fulltime_job_skills" multiple>		@if(Route::is('employerdashboard'))
-												<?php $skills = $skillsets; ?>
+                                            <select id="fulltime_job_skills" multiple>
+											@if(Route::is('employerdashboard'))
+												<?php $skills = $allskills; ?>
 											@endif
 												@if(isset($skills))
 													@foreach($skills as $value)

@@ -55,6 +55,7 @@ class JobPostController extends Controller
 		$quick_job_post->posted_by_id = $user->id;
 		
 		$quick_job_post->save();		
+		User::where(['id' => $user->id])->update(['user_type' => 'employer']);
 		
 		Session::put('quick_project_desc', '' );
 		Session::put('quick_min_budget', '' );
@@ -165,9 +166,8 @@ class JobPostController extends Controller
 
 	public function submit_full_project(Request $request)
 	{	
-		$user = Auth::user();			
-			
-		$updateuser = User::where(['id' => $user->id])->update(['is_verified' => true]);
+		$user = Auth::user();	
+		$updateuser = User::where(['id' => $user->id])->update(['is_verified' => true , 'user_type' => 'employer']);
 		$updateemp = Employee::where(['user_id' => $user->id])->update(['is_verified' => true]);
 		//$deletedfromotp = GenerateOtp::where('user_id', $user->id)->delete();
 
@@ -231,7 +231,7 @@ class JobPostController extends Controller
 		$currencies = $currencynew->currencyList();
 
 		$skillsnew = new Skills();
-		$skillsets = $skillsnew->skillnames();
+		$allskills = $skillsnew->skillnames();
 		
 		$allinvoicenew = new JobPost;
 		$allinvoice = $allinvoicenew->GetInvoiceWithDetails();
@@ -254,7 +254,7 @@ class JobPostController extends Controller
 		die();*/
 		
 		
-		return view('employerdashboard', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skillsets' => $skillsets, 'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
+		return view('employerdashboard', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'allskills' => $allskills, 'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
 
 	}
 	

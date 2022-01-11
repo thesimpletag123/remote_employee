@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Employee extends Model
 {
@@ -54,4 +55,10 @@ class Employee extends Model
 		return $result;
 	}
 	
+	public function GetCurrentUserSkill(){
+		$user = Auth::user();
+		$result = Employee::where('user_id', $user->id)->first();
+		$skills = $result->skills;
+		return $skills;
+	}
 }
