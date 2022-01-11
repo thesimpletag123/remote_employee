@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Job Post')
+@section('title', 'Job Update')
 @section('pagecss')
 <style>
 div#modal-profile-setting {
@@ -8,7 +8,7 @@ div#modal-profile-setting {
 .modal-xl {
     max-width: 80%;
 }
-input#job_budget, input#job_min_rate {
+input#job_max_rate, input#job_min_rate {
     float: right;
     width: 85%;
 }
@@ -114,13 +114,15 @@ select#emp_skills {
 										</div>
 										<div class="col-lg-8 custom_div">
 											<div class="adjust-currency">
-												<label for="job_budget" class="form-label">Project Budget</label>
+												<label for="job_budget" class="form-label">Hourly Rate -Maximum</label>
 											</div>
 											<?php
 												$budgetcurrency = null;
 												$minratecurrency = null;
+												$maxratecurrency = null;
 												$budget = null;
 												$minrate = null;
+												$maxrate = null;
 												
 												$project_budget = $getjobbyid->project_budget;
 												if( $project_budget != null ){
@@ -136,17 +138,24 @@ select#emp_skills {
 													$minratecurrency = $project_rate_min_array[1];
 												}
 												
+												$project_rate_max = $getjobbyid->hourly_rate_max;
+												if( $project_rate_max != null ){
+													$project_rate_max_array = explode(' ' , $project_rate_max);
+													$maxrate = $project_rate_max_array[0];
+													$maxratecurrency = $project_rate_max_array[1];
+												}
+												
 											?>
-											<select id="job_budget_currency" name ="job_budget_currency">
+											<select id="job_max_rate_currency" name ="job_max_rate_currency">
 												@if(isset($currencies))													
 													@foreach($currencies as $currency => $abbr)
-														<option value="{{$currency}}" <?php if($currency == $budgetcurrency){echo "selected";}?>>{{$currency}}</option>
+														<option value="{{$currency}}" <?php if($currency == $maxratecurrency){echo "selected";}?>>{{$currency}}</option>
 													@endforeach
 												@else
 													<option>No Currency Available</option>
 												@endif                                                        
 											</select>
-											<input type="number" class="form-control" id="job_budget" name="job_budget" placeholder="Project Budget" value="{{$budget}}">
+											<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
 										</div>
 										<div class="col-lg-8 custom_div">
 											<div class="col-md-12 padding_none">
@@ -186,20 +195,20 @@ select#emp_skills {
 
 @section('pagescript')
 <script>
-$('#job_budget_currency').on('change', function() {
-	var job_budget_currency = $('#job_budget_currency').val();
+$('#job_max_rate_currency').on('change', function() {
+	var job_max_rate_currency = $('#job_max_rate_currency').val();
 	var job_min_rate_currency = $('#job_min_rate_currency').val();
 
-	if(job_budget_currency != job_min_rate_currency){
-		$('#job_min_rate_currency').val(job_budget_currency);
+	if(job_max_rate_currency != job_min_rate_currency){
+		$('#job_min_rate_currency').val(job_max_rate_currency);
 	}
 });
 $('#job_min_rate_currency').on('change', function() {
-	var job_budget_currency = $('#job_budget_currency').val();
+	var job_max_rate_currency = $('#job_max_rate_currency').val();
 	var job_min_rate_currency = $('#job_min_rate_currency').val();
 
-	if(job_budget_currency != job_min_rate_currency){
-		$('#job_budget_currency').val(job_min_rate_currency);
+	if(job_max_rate_currency != job_min_rate_currency){
+		$('#job_max_rate_currency').val(job_min_rate_currency);
 	}
 });
 </script>
