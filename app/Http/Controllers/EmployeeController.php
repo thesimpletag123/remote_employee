@@ -132,12 +132,14 @@ class EmployeeController extends Controller
 		
 			
 		// Insert datas into DB
-		
-		if(is_array($request->emp_skills)){
-			$skills = implode(",",$request->emp_skills);
+		$requestskills = explode(',', $request->emp_skills);
+		if(is_array($requestskills)){
+			$skills = implode("-",$requestskills);
 		} else {
-			$skills = $request->emp_skills;
+			$skills = $requestskills;
 		}
+		//var_dump($request->emp_skills);
+		//die();
 		if($request->emp_extra_skills){
 			$addnewjobskill = new Skills;
 			$newskill = $addnewjobskill->CheckAndUpdateSkill($request->emp_extra_skills);

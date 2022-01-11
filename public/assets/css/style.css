@@ -1918,7 +1918,7 @@ footer {
     font-size: 13px;
     margin-block: 3px;
 	width: 100%;
-	overflow: hidden;
+	overflow: auto;
 }
 #emp_skills option, #fulltime_job_skills option {
     width: max-content;
@@ -1974,6 +1974,9 @@ section.parttime {
 }
 .alert.alert-success {
     top: 100px;
+    width: 80%;
+    margin: auto;
+	text-align: center;
 }
 .g-signin2 {
 	width: max-content;

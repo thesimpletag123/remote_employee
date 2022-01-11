@@ -337,8 +337,8 @@ class JobPostController extends Controller
 				$addnewjobskill = new Skills;
 				$newskill = $addnewjobskill->CheckAndUpdateSkill($job_extra_skills);
 			}
-		if($request->get('job_budget') != null){
-			$job_budget = $request->get('job_budget'). ' ' . $request->get('job_budget_currency');
+		if($request->get('job_max_rate') != null){
+			$job_max_rate = $request->get('job_max_rate'). ' ' . $request->get('job_max_rate_currency');
 		}
 		if($request->get('job_min_rate') != null){
 			$job_min_rate = $request->get('job_min_rate'). ' ' .$request->get('job_min_rate_currency');
@@ -350,7 +350,7 @@ class JobPostController extends Controller
 						'job_title' => $job_title, 
 						'required_skills' => $emp_skills,
 						'hourly_rate_min' => $job_min_rate,
-						'project_budget' => $job_budget,
+						'hourly_rate_max' => $job_max_rate,
 						'project_description' => $job_description,
 						'deadline' => $job_deadline
 						]);

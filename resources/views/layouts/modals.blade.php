@@ -276,7 +276,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 											<select id="emp_skills" multiple>
 												@if(isset($skills))
 													@foreach($skills as $value)
-														<option value="{{$value}}" <?php if(in_array($value , $emp_skills)){echo "selected";}?>>{{$value}}</button>
+														<option value="{{$value}}" >{{$value}}</button>
 													@endforeach
 												@else
 														<option >No Skill</option>

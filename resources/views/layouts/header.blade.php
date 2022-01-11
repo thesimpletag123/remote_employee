@@ -35,7 +35,16 @@
 							@if (Route::has('login'))
 								<div class="top-right links">
 									@auth
-										<a class="home_btn" href="{{ url('/') }}">Home</a>
+										 @if( Request::path() == '/' || Request::path() == '/home')
+											@if($user->user_type == 'employer') 
+												<a class="home_btn" href="{{ url('/employerdashboard') }}">Dashboard</a>
+											@elseif($user->user_type == 'employee')
+												<a class="home_btn" href="{{ url('/dashboard') }}">Dashboard</a>
+											@endif
+										 @else
+											 <a class="home_btn" href="{{ url('/') }}">Home</a>
+										 @endif
+										
 										<a class="logout_btn" href="{{url('logout')}}" onclick="signOut();">Logout</a>
 									@else
 										<a href="" data-bs-toggle="modal" data-bs-target="#modal-login" class="login_modal_pop_btn">Login</a>
@@ -55,7 +64,9 @@
         <!-- End header -->
 		
 		@if(Session::get('success'))
-			<div class="alert alert-success">
-			   {{session::get('success')}}
+			<div class="alert-custom-div">
+				<div class="alert alert-success">
+				{{session::get('success')}}
+				</div>
 			</div>
 		@endif
