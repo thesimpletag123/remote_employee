@@ -485,7 +485,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							<h4>Welcome to Remote Employee</h4>
 							<p>Register your account</p>
 						</div>
-						<form method="POST" action="{{ route('register') }}">
+						<form method="POST" action="{{ route('register') }}" id="reg_popup_form">
                         @csrf
 
 							<div class="form-group row">
@@ -528,7 +528,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								<a class="toggle_login_reg_btn" id="go_to_login_popup"> Already a member </a>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-primary" id="reg_button_for_validation">
                                     {{ __('Register') }}
                                 </button>
 							</div>

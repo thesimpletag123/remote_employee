@@ -595,6 +595,51 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 
 			});
 	});
+	
+	
+	$( "#reg_button_for_validation" ).click(function() {
+		event.preventDefault();
+		$('#name').css('border-color', '');
+		$('#email').css('border-color', '');
+		$('#password').css('border-color', '');
+		$('#password-confirm').css('border-color', '');
+		
+		$('#name').removeClass("shakeing");		
+		$('#email').removeClass("shakeing");		
+		$('#password').removeClass("shakeing");		
+		$('#password-confirm').removeClass("shakeing");
+		var name = $('#name').val();
+		var email = $('#email').val();
+		var password = $('#password').val();
+		var repassword = $('#password-confirm').val();
+		if(name != '' && email != '' && password != '' && repassword != ''){
+			if (password === repassword){
+				$("#reg_popup_form").submit();
+			} else {
+				$('#password').css('border-color', 'red');
+				$( '#password' ).addClass( "shakeing" );
+				$('#password-confirm').css('border-color', 'red');
+				$( '#password-confirm' ).addClass( "shakeing" );
+			}
+		} else {
+			if(name == ''){
+				$('#name').css('border-color', 'red');
+				$( '#name' ).addClass( "shakeing" );
+			}
+			if(email == ''){
+				$('#email').css('border-color', 'red');
+				$( '#email' ).addClass( "shakeing" );
+			}
+			if(password == ''){
+				$('#password').css('border-color', 'red');
+				$( '#password' ).addClass( "shakeing" );
+			}
+			if(repassword == ''){
+				$('#password-confirm').css('border-color', 'red');
+				$( '#password-confirm' ).addClass( "shakeing" );
+			}
+		}
+	});
 </script>
         
         <!-- End scripts -->

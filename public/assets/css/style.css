@@ -2011,16 +2011,20 @@ section.parttime {
 	display:none;
 	max-height: 300px;
 }
-.job-show-hide-div .custom_div {
+.job-show-hide-div .custom_div, .comment-show-hide-div .custom_div, .job-update-sidebar .custom_div {
     max-height: 150px;
     overflow: auto;
 }
-.job-show-hide-div .custom_div {
-    max-height: 150px;
-    overflow: auto;
-}
-.job-show-hide-div .custom_div::-webkit-scrollbar {
+
+.job-show-hide-div .custom_div::-webkit-scrollbar, .comment-show-hide-div .custom_div::-webkit-scrollbar,  .job-update-sidebar .custom_div::-webkit-scrollbar, .parent-job-update::-webkit-scrollbar {
   display: none;
+}
+.job-update-sidebar {
+	display: block;
+}
+.parent-job-update {
+    max-height: 600px;
+    overflow: auto;
 }
 .jopboard {
     min-height: 500px;
