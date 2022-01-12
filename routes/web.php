@@ -37,6 +37,7 @@ Auth::routes();
 	### 3. Session Set for PopUp Jobpost
 	Route::post('setsession_for_popups', 'JobPostController@setsession_for_popups')->name('setsession_for_popups');
 	Route::post('unset_popup_sessions', 'JobPostController@unset_popup_sessions')->name('unset_popup_sessions');
+	Route::post('check_login_before_submit', 'Auth\LoginController@check_login_before_submit')->name('check_login_before_submit');
 	
 
 Route::middleware(['auth'])->group(function () {

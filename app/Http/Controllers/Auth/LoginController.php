@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
+
+use Illuminate\Support\Facades\Auth;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -51,4 +55,28 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+	
+	public function check_login_before_submit(Request $request){
+		$email = $request->email;		
+		$password = $request->password;
+		
+		$ifexsists = User::where('email' , '=' , $email)->first();
+		if ($ifexsists === null) {
+			$data['success'] = 2;
+
+			return response()->json($data);
+		} else {
+			if( Hash::check( $password, $ifexsists->password) )
+			{ 
+				$data['success'] = 1;
+
+				return response()->json($data);
+			} else {
+				$data['success'] = 0;
+
+				return response()->json($data);
+			}
+
+		}
+	}
 }

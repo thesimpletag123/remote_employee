@@ -316,7 +316,8 @@ class HomeController extends Controller
 		$name = $request->name;
 		User::where('id' , $user->id)->update(['name' => $name]);
 		JobPost::where('posted_by_id' , $user->id)->update(['posted_by_username' => $name]);
-		$msg = "ConGratulation. You have successfylly modified your name from '".$prename."' to '".$name."'";
+		//$msg = "Congratulation. You have successfylly modified your name from '".$prename."' to '".$name."'";
+		$msg = "Saved Successfully.";
 		return redirect()->back()->with('success', $msg);
 	}
 }
