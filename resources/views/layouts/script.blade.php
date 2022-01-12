@@ -596,7 +596,7 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 			});
 	});
 	
-	
+// Registration Validation before Submit	
 	$( "#reg_button_for_validation" ).click(function() {
 		event.preventDefault();
 		$('#name').css('border-color', '');
