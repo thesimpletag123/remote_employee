@@ -1917,16 +1917,16 @@ footer {
     border: 0;
     font-size: 13px;
     margin-block: 3px;
-	width: 100%;
+	width: -webkit-fill-available;;
 	overflow: auto;
 }
 #emp_skills option, #fulltime_job_skills option {
     width: max-content;
-    display: inline-block;
     background-color: rgba(1, 58, 184, 0.3);
     padding: 5px;
     border-radius: 10px;
-    margin-right: 10px;
+    margin: 5px;
+	float: left;
 }
 #go_to_register_popup {
     cursor: pointer;
