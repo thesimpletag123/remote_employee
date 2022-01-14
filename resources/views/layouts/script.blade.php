@@ -40,13 +40,14 @@ new WOW().init();
 	}
 		
 // Signout Function
-	function signOut() {
+	function signOut() {		
 		var auth2 = gapi.auth2.getAuthInstance();
 		auth2.signOut().then(function () {
-			 GoogleAuth.signOut();
-			 gapi.auth.signOut();
-			 theUser.disconnect();
-			 location.reload();
+			google.accounts.id.disableAutoSelect();
+			GoogleAuth.signOut();
+			gapi.auth.signOut();
+			theUser.disconnect();
+			location.reload();
 		});
 
 	}
@@ -66,9 +67,14 @@ new WOW().init();
 			url: "{{url('signin_using_google_popup')}}",
 			data: { "_token": token , gprofileid:gprofileid, gname:gname , gimage:gimage, gemail:gemail},
 			success: function( data ) {
-				var result = JSON.parse(data.success);
-				//alert(result);
-				if(result == 1){
+				//var result = JSON.parse(data.success);
+				//console.log(data.user_type);
+				if(data.user_type == 'employer'){
+					window.location.href = "{{url('employerdashboard')}}";
+				} else if(data.user_type == 'employee'){
+					window.location.href = "{{url('dashboard')}}";
+				} else {
+					//location.reload();
 					$('#submit_quick_project').prop('disabled', false);
 					$('#submit_full_project_disable').prop('disabled', false);
 					$('#submit_quick_project_disable').prop('disabled', false);
@@ -491,6 +497,7 @@ var i = 1;
 		var minrate = $('#fulltime_job_min').val();
 		var maxrate = parseInt(minrate) + 1;
 		$( "#fulltime_job_max" ).val('');
+
 		$('#fulltime_job_max').attr({"min" : maxrate});
 		CheckMinMaxOrBudget();
 	});
@@ -517,7 +524,7 @@ var i = 1;
 			$('.swiper-button-next').css('opacity', '0.35');
 		} else if (fulltime_job_min != "" && fulltime_job_max != "" && fulltime_job_budget == ""){
 			
-			if(fulltime_job_max > fulltime_job_min){
+			if(parseInt(fulltime_job_max) >= parseInt(fulltime_job_min)){
 				$('#fulltime_job_min').css('border-color', '');
 				$('#fulltime_job_max').css('border-color', '');
 				$('#fulltime_job_budget').css('border-color', '');
