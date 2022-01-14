@@ -56,7 +56,7 @@
 								</div>
 							@endif
                         </div>
-                        <div><span><i class="fas fa-th"></i></span></div>
+                        <!--<div><span><i class="fas fa-th"></i></span></div>-->
                     </div>
                 </div>
             </div>

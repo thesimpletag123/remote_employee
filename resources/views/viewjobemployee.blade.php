@@ -53,26 +53,28 @@ select#emp_skills {
 		
 	
 	<hr>
-	@if(isset($getjobupdatebyid))
-		@foreach($getjobupdatebyid as $jobupdate)
-			<div class="mysidebardiv">
-				<b>By: {{$jobupdate->user->name}}</b>
-				<div class="col-lg-12 custom_div">
-					<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
+	<div class="parent-job-update">
+		@if(isset($getjobupdatebyid))
+			@foreach($getjobupdatebyid as $jobupdate)
+				<div class="mysidebardiv job-update-sidebar">
+					<b>By: {{$jobupdate->user->name}}</b>
+					<div class="col-lg-12 custom_div">
+						<b><label>Task Name :</label></b>{{$jobupdate->jobupdate_headline}}
+					</div>
+					<div class="col-lg-12 custom_div">
+						<b><label>Description:</label></b> {{$jobupdate->jobupdate_description}}
+					</div>
+					<div class="col-lg-12 custom_div">
+						<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
+					</div>			
 				</div>
-				<div class="col-lg-12 custom_div">
-					<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
-				</div>
-				<div class="col-lg-12 custom_div">
-					<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
-				</div>			
+			@endforeach
+		@else
+			<div class="mysidebardiva">
+				<b>No Updates available</b>		
 			</div>
-		@endforeach
-	@else
-		<div class="mysidebardiva">
-			<b>No Updates available</b>		
+		@endif
 		</div>
-	@endif
 	</div>
 </div>
 							
@@ -87,11 +89,11 @@ select#emp_skills {
 											<label for="job_title" class="form-label">Job Title</label>
 											<input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job Title here" readonly value="{{$getjobbyid->job_title}}">
 										</div>
-										<!--<div class="col-lg-8 custom_div">
+										<div class="col-lg-8 custom_div">
 										  <label for="job_desc" class="form-label">Job Description</label>
 										  <textarea class="form-control" id="job_desc" name="job_desc" rows="3" readonly>{{$getjobbyid->project_description}}</textarea>
 										</div>
-										<div class="col-lg-8 custom_div">
+										<!--<div class="col-lg-8 custom_div">
 											<div class="col-md-12 padding_none">
 												<label for="job_skills" class="form-label">Required Skills:</label>
 											</div>
@@ -155,7 +157,7 @@ select#emp_skills {
 											<textarea class="form-control" id="emp_work_desc" name="emp_work_desc" placeholder="My work in detail"rows="3"></textarea>
 										</div>
 										<div class="col-lg-8 custom_div">
-											<label for="emp_work_time" class="form-label">Time Spent(Hour) :</label>
+											<label for="emp_work_time" class="form-label">Time Spent (Hours) :</label>
 											<input type="number" step=0.25 class="form-control" id="emp_work_time" name="emp_work_time" placeholder="Time I have worked">
 										</div>
 										

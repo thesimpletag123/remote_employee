@@ -345,7 +345,15 @@ new WOW().init();
 			$('#fulltime_job_desc_minmax').val('');
 		}
 	}
-	
+
+// Employer Job post Min - Max field validation	
+$('#fulltime_job_min').change(function() {
+	var minrate = $('#fulltime_job_min').val();
+	var maxrate = parseInt(minrate) + 1;
+	$('#fulltime_job_max').attr({
+       "min" : maxrate
+    });
+});
 	
 //Show Comment in full sidebar Employer
 	function show_comment_on_click(commentid){
@@ -410,7 +418,7 @@ function CheckSkills(){
 }
 
 // Landing page Employee modal next disabled - step 2
-$('.otps').change(function() {
+$('.otps').on('input', function() {
 	ChecksOtps();
 });
 function ChecksOtps(){
@@ -480,11 +488,20 @@ var i = 1;
 		}
 	}
 	
-	$( "#fulltime_job_min" ).keyup(function() {
+	$( "#fulltime_job_min" ).on('input', function(){
+		var minrate = $('#fulltime_job_min').val();
+		var maxrate = parseInt(minrate) + 1;
+		$( "#fulltime_job_max" ).val('');
+		$('#fulltime_job_max').attr({"min" : maxrate});
 		CheckMinMaxOrBudget();
 	});
-	$( "#fulltime_job_max" ).keyup(function() {
-		CheckMinMaxOrBudget();
+	$( "#fulltime_job_max" ).on('input', function() {
+		var maxrate = $( "#fulltime_job_max" ).val();
+		
+		//alert('maxrate' + maxrate);
+		if($(this).attr("min") >= maxrate){		
+			CheckMinMaxOrBudget();
+		}
 	});
 	$( "#fulltime_job_budget" ).keyup(function() {
 		CheckMinMaxOrBudget();
@@ -494,20 +511,27 @@ var i = 1;
 		var fulltime_job_max = $( "#fulltime_job_max" ).val();
 		var fulltime_job_budget = $( "#fulltime_job_budget" ).val();
 		if(fulltime_job_min == "" && fulltime_job_max == "" && fulltime_job_budget == ""){
-			//alert('fulltime_job_min' + fulltime_job_min);
-			//alert('fulltime_job_max' + fulltime_job_max);
-			//alert('fulltime_job_budget' + fulltime_job_budget);
 			$('#fulltime_job_min').css('border-color', 'red');
 			$('#fulltime_job_max').css('border-color', 'red');
 			$('#fulltime_job_budget').css('border-color', 'red');
 			$('.swiper-button-next').css('pointer-events', 'none');
 			$('.swiper-button-next').css('opacity', '0.35');
 		} else if (fulltime_job_min != "" && fulltime_job_max != "" && fulltime_job_budget == ""){
-			$('#fulltime_job_min').css('border-color', '');
-			$('#fulltime_job_max').css('border-color', '');
-			$('#fulltime_job_budget').css('border-color', '');
-			$('.swiper-button-next').css('pointer-events', '');
-			$('.swiper-button-next').css('opacity', '1');
+			
+			if(fulltime_job_max > fulltime_job_min){
+				$('#fulltime_job_min').css('border-color', '');
+				$('#fulltime_job_max').css('border-color', '');
+				$('#fulltime_job_budget').css('border-color', '');
+				$('.swiper-button-next').css('pointer-events', '');
+				$('.swiper-button-next').css('opacity', '1');
+			} else {
+				$('#fulltime_job_min').css('border-color', 'red');
+				$('#fulltime_job_max').css('border-color', 'red');
+				$('#fulltime_job_budget').css('border-color', 'red');
+				$('.swiper-button-next').css('pointer-events', 'none');
+				$('.swiper-button-next').css('opacity', '0.35');
+			}			
+			
 		} else if (fulltime_job_min == "" && fulltime_job_max == "" && fulltime_job_budget != ""){
 			$('#fulltime_job_min').css('border-color', '');
 			$('#fulltime_job_max').css('border-color', '');
@@ -543,6 +567,80 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 		 $("#my_skills").attr('required',false);
     }
 });
+
+// Login Validation before Submit
+	$( "#login_button_for_validation" ).click(function() {
+		event.preventDefault();
+		$('#login_email').css('border-color', '');
+		$('#login_email').removeClass("shakeing");
+		$('#login_password').css('border-color', '');
+		$('#login_password').removeClass("shakeing");
+		var email = $('#login_email').val();
+		var password = $('#login_password').val();
+		$.ajax({
+				type: "post",
+				data: { "_token": "{{ csrf_token() }}" , email:email , password:password },
+				url: "{{url('check_login_before_submit')}}",
+				success: function( data ) {
+					var result = JSON.parse(data.success);					
+					if(result == 0){
+						$('#login_password').css('border-color', 'red');
+						$( '#login_password' ).addClass( "shakeing" );											
+					} else if (result == 1){
+						$("#login_popup_form").submit();
+					}else if (result == 2){
+						$('#login_email').css('border-color', 'red');
+						$( '#login_email' ).addClass( "shakeing" );
+					}
+				}
+
+			});
+	});
+	
+// Registration Validation before Submit	
+	$( "#reg_button_for_validation" ).click(function() {
+		event.preventDefault();
+		$('#name').css('border-color', '');
+		$('#email').css('border-color', '');
+		$('#password').css('border-color', '');
+		$('#password-confirm').css('border-color', '');
+		
+		$('#name').removeClass("shakeing");		
+		$('#email').removeClass("shakeing");		
+		$('#password').removeClass("shakeing");		
+		$('#password-confirm').removeClass("shakeing");
+		var name = $('#name').val();
+		var email = $('#email').val();
+		var password = $('#password').val();
+		var repassword = $('#password-confirm').val();
+		if(name != '' && email != '' && password != '' && repassword != ''){
+			if (password === repassword){
+				$("#reg_popup_form").submit();
+			} else {
+				$('#password').css('border-color', 'red');
+				$( '#password' ).addClass( "shakeing" );
+				$('#password-confirm').css('border-color', 'red');
+				$( '#password-confirm' ).addClass( "shakeing" );
+			}
+		} else {
+			if(name == ''){
+				$('#name').css('border-color', 'red');
+				$( '#name' ).addClass( "shakeing" );
+			}
+			if(email == ''){
+				$('#email').css('border-color', 'red');
+				$( '#email' ).addClass( "shakeing" );
+			}
+			if(password == ''){
+				$('#password').css('border-color', 'red');
+				$( '#password' ).addClass( "shakeing" );
+			}
+			if(repassword == ''){
+				$('#password-confirm').css('border-color', 'red');
+				$( '#password-confirm' ).addClass( "shakeing" );
+			}
+		}
+	});
 </script>
         
         <!-- End scripts -->

@@ -484,7 +484,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							<h4>Welcome to Remote Employee</h4>
 							<p>Register your account</p>
 						</div>
-						<form method="POST" action="{{ route('register') }}">
+						<form method="POST" action="{{ route('register') }}" id="reg_popup_form">
                         @csrf
 
 							<div class="form-group row">
@@ -527,7 +527,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								<a class="toggle_login_reg_btn" id="go_to_login_popup"> Already a member </a>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-primary" id="reg_button_for_validation">
                                     {{ __('Register') }}
                                 </button>
 							</div>
@@ -556,12 +556,12 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							<h4>Welcome back</h4>
 							<p>Enter your credentials to access your account</p>
 						</div>
-						<form method="POST" action="{{ route('login') }}">
+						<form method="POST" action="{{ route('login') }}" id="login_popup_form">
 							@csrf
 
 							<div class="form-group row">
 								<i class="fas fa-envelope" style="width: 0%; left: 1px;"></i>
-								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter your email" />
+								<input id="login_email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter your email" />
 
 								@error('email')
 								<span class="invalid-feedback" role="alert">
@@ -572,7 +572,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 
 							<div class="form-group row">
 								<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
-								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter your password" />
+								<input id="login_password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter your password" />
 
 								@error('password')
 								<span class="invalid-feedback" role="alert">
@@ -585,7 +585,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" id="login_button_for_validation" class="btn btn-primary">
 									{{ __('Login') }}
 								</button>
 							</div>

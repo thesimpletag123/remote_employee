@@ -1917,16 +1917,16 @@ footer {
     border: 0;
     font-size: 13px;
     margin-block: 3px;
-	width: 100%;
+	width: -webkit-fill-available;;
 	overflow: auto;
 }
 #emp_skills option, #fulltime_job_skills option {
     width: max-content;
-    display: inline-block;
     background-color: rgba(1, 58, 184, 0.3);
     padding: 5px;
     border-radius: 10px;
-    margin-right: 10px;
+    margin: 5px;
+	float: left;
 }
 #go_to_register_popup {
     cursor: pointer;
@@ -2009,6 +2009,22 @@ section.parttime {
 }
 .comment-show-hide-div, .job-show-hide-div {
 	display:none;
+	max-height: 300px;
+}
+.job-show-hide-div .custom_div, .comment-show-hide-div .custom_div, .job-update-sidebar .custom_div {
+    max-height: 150px;
+    overflow: auto;
+}
+
+.job-show-hide-div .custom_div::-webkit-scrollbar, .comment-show-hide-div .custom_div::-webkit-scrollbar,  .job-update-sidebar .custom_div::-webkit-scrollbar, .parent-job-update::-webkit-scrollbar {
+  display: none;
+}
+.job-update-sidebar {
+	display: block;
+}
+.parent-job-update {
+    max-height: 600px;
+    overflow: auto;
 }
 .jopboard {
     min-height: 500px;
@@ -2040,4 +2056,8 @@ section.parttime {
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
+}
+.shakeing {
+	animation: shake 0.2s ease-in-out 0s 2;
+	box-shadow: 0 0 0.5em red;
 }
