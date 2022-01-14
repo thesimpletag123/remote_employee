@@ -15,6 +15,13 @@ div#modal-login {
 @endsection
 
 @section('content')
+@if (Auth::check())
+	@if(Auth::user()->user_type == 'employee')
+	  <script>window.location = "/dashboard";</script>
+	@elseif (Auth::user()->user_type == 'employer')
+	  <script>window.location = "/employerdashboard";</script>
+	@endif
+@endif
         <!-- starting menu-links -->
         <section class="menu-links">
             <span class="closbtn"><i class="fas fa-times"></i></span>

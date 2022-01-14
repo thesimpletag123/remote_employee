@@ -505,9 +505,8 @@ var i = 1;
 		var maxrate = $( "#fulltime_job_max" ).val();
 		
 		//alert('maxrate' + maxrate);
-		if($(this).attr("min") >= maxrate){		
+		
 			CheckMinMaxOrBudget();
-		}
 	});
 	$( "#fulltime_job_budget" ).keyup(function() {
 		CheckMinMaxOrBudget();
@@ -523,7 +522,7 @@ var i = 1;
 			$('.swiper-button-next').css('pointer-events', 'none');
 			$('.swiper-button-next').css('opacity', '0.35');
 		} else if (fulltime_job_min != "" && fulltime_job_max != "" && fulltime_job_budget == ""){
-			
+			alert(parseInt(fulltime_job_max));
 			if(parseInt(fulltime_job_max) >= parseInt(fulltime_job_min)){
 				$('#fulltime_job_min').css('border-color', '');
 				$('#fulltime_job_max').css('border-color', '');
