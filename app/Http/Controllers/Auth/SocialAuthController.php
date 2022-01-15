@@ -129,9 +129,12 @@ class SocialAuthController extends Controller
 					$userupdate->save();
 				}
 				Auth::loginUsingId($existUser->id);
-				$data['success'] = 1;
-				$data['message'] = 'Login Successfull';
-				return response()->json($data);
+				
+					$data['success'] = 1;
+					$data['message'] = 'Login Successfull';
+					$data['user_type'] = $existUser->user_type;
+					return response()->json($data);
+				
 			}else{
 				$newUser = User::create([
 					'name' => $gname,

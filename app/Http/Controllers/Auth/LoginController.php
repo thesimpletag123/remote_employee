@@ -45,6 +45,22 @@ class LoginController extends Controller
 			return '/home';
 		}
 	}
+	
+	/*public function redirectTo() {
+	  $role = Auth::user()->user_type; 
+	  switch ($role) {
+		case 'employer':
+		  return '/employerdashboard';
+		  break;
+		case 'employee':
+		  return '/dashboard';
+		  break; 
+
+		default:
+		  return '/'; 
+		break;
+	  }
+	}*/
 //protected $redirectTo = RouteServiceProvider::HOME;
     /**
      * Create a new controller instance.

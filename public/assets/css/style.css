@@ -1917,7 +1917,7 @@ footer {
     border: 0;
     font-size: 13px;
     margin-block: 3px;
-	width: -webkit-fill-available;;
+	width: 100%;
 	overflow: auto;
 }
 #emp_skills option, #fulltime_job_skills option {

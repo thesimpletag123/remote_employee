@@ -23,8 +23,24 @@ class EmployerMiddleware
 		  if (Auth::user()->is_verified == true){
 			  return redirect('/employerdashboard')->with('error','You dont have a permision for the desired URL.');
 		  } else {
-			  return redirect('/home')->with('error','You dont have a permision for the desired URL.');;
+			  return redirect('/home')->with('error','You dont have a permision for the desired URL.');
 		  }		
 	  }
 	}
+	
+	/*public function redirectTo() {
+	  $role = Auth::user()->user_type; 
+	  switch ($role) {
+		case 'employer':
+		  return '/employerdashboard';
+		  break;
+		case 'employee':
+		  return '/dashboard';
+		  break; 
+
+		default:
+		  return '/'; 
+		break;
+	  }
+	}*/
 }
