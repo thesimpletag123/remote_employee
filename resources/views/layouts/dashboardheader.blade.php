@@ -39,7 +39,7 @@
 								@endif
 								<a class="dropdown-item" href="#" onclick="open_jobpost_popup()">Post a new Job</a>
 							</div>
-						@else
+						@else 
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								@if(Route::is('dashboard'))
 									<a class="dropdown-item" href="{{route('myprofile')}}">My Profile</a>
