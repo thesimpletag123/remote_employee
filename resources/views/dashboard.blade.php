@@ -6,9 +6,9 @@ div#modal-dashboard-employee {
     margin-top: 6%;
 }
 .modal-xl {
-    max-width: 80%;
+    max-width: 90%;
 }
-</style>
+</style> 
 @endsection
 @section('content')
 
