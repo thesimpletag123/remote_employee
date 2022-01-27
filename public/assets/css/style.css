@@ -2011,12 +2011,16 @@ section.parttime {
 	display:none;
 	max-height: 300px;
 }
-.job-show-hide-div .custom_div, .comment-show-hide-div .custom_div, .job-update-sidebar .custom_div {
+.job-show-hide-div .custom_div, .comment-show-hide-div .custom_div, .job-update-sidebar .custom_div, .sidebardatadiv .custom_div{
     max-height: 150px;
     overflow: auto;
 }
+.sidebardatadiv {
+    max-height: 600px;
+    overflow: auto;
+}
 
-.job-show-hide-div .custom_div::-webkit-scrollbar, .comment-show-hide-div .custom_div::-webkit-scrollbar,  .job-update-sidebar .custom_div::-webkit-scrollbar, .parent-job-update::-webkit-scrollbar {
+.job-show-hide-div .custom_div::-webkit-scrollbar, .comment-show-hide-div .custom_div::-webkit-scrollbar,  .job-update-sidebar .custom_div::-webkit-scrollbar, .parent-job-update::-webkit-scrollbar, .sidebardatadiv .custom_div::-webkit-scrollbar, .sidebardatadiv::-webkit-scrollbar {
   display: none;
 }
 .job-update-sidebar {

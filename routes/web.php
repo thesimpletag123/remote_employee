@@ -18,6 +18,8 @@ Route::get('/', 'EmployeeController@baseurllogin')->name('baseurllogin');
 
 
 
+
+
 Auth::routes();
 
 	Route::post('emp1_submit', 'EmployeeController@emp1_submit')->name('emp1_submit');
@@ -66,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('viewjobemployee/{id}', 'JobPostController@viewjobemployee')->name('viewjobemployee');
 		Route::post('employeetimeupdate', 'JobTrackerController@employeetimeupdate')->name('employeetimeupdate');
 		Route::post('employeeprofileupdate', 'HomeController@employeeprofileupdate')->name('employeeprofileupdate');
-		
+		Route::get('sendmail', 'SendMailController@sendmail')->name('sendmail');
 		
 	});
 	Route::middleware(['isEmployer'])->group(function () {

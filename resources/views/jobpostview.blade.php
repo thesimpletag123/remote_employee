@@ -53,21 +53,22 @@ select#emp_skills {
 									
 								
 								<hr>
-
-									@foreach($getjobupdatebyid as $jobupdate)
-										<div class="mysidebardiv">
-											<b>By: {{$jobupdate->user->name}}</b>
-											<div class="col-lg-12 custom_div">
-												<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
+									<div class="sidebardatadiv">
+										@foreach($getjobupdatebyid as $jobupdate)
+											<div class="mysidebardiv">
+												<b>By: {{$jobupdate->user->name}}</b>
+												<div class="col-lg-12 custom_div">
+													<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
+												</div>
+												<div class="col-lg-12 custom_div">
+													<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
+												</div>
+												<div class="col-lg-12 custom_div">
+													<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
+												</div>			
 											</div>
-											<div class="col-lg-12 custom_div">
-												<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}]
-											</div>
-											<div class="col-lg-12 custom_div">
-												<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
-											</div>			
-										</div>
-									@endforeach
+										@endforeach
+									</div>
 								</div>
 							</div>
 							

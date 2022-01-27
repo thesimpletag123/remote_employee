@@ -348,7 +348,17 @@ $("#emp_form2_next").click(function(){
 			processData: false,
 			dataType: "json",
 			success: function(data){				
-					var emp_resume = response.filepath;
+					$.ajax({
+						url:"{{url('sendmail')}}",
+						success: function(data){
+							//alert('done');
+							Swal.fire(
+								'OTP Sent!',
+								'OTP sent to your given mail ID, Please verify the OTP!',
+								'success'
+							)
+						}
+					});
 
 			}
 		});

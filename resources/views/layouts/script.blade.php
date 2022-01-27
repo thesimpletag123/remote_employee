@@ -17,6 +17,7 @@
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 new WOW().init();
 
