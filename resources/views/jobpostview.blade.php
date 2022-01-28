@@ -27,10 +27,9 @@ select#emp_skills {
 @endsection
 @section('content')
 <!-- starting modal-profile-setting -->
-	<div class="modal-profile-setting" id="modal-profile-setting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<div class="modal-body">
+<div class="container">
+	<div class="modal-profile-setting">
+	
 					
 					<input type="hidden" id="hidden_uid" value="{{$user->id}}">
 @include('layouts.dashboardheader')
@@ -79,15 +78,15 @@ select#emp_skills {
 									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
 									<input type="hidden" id="hidden_jobid" name="hidden_jobid" value="{{$getjobbyid->id}}">
 									<div class="col-auto">
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<label for="job_title" class="form-label">Job Title</label>
 											<input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job Title here" required value="{{$getjobbyid->job_title}}">
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 										  <label for="job_desc" class="form-label">Job Description</label>
 										  <textarea class="form-control" id="job_desc" name="job_desc" rows="3" required>{{$getjobbyid->project_description}}</textarea>
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<div class="col-md-12 padding_none">
 												<label for="job_skills" class="form-label">Required Skills (Multi-Select)</label>
 											</div>
@@ -109,11 +108,11 @@ select#emp_skills {
 											</select>
 											
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<label for="job_title" class="form-label">Extra Skills</label>
 											<input type="text" class="form-control" id="job_extra_skills" name="job_extra_skills" placeholder="Enter if any Extra Skills required">
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<div class="adjust-currency">
 												<label for="job_budget" class="form-label">Hourly Rate -Maximum</label>
 											</div>
@@ -158,7 +157,7 @@ select#emp_skills {
 											</select>
 											<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<div class="col-md-12 padding_none">
 												<label for="job_rate" class="form-label">Hourly Rate -Minimum</label>
 											</div>
@@ -173,12 +172,12 @@ select#emp_skills {
 											</select>
 											<input type="number" class="form-control" id="job_min_rate" name="job_min_rate" placeholder="Hourly Rate -Minimum" value="{{$minrate}}">
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<label for="job_deadline" class="form-label">Project Deadline</label>
 											<input type="date" class="form-control" id="job_deadline" name="job_deadline" placeholder="Project Deadline" required value="{{$getjobbyid->deadline}}">
 										</div>
 										
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<button type="submit" class="btn btn-primary">Update this Job</button>
 											<button id="{{$getjobbyid->id}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Delete this</button>
 										</div>
@@ -188,8 +187,7 @@ select#emp_skills {
 						</div>
 					</div>					
 				</div>
-			</div>
-		</div>
+			
 	</div>
 	<!-- End modal-profile-setting -->
 @endsection

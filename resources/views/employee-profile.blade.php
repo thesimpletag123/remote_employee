@@ -1,192 +1,376 @@
 @extends('layouts.master')
 @section('title', 'Profile')
 @section('pagecss')
-<style>
-div#modal-profile-setting {
-    margin-top: 6%;
-}
-.modal-xl {
-    max-width: 80%;
-}
-
-.padding_none {
-	padding-left: 0px;
-}
-select#emp_skills {
-    width: -webkit-fill-available;
-    overflow: auto;
-	width: -webkit-fill-available;
-    overflow: auto;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-}
-</style>
 @endsection
 @section('content')
 <!-- starting modal-profile-setting -->
-	<div class="modal-profile-setting" id="modal-profile-setting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<div class="modal-body">
-					
-					<input type="hidden" id="hidden_uid" value="{{$user->id}}">
-@include('layouts.dashboardheader')
-					
-					<div class="profile-setting-body">
-						<div class="row">
 
-	
-	
-<div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
-	<div class="main-setting">
-		<div class="availability">
-			<h6>Name </h6>
-			<p>{{$user->name}}</p>
-			
-		</div>
-		<div class="myskills">
-			<h6>My Email</h6>
-			<div class="skill-group">
-				<p>{{$user->email}}</p>
+
+<div class="modal fade" id="employee-profile-settings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content">
+			<div class="modal-header d-flex justify-content-between">
+				<h3>Profile Settings</h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+			</div>
+			<div class="modal-body emp_profile_pop">
+				<form id="employeeprofileupdate" name="employeeprofileupdate" method="post"
+                        action="{{route('employeeprofileupdate')}}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
+                        <div class="col-auto py-3">
+                            <div class="d-flex flex-column  mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Job Title here" value="{{$user->name}}">
+                            </div>
+                            <div class="d-flex flex-column  mb-3">
+                                <label for="email" class="form-label">Email ID</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{$user->email}}" readonly>
+                            </div>
+                            <div class="d-flex flex-column  mb-3">
+                                <label for="contact" class="form-label">Contact Number :</label>
+
+                                <input type="text" class="form-control" id="contact" name="contact"
+                                    placeholder="My Contact Number" value="{{$user->employee->contact_no}}">
+                            </div>
+                            <div class="d-flex flex-column  mb-3">
+                                <label for="experience" class="form-label">Total Experience(in month)</label>
+                                <input type="number" step=1 class="form-control" id="experience" name="experience"
+                                    placeholder="My Experience" value="{{$user->employee->experience_in_month}}">
+                            </div>
+                            <div class="d-flex flex-column  mb-3">
+                                <input type="submit" name="submit" class="btn btn-primary">
+                            </div>
+                        </div>
+                </form>
 			</div>
 		</div>
-		<div class="myskills">
-			<h6>My Skills</h6>
-			<div class="skill-group">
-				<p>
-				<?php
-				//var_dump($skills);
-					$skill = null;												
-					$required_skills = $user->employee->skills;
-					$required_skills_array = [];
-					$required_skills_array = explode('-' , $required_skills);
-				
-				?>
-					@if(is_array($skills))													
-						@foreach($skills as $skill)
-							@if(in_array($skill , $required_skills_array))
-								<i class="fas fa-star"></i> {{$skill}}
-							@endif
-						@endforeach
-					@else
-						No Skills
-					@endif 
-				</p>
-			</div>
-		</div>
-	<hr>
-	<?php $i = 1; ?>
-		@if(isset($alljobslist))
-			@foreach($alljobslist as $singlejob)
-				@if($singlejob['assigned_to_id'] == $user->id)
-					@if($i == 1)
-						<h5> Assigned Jobs to you </h5>
-					@endif
-					<div class="mysidebardiv" id="comment-{{$singlejob['id']}}">
-						<b>{{$singlejob['job_title']}}</b>
-						<div class="col-lg-12 custom_div">
-							<b><label>Assigned By :</label></b>{{$singlejob['posted_by_username']}}
-						</div>
-						<div class="col-lg-12 custom_div">
-							<b><label>Skill Required:</label></b> <?=str_replace('-', ' , ', $singlejob['required_skills'])?>
-						</div>
-					</div>
-					<?php $i++; ?>
-				@endif	
-			@endforeach
-		@endif
 	</div>
 </div>
-							
-							<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
-								<h5>My Profile</h5>
-								<form id="employeeprofileupdate" name="employeeprofileupdate" method="post" action="{{route('employeeprofileupdate')}}" enctype="multipart/form-data">
-								@csrf
-									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
-									<div class="col-auto">
-										<div class="col-lg-8 custom_div">
-											<label for="name" class="form-label">Name</label>
-											<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$user->name}}">
-										</div>
-										<div class="col-lg-8 custom_div">
-										  <label for="email" class="form-label">Email ID</label>
-										  <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" readonly>
-										</div>
-										
-										
-                                        <div class="col-lg-8 custom_div">
-											<label for="email" class="form-label">My skills :</label>
-											<?php
-											//var_dump($skills);
-												$skill = null;												
-												$required_skills = $user->employee->skills;
-												$required_skills_array = [];
-												$required_skills_array = explode('-' , $required_skills);
-											
-											?>
-												@if(is_array($skills))													
-													@foreach($skills as $skill)
-														@if(in_array($skill , $required_skills_array))
-															<i class="fas fa-star"></i> {{$skill}}
-														@endif
-													@endforeach
-												@else
-													No Skills
-												@endif
-                                        </div>
-											
-										<div class="col-lg-8 custom_div">
-											Add more Skills : <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-on="Yes" data-off="No" id="toggle_skill_onoff_btn" data-style="slow">
-										</div>
-										<div class="col-lg-8 custom_div toggle_skill_onoff_div">
-                                            <?php 
-												$emp_skills = [];
-												if(isset($user->employee->skills)){
-													$emp_skills_array = $user->employee->skills;
-													$emp_skills = explode('-' , $emp_skills_array);													
-												}
-												?>
-											<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
-												@if(isset($skills))
-													@foreach($skills as $value)
-														@if(!in_array($value , $emp_skills))
-															<option value="{{$value}}">{{$value}}</option>
-														@endif
-													@endforeach
-												@else
-														<option >No Skill</option>
-												@endif
-											</select>
-										</div>
-										<div class="col-lg-8 custom_div">
-											<label for="contact" class="form-label">Contact Number :</label>
-											
-											<input type="text" class="form-control" id="contact" name="contact" placeholder="My Contact Number" value="{{$user->employee->contact_no}}" >
-										</div>
-										<div class="col-lg-8 custom_div">
-											<label for="experience" class="form-label">Total Experience(in month)</label>
-											<input type="number" step=1 class="form-control" id="experience" name="experience" placeholder="My Experience" value="{{$user->employee->experience_in_month}}">
-										</div>
-										<div class="col-lg-8 custom_div">
-											<input type="submit" name="submit" class="btn btn-primary">
-										</div>
-									</div>
-									
-									
-								</form>
-								<br>
-								
-							</div>
-							
-						</div>
-						
-									
-					</div>					
+
+<div class="modal fade" id="employee-profile-rate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content">
+			<div class="modal-header d-flex justify-content-between">
+				<h3>Profile Rate / Budget</h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+			</div>
+			<div class="modal-body emp_rate_pop">
+			<form>
+				<div>
+					<div class="d-flex flex-column  mb-3">
+						<label for="range-1a">Min rate:</label>
+						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$user->jobpost->hourly_rate_min}}">
+					</div>
+					<div class="d-flex flex-column  mb-3">
+						<label for="range-1b">Max Rate:</label>
+						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$user->jobpost->hourly_rate_max}}">
+					</div>
+					<div class="d-flex flex-column  mb-3">
+							<input type="submit" name="submit" class="btn btn-primary">
+						</div>	
 				</div>
+			</form>
 			</div>
 		</div>
 	</div>
-	<!-- End modal-profile-setting -->
+</div>
+
+<div class="modal fade" id="employee-profile-skills" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content">
+			<div class="modal-header d-flex justify-content-between">
+				<h3>Profile Skills</h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+			</div>
+			<div class="modal-body emp_profile_pop">
+				<form id="employeeprofileupdate" name="employeeprofileupdate" method="post"
+                        action="{{route('employeeprofileupdate')}}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
+                        <div class="col-auto py-3">
+						<div class="d-flex flex-column  mb-3">
+                                <label for="email" class="form-label">My skills :</label>
+								<?php
+								//var_dump($skills);
+									$skill = null;												
+									$required_skills = $user->employee->skills;
+									$required_skills_array = [];
+									$required_skills_array = explode('-' , $required_skills);
+								
+								?>
+								<div class="skill-wrapper">
+                                @if(is_array($skills))
+                                @foreach($skills as $skill)
+                                @if(in_array($skill , $required_skills_array))
+                                <span class="skill-tag"> {{$skill}} <a class="remove_skill">x</a></span>
+                                @endif
+                                @endforeach
+                                @else
+                                No Skills
+                                @endif
+								</div>
+						</div>
+
+						<div class="d-flex flex-column  mb-3">
+							Add more Skills : <input type="checkbox" data-toggle="toggle" data-onstyle="primary"
+								data-on="Yes" data-off="No" id="toggle_skill_onoff_btn" data-style="slow">
+						</div>
+						<div class="d-flex flex-column  mb-3 toggle_skill_onoff_div">
+							<?php 
+											$emp_skills = [];
+											if(isset($user->employee->skills)){
+												$emp_skills_array = $user->employee->skills;
+												$emp_skills = explode('-' , $emp_skills_array);													
+											}
+											?>
+							<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
+								@if(isset($skills))
+								@foreach($skills as $value)
+								@if(!in_array($value , $emp_skills))
+								<option value="{{$value}}">{{$value}}</option>
+								@endif
+								@endforeach
+								@else
+								<option>No Skill</option>
+								@endif
+							</select>
+
+							
+						</div>
+						<div class="d-flex flex-column  mb-3">
+							<input type="submit" name="submit" class="btn btn-primary">
+						</div>
+					</div>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="container">
+
+
+
+
+    <div class="modal-profile-setting">
+
+
+        <input type="hidden" id="hidden_uid" value="{{$user->id}}">
+        @include('layouts.dashboardheader')
+
+        <div class="profile-setting-body">
+            <div class="row">
+
+
+
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <!-- <div class="main-setting">
+                        <div class="availability">
+                            <h6>Name </h6>
+                            <p>{{$user->name}}</p>
+
+                        </div>
+                        <div class="myskills">
+                            <h6>My Email</h6>
+                            <div class="skill-group">
+                                <p>{{$user->email}}</p>
+                            </div>
+                        </div>
+                        <div class="myskills">
+                            <h6>My Skills</h6>
+                            <div class="skill-group">
+                                <p>
+                                    <?php
+										//var_dump($skills);
+											$skill = null;												
+											$required_skills = $user->employee->skills;
+											$required_skills_array = [];
+											$required_skills_array = explode('-' , $required_skills);
+										
+										?>
+                                    @if(is_array($skills))
+                                    @foreach($skills as $skill)
+                                    @if(in_array($skill , $required_skills_array))
+                                    <i class="fas fa-star"></i> {{$skill}}
+                                    @endif
+                                    @endforeach
+                                    @else
+                                    No Skills
+                                    @endif
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <?php $i = 1; ?>
+                        @if(isset($alljobslist))
+                        @foreach($alljobslist as $singlejob)
+                        @if($singlejob['assigned_to_id'] == $user->id)
+                        @if($i == 1)
+                        <h5> Assigned Jobs to you </h5>
+                        @endif
+                        <div class="mysidebardiv" id="comment-{{$singlejob['id']}}">
+                            <b>{{$singlejob['job_title']}}</b>
+                            <div class="d-flex flex-column  mb-3">
+                                <b><label>Assigned By :</label></b>{{$singlejob['posted_by_username']}}
+                            </div>
+                            <div class="d-flex flex-column  mb-3">
+                                <b><label>Skill Required:</label></b>
+                                <?=str_replace('-', ' , ', $singlejob['required_skills'])?>
+                            </div>
+                        </div>
+                        <?php $i++; ?>
+                        @endif
+                        @endforeach
+                        @endif
+                    </div> -->
+                    <div class="main-setting">
+						<div class="profsetting">
+							<h6>Profile Setting <span class="editicon" data-bs-toggle="modal" data-bs-target="#employee-profile-settings"><i class="fas fa-pen"></i></span></h6>
+						</div>
+						<div class="availability">
+							<h6>Rate / Budget <span class="editicon" data-bs-toggle="modal" data-bs-target="#employee-profile-rate" ><i class="fas fa-pen"></i></span></h6>
+							
+
+							<div class="rate_budget">
+								@if(isset($user->jobpost->hourly_rate_min))
+								<div class="d-flex align-items-center justify-content-between">
+									<strong>Min rate :</strong>
+									<span>{{$user->jobpost->hourly_rate_min}}</span>
+								</div>
+								<div class="d-flex align-items-center justify-content-between">
+									<strong>Max Rate :</strong>
+									<span>{{$user->jobpost->hourly_rate_max}}</span>
+								</div>
+								@elseif(isset($user->jobpost->project_budget))
+								<div class="d-flex align-items-center justify-content-between">
+									<strong>Budget</strong>
+									<span>{{$user->jobpost->project_budget}}</span>
+								</div>
+								
+								@endif
+							</div>
+						</div>
+						<div class="myskills">
+							<h6>My Skills <span class="editicon" data-bs-toggle="modal" data-bs-target="#employee-profile-skills"><i class="fas fa-pen"></i></span></h6>
+							<?php
+							//var_dump($skills);
+								$skill = null;												
+								$required_skills = $user->employee->skills;
+								$required_skills_array = [];
+								$required_skills_array = explode('-' , $required_skills);
+								
+							?>
+
+							@if(is_array($skills))													
+								@foreach($skills as $skill)
+									@if(in_array($skill , $required_skills_array))
+
+										<?php 
+											$rand = rand(0,100);
+										?>
+										<div class="skill-group">
+											<p>{{$skill}}</p>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width:{{$rand}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$rand}}%</div>
+											</div>
+										</div>
+									@endif
+								@endforeach
+							@else
+							<div class="skill-group">
+								<p>No Skills</p>
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">0%</div>
+								</div>
+							</div>
+							@endif
+							
+							
+						</div>
+					</div>
+                </div>
+
+                <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
+                    
+					
+					<div class="col-sm-12">
+					<h5>Workspace</h5>
+					<div class="jopboard">
+						@if(isset($alljobslist))
+							@foreach($alljobslist as $singlejob)
+								@if($singlejob['assigned_to_id'] == $user->id)
+									<?php 
+									//echo 'User Name'.$user->id;
+									//echo "<br>";
+									//echo $singlejob['assigned_to_id'];
+									?>								
+									<div class="jopboard-box">
+										<div class="row">
+											<div class="col-sm-6 col-12">
+												<h4>{{$singlejob['job_title']}}</h4>
+											</div>
+											<div class="col-sm-6 col-12">
+												@if(isset($singlejob['assigned_to_username']))
+													@if( $singlejob['assigned_to_username'] == $user->name)
+														<a href="{{route('update_job_by_employee' , $singlejob['id'])}}" class="btn btn-primary">Post an Update </a>
+													@else
+														Assigned to : {{$singlejob['assigned_to_username']}}
+													@endif
+													
+												@else
+													<a href="{{route('viewjobemployee' , $singlejob['id'])}}" class="btn btn-secondary">View this</a>
+												@endif
+												
+												<div class="setticon">
+													<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
+												</div>
+											</div>
+											<div class="col-12">
+												<h6>Project Brief</h6>
+												<p>
+												   <i class="fas fa-file-alt fa-2x"></i> 
+													{{$singlejob['project_description']}}
+												</p>
+											</div>
+											<div class="col-md-8 col-sm-12 col-12 d-flex flex-column  mb-3justify-content-center">
+											@if($singlejob['invoice_attachment'])
+												<h6 class="m-0">Invoice Attachment</h6>
+												<div><i class="fas fa-paperclip"></i> <a href="{{$singlejob['invoice_attachment']}}" target="_blabk"> View Last Invoice</a></div>
+											@else
+												<h6 class="m-0">No Invoice available.</h6>
+											@endif
+											</div>
+											<div class="col-md-4 col-sm-12 col-12">
+												<h6>Project Deadline</h6>
+												<div><i class="fas fa-calendar-week"></i> <span>{{$singlejob['deadline']}}</span></div>
+											</div>
+										</div>
+									</div>	
+								@endif
+							@endforeach
+						@endif
+					</div>
+					</div>
+					
+					<!--- appear inside popup --->
+                    
+					<!--- appear inside popup --->
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<!-- End modal-profile-setting -->
 @endsection
 
 @section('pagescript')
