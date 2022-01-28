@@ -647,5 +647,20 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 		}
 	});
 </script>
-        
-        <!-- End scripts -->
+
+<script>
+
+	$('#my_skills option').mousedown(function(e) {
+    e.preventDefault();
+    var originalScrollTop = $(this).parent().scrollTop();
+    console.log(originalScrollTop);
+    $(this).prop('selected', $(this).prop('selected') ? false : true);
+    var self = this;
+    $(this).parent().focus();
+    setTimeout(function() {
+        $(self).parent().scrollTop(originalScrollTop);
+    }, 0);
+    
+    return false;
+	});
+</script>

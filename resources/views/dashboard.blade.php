@@ -1,29 +1,20 @@
 @extends('layouts.master')
 @section('title', 'Dashboard')
 @section('pagecss')
-<style>
-div#modal-dashboard-employee {
-    margin-top: 6%;
-}
-.modal-xl {
-    max-width: 90%;
-}
-</style> 
+
 @endsection
 @section('content')
 
 <!-- starting modal-dashboard-employee -->
-	<div class="modal-dashboard-employee" id="modal-dashboard-employee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<div class="modal-body">
+<div class="container">
+	<div class="modal-dashboard-employee">
+		
 <input type="hidden" id="hidden_uid" value="{{$user->id}}">				
 @include('layouts.dashboardheader')
 					
 
-					<div class="jopboard">
+					<div class="jopboard p-3 ">
 						<h5>Job Board</h5>
-						<h6> You have assigned to bellow Jobs</h6>
 					
 						
 						@if(isset($alljobslist))
@@ -84,8 +75,7 @@ div#modal-dashboard-employee {
 						
 						@endif
 					</div>					
-				</div>
-			</div>
+				
 		</div>
 	</div>
 	<!-- End modal-dashboard-employee -->

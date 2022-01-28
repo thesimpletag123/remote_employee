@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Home')
 @section('pagecss')
-<style>
+<!-- <style>
 ::file-selector-button {
     display: none;
 }
@@ -10,7 +10,7 @@
 }
 .otp-input{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;font-family:Roboto}input.single-otp-input,input.single-otp-input:focus{border:none;border-bottom:1px solid var(--BG_COLOR_L2);background:transparent;border-radius:0;width:42px;text-align:center;font-size:16px;font-size:16px;line-height:1.88;margin-right:18px;outline:none}input.single-otp-input:focus{border:none;border-bottom:1.5px solid var(--BRAND_BLUE)}.light input.single-otp-input,.light input.single-otp-input:focus{border-bottom-color:rgba(0,0,0,0.3)}
 
-</style>
+</style> -->
 @endsection
 @section('content')
         <!-- starting menu-links -->
@@ -221,7 +221,7 @@
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the  1500s, when an unknown printer took a galley</p>
                 </div>
                 <div class="row">
-                    <div class="col-md col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">
+                    <div class="col-md-4 col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">
                         <div class="mainbox">
                             <h4>Lorem Ipsum is simply</h4>
                             <p>Lorem Ipsum is simply</p>
@@ -231,7 +231,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".5s" data-wow-offset="60">
+                    <div class="col-md-4 col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".5s" data-wow-offset="60">
                         <div class="mainbox">
                             <h4>Lorem Ipsum is simply</h4>
                             <p>Lorem Ipsum is simply</p>
@@ -241,7 +241,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">
+                    <div class="col-md-4 col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">
                         <div class="mainbox">
                             <h4>Lorem Ipsum is simply</h4>
                             <p>Lorem Ipsum is simply</p>

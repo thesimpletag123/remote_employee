@@ -3,7 +3,8 @@
 			<div class="col-lg">
 				<div class="dashboard-avatar">
 					@if(isset($user->user_image))
-						<img id="user_image_previewas" src="{{ $user->user_image }}" alt="">						
+						<img id="user_image_previewas" src="{{ $user->user_image }}" alt="">		
+						<span></span>				
 					@else
 						<img id="user_image_previewsa" src="{{ url('assets/images/avtar.png') }}" alt="">						
 					@endif
