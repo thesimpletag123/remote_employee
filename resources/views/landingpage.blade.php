@@ -13,17 +13,7 @@
 </style> -->
 @endsection
 @section('content')
-qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-qdom_errorq
-qdom_errorq
-qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-qdom_errorq
-qdom_errorq
-qdom_errorq
-qdom_errorq
-qdom_errorq
-
-        <!-- starting menu-links -->
+     <!-- starting menu-links -->
         @if (Auth::check())
 			<section class="menu-links">
 				<span class="closbtn"><i class="fas fa-times"></i></span>
