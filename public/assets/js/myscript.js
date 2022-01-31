@@ -38,8 +38,8 @@ $(function(){
     
     
     // sliding toggle at modal-dashboard-employer
-    $(".modal-dashboard-employer .modal-body .employer-dashboard-body .current-employees-box .current-header").click(function(){
-        $(this).siblings(".modal-dashboard-employer .modal-body .employer-dashboard-body .current-employees-box .current-details").slideToggle(500);
+    $(".modal-dashboard-employer .current-header").click(function(){
+        $(this).siblings(".modal-dashboard-employer .current-details").slideToggle(500);
     });
     
     

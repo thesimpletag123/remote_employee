@@ -184,8 +184,8 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 											@endif
                                         </div>
                                         <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-3">
+                                            <div class="d-flex">
+                                                <div class="col-3 px-0">
                                                     <select id="emp_country" name ="emp_country">
 														@if(isset($countries))													
 															@foreach($countries as $country => $abbr)
@@ -203,8 +203,8 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 													$emp_contact_no = $employeies['contact_no'];
 												}
 												?>
-                                                <div class="col-3"><input type="number" name="" placeholder="+91" id="emp_phone_ext"></div>
-                                                <div class="col-6"><input type="number" value="" placeholder="Contact number" id="emp_phone_no"></div>
+                                                <div class="col-3 pr-0"><input type="number" name="" placeholder="+91" id="emp_phone_ext"></div>
+                                                <div class="col-6 pr-0"><input type="number" value="" placeholder="Contact number" id="emp_phone_no"></div>
                                             </div>
                                         </div>
                                         <div class="form-group">
