@@ -13,6 +13,16 @@
 </style> -->
 @endsection
 @section('content')
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qdom_errorq
+qdom_errorq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qdom_errorq
+qdom_errorq
+qdom_errorq
+qdom_errorq
+qdom_errorq
+
         <!-- starting menu-links -->
         @if (Auth::check())
 			<section class="menu-links">
