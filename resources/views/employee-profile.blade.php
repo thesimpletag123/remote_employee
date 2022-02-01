@@ -169,6 +169,7 @@ select#emp_skills {
 										</div>
 										<div class="col-lg-8 custom_div">
 											<input type="submit" name="submit" class="btn btn-primary">
+											<a href="{{route('dashboard')}}" class="btn btn-success"> Back to dashboard</a>
 										</div>
 									</div>
 									
