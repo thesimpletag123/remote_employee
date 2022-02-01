@@ -14,7 +14,7 @@
 				</div>
 				<div class="dashboard-avatar-data">
 					<h4>{{$user->name}}</h4>
-					<div><span>LoggedIn as </span> - <span class="text-capitalize"> {{$user->user_type}}</span></div>
+					<!--<div><span>LoggedIn as </span> - <span class="text-capitalize"> {{$user->user_type}}</span></div>-->
 				</div>
 			</div>
 			<div class="col-lg">

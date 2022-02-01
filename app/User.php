@@ -44,7 +44,7 @@ class User extends Authenticatable
 	public function jobpost()
 	{
 		//return $this->belongsTo(User::class , 'user_id' , 'id');
-		return $this->belongsTo('App\JobPost', 'assigned_to_id');
+		return $this->belongsTo('App\JobPost', 'id', 'assigned_to_id');
 	}
 	
 	public function employerjobpost()

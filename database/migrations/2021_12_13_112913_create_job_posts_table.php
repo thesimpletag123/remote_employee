@@ -28,7 +28,7 @@ class CreateJobPostsTable extends Migration
 			$table->string('assigned_to_username')->nullable();
 			$table->string('assigned_to_id')->nullable();
 			$table->date('deadline')->nullable();
-			$table->boolean('is_project_approved')->default('0');
+			$table->boolean('project_status')->nullable()->default('0');
 			
             $table->timestamps();
         });

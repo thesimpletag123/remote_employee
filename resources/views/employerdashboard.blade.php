@@ -47,7 +47,8 @@ div#modal-dashboard-employer {
 								<div class="current-employees-box">
 									<div class="current-header">
 										<div class="row">
-											<div class="col-sm-10">
+											<div class="col-sm-8">
+											
 												<div class="dashboard-avatar">
 													@if($user->user_image == null)
 														<img src="{{url('assets/images/avtar.png')}}" alt="image">
@@ -57,12 +58,23 @@ div#modal-dashboard-employer {
 													<!--<span></span>-->
 												</div>
 												<div class="dashboard-avatar-data">
-													<h4>{{$employerpost->job_title}}</h4>
+													<h4>{{$employerpost->job_title}}</h4>													
 													<div><i class="fas fa-clock"></i> <span>Created at : {{$date }}</span></div>
-
 												</div>
+												
 											</div>
 											<div class="col-sm-2">
+												<div class="project_status">
+													@if($employerpost->project_status == 0)
+														<div class="btn btn-warning">Pending</div>
+													@elseif($employerpost->project_status == 1)
+														<div class="btn btn-primary">Active</div>
+													@elseif($employerpost->project_status == 2)
+														<div class="btn btn-success">Completed</div>
+													@endif
+												</div>
+											</div>
+											<div class="col-sm-2" style="float:right;">
 												<div class="setticon">
 													<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
 												</div>
@@ -97,38 +109,40 @@ div#modal-dashboard-employer {
 											</div>
 											<div class="col-md">
 												<div class="current-performance">
-													@if($employerpost->assigned_to_id == null)
-													
-													<h6>Not assigned yet</h6>
-														<div class="btn-group">
-															<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
-																		<option>--Select to assign--</option>
-																@if(isset($employeeavailable))
-																	@foreach($employeeavailable as $emp)
-																		<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
-																	@endforeach
-																@else
-																		<option> No Employee Available </option>
-																@endif
-															</select>
-														</div>
-													@else
-														<h6>Assigned to: </h6>
-														{{$employerpost->assigned_to_username}}
-														<br>
-														<h6>Re-assign to</h6>
-														<div class="btn-group">
-															<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
-																		<option>--Select to assign--</option>
-																@if(isset($employeeavailable))
-																	@foreach($employeeavailable as $emp)
-																		<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
-																	@endforeach
-																@else
-																		<option> No Employee Available </option>
-																@endif
-															</select>
-														</div>
+													@if($employerpost->project_status != 2)
+														@if($employerpost->assigned_to_id == null)
+														
+														<h6>Not assigned yet</h6>
+															<div class="btn-group">
+																<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
+																			<option>--Select to assign--</option>
+																	@if(isset($employeeavailable))
+																		@foreach($employeeavailable as $emp)
+																			<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
+																		@endforeach
+																	@else
+																			<option> No Employee Available </option>
+																	@endif
+																</select>
+															</div>
+														@else
+															<h6>Assigned to: </h6>
+															{{$employerpost->assigned_to_username}}
+															<br>
+															<h6>Re-assign to</h6>
+															<div class="btn-group">
+																<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
+																			<option>--Select to assign--</option>
+																	@if(isset($employeeavailable))
+																		@foreach($employeeavailable as $emp)
+																			<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
+																		@endforeach
+																	@else
+																			<option> No Employee Available </option>
+																	@endif
+																</select>
+															</div>
+														@endif
 													@endif
 													<!--<div class="progress-modal">
 														<div class="pie-wrapper progress-full">
@@ -139,6 +153,21 @@ div#modal-dashboard-employer {
 															</div>  
 														</div>
 													</div>-->
+												</div>
+												<div class="current-performance">
+													Change Status
+													<select name="change_status" class="change_status">
+														<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Pending</option>
+														<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>Active</option>
+														<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Completed</option>
+													</select>
+													<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
+												</div>
+												
+												<div class="current-performance">
+													Generate Invoice
+													<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
+													<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success deletejob">Generate Invoice</button>
 												</div>
 											</div>
 											<table>

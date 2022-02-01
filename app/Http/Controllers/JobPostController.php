@@ -410,4 +410,12 @@ class JobPostController extends Controller
 		
 		return view('viewjobemployee', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skills' => $skills, 'getjobbyid' => $getjobbyid, 'getjobupdatebyid' => $getjobupdatebyid]);
 	}
+	
+	public function change_project_status(Request $request){
+		$projectid = $request->projectid;
+		$newstatus = $request->newstatus;
+		$updatejob = JobPost::where('id', $projectid)->update(['project_status' => $newstatus]);
+		$data['success'] = 1;
+		return response()->json($data);
+	}
 }

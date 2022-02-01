@@ -294,19 +294,15 @@ new WOW().init();
 	function reply_click(jobid){
 		event.preventDefault(); // prevent form submit
 		var form = event.target.form; // storing the form
-				swal({
-				  title: "Are you sure to delete this JOB?",
-				  text: "This job will be removed from Database",
-				  type: "warning",
-				  showCancelButton: true,
-				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "Yes, Delete it!",
-				  cancelButtonText: "No, cancel please!",
-				  closeOnConfirm: false,
-				  closeOnCancel: false
-				},
-		function(isConfirm){
-		  if (isConfirm) {
+		swal.fire({
+				title: "Are you sure to delete this JOB?",
+				text: "This job will be removed from Database",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
 			$.ajax({
 					type: "post",
 					data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
@@ -322,7 +318,7 @@ new WOW().init();
 
 				});
 		  } else {
-			swal("Cancelled", "This Job is safe now. :)", "error");
+			swal("Your imaginary file is safe!");
 		  }
 		});
 		
@@ -523,7 +519,7 @@ var i = 1;
 			$('.swiper-button-next').css('pointer-events', 'none');
 			$('.swiper-button-next').css('opacity', '0.35');
 		} else if (fulltime_job_min != "" && fulltime_job_max != "" && fulltime_job_budget == ""){
-			alert(parseInt(fulltime_job_max));
+			//alert(parseInt(fulltime_job_max));
 			if(parseInt(fulltime_job_max) >= parseInt(fulltime_job_min)){
 				$('#fulltime_job_min').css('border-color', '');
 				$('#fulltime_job_max').css('border-color', '');
@@ -647,6 +643,68 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 			}
 		}
 	});
+	
+
+// Change or Update project status for employer
+$('.change_status').change(function(){
+	
+	var projectid = $(this).closest("div").find("input[name='project_id']").val();
+	var newstatus = $(this).val();
+  //console.log('newstatus = ' + newstatus + ' , projectid = ' +projectid);
+  
+  $.ajax({
+		type: "post",
+		data: { "_token": "{{ csrf_token() }}" , projectid:projectid , newstatus:newstatus },
+		url: "{{url('change_project_status')}}",
+		success: function( data ) {
+				var result = JSON.parse(data.success);
+				if(result == 1){
+						Swal.fire(
+							'Congratulation!',
+							'You have sucessfully updated Proect Status!',
+							'success'
+						);
+						window.location.reload();
+					}
+					
+		}
+
+	});
+});
+
+// Generate Invoice for completed Project
+	function generate_invoice(jobid){
+		event.preventDefault(); // prevent form submit
+		//var form = event.target.form; // storing the form
+		swal.fire({
+				title: "Generate Invoice",
+				text: "This job will be removed from Database",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			$.ajax({
+					type: "post",
+					data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
+					url: "{{url('invoice_generate_for_completed_projects')}}",
+					success: function( data ) {
+						var result = JSON.parse(data.success);
+						//alert(result);
+						if(result == 1){
+							//alert('Job posted Successfully');
+							window.location.href = "{{url('employerdashboard')}}";						
+						}
+					}
+
+				});
+		  } else {
+			swal("Your imaginary file is safe!");
+		  }
+		});
+		
+	}
 </script>
         
         <!-- End scripts -->

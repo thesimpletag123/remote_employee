@@ -12,19 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    return "Cleared!";
+});
 
 Route::get('/', 'EmployeeController@baseurllogin')->name('baseurllogin');
-
-
-
-
-
 
 Auth::routes();
 
 	Route::post('emp1_submit', 'EmployeeController@emp1_submit')->name('emp1_submit');
 	Route::post('emp2_submit', 'EmployeeController@emp2_submit')->name('emp2_submit');
 	Route::post('emp_otp_verify', 'EmployeeController@emp_otp_verify')->name('emp_otp_verify');
+	
 
 ## Social Login
 	### 1. Google
@@ -61,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
 	
 	Route::post('assign_job_to_emp', 'JobPostController@assign_job_to_emp')->name('assign_job_to_emp');
 	Route::get('myprofile', 'HomeController@myprofile')->name('myprofile');
+	Route::post('change_project_status', 'JobPostController@change_project_status')->name('change_project_status');
 	
 	Route::middleware(['isEmployee'])->group(function () {
 		Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
@@ -78,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('delete_job', 'JobPostController@delete_job')->name('delete_job');
 		Route::get('trackjob/{jobid}', 'JobTrackerController@trackjob')->name('trackjob');
 		Route::post('employerprofileupdate', 'HomeController@employerprofileupdate')->name('employerprofileupdate');
+		Route::post('invoice_generate_for_completed_projects', 'JobPostController@invoice_generate_for_completed_projects')->name('invoice_generate_for_completed_projects');
 	});
 });
 
