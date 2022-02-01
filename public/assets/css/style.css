@@ -2844,10 +2844,6 @@ footer .container .row > div a i {
   color: #013AB8;
 }
 
-.modal-dashboard-employer .employer-dashboard-body > .row > div {
-  padding: 0;
-}
-
 .modal-dashboard-employer .employer-dashboard-body > .row > div:first-of-type {
   border-right: 1px solid #DBDBDC;
 }
@@ -2894,47 +2890,53 @@ footer .container .row > div a i {
   text-align: center;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header {
+/* End modal-dashboard-employer */
+
+.current-employees-box {
+  margin: 10px auto;
+}
+
+.current-employees-box .current-header {
   background-color: #ECECEC;
   padding: 15px 0 15px 17px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .project_status {
+.current-employees-box .current-header .project_status {
   width: 100%;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .project_status > div {
+.current-employees-box .current-header .project_status > div {
   width: 100%;
   max-width: 120px;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header > .row > div {
+.current-employees-box .current-header > .row > div {
   display: flex;
   align-items: center;
 }
 
 @media (max-width: 576px) {
-  .modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header > .row > div {
+  .current-employees-box .current-header > .row > div {
     padding: 0px 5px;
   }
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header > .row > div:nth-of-type(1) {
+.current-employees-box .current-header > .row > div:nth-of-type(1) {
   justify-content: flex-start;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header > .row > div:nth-of-type(2) {
+.current-employees-box .current-header > .row > div:nth-of-type(2) {
   justify-content: flex-end;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .setticon span {
+.current-employees-box .current-header .setticon span {
   border: none;
   background-color: transparent;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar {
+.current-employees-box .current-header .dashboard-avatar {
   position: relative;
   width: 50px;
   height: 50px;
@@ -2942,13 +2944,13 @@ footer .container .row > div a i {
   margin-right: 20px;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar img {
+.current-employees-box .current-header .dashboard-avatar img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar span {
+.current-employees-box .current-header .dashboard-avatar span {
   display: block;
   width: 13px;
   height: 13px;
@@ -2960,70 +2962,68 @@ footer .container .row > div a i {
   border: 3px solid #ffffff;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar-data h4 {
+.current-employees-box .current-header .dashboard-avatar-data h4 {
   color: #464646;
   margin-bottom: 0;
   font-size: 20px;
 }
 
 @media (max-width: 576px) {
-  .modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar-data h4 {
+  .current-employees-box .current-header .dashboard-avatar-data h4 {
     font-size: 18px;
   }
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar-data div i {
+.current-employees-box .current-header .dashboard-avatar-data div i {
   color: #464646;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar-data div span {
+.current-employees-box .current-header .dashboard-avatar-data div span {
   color: #464646;
   font-size: 14px;
 }
 
 @media (max-width: 576px) {
-  .modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-header .dashboard-avatar-data div span {
+  .current-employees-box .current-header .dashboard-avatar-data div span {
     font-size: 12px;
   }
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-details {
+.current-employees-box .current-details {
   display: none;
   background-color: #f6f6f6;
   padding: 15px;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-details h6 {
+.current-employees-box .current-details h6 {
   color: #464646;
   margin-bottom: 5px;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-details p {
+.current-employees-box .current-details p {
   color: #8A8A8A;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-details .review span {
+.current-employees-box .current-details .review span {
   color: #464646;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-details .review i {
+.current-employees-box .current-details .review i {
   color: #F9D936;
 }
 
-.modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-details .current-performance {
+.current-employees-box .current-details .current-performance {
   text-align: center;
   width: 150px;
   margin-left: auto;
 }
 
 @media (max-width: 769px) {
-  .modal-dashboard-employer .employer-dashboard-body .current-employees-box .current-details .current-performance {
+  .current-employees-box .current-details .current-performance {
     margin: auto;
     margin-top: 30px;
   }
 }
-
-/* End modal-dashboard-employer */
 
 /*@media (max-width: 576px)
 @media (min-width: 577px) and (max-width: 769px)

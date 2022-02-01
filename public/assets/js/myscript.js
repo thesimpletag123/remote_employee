@@ -38,10 +38,10 @@ $(function(){
     
     
     // sliding toggle at modal-dashboard-employer
-    $(".modal-dashboard-employer .current-header").click(function(){
-        $(this).siblings(".modal-dashboard-employer .current-details").slideToggle(500);
-    });
-    
+    $(".current-header").click(function(){
+        $(this).next().slideToggle(500);
+        $(this).parent().siblings().find(".current-details").slideUp(500);
+    }); 
     
     //parttime popups
     $(".find-part-time-employee,.find-full-time-employee").click(function(){

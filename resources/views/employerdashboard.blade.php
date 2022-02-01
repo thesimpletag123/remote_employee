@@ -24,7 +24,7 @@ div#modal-dashboard-employer {
 				
 				<div class="employer-dashboard-body">
 					<div class="row flex-row align-items-stretch emp_box">
-						<div class="col-lg-3 col-md-12 col-sm-12 col-12">
+						<div class="col-lg-3 col-md-12 col-sm-12 col-12 px-0">
 							<ul class="employer-dashboard-menu">
 								<li class="tablinks active selected" data-class="part1" onclick="changetab(event, 'current_employee')">Current Jobs</li>
 								<li class="tablinks" data-class="part2" onclick="changetab(event, 'new_employee')">All Employees</li>
