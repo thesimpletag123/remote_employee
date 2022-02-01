@@ -17,7 +17,7 @@
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
 new WOW().init();
 
@@ -294,15 +294,19 @@ new WOW().init();
 	function reply_click(jobid){
 		event.preventDefault(); // prevent form submit
 		var form = event.target.form; // storing the form
-		swal.fire({
-				title: "Are you sure to delete this JOB?",
-				text: "This job will be removed from Database",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
-		})
-		.then((willDelete) => {
-		  if (willDelete) {
+				swal({
+				  title: "Are you sure to delete this JOB?",
+				  text: "This job will be removed from Database",
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Yes, Delete it  !",
+				  cancelButtonText: "No, Don't Delete  !",		  
+				  closeOnConfirm: false,
+				  closeOnCancel: false
+				},
+		function(isConfirm){
+		  if (isConfirm) {
 			$.ajax({
 					type: "post",
 					data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
@@ -318,7 +322,7 @@ new WOW().init();
 
 				});
 		  } else {
-			swal("Your imaginary file is safe!");
+			swal("Cancelled", "This Job is safe now. :)", "error");
 		  }
 		});
 		
@@ -659,12 +663,17 @@ $('.change_status').change(function(){
 		success: function( data ) {
 				var result = JSON.parse(data.success);
 				if(result == 1){
-						Swal.fire(
-							'Congratulation!',
-							'You have sucessfully updated Proect Status!',
-							'success'
-						);
-						window.location.reload();
+						swal({
+							title: "Congratulation",
+							text: "You have sucessfully updated Proect Status!",
+							type: "success",
+							confirmButtonColor: '#3085d6',
+							confirmButtonText: 'ok!'
+						},function(){
+							window.location.reload();
+						});
+							
+						
 					}
 					
 		}
@@ -676,15 +685,19 @@ $('.change_status').change(function(){
 	function generate_invoice(jobid){
 		event.preventDefault(); // prevent form submit
 		//var form = event.target.form; // storing the form
-		swal.fire({
-				title: "Generate Invoice",
-				text: "This job will be removed from Database",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
-		})
-		.then((willDelete) => {
-		  if (willDelete) {
+		swal({
+			  title: "Generate Invoice for this job?",
+			  text: "Invoice will be attached to this job.",
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonColor: "#DD6B55",
+			  confirmButtonText: "Yes, Generate!",
+			  cancelButtonText: "No, I dont need it!",
+			  closeOnConfirm: false,
+			  closeOnCancel: false
+			},
+		function(isConfirm){
+		  if (isConfirm) {
 			$.ajax({
 					type: "post",
 					data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
@@ -700,10 +713,9 @@ $('.change_status').change(function(){
 
 				});
 		  } else {
-			swal("Your imaginary file is safe!");
+			swal("Cancelled", "Invoice Generation TERMINATED :X", "error");
 		  }
-		});
-		
+		});		
 	}
 </script>
         

@@ -39,6 +39,32 @@ select#emp_skills {
 	
 <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
 	<div class="main-setting">
+	<?php 
+		$i = 0;
+		$j = 0;
+		$k = 0;
+		$l = 0;
+	?>
+		@if(isset($alljobslist))
+			@foreach($alljobslist as $singlejob)
+				@if($singlejob['posted_by_id'] == $user->id)
+					<?php						
+						$i++;
+						if( $singlejob['project_status'] == 0){
+							$j++;
+						}
+						if( $singlejob['project_status'] == 1){
+							$k++;
+						}
+						if( $singlejob['project_status'] == 2){
+							$l++;
+						}
+					?>
+				@endif
+			@endforeach
+		@endif	
+		
+		
 		<div class="availability">
 			<h6>Name </h6>
 			<p>{{$user->name}}</p>
@@ -50,6 +76,29 @@ select#emp_skills {
 				<p>{{$user->email}}</p>
 			</div>
 		</div>
+		
+		<table class="show_project_count">
+			<thead>
+				<tr><td colspan='2'>Project Details</td></tr>
+			</thead>
+			<tr>
+				<td>Completed Jobs</td><td>{{$l}}</td>
+			</tr>
+			<tr>
+				<td>Active Jobs</td><td>{{$k}}</td>
+			</tr>
+			<tr>
+				<td>Pending Jobs</td><td>{{$j}}</td>
+			</tr>
+			<tr>
+				
+				<td>Total Posted Jobs</td><td>{{$i}}</td>
+			</tr>
+		
+		</table>
+		
+		
+
 
 	<hr>
 	<?php $i = 1; ?>
@@ -116,29 +165,93 @@ select#emp_skills {
 									
 								</form>
 								<hr>
-								<div class="col-auto mother-jobdiv">
-									@if(isset($alljobslist))
-										@foreach($alljobslist as $singlejob)
-											@if($singlejob['posted_by_id'] == $user->id)
-												@if($i == 1)
-													<h5> Posted Jobs: </h5>
-												@endif
-												<div class="jobdiv" id="{{$singlejob['id']}}" onClick="show_job_on_click(this.id)">
-													<b>{{$singlejob['job_title']}}</b>
-													<div class="col-lg-12 custom_div">
-														@if($singlejob['assigned_to_username'] != '')
-															<b><label>Assigned to :</label></b>{{$singlejob['assigned_to_username']}}
-														@else
-															<b><label style="color:red;">Not Assigned Yet.</label></b>
-														@endif
-													</div>
-												</div>
-												<?php $i++; ?>
-											@endif	
-										@endforeach
-									@endif
-									
-								</div>
+								@if(isset($alljobslist))
+	@foreach($alljobslist as $singlejob)
+		@if($singlejob['posted_by_id'] == $user->id)
+		@if($i == 1)
+			<h5> Posted Jobs: </h5>
+		@endif
+												
+			<div class="current-employees-box">
+				<div class="current-header">
+					<div class="row">
+						<div class="col-sm-8">
+						
+							<div class="dashboard-avatar">
+								@if($user->user_image == null)
+									<img src="{{url('assets/images/avtar.png')}}" alt="image">
+								@else
+									<img src="{{$user->user_image}}" alt="image">
+								@endif
+								<!--<span></span>-->
+							</div>
+							<div class="dashboard-avatar-data">
+								<h4>{{$singlejob['job_title']}}</h4>													
+								<div><i class="fas fa-clock"></i> <span>Created at : {{$date }}</span></div>
+							</div>
+							
+						</div>
+						<div class="col-sm-2">
+							<div class="project_status">
+								@if($singlejob['project_status'] == 0)
+									<div class="btn btn-warning">Pending</div>
+								@elseif($singlejob['project_status'] == 1)
+									<div class="btn btn-primary">Active</div>
+								@elseif($singlejob['project_status'] == 2)
+									<div class="btn btn-success">Completed</div>
+								@endif
+							</div>
+						</div>
+						<div class="col-sm-2" style="float:right;">
+							<div class="setticon">
+								<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="current-details">
+					<div class="row">
+						<div class="col-md">
+							@if(isset($singlejob['project_budget']))
+								<span>|Budget : {{$singlejob['project_budget']}}|  </span>
+							@endif
+							@if(isset($singlejob['hourly_rate_min']))
+								<span>|Rate Per hour:  Min{{$singlejob['hourly_rate_min']}} - Max {{$singlejob['hourly_rate_max']}}|</span>
+							@endif
+							<br>
+							<br>
+							<p><i class="fas fa-align-justify"></i> {{$singlejob['project_description']}}</p>
+							<div class="review">
+								<span>Required Skills</span>
+								<?php 
+									$skills = null;
+									if($singlejob['required_skills']){
+										$skills = explode('-' , $singlejob['required_skills']);
+									}
+								?>
+									@foreach($skills as $skill)
+										<br>
+										<i class="fas fa-star"></i> {{$skill}}															
+									@endforeach
+							</div>
+						</div>
+						
+						<table>
+							<tr><input type="hidden" class="hidden_jobid" value="{{$singlejob['id']}}"></tr>
+						</table>
+						
+						<div class="col-md-12 padding-top">
+							<a href="{{route('editjobview' , $singlejob['id'])}}" class="btn btn-primary">Edit</a>
+							<button id="{{$singlejob['id']}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Delete</button>
+							
+							<a href="{{route('trackjob' , $singlejob['id'])}}" class="btn btn-success">Track</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		@endif	
+	@endforeach
+@endif
 								
 							</div>
 							
@@ -154,7 +267,27 @@ select#emp_skills {
 @endsection
 
 @section('pagescript')
-<script>
+	<script>
+	function changetab(evt, tabName) {
+	  // Declare all variables
+	  var i, tabcontent, tablinks;
 
-</script>
+	  // Get all elements with class="tabcontent" and hide them
+	  tabcontent = document.getElementsByClassName("complex");
+	  for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	  }
+
+	  // Get all elements with class="tablinks" and remove the class "active"
+	  tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active selected", "");
+	  }
+
+	  // Show the current tab, and add an "active" class to the link that opened the tab
+	  document.getElementById(tabName).style.display = "block";
+	  evt.currentTarget.className += " active selected";
+	}
+
+	</script>
 @endsection

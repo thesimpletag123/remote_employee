@@ -163,12 +163,13 @@ div#modal-dashboard-employer {
 													</select>
 													<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
 												</div>
-												
-												<div class="current-performance">
-													Generate Invoice
-													<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
-													<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success deletejob">Generate Invoice</button>
-												</div>
+												@if($employerpost->project_status == 2)
+													<div class="current-performance">
+														Generate Invoice
+														<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
+														<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success deletejob">Generate Invoice</button>
+													</div>
+												@endif
 											</div>
 											<table>
 												<tr><input type="hidden" class="hidden_jobid" value="{{$employerpost->id}}"></tr>
