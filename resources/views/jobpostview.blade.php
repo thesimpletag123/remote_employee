@@ -37,6 +37,30 @@ select#emp_skills {
 						<div class="row">
 							<div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
 								<div class="main-setting">
+									<?php 
+										$i = 0;
+										$j = 0;
+										$k = 0;
+										$l = 0;
+									?>
+									@if(isset($alljobslist))
+										@foreach($alljobslist as $singlejob)
+											@if($singlejob['posted_by_id'] == $user->id)
+												<?php						
+													$i++;
+													if( $singlejob['project_status'] == 0){
+														$j++;
+													}
+													if( $singlejob['project_status'] == 1){
+														$k++;
+													}
+													if( $singlejob['project_status'] == 2){
+														$l++;
+													}
+												?>
+											@endif
+										@endforeach
+									@endif
 									<div class="availability">
 										<h6>Name </h6>
 										<p>{{$user->name}}</p>
@@ -48,24 +72,50 @@ select#emp_skills {
 											<p>{{$user->email}}</p>
 										</div>
 									</div>
-									
+									<table class="show_project_count table table-bordered">
+										<thead class="thead-dark">
+											<tr>
+												<td colspan='2'><strong>Project Details</strong></td>
+											</tr>
+										</thead>
+										<tr>
+											<td>Completed Jobs</td>
+											<td>{{$l}}</td>
+										</tr>
+										<tr>
+											<td>Active Jobs</td>
+											<td>{{$k}}</td>
+										</tr>
+										<tr>
+											<td>Pending Jobs</td>
+											<td>{{$j}}</td>
+										</tr>
+										<tr>
+
+											<td>Total Posted Jobs</td>
+											<td>{{$i}}</td>
+										</tr>
+
+									</table>
 								
 								<hr>
 									<div class="sidebardatadiv">
-										@foreach($getjobupdatebyid as $jobupdate)
-											<div class="mysidebardiv">
-												<b>By: {{$jobupdate->user->name}}</b>
-												<div class="col-lg-12 custom_div">
-													<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
+										@if(isset($getjobupdatebyid))
+											@foreach($getjobupdatebyid as $jobupdate)
+												<div class="mysidebardiv">
+													<b>By: {{$jobupdate->user->name}}</b>
+													<div class="col-lg-12 custom_div">
+														<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
+													</div>
+													<div class="col-lg-12 custom_div">
+														<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
+													</div>
+													<div class="col-lg-12 custom_div">
+														<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
+													</div>			
 												</div>
-												<div class="col-lg-12 custom_div">
-													<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
-												</div>
-												<div class="col-lg-12 custom_div">
-													<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
-												</div>			
-											</div>
-										@endforeach
+											@endforeach
+										@endif
 									</div>
 								</div>
 							</div>

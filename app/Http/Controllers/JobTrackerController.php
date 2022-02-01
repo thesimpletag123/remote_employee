@@ -51,6 +51,9 @@ class JobTrackerController extends Controller
 		$getjobupdatebyidnew = new JobTracker;
 		$getjobupdatebyid = $getjobupdatebyidnew->GetJobUpdateByJobid($jobid);
 		
-		return view('employertrackjob', ['user' => $user, 'date' => $date, 'getjobbyid' => $getjobbyid, 'getjobupdatebyid' => $getjobupdatebyid]);
+		$alljobsnew = new JobPost();
+		$alljobslist = $alljobsnew->GetAllJobsList();
+		
+		return view('employertrackjob', ['user' => $user, 'date' => $date, 'getjobbyid' => $getjobbyid, 'getjobupdatebyid' => $getjobupdatebyid, 'alljobslist' => $alljobslist]);
 	}
 }

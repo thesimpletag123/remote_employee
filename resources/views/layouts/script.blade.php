@@ -1,20 +1,19 @@
         <!-- starting scripts -->
-        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery.mixitup.js') }}"></script>
-        <script src="{{ asset('assets/js/bootstrap.min4.6.js') }}"></script>
-        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/js/outdatedbrowser.min.js') }}"></script>        
-        <script src="{{ asset('assets/js/myscript.js') }}"></script>
-        <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-        <script src="{{ asset('assets/js/wowjava.js') }}"></script>
+		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+		<script src="{{ asset('assets/js/jquery.mixitup.js') }}"></script>
+		<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+		<script src="{{ asset('assets/js/outdatedbrowser.min.js') }}"></script>        
+		<script src="{{ asset('assets/js/myscript.js') }}"></script>
+		<script src="{{ asset('assets/js/wow.min.js') }}"></script>
+		<script src="{{ asset('assets/js/wowjava.js') }}"></script>
 		<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
-		
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-		
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>

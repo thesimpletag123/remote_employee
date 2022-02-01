@@ -317,7 +317,10 @@ class JobPostController extends Controller
 		$getjobwithidnew = new JobPost;
 		$getjobbyid = $getjobwithidnew->GetJobByID($jobid);
 		
-		return view('jobpostview', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skills' => $skills, 'getjobbyid' => $getjobbyid, 'getjobupdatebyid' => $getjobupdatebyid]);
+		$alljobsnew = new JobPost();
+		$alljobslist = $alljobsnew->GetAllJobsList();
+		
+		return view('jobpostview', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'skills' => $skills, 'getjobbyid' => $getjobbyid, 'getjobupdatebyid' => $getjobupdatebyid , 'alljobslist' => $alljobslist]);
 		
 	}
 	
