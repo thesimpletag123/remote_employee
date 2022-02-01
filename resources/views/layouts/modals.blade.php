@@ -68,7 +68,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 											@endif
                                         
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label>Estimate your budget</label>
                                         <div class="row">
                                             <div class="col">
@@ -113,16 +113,21 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 									@else
 										<div class="form-group">
 											
-											<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-											
-											<div  class="social-icon" id="social_linkindin_login_quick">
-												<img src="{{ asset('assets/images/linkedin-logo.png') }}">
-											</div>
-											
+											<div class="d-flex align-items-center justify-content-between">
+                                                <div class="google-btn">
+                                                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                                    <div class="google-sign">
+                                                        <i class="fab fa-google"></i>
+                                                        Sign In
+                                                    </div>
+                                                </div>
+                                                <a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login">
+                                                    <i class="fab fa-linkedin-in"></i>
+                                                    Sign In
+                                                </a> 
+                                            </div> 
 											
 										</div>
-										<br>
-										<br>
 										<div class="form-group" >
 											<input type="submit" id="submit_quick_project_disable" value="submit" class="btn btn-primary" style="width:100%;" disabled>
 										</div>
@@ -489,7 +494,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                         @csrf
 
 							<div class="form-group row">
-								<i class="fas fa-user" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-user" ></i>
 								<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" Placeholder="Enter Your Name" autofocus style="padding-left: 35px;">
 
                                 @error('name')
@@ -500,7 +505,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							</div>
 
 							<div class="form-group row">
-								<i class="fas fa-envelope" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-envelope" ></i>
 								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your Email" />
 
 								@error('email')
@@ -510,7 +515,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								@enderror
 							</div>
 							<div class="form-group row">
-								<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-unlock-alt" ></i>
 								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Type Password">
 
                                 @error('password')
@@ -520,7 +525,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                 @enderror
 							</div>
 							<div class="form-group row">
-								<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-unlock-alt" ></i>
 								<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Re-Type Password">
 							</div>
 
@@ -533,9 +538,20 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                 </button>
 							</div>
 							<div class="form-group">
-								<!--<a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="social-icon"><img src="{{ asset('assets/images/google-logo.png') }}"></a>-->
-								<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-								<a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login"><img src="{{ asset('assets/images/linkedin-logo.png') }}"></a>            
+								 
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="google-btn">
+                                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                        <div class="google-sign">
+                                            <i class="fab fa-google"></i>
+                                            Sign In
+                                        </div>
+                                    </div>
+                                    <a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login">
+                                        <i class="fab fa-linkedin-in"></i>
+                                        Sign In
+                                    </a> 
+                                </div>          
 							</div>						
 						</form>
 					</div>
@@ -561,7 +577,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							@csrf
 
 							<div class="form-group row">
-								<i class="fas fa-envelope" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-envelope" ></i>
 								<input id="login_email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter your email" />
 
 								@error('email')
@@ -572,7 +588,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							</div>
 
 							<div class="form-group row">
-								<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
+								<i class="fas fa-unlock-alt" ></i>
 								<input id="login_password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter your password" />
 
 								@error('password')
@@ -583,7 +599,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							</div>
 
 							<div class="form-group">
-								<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
+								<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> <span class="text-white">Remember me</span>
 							</div>
 							<div class="form-group">
 								<button type="submit" id="login_button_for_validation" class="btn btn-primary">
@@ -601,9 +617,19 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								@endif
 							</div>
 							<div class="form-group">
-								<!--<a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="social-icon"><img src="{{ asset('assets/images/google-logo.png') }}"></a>-->
-								<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-								<a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login"><img src="{{ asset('assets/images/linkedin-logo.png') }}"></a>            
+								<div class="d-flex align-items-center justify-content-between">
+                                    <div class="google-btn">
+                                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                        <div class="google-sign">
+                                            <i class="fab fa-google"></i>
+                                            Sign In
+                                        </div>
+                                    </div>
+                                    <a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login">
+                                        <i class="fab fa-linkedin-in"></i>
+                                        Sign In
+                                    </a> 
+                                </div>             
 							</div>	
 						</form>
 					</div>
@@ -858,13 +884,19 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 													</div>
 												@else
 													<div class="form-group">
-														
-														<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-														
-														<div  class="social-icon" id="social_linkindin_login_full_n_part">
-															<img src="{{ asset('assets/images/linkedin-logo.png') }}">
-														</div>
-														
+														<div class="d-flex align-items-center justify-content-between">
+                                                            <div class="google-btn">
+                                                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                                                <div class="google-sign">
+                                                                    <i class="fab fa-google"></i>
+                                                                    Sign In
+                                                                </div>
+                                                            </div>
+                                                            <a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login">
+                                                                <i class="fab fa-linkedin-in"></i>
+                                                                Sign In
+                                                            </a> 
+                                                        </div> 
 													</div>
 													<br>
 													<br>

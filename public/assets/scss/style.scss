@@ -167,7 +167,7 @@ section{
             padding: 0;
             width: 25px; 
             height: 25px;
-            line-height: 25px;
+            line-height: 100%;
             text-align: center;
             font-weight: bold;
         }
@@ -1614,24 +1614,78 @@ footer{
                         background-color: transparent;
                     }
                 }
-                .social-icon {
-                    background: #0e76a8;
-                    color: #fff;
-                    height: 35px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100px;
-                    font-size: 13px;
-                    text-decoration: none !important;
-                }
+                
+                
             }
         }
     }
 }
 /* End modal-login */
 
-
+.social-icon {
+    background: #0e76a8;
+    color: #fff!important;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    text-decoration: none !important;
+    width: 48%;
+    max-width: 125px;
+    column-gap: 4%;
+    border-radius: 5px;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+    i{
+        transform: none!important;
+        position: static!important;
+        color: #0e76a8!important;
+        background: white!important;
+        font-size: 15px;
+        padding: 4px 6px;
+        border-radius: 5px;
+    }
+}
+.google-btn{
+    position: relative;
+    width: 48%;
+    max-width: 125px;
+    border-radius: 5px;
+    overflow: hidden;
+    .g-signin2{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        width:100%;
+        opacity: 0;
+    }
+    .google-sign{
+        background: #db3236;
+        color: #fff;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        text-decoration: none !important;
+        
+        column-gap: 4%;
+        i{
+            transform: none!important;
+            position: static!important;
+            color: #db3236!important;
+            background: white!important;
+            font-size: 15px;
+            padding: 4px 6px;
+            border-radius: 5px;
+        }
+    }
+}
 /* starting modal-parttime-skills */
 .modal-parttime-skills{
     .modal-body{
@@ -2640,6 +2694,9 @@ section.parttime {
 .g-signin2 {
 	width: max-content;
     float: left;
+    > div{
+        width: 100%!important;
+    }
 }
 #social_linkindin_login_quick img, #social_linkindin_login_full_n_part img, #social_linkindin_login_login img {
     width: 100px;

@@ -33,7 +33,7 @@ a.reg_modal_pop_btn {
 					@csrf
 
 						<div class="form-group row">
-							<i class="fas fa-envelope" style="width: 0%; left: 1px;"></i>
+							<i class="fas fa-envelope"></i>
 							<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" Placeholder="Enter Your Name" autofocus style="padding-left: 35px;">
 
 							@error('name')
@@ -44,7 +44,7 @@ a.reg_modal_pop_btn {
 						</div>
 
 						<div class="form-group row">
-							<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
+							<i class="fas fa-unlock-alt"></i>
 							<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your Email" />
 
 							@error('email')
@@ -54,7 +54,7 @@ a.reg_modal_pop_btn {
 							@enderror
 						</div>
 						<div class="form-group row">
-							<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
+							<i class="fas fa-unlock-alt" ></i>
 							<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
 							@error('password')
@@ -64,7 +64,7 @@ a.reg_modal_pop_btn {
 							@enderror
 						</div>
 						<div class="form-group row">
-							<i class="fas fa-unlock-alt" style="width: 0%; left: 1px;"></i>
+							<i class="fas fa-unlock-alt" ></i>
 							<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 						</div>
 
