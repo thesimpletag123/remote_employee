@@ -385,6 +385,7 @@ $('.ms-selection .ms-elem-selection').click(function(){
 	if($(this).hasClass("unselected")){
 		$(this).removeClass("unselected");
 	}
-})
+});
+
 </script>
 @endsection
