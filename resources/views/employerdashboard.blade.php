@@ -14,18 +14,16 @@ div#modal-dashboard-employer {
 </style>
 @endsection
 @section('content')
-<div class="modal-dashboard-employer" id="modal-dashboard-employer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" role="dialog" style="display: block;">
-	<div class="modal-dialog modal-dialog-centered modal-xl">
-		<div class="modal-content">
+<div class="container">
+	<div class="modal-dashboard-employer">
 
-			<div class="modal-body">
 <input type="hidden" id="hidden_uid" value="{{$user->id}}">				
 				
 @include('layouts.dashboardheader')
 				
 				
 				<div class="employer-dashboard-body">
-					<div class="row">
+					<div class="row flex-row align-items-stretch emp_box">
 						<div class="col-lg-3 col-md-12 col-sm-12 col-12">
 							<ul class="employer-dashboard-menu">
 								<li class="tablinks active selected" data-class="part1" onclick="changetab(event, 'current_employee')">Current Jobs</li>
@@ -305,8 +303,6 @@ div#modal-dashboard-employer {
 				</div>
 				
 				
-			</div>
-		</div>
 	</div>
 </div>
 @endsection
