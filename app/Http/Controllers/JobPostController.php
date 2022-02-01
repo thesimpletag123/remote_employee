@@ -418,4 +418,14 @@ class JobPostController extends Controller
 		$data['success'] = 1;
 		return response()->json($data);
 	}
+	
+	public function invoice_generate_for_completed_projects(Request $request){
+		$jobid = $request->jobid;
+		
+		$getjobwithidnew = new JobPost;
+		$getjobbyid = $getjobwithidnew->GetJobByID($request);
+		
+		$data['success'] = 1;
+		return response()->json($data);
+	}
 }
