@@ -1,33 +1,12 @@
 @extends('layouts.master')
 @section('title', 'View Job')
 @section('pagecss')
-<style>
-div#modal-profile-setting {
-    margin-top: 6%;
-}
-.modal-xl {
-    max-width: 80%;
-}
 
-.padding_none {
-	padding-left: 0px;
-}
-select#emp_skills {
-    width: -webkit-fill-available;
-    overflow: auto;
-	width: -webkit-fill-available;
-    overflow: auto;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-}
-</style>
 @endsection
 @section('content')
 <!-- starting modal-profile-setting -->
-	<div class="modal-profile-setting" id="modal-profile-setting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<div class="modal-body">
+<div class="container">
+	<div class="modal-profile-setting">
 					
 					<input type="hidden" id="hidden_uid" value="{{$user->id}}">
 @include('layouts.dashboardheader')
@@ -57,14 +36,14 @@ select#emp_skills {
 		@if(isset($getjobupdatebyid))
 			@foreach($getjobupdatebyid as $jobupdate)
 				<div class="mysidebardiv job-update-sidebar">
-					<b>By: {{$jobupdate->user->name}}</b>
-					<div class="col-lg-12 custom_div">
+					<strong class="mb-2 d-block">By: {{$jobupdate->user->name}}</strong>
+					<div class="job_block">
 						<b><label>Task Name :</label></b>{{$jobupdate->jobupdate_headline}}
 					</div>
-					<div class="col-lg-12 custom_div">
+					<div class="job_block">
 						<b><label>Description:</label></b> {{$jobupdate->jobupdate_description}}
 					</div>
-					<div class="col-lg-12 custom_div">
+					<div class="job_block">
 						<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
 					</div>			
 				</div>
@@ -85,15 +64,15 @@ select#emp_skills {
 									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
 									<input type="hidden" id="hidden_jobid" name="hidden_jobid" value="{{$getjobbyid->id}}">
 									<div class="col-auto">
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 											<label for="job_title" class="form-label">Job Title</label>
 											<input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job Title here" readonly value="{{$getjobbyid->job_title}}">
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 										  <label for="job_desc" class="form-label">Job Description</label>
 										  <textarea class="form-control" id="job_desc" name="job_desc" rows="3" readonly>{{$getjobbyid->project_description}}</textarea>
 										</div>
-										<!--<div class="col-lg-8 custom_div">
+										<!--<div class="custom_div">
 											<div class="col-md-12 padding_none">
 												<label for="job_skills" class="form-label">Required Skills:</label>
 											</div>
@@ -120,7 +99,7 @@ select#emp_skills {
 												$project_budget = $getjobbyid->project_budget;
 												$project_rate_min = $getjobbyid->hourly_rate_min;
 											?>
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 											@if( $project_budget != null )													
 												<div class="col-md-12">
 													<label for="job_budget" class="form-label">Project Budget :</label>
@@ -129,7 +108,7 @@ select#emp_skills {
 											@endif
 												
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 											@if( $project_rate_min != null )
 												<div class="col-md-12">
 													<label for="job_budget" class="form-label">Project Min. Rate :</label>
@@ -137,7 +116,7 @@ select#emp_skills {
 												<input type="text" class="form-control" id="job_budget" name="job_budget" placeholder="Project Budget" value="{{$project_rate_min}}" readonly>													
 											@endif
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 											<label for="job_deadline" class="form-label">Project Deadline</label>
 											<input type="date" class="form-control" id="job_deadline" name="job_deadline" placeholder="Project Deadline" readonly value="{{$getjobbyid->deadline}}" readonly>
 										</div>-->
@@ -146,22 +125,22 @@ select#emp_skills {
 									</div>
 									<hr>
 									<div class="col-auto">
-										<div class="col-lg-8 custom_div">											
+										<div class="custom_div">											
 											
 											<label for="emp_work_headline" class="form-label">Task Name :</label>
 											
-											<input type="text" class="form-control" id="emp_work_headline" name="emp_work_headline" placeholder="My Work Headline">
+											<input type="text" class="form-control" id="emp_work_headline" name="emp_work_headline" placeholder="My Work Headline" required>
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 											<label for="emp_work_desc" class="form-label">Task Description :</label>
-											<textarea class="form-control" id="emp_work_desc" name="emp_work_desc" placeholder="My work in detail"rows="3"></textarea>
+											<textarea class="form-control" id="emp_work_desc" name="emp_work_desc" placeholder="My work in detail"rows="3" required></textarea>
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 											<label for="emp_work_time" class="form-label">Time Spent (Hours) :</label>
-											<input type="number" step=0.25 class="form-control" id="emp_work_time" name="emp_work_time" placeholder="Time I have worked">
+											<input type="number" step=0.25 class="form-control" id="emp_work_time" name="emp_work_time" placeholder="Time I have worked" required>
 										</div>
 										
-										<div class="col-lg-8 custom_div">
+										<div class="custom_div">
 											<button type="submit" class="btn btn-primary">Update My work</button>
 										</div>
 									</div>
@@ -173,8 +152,7 @@ select#emp_skills {
 									
 					</div>					
 				</div>
-			</div>
-		</div>
+			
 	</div>
 	<!-- End modal-profile-setting -->
 @endsection

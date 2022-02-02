@@ -1,36 +1,12 @@
 @extends('layouts.master')
 @section('title', 'Post Update')
 @section('pagecss')
-<style>
-div#modal-profile-setting {
-    margin-top: 6%;
-}
-.modal-xl {
-    max-width: 80%;
-}
-input#job_budget, input#job_min_rate {
-    float: right;
-    width: 85%;
-}
-.padding_none {
-	padding-left: 0px;
-}
-select#emp_skills {
-    width: -webkit-fill-available;
-    overflow: auto;
-	width: -webkit-fill-available;
-    overflow: auto;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-}
-</style>
+
 @endsection
 @section('content')
 <!-- starting modal-profile-setting -->
-	<div class="modal-profile-setting" id="modal-profile-setting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<div class="modal-body">
+<div class="container">
+	<div class="modal-profile-setting">
 					
 					<input type="hidden" id="hidden_uid" value="{{$user->id}}">
 @include('layouts.dashboardheader')
@@ -146,8 +122,7 @@ select#emp_skills {
 						</div>
 					</div>					
 				</div>
-			</div>
-		</div>
+			
 	</div>
 	<!-- End modal-profile-setting -->
 @endsection

@@ -1,14 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Dashboard')
 @section('pagecss')
-<style>
-div#modal-dashboard-employee {
-    margin-top: 6%;
-}
-.modal-xl {
-    max-width: 80%;
-}
-</style>
 @endsection
 @section('content')
 
@@ -50,9 +42,7 @@ div#modal-dashboard-employee {
 													<a href="{{route('viewjobemployee' , $singlejob['id'])}}" class="btn btn-secondary">View this</a>
 												@endif
 												
-												<div class="setticon">
-													<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
-												</div>
+												
 											</div>
 											<div class="col-12">
 												<h6>Project Brief</h6>

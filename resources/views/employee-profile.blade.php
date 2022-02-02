@@ -60,44 +60,57 @@
 			<div class="modal-body emp_rate_pop">
 			<form id="employeerateupdate" name="employeerateupdate" method="post"
                         action="{{route('employeerateupdate')}}">
+						@csrf
+						<input type='hidden' name="job_id" value="{{$user->jobpost->hourly_rate_max}}">
 				<?php
 					$minrate = explode(' ',$user->jobpost->hourly_rate_min);
 					$maxrate = explode(' ',$user->jobpost->hourly_rate_max);
 				?>
 				<div>
-					<div class="d-flex flex-column  mb-3">
-						<label for="range-1a">Min rate:</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$minrate[0]}}">
-						<select id="minrate_currency" name ="minrate_currency">
-							@if(isset($currencies))													
-								@foreach($currencies as $currency => $abbr)
-									@if ($minrate[1])
-										<option value="{{$currency}}" <?php if($minrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
-									@else
-										<option value="{{$currency}}">{{$currency}}</option>
-									@endif
-								@endforeach
-							@else
-									<option value="INR">INR</option>
-							@endif                                                        
-						</select>
+					<div class="d-flex flex-row flex-wrap align-items-center  mb-3">
+						
+						<label class="mb-0 col" for="range-1a"><b>Minimum rate:</b></label>
+						
+						<div class="col px-0">
+							<input type="text" class="form-control" id="minrate" name="minrate" value="{{$minrate[0]}}">
+							
+						</div>
+						<div class="col pr-0">
+							<select id="minrate_currency" class="form-control" name ="minrate_currency">
+								@if(isset($currencies))													
+									@foreach($currencies as $currency => $abbr)
+										@if ($minrate[1])
+											<option value="{{$currency}}" <?php if($minrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
+										@else
+											<option value="{{$currency}}">{{$currency}}</option>
+										@endif
+									@endforeach
+								@else
+										<option value="INR">INR</option>
+								@endif                                                        
+							</select>
+						</div>
 					</div>
-					<div class="d-flex flex-column  mb-3">
-						<label for="range-1b">Max Rate:</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$maxrate[0]}}">
-						<select id="maxrate_currency" name ="maxrate_currency">
-							@if(isset($currencies))													
-								@foreach($currencies as $currency => $abbr)
-									@if ($maxrate[1])
-										<option value="{{$currency}}" <?php if($maxrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
-									@else
-										<option value="{{$currency}}">{{$currency}}</option>
-									@endif
-								@endforeach
-							@else
-									<option value="INR">INR</option>
-							@endif                                                        
-						</select>
+					<div class="d-flex flex-row flex-wrap align-items-center mb-3">
+						<label class="mb-0 col" for="range-1b"><b>Maximum Rate:</b></label>
+						<div class="col px-0">
+							<input type="text" class="form-control" id="maxrate" name="maxrate" value="{{$maxrate[0]}}">
+						</div>
+						<div class="col pr-0">
+							<select id="maxrate_currency" class="form-control" name ="maxrate_currency">
+								@if(isset($currencies))													
+									@foreach($currencies as $currency => $abbr)
+										@if ($maxrate[1])
+											<option value="{{$currency}}" <?php if($maxrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
+										@else
+											<option value="{{$currency}}">{{$currency}}</option>
+										@endif
+									@endforeach
+								@else
+										<option value="INR">INR</option>
+								@endif                                                        
+							</select>
+						</div>
 					</div>
 					<div class="d-flex flex-column  mb-3">
 							<input type="submit" name="submit" class="btn btn-primary">
@@ -193,7 +206,7 @@
 
 
 
-    <div class="modal-profile-setting">
+    <div class="modal-profile-setting ">
 
 
         <input type="hidden" id="hidden_uid" value="{{$user->id}}">
@@ -265,10 +278,10 @@
                         @endif
                     </div> -->
                     <div class="main-setting">
-						<div class="profsetting">
+						<div class="profsetting ">
 							<h6>Profile Setting <span class="editicon" data-bs-toggle="modal" data-bs-target="#employee-profile-settings"><i class="fas fa-pen"></i></span></h6>
 						</div>
-						<div class="availability">
+						<div class="availability ">
 							<h6>Rate / Budget <span class="editicon" data-bs-toggle="modal" data-bs-target="#employee-profile-rate" ><i class="fas fa-pen"></i></span></h6>
 							
 
@@ -291,7 +304,7 @@
 								@endif
 							</div>
 						</div>
-						<div class="myskills">
+						<div class="myskills ">
 							<h6>My Skills <span class="editicon" data-bs-toggle="modal" data-bs-target="#employee-profile-skills"><i class="fas fa-pen"></i></span></h6>
 							<?php
 							//var_dump($skills);
@@ -362,9 +375,7 @@
 													<a href="{{route('viewjobemployee' , $singlejob['id'])}}" class="btn btn-secondary">View this</a>
 												@endif
 												
-												<div class="setticon">
-													<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
-												</div>
+												
 											</div>
 											<div class="col-12">
 												<h6>Project Brief</h6>
