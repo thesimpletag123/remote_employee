@@ -319,4 +319,17 @@ class HomeController extends Controller
 		$msg = "Saved Successfully.";
 		return redirect()->back()->with('success', $msg);
 	}
+	
+	public function employeerateupdate(Request $request){
+		$user = Auth::user();
+		$job_id = $user->job_id;
+		$minrate = $request->minrate;
+		$maxrate = $request->maxrate;
+		$minrate_currency = $request->minrate_currency;
+		$maxrate_currency = $request->maxrate_currency;
+		JobPost::where('id' , $job_id)->update([
+									'hourly_rate_min' => $minrate.' '.$minrate_currency,
+									'hourly_rate_max' => $maxrate.' '.$maxrate_currency
+									]);
+	}
 }
