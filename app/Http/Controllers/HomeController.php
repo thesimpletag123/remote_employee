@@ -321,8 +321,9 @@ class HomeController extends Controller
 	}
 	
 	public function employeerateupdate(Request $request){
-		$user = Auth::user();
-		$job_id = $user->job_id;
+		
+		$job_id = $request->job_id;
+		
 		$minrate = $request->minrate;
 		$maxrate = $request->maxrate;
 		$minrate_currency = $request->minrate_currency;
@@ -331,5 +332,8 @@ class HomeController extends Controller
 									'hourly_rate_min' => $minrate.' '.$minrate_currency,
 									'hourly_rate_max' => $maxrate.' '.$maxrate_currency
 									]);
+		
+
+		return redirect()->back()->with('success', 'Profile Updated..');
 	}
 }
