@@ -31,4 +31,22 @@ class SendMailController extends Controller
 		}
 	return true;
 	}
+	
+	public function sendinvoicemail(Request $request){
+	$jobid = $request->jobid;
+	$requesteduser = $user = Auth::user();
+
+	$getjobwithidnew = new JobPost;
+	$getjobbyid = $getjobwithidnew->GetJobByID($jobid);
+
+	$getempdetails = new Employee;
+	$getempbyid = $getempdetails->getemployedetails($getjobbyid->assigned_to_id);
+	
+	
+	$details = ['requesteduser' => $requesteduser, 'getjobbyid' => $getjobbyid , 'getempbyid' => $getempbyid];
+
+		\Mail::to($user->email)->send(new \App\Mail\SendOtp($details));
+		
+	return true;
+	}
 }

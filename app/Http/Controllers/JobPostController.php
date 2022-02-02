@@ -14,8 +14,11 @@ use App\JobPost;
 use App\JobRequest;
 use App\JobTracker;
 use Auth;
+use PDF;
+use Mail;
 use Carbon\Carbon;
 use Session;
+use Storage;
 
 class JobPostController extends Controller
 {
@@ -424,10 +427,33 @@ class JobPostController extends Controller
 	
 	public function invoice_generate_for_completed_projects(Request $request){
 		$jobid = $request->jobid;
+		$requesteduser = $user = Auth::user();
 		
 		$getjobwithidnew = new JobPost;
-		$getjobbyid = $getjobwithidnew->GetJobByID($request);
+		$getjobbyid = $getjobwithidnew->GetJobByID($jobid);
 		
+		$getempdetails = new Employee;
+		$getempbyid = $getempdetails->getemployedetails($getjobbyid->assigned_to_id);
+		
+		$filename = 'remoteemployee_invoice_'.time().'.pdf';
+		$data = ['requesteduser' => $requesteduser, 'getjobbyid' => $getjobbyid , 'getempbyid' => $getempbyid, 'email'=>$getempbyid->user->email, 'filename' => $filename];
+		
+		// Generate PDF
+		$pdf = PDF::loadView('pdf.invoicebyemployer', $data);
+		
+		//Upload PDF
+		$path = public_path('uploads/');
+		$filepath = $path . '/' . $filename;
+		$pdf->save($path . '/' . $filename);
+		JobPost::where(['id' => $jobid])->update(['invoice_attachment' => $filepath]);
+		
+		
+		// Send Invoice Mail with PDF Attachment
+		Mail::send('emails.sendinvoice', $data, function($message)use($data, $pdf) {
+            $message->to($data["email"])
+                    ->subject('Invoice from RemoteEmployee')
+                    ->attachData($pdf->output(), $data["filename"]);
+        });
 		$data['success'] = 1;
 		return response()->json($data);
 	}

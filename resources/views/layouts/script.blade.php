@@ -8,8 +8,9 @@
 		<script src="{{ asset('assets/js/wow.min.js') }}"></script>
 		<script src="{{ asset('assets/js/wowjava.js') }}"></script>
 		<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js">
+		
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
@@ -693,8 +694,8 @@ $('.change_status').change(function(){
 			  confirmButtonColor: "#DD6B55",
 			  confirmButtonText: "Yes, Generate!",
 			  cancelButtonText: "No, I dont need it!",
-			  closeOnConfirm: false,
-			  closeOnCancel: false
+			  closeOnConfirm: true,
+			  closeOnCancel: true
 			},
 		function(isConfirm){
 		  if (isConfirm) {
@@ -706,8 +707,11 @@ $('.change_status').change(function(){
 						var result = JSON.parse(data.success);
 						//alert(result);
 						if(result == 1){
-							//alert('Job posted Successfully');
-							window.location.href = "{{url('employerdashboard')}}";						
+							swal({
+								title: "Invoice Sent to email ID",
+								text: "Invoice will be attached to this job.",
+								type: "success"
+								});					
 						}
 					}
 
