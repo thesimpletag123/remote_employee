@@ -106,60 +106,60 @@ div#modal-dashboard-employer {
 												</div>
 											</div>
 											<div class="col-md">
-												<div class="current-performance">
+												
 													@if($employerpost->project_status != 2)
+													<div class="current-performance">
 														@if($employerpost->assigned_to_id == null)
-														
+														<div class="d-flex justify-content-between align-items-center">
 														<h6>Not assigned yet</h6>
-															<div class="btn-group">
-																<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
-																			<option>--Select to assign--</option>
-																	@if(isset($employeeavailable))
-																		@foreach($employeeavailable as $emp)
-																			<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
-																		@endforeach
-																	@else
-																			<option> No Employee Available </option>
-																	@endif
-																</select>
-															</div>
+														<div class="btn-group">
+															<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
+																		<option>--Select to assign--</option>
+																@if(isset($employeeavailable))
+																	@foreach($employeeavailable as $emp)
+																		<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
+																	@endforeach
+																@else
+																		<option> No Employee Available </option>
+																@endif
+															</select>
+														</div>
+														</div>
 														@else
+
+															<div class="d-flex justify-content-between mb-3 align-items-center">
 															<h6>Assigned to: </h6>
 															{{$employerpost->assigned_to_username}}
-															<br>
-															<h6>Re-assign to</h6>
-															<div class="btn-group">
-																<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
-																			<option>--Select to assign--</option>
-																	@if(isset($employeeavailable))
-																		@foreach($employeeavailable as $emp)
-																			<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
-																		@endforeach
-																	@else
-																			<option> No Employee Available </option>
-																	@endif
-																</select>
+															</div>
+															<div class="d-flex justify-content-between align-items-center">
+																<h6>Re-assign to:</h6>
+																<div class="btn-group">
+																	<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
+																				<option>--Select to assign--</option>
+																		@if(isset($employeeavailable))
+																			@foreach($employeeavailable as $emp)
+																				<option value="{{$emp->user->id}}">{{$emp->user->name}}</option>
+																			@endforeach
+																		@else
+																				<option> No Employee Available </option>
+																		@endif
+																	</select>
+																</div>
 															</div>
 														@endif
+													</div>
 													@endif
-													<!--<div class="progress-modal">
-														<div class="pie-wrapper progress-full">
-															<span class="label">85<em>%</em></span>
-															<div class="pie">
-																<div class="left-side half-circle"></div>
-																<div class="right-side half-circle"></div>
-															</div>  
-														</div>
-													</div>-->
-												</div>
+												
 												<div class="current-performance">
+													<div class="d-flex justify-content-between align-items-center">
 													Change Status
-													<select name="change_status" class="change_status">
-														<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Pending</option>
-														<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>Active</option>
-														<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Completed</option>
-													</select>
-													<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
+														<select name="change_status" class="change_status">
+															<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Pending</option>
+															<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>Active</option>
+															<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Completed</option>
+														</select>
+														<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
+													</div>
 												</div>
 												@if($employerpost->project_status == 2)
 													<div class="current-performance">

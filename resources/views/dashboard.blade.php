@@ -51,12 +51,12 @@
 													{{$singlejob['project_description']}}
 												</p>
 											</div>
-											<div class="col-md-8 col-sm-12 col-12">
+											<div class="col-md-8 col-sm-12 col-12 d-flex flex-column justify-content-center">
 											@if($singlejob['invoice_attachment'])
-												<h6>Invoice Attachment</h6>
+												<h6 class="mb-0">Invoice Attachment</h6>
 												<div><i class="fas fa-paperclip"></i> <a href="{{$singlejob['invoice_attachment']}}" target="_blabk"> View Last Invoice</a></div>
 											@else
-												<h6>No Invoice available.</h6>
+												<h6 class="mb-0">No Invoice available.</h6>
 											@endif
 											</div>
 											<div class="col-md-4 col-sm-12 col-12">
