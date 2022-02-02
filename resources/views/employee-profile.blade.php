@@ -58,15 +58,46 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
 			</div>
 			<div class="modal-body emp_rate_pop">
-			<form>
+			<form id="employeerateupdate" name="employeerateupdate" method="post"
+                        action="{{route('employeerateupdate')}}">
+				<?php
+					$minrate = explode(' ',$user->jobpost->hourly_rate_min);
+					$maxrate = explode(' ',$user->jobpost->hourly_rate_max);
+				?>
 				<div>
 					<div class="d-flex flex-column  mb-3">
 						<label for="range-1a">Min rate:</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$user->jobpost->hourly_rate_min}}">
+						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$minrate[0]}}">
+						<select id="minrate_currency" name ="minrate_currency">
+							@if(isset($currencies))													
+								@foreach($currencies as $currency => $abbr)
+									@if ($minrate[1])
+										<option value="{{$currency}}" <?php if($minrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
+									@else
+										<option value="{{$currency}}">{{$currency}}</option>
+									@endif
+								@endforeach
+							@else
+									<option value="INR">INR</option>
+							@endif                                                        
+						</select>
 					</div>
 					<div class="d-flex flex-column  mb-3">
 						<label for="range-1b">Max Rate:</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$user->jobpost->hourly_rate_max}}">
+						<input type="text" class="form-control" id="name" name="name" placeholder="Job Title here" value="{{$maxrate[0]}}">
+						<select id="maxrate_currency" name ="maxrate_currency">
+							@if(isset($currencies))													
+								@foreach($currencies as $currency => $abbr)
+									@if ($maxrate[1])
+										<option value="{{$currency}}" <?php if($maxrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
+									@else
+										<option value="{{$currency}}">{{$currency}}</option>
+									@endif
+								@endforeach
+							@else
+									<option value="INR">INR</option>
+							@endif                                                        
+						</select>
 					</div>
 					<div class="d-flex flex-column  mb-3">
 							<input type="submit" name="submit" class="btn btn-primary">
@@ -386,6 +417,21 @@ $('.ms-selection .ms-elem-selection').click(function(){
 		$(this).removeClass("unselected");
 	}
 });
+$('#maxrate_currency').on('change', function() {
+	var maxrate_currency = $('#maxrate_currency').val();
+	var minrate_currency = $('#minrate_currency').val();
 
+	if(maxrate_currency != minrate_currency){
+		$('#minrate_currency').val(maxrate_currency);
+	}
+});
+$('#minrate_currency').on('change', function() {
+	var maxrate_currency = $('#maxrate_currency').val();
+	var minrate_currency = $('#minrate_currency').val();
+
+	if(maxrate_currency != minrate_currency){
+		$('#maxrate_currency').val(minrate_currency);
+	}
+});
 </script>
 @endsection

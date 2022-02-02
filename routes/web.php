@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('viewjobemployee/{id}', 'JobPostController@viewjobemployee')->name('viewjobemployee');
 		Route::post('employeetimeupdate', 'JobTrackerController@employeetimeupdate')->name('employeetimeupdate');
 		Route::post('employeeprofileupdate', 'HomeController@employeeprofileupdate')->name('employeeprofileupdate');
+		Route::post('employeerateupdate', 'HomeController@employeerateupdate')->name('employeerateupdate');
 		Route::get('sendmail', 'SendMailController@sendmail')->name('sendmail');
 		
 	});

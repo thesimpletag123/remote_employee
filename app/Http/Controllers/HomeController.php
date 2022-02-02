@@ -285,25 +285,24 @@ class HomeController extends Controller
 	public function employeeprofileupdate(Request $request){
 		$user = Auth::user();
 		$name = $request->name;
-		$my_skills = $request->my_skills;
+		//$my_skills = $request->my_skills;
 		$contact = $request->contact;
 		$experience = $request->experience;
 		
 		$getmypreviousskills = new Employee;
 		$mypreviousskills = $getmypreviousskills->GetCurrentUserSkill();
 		
-		if($my_skills !=''){
+		/*if($my_skills !=''){
 			$addskill = implode('-',$my_skills);
 			$newskillset = $mypreviousskills.'-'.$addskill;
 		} else {
 			$newskillset = $mypreviousskills;
-		}
+		}*/
 		User::where('id' , $user->id)->update(['name' => $name]); 
 		Employee::where('user_id', $user->id)
 					->update([
 					'full_name' => $name, 
 					'contact_no' => $contact,
-					'skills' => $newskillset,
 					'experience_in_month' => $experience,
 					]);
 		
