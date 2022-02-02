@@ -83,6 +83,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('trackjob/{jobid}', 'JobTrackerController@trackjob')->name('trackjob');
 		Route::post('employerprofileupdate', 'HomeController@employerprofileupdate')->name('employerprofileupdate');
 		Route::post('invoice_generate_for_completed_projects', 'JobPostController@invoice_generate_for_completed_projects')->name('invoice_generate_for_completed_projects');
+		Route::post('show_invoice_only', 'JobPostController@show_invoice_only')->name('show_invoice_only');
 	});
 });
 

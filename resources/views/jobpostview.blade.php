@@ -161,51 +161,36 @@ select#emp_skills {
 											<label for="job_title" class="form-label">Extra Skills</label>
 											<input type="text" class="form-control" id="job_extra_skills" name="job_extra_skills" placeholder="Enter if any Extra Skills required">
 										</div>
-										<div class="col-lg-8 custom_div">
-											<div class="adjust-currency">
-												<label for="job_budget" class="form-label">Hourly Rate -Maximum</label>
-											</div>
-											<?php
-												$budgetcurrency = null;
-												$minratecurrency = null;
-												$maxratecurrency = null;
-												$budget = null;
-												$minrate = null;
-												$maxrate = null;
-												
-												$project_budget = $getjobbyid->project_budget;
-												if( $project_budget != null ){
-													$project_budget_array = explode(' ' , $project_budget);
-													$budget = $project_budget_array[0];
-													$budgetcurrency = $project_budget_array[1];
-												}
-												
-												$project_rate_min = $getjobbyid->hourly_rate_min;
-												if( $project_rate_min != null ){
-													$project_rate_min_array = explode(' ' , $project_rate_min);
-													$minrate = $project_rate_min_array[0];
-													$minratecurrency = $project_rate_min_array[1];
-												}
-												
-												$project_rate_max = $getjobbyid->hourly_rate_max;
-												if( $project_rate_max != null ){
-													$project_rate_max_array = explode(' ' , $project_rate_max);
-													$maxrate = $project_rate_max_array[0];
-													$maxratecurrency = $project_rate_max_array[1];
-												}
-												
-											?>
-											<select id="job_max_rate_currency" name ="job_max_rate_currency">
-												@if(isset($currencies))													
-													@foreach($currencies as $currency => $abbr)
-														<option value="{{$currency}}" <?php if($currency == $maxratecurrency){echo "selected";}?>>{{$currency}}</option>
-													@endforeach
-												@else
-													<option>No Currency Available</option>
-												@endif                                                        
-											</select>
-											<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
-										</div>
+										<?php
+											$budgetcurrency = null;
+											$minratecurrency = null;
+											$maxratecurrency = null;
+											$budget = null;
+											$minrate = null;
+											$maxrate = null;
+											
+											$project_budget = $getjobbyid->project_budget;
+											if( $project_budget != null ){
+												$project_budget_array = explode(' ' , $project_budget);
+												$budget = $project_budget_array[0];
+												$budgetcurrency = $project_budget_array[1];
+											}
+											
+											$project_rate_min = $getjobbyid->hourly_rate_min;
+											if( $project_rate_min != null ){
+												$project_rate_min_array = explode(' ' , $project_rate_min);
+												$minrate = $project_rate_min_array[0];
+												$minratecurrency = $project_rate_min_array[1];
+											}
+											
+											$project_rate_max = $getjobbyid->hourly_rate_max;
+											if( $project_rate_max != null ){
+												$project_rate_max_array = explode(' ' , $project_rate_max);
+												$maxrate = $project_rate_max_array[0];
+												$maxratecurrency = $project_rate_max_array[1];
+											}
+											
+										?>
 										<div class="col-lg-8 custom_div">
 											<div class="col-md-12 padding_none">
 												<label for="job_rate" class="form-label">Hourly Rate -Minimum</label>
@@ -221,6 +206,22 @@ select#emp_skills {
 											</select>
 											<input type="number" class="form-control" id="job_min_rate" name="job_min_rate" placeholder="Hourly Rate -Minimum" value="{{$minrate}}">
 										</div>
+										<div class="col-lg-8 custom_div">
+											<div class="adjust-currency">
+												<label for="job_budget" class="form-label">Hourly Rate -Maximum</label>
+											</div>
+											<select id="job_max_rate_currency" name ="job_max_rate_currency">
+												@if(isset($currencies))													
+													@foreach($currencies as $currency => $abbr)
+														<option value="{{$currency}}" <?php if($currency == $maxratecurrency){echo "selected";}?>>{{$currency}}</option>
+													@endforeach
+												@else
+													<option>No Currency Available</option>
+												@endif                                                        
+											</select>
+											<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
+										</div>
+										
 										<div class="col-lg-8 custom_div">
 											<label for="job_deadline" class="form-label">Project Deadline</label>
 											<input type="date" class="form-control" id="job_deadline" name="job_deadline" placeholder="Project Deadline" required value="{{$getjobbyid->deadline}}">

@@ -229,7 +229,7 @@ div#modal-dashboard-employer {
 													</div>
 													<div class="dashboard-avatar-data">
 														<div class="one-line">
-															<h4>{{$employee->job_title}}</h4>&nbsp; assigned to : &nbsp;<h4>{{$employee->user->name}}</h4>
+															<!--<h4>{{$employee->job_title}}</h4>&nbsp; assigned to : &nbsp;--><h4>{{$employee->user->name}}</h4>
 														</div>
 														<div><i class="fas fa-clock"></i> <span>With us Since : {{$date }}</span></div>
 
@@ -287,20 +287,36 @@ div#modal-dashboard-employer {
 								@if(isset($allinvoice))
 									@foreach($allinvoice as $invoice)
 									<div class="dashboard-avatar-data">
-										<h4>{{$invoice->user->name}}</h4>
-										<div><i class="fas fa-map-marker-alt"></i> <span>You are now loggedin as </span> - <span>{{$user->name}}</span></div>
+										<strong>Invoice for: {{$invoice->user->name}}</strong>
+										<strong>Job Name: {{$invoice->job_title}}</strong>
+										<div> Invoice mailed to: {{$invoice->user->email}} <span id="{{$invoice->id}}" onclick="show_invoice_only(this.id)">Show PDF</span></div>
 									</div>
+									<br>
 									@endforeach
 								@else
 									<div class="dashboard-avatar-data">
 										<h5>No Invoice available</h5>
 									</div>
 								@endif
+								
+								
+									<div class="modal show_invoice_popup" tabindex="-1" role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-body">
+													<img class="show_invoice_popup_img" id="show_invoice_popup_img" src="">
+												</div>
+											</div>
+										</div>
+									</div>
+								
+								
+								
+								
 							</div>
 						</div>
 					</div>
 				</div>
-				
 				
 	</div>
 </div>

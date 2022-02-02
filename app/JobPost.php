@@ -42,6 +42,7 @@ class JobPost extends Model
 	public function GetInvoiceWithDetails(){
 		$alljobsofemployer = JobPost::whereNotNull("invoice_attachment")->get();
 		//var_dump($alljobsofemployer);
+		return $alljobsofemployer;
 	}
 	
 	public function AssignedEmployees(){

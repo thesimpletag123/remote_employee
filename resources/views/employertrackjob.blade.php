@@ -159,6 +159,7 @@ select#emp_skills {
 											<?php 
 												$project_budget = $getjobbyid->project_budget;
 												$project_rate_min = $getjobbyid->hourly_rate_min;
+												$project_rate_max = $getjobbyid->hourly_rate_max;
 											?>
 										<div class="col-lg-8 custom_div">
 											@if( $project_budget != null )													
@@ -172,9 +173,17 @@ select#emp_skills {
 										<div class="col-lg-8 custom_div">
 											@if( $project_rate_min != null )
 												<div class="col-md-12">
-													<label for="job_budget" class="form-label">Project Min. Rate :</label>
+													<label for="job_budget" class="form-label">Project Minimum Rate :</label>
 												</div>
-												<input type="text" class="form-control" id="job_budget" name="job_budget" placeholder="Project Budget" value="{{$project_rate_min}}" readonly>													
+												<input type="text" class="form-control" id="project_rate_min" name="project_rate_min" placeholder="Project Minimum Rate" value="{{$project_rate_min}}" readonly>													
+											@endif
+										</div>
+										<div class="col-lg-8 custom_div">
+											@if( $project_rate_max != null )
+												<div class="col-md-12">
+													<label for="job_budget" class="form-label">Project Maximum Rate :</label>
+												</div>
+												<input type="text" class="form-control" id="project_rate_max" name="project_rate_max" placeholder="Project Maximum Rate" value="{{$project_rate_max}}" readonly>													
 											@endif
 										</div>
 										<div class="col-lg-8 custom_div">

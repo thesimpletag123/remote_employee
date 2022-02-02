@@ -721,6 +721,19 @@ $('.change_status').change(function(){
 		  }
 		});		
 	}
+	
+	function show_invoice_only(jobid){
+		$.ajax({
+				type: "post",
+				data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
+				url: "{{url('show_invoice_only')}}",
+				success: function( data ) {
+						$('#show_invoice_popup_img').attr("src",data);
+						$('.show_invoice_popup').modal('show');
+				}		
+			});
+	}
+	
 </script>
         
         <!-- End scripts -->

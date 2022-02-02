@@ -457,4 +457,14 @@ class JobPostController extends Controller
 		$data['success'] = 1;
 		return response()->json($data);
 	}
+	
+	public function show_invoice_only(Request $request){
+		$jobid = $request->jobid;
+		
+		$getjobwithidnew = new JobPost;
+		$getjobbyid = $getjobwithidnew->GetJobByID($jobid);
+		$data = $getjobbyid['invoice_attachment'];
+		
+		return response()->json($data);
+	}
 }
