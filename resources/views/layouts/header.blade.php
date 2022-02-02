@@ -64,7 +64,7 @@
         <!-- End header -->
 		
 		@if(Session::get('success'))
-			<div class="alert-custom-div">
+			<div class="alert-custom-div col-lg container">
 				<div class="alert alert-success">
 				{{session::get('success')}}
 				</div>

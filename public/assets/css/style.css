@@ -500,8 +500,14 @@ header .container {
   }
 }
 
-header .container > .row > div:nth-of-type(1) img {
+header .container > .row > div:nth-of-type(1) a {
   width: 130px;
+  display: block;
+}
+
+header .container > .row > div:nth-of-type(1) a img {
+  width: auto;
+  max-width: 100%;
 }
 
 header .container > .row > div:nth-of-type(2) {

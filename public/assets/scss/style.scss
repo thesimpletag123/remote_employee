@@ -415,8 +415,13 @@ header{
                     @media (max-width: 576px){
                         margin-bottom: 20px;
                     }
-                    img{
+                    a{
                         width: 130px;
+                        display: block;
+                        img{
+                            width: auto;
+                            max-width: 100%;
+                        }
                     }
                 }
                 &:nth-of-type(2){
@@ -2357,8 +2362,8 @@ footer{
                     }
                 }
             }
-        }
-        
+        }  
+         
         .employer-dashboard-body{
             
             > .row{
