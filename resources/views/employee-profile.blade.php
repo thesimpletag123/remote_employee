@@ -61,7 +61,7 @@
 			<form id="employeerateupdate" name="employeerateupdate" method="post"
                         action="{{route('employeerateupdate')}}">
 						@csrf
-						<input type='hidden' name="job_id" value="{{$user->jobpost->hourly_rate_max}}">
+						<input type='hidden' name="job_id" value="{{$user->jobpost->id}}">
 				<?php
 					$minrate = explode(' ',$user->jobpost->hourly_rate_min);
 					$maxrate = explode(' ',$user->jobpost->hourly_rate_max);
