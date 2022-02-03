@@ -176,7 +176,8 @@
 									$required_skills_array = explode('-' , $required_skills);
 								
 								?>
-								Current Skills
+								<strong>Current Skills</strong>
+								<hr/>
 							<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
 								@if(isset($skills))
 									@foreach($skills as $value)
@@ -193,7 +194,8 @@
 								@endif
 							</select>
 							
-							More Skills Available
+							<strong>More Skills Available</strong>
+							<hr/>
 							<select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
 								@if(isset($skills))
 									@foreach($skills as $value)

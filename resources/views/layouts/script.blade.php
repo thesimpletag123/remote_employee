@@ -24,8 +24,7 @@
 <script>
 new WOW().init();
 
-        
-        <!-- Initialize Swiper -->
+
 //Open Modal for Employee and Employer in homepage with session
 	function init(){
 		var popup = '<?php echo Session("popup_type"); ?>';
@@ -737,14 +736,15 @@ $('.change_status').change(function(){
 	}
 	
 	// Multiselect Append and Remove Skills
-	$('#my_new_skills').click(function(){
-		var addskill = $(this).val();
+	$(document).on('click', '#my_new_skills option', function() {
+	//$('#my_new_skills option').click(function(){
+		var addskill = $(this).parent().val();
 		$("#my_skills").append('<option value="'+addskill+'" selected>'+addskill+'</option>');
 		$("#my_new_skills option[value='"+addskill+"']").remove();
 	});
-
-	$('#my_skills').click(function(){
-			var removeskill = $(this).val();
+	$(document).on('click', '#my_skills option', function() {
+	//$('#my_skills option').click(function(){
+			var removeskill = $(this).parent().val();
 			$("#my_new_skills").append('<option value="'+removeskill+'">'+removeskill+'</option>');
 			$("#my_skills option[value='"+removeskill+"']").remove();
 	});
