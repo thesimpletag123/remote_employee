@@ -736,6 +736,18 @@ $('.change_status').change(function(){
 			});
 	}
 	
+	// Multiselect Append and Remove Skills
+	$('#my_new_skills').click(function(){
+		var addskill = $(this).val();
+		$("#my_skills").append('<option value="'+addskill+'" selected>'+addskill+'</option>');
+		$("#my_new_skills option[value='"+addskill+"']").remove();
+	});
+
+	$('#my_skills').click(function(){
+			var removeskill = $(this).val();
+			$("#my_new_skills").append('<option value="'+removeskill+'">'+removeskill+'</option>');
+			$("#my_skills option[value='"+removeskill+"']").remove();
+	});
 </script>
         
         <!-- End scripts -->

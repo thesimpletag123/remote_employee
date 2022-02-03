@@ -445,26 +445,7 @@
 
 @section('pagescript')
 <script>
-//$('#my_skills').multiSelect();
 
-$('.ms-selection .ms-elem-selection').click(function(){
-	if($(this).hasClass("unselected")){
-		$(this).removeClass("unselected");
-		//var skillname= $(this).val();
-		
-	}
-});
-$('#my_new_skills').click(function(){
-	var addskill = $(this).val();
-	$("#my_skills").append('<option value="'+addskill+'" selected>'+addskill+'</option>');
-	$("#my_new_skills option[value='"+addskill+"']").remove();
-});
-
-$('#my_skills').click(function(){
-		var removeskill = $(this).val();
-		$("#my_new_skills").append('<option value="'+removeskill+'">'+removeskill+'</option>');
-		$("#my_skills option[value='"+removeskill+"']").remove();
-});
 
 $('#maxrate_currency').on('change', function() {
 	var maxrate_currency = $('#maxrate_currency').val();
