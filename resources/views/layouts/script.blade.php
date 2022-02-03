@@ -17,7 +17,7 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js" integrity="sha512-g16L6hyoieygYYZrtuzScNFXrrbJo/lj9+1AYsw+0CYYYZ6lx5J3x9Yyzsm+D37/7jMIGh0fDqdvyYkNWbuYuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		
@@ -730,8 +730,8 @@ $('.change_status').change(function(){
 				data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
 				url: "{{url('show_invoice_only')}}",
 				success: function( data ) {
-						$('.show_invoice_popup_img').attr("href",data);
-						//$('.show_invoice_popup').modal('show');
+						$('.show_invoice_popup_img').attr("src",data);
+						$('.show_invoice_popup').modal('show');
 				}		
 			});
 	}

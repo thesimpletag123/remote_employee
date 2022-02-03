@@ -74,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('employeeprofileupdate', 'HomeController@employeeprofileupdate')->name('employeeprofileupdate');
 		Route::post('employeerateupdate', 'HomeController@employeerateupdate')->name('employeerateupdate');
 		Route::get('sendmail', 'SendMailController@sendmail')->name('sendmail');
+		Route::post('employeskillupdate', 'HomeController@employeskillupdate')->name('employeskillupdate');
 		
 	});
 	Route::middleware(['isEmployer'])->group(function () {

@@ -164,7 +164,7 @@ div#modal-dashboard-employer {
 												@if($employerpost->project_status == 2)
 													<div class="current-performance">
 														<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
-														<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success deletejob">Generate Invoice</button>
+														<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success invoice-generate" style="width:100%;">Generate Invoice</button>
 													</div>
 												@endif
 											</div>
@@ -289,7 +289,7 @@ div#modal-dashboard-employer {
 									<div class="dashboard-avatar-data">
 										<strong>Invoice for: {{$invoice->user->name}}</strong>
 										<strong>Job Name: {{$invoice->job_title}}</strong>
-										<div> Invoice mailed to: {{$invoice->user->email}} <span id="{{$invoice->id}}" onclick="show_invoice_only(this.id)">Show PDF</span></div>
+										<div> Invoice mailed to: {{$invoice->user->email}} <!--<span id="{{$invoice->id}}" onclick="show_invoice_only(this.id)">Show PDF</span>--><a href="{{$invoice->invoice_attachment}}" target="_blabk"> View</a></div>
 									</div>
 									<br>
 									@endforeach
@@ -300,7 +300,7 @@ div#modal-dashboard-employer {
 								@endif
 								
 								
-									<div class="modal show_invoice_popup" tabindex="-1" role="dialog">
+									<!--<div class="modal show_invoice_popup" tabindex="-1" role="dialog">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-body">
@@ -308,7 +308,7 @@ div#modal-dashboard-employer {
 												</div>
 											</div>
 										</div>
-									</div>
+									</div>-->
 								
 								
 								

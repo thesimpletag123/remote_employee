@@ -336,4 +336,14 @@ class HomeController extends Controller
 
 		return redirect()->back()->with('success', 'Profile Updated..');
 	}
+	
+	public function employeskillupdate(Request $request){
+		$user_id = $request->hidden_uid;
+		$allskills = $request->my_skills;
+		$skills = implode('-',$allskills);
+		Employee::where('user_id', $user_id)->update(['skills' => $skills]);
+		
+		return redirect()->back()->with('success', 'Your Skill Set has Updated.');
+		
+	}
 }

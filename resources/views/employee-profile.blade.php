@@ -1,6 +1,11 @@
 @extends('layouts.master')
 @section('title', 'Profile')
 @section('pagecss')
+<style>
+.select2-results__option[aria-selected=true] {
+    display: none;
+}
+</style>
 @endsection
 @section('content')
 <!-- starting modal-profile-setting -->
@@ -130,8 +135,8 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
 			</div>
 			<div class="modal-body emp_profile_pop">
-				<form id="employeeprofileupdate" name="employeeprofileupdate" method="post"
-                        action="{{route('employeeprofileupdate')}}" enctype="multipart/form-data">
+				<form id="employeskillupdate" name="employeskillupdate" method="post"
+                        action="{{route('employeskillupdate')}}" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
                         <div class="col-auto py-3">
@@ -171,16 +176,35 @@
 									$required_skills_array = explode('-' , $required_skills);
 								
 								?>
+								Current Skills
 							<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
 								@if(isset($skills))
-								@foreach($skills as $value)
-								@if(in_array($value , $required_skills_array))
-								<option value="{{$value}}">{{$value}} </option>
+									@foreach($skills as $value)
+										@if(in_array($value , $required_skills_array))
+										<option class="selected" value="{{$value}}" selected>{{$value}} </option>
+										@endif
+
+										<!--@if(!in_array($value , $required_skills_array))
+										<option class="unselected" value="{{$value}}">{{$value}}</option>
+										@endif-->
+									@endforeach
+								@else
+								<option>No Skill</option>
 								@endif
-								@if(!in_array($value , $required_skills_array))
-								<option class="unselected" value="{{$value}}">{{$value}}</option>
-								@endif
-								@endforeach
+							</select>
+							
+							More Skills Available
+							<select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
+								@if(isset($skills))
+									@foreach($skills as $value)
+										<!--@if(in_array($value , $required_skills_array))
+										<option value="{{$value}}" selected>{{$value}} </option>
+										@endif-->
+
+										@if(!in_array($value , $required_skills_array))
+										<option class="unselected" value="{{$value}}">{{$value}}</option>
+										@endif
+									@endforeach
 								@else
 								<option>No Skill</option>
 								@endif
@@ -421,13 +445,27 @@
 
 @section('pagescript')
 <script>
-$('#my_skills').multiSelect();
+//$('#my_skills').multiSelect();
 
 $('.ms-selection .ms-elem-selection').click(function(){
 	if($(this).hasClass("unselected")){
 		$(this).removeClass("unselected");
+		//var skillname= $(this).val();
+		
 	}
 });
+$('#my_new_skills').click(function(){
+	var addskill = $(this).val();
+	$("#my_skills").append('<option value="'+addskill+'" selected>'+addskill+'</option>');
+	$("#my_new_skills option[value='"+addskill+"']").remove();
+});
+
+$('#my_skills').click(function(){
+		var removeskill = $(this).val();
+		$("#my_new_skills").append('<option value="'+removeskill+'">'+removeskill+'</option>');
+		$("#my_skills option[value='"+removeskill+"']").remove();
+});
+
 $('#maxrate_currency').on('change', function() {
 	var maxrate_currency = $('#maxrate_currency').val();
 	var minrate_currency = $('#minrate_currency').val();
