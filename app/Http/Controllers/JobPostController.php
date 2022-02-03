@@ -442,7 +442,7 @@ class JobPostController extends Controller
 		$pdf = PDF::loadView('pdf.invoicebyemployer', $data);
 		
 		//Upload PDF
-		$path = public_path('uploads/');
+		$path = 'uploads/';
 		$filepath = $path . '/' . $filename;
 		$pdf->save($path . '/' . $filename);
 		JobPost::where(['id' => $jobid])->update(['invoice_attachment' => $filepath]);

@@ -289,7 +289,7 @@ div#modal-dashboard-employer {
 									<div class="dashboard-avatar-data">
 										<strong>Invoice for: {{$invoice->user->name}}</strong>
 										<strong>Job Name: {{$invoice->job_title}}</strong>
-										<div> Invoice mailed to: {{$invoice->user->email}} <!--<span id="{{$invoice->id}}" onclick="show_invoice_only(this.id)">Show PDF</span>--><a href="{{$invoice->invoice_attachment}}" target="_blabk"> View</a></div>
+										<div> Invoice mailed to: {{$invoice->user->email}} <!--<span id="{{$invoice->id}}" onclick="show_invoice_only(this.id)">Show PDF</span>--><a href="{{ asset($invoice->invoice_attachment) }}" target="_blabk"> View</a></div>
 									</div>
 									<br>
 									@endforeach
