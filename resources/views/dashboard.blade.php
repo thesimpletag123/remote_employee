@@ -54,7 +54,7 @@
 											<div class="col-md-8 col-sm-12 col-12 d-flex flex-column justify-content-center">
 											@if($singlejob['invoice_attachment'])
 												<h6 class="mb-0">Invoice Attachment</h6>
-												<div><i class="fas fa-paperclip"></i> <a href="{{$singlejob['invoice_attachment']}}" target="_blabk"> View Last Invoice</a></div>
+												<div><i class="fas fa-paperclip"></i> <a href="{{URL::asset($singlejob['invoice_attachment'])}}"> Latest Invoice</a></div>
 											@else
 												<h6 class="mb-0">No Invoice available.</h6>
 											@endif
