@@ -41,9 +41,23 @@
                                     placeholder="My Contact Number" value="{{$user->employee->contact_no}}">
                             </div>
                             <div class="d-flex flex-column  mb-3">
+							<?php
+								$emp_exp_yr = 0;
+								$emp_exp_month = 0;
+									if(isset($user->employee->experience_in_month)){
+										$emp_experience_in_month = $user->employee->experience_in_month;
+										if($emp_experience_in_month > 11){
+											$emp_exp_month = $emp_experience_in_month%12;
+											$emp_exp_yr = ($emp_experience_in_month - $emp_exp_month)/12;
+										} else {
+											$emp_exp_month = $emp_experience_in_month;
+										}
+									}
+							?>
                                 <label for="experience" class="form-label">Total Experience(in month)</label>
-                                <input type="number" step=1 class="form-control" id="experience" name="experience"
-                                    placeholder="My Experience" value="{{$user->employee->experience_in_month}}">
+                                <input type="number" name="experience_yr" id="experience_yr" placeholder="Year" min="0" class="form-control" value="{{$emp_exp_yr}}">
+								<input type="number" name="experience_month" id="experience_month" placeholder="Month" max="12" min="0" class="form-control" value="{{$emp_exp_month}}">
+								
                             </div>
                             <div class="d-flex flex-column  mb-3">
                                 <input type="submit" name="submit" class="btn btn-primary">

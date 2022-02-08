@@ -64,10 +64,12 @@ div#modal-dashboard-employer {
 											<div class="col-sm-2">
 												<div class="project_status">
 													@if($employerpost->project_status == 0)
-														<div class="btn btn-warning">Pending</div>
+														<div class="btn btn-warning">Todo</div>
 													@elseif($employerpost->project_status == 1)
-														<div class="btn btn-primary">Active</div>
+														<div class="btn btn-primary">In Progress</div>
 													@elseif($employerpost->project_status == 2)
+														<div class="btn btn-success">Testing</div>
+													@elseif($employerpost->project_status == 3)
 														<div class="btn btn-success">Completed</div>
 													@endif
 												</div>
@@ -107,7 +109,7 @@ div#modal-dashboard-employer {
 											</div>
 											<div class="col-md">
 												
-													@if($employerpost->project_status != 2)
+													@if($employerpost->project_status != 3)
 													<div class="current-performance">
 														@if($employerpost->assigned_to_id == null)
 														<div class="d-flex justify-content-between align-items-center">
@@ -154,14 +156,15 @@ div#modal-dashboard-employer {
 													<div class="d-flex justify-content-between align-items-center">
 													Change Status
 														<select name="change_status" class="change_status">
-															<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Pending</option>
-															<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>Active</option>
-															<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Completed</option>
+															<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Todo</option>
+															<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>In Progress</option>
+															<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Testing</option>
+															<option value="3" <?php if($employerpost->project_status == 3){echo 'selected';}?>>Completed</option>
 														</select>
 														<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
 													</div>
 												</div>
-												@if($employerpost->project_status == 2)
+												@if($employerpost->project_status == 3)
 													<div class="current-performance">
 														<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
 														<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success" style="width:100%;">Generate Invoice</button>

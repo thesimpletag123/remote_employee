@@ -287,8 +287,9 @@ class HomeController extends Controller
 		$name = $request->name;
 		//$my_skills = $request->my_skills;
 		$contact = $request->contact;
-		$experience = $request->experience;
-		
+		$experience_yr = $request->experience_yr;
+		$experience_month = $request->experience_month;
+		$experience = ($experience_yr * 12 ) + $experience_month;
 		$getmypreviousskills = new Employee;
 		$mypreviousskills = $getmypreviousskills->GetCurrentUserSkill();
 		
@@ -339,8 +340,13 @@ class HomeController extends Controller
 	
 	public function employeskillupdate(Request $request){
 		$user_id = $request->hidden_uid;
+		$user = User::find($user_id);
 		$allskills = $request->my_skills;
-		$skills = implode('-',$allskills);
+		if($user->skills != $allskills){
+			$skills = implode('-',$allskills);
+		} else {$skills = $allskills;}
+		//var_dump($allskills);
+		//die();
 		Employee::where('user_id', $user_id)->update(['skills' => $skills]);
 		
 		return redirect()->back()->with('success', 'Your Skill Set has Updated.');
