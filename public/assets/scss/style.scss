@@ -563,6 +563,10 @@ header{
 /* End menu-links */
 
 
+.main{
+    min-height: 80vh;
+}
+
 /* starting banner */
 .banner{
     height: 100vh;
@@ -2429,7 +2433,6 @@ footer{
             width: 100%;
             > div{
                 width: 100%;
-                max-width: 120px;
             }
         }
         > .row{
@@ -2513,12 +2516,31 @@ footer{
             color: #8A8A8A;
         }
         .review{
-            span{
-                color: #464646;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px 10px 5px;
+            background: #fff;
+            .review_head{
+                font-weight: bold;
             }
-            i{
-                color: #F9D936;
+            .items{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                column-gap: 1%;
+                margin: 10px 0 5px;
+                span{
+                    border-radius: 50px;
+                    background-color: rgb(0 123 255);
+                    padding: 2px 15px;
+                    color: #fff;
+                    font-size: 13px;
+                    border: 1px solid #013ab8;
+                }
             }
+        }
+        .padding-top{
+            padding-top: 20px;
         }
         .current-performance{
             border: 1px solid #DBDBDC;

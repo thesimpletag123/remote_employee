@@ -45,7 +45,7 @@ div#modal-dashboard-employer {
 								<div class="current-employees-box">
 									<div class="current-header">
 										<div class="row">
-											<div class="col-sm-8">
+											<div class="col-sm-7">
 											
 												<div class="dashboard-avatar">
 													@if($user->user_image == null)
@@ -61,7 +61,7 @@ div#modal-dashboard-employer {
 												</div>
 												
 											</div>
-											<div class="col-sm-2">
+											<div class="col-sm-3">
 												<div class="project_status">
 													@if($employerpost->project_status == 0)
 														<div class="btn btn-warning">Todo</div>
@@ -90,21 +90,20 @@ div#modal-dashboard-employer {
 												@if(isset($employerpost->hourly_rate_min))
 													<span>|Rate Per hour:  Min{{$employerpost->hourly_rate_min}} - Max {{$employerpost->hourly_rate_max}}|</span>
 												@endif
-												<br>
-												<br>
 												<p><i class="fas fa-align-justify"></i> {{$employerpost->project_description}}</p>
 												<div class="review">
-													<span>Required Skills</span>
+													<span class="review_head">Required Skills</span>
 													<?php 
 														$skills = null;
 														if($employerpost->required_skills){
 															$skills = explode('-' , $employerpost->required_skills);
 														}
 													?>
+													<div class="items">
 														@foreach($skills as $skill)
-															<br>
-															<i class="fas fa-star"></i> {{$skill}}															
+															<span> {{$skill}} </span>													
 														@endforeach
+													</div>
 												</div>
 											</div>
 											<div class="col-md">

@@ -1,4 +1,4 @@
-        
+</div>
         <!-- starting footer -->
         <footer>
             <div class="container">

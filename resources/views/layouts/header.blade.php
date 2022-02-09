@@ -70,3 +70,5 @@
 				</div>
 			</div>
 		@endif
+
+		<div class="main">

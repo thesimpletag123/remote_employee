@@ -200,18 +200,20 @@
 														<br>
 														<p><i class="fas fa-align-justify"></i> {{$singlejob['project_description']}}</p>
 														<div class="review">
-															<span>Required Skills</span>
+															<span class="review_head">Required Skills</span>
 															<?php 
 																$skills = null;
 																if($singlejob['required_skills']){
 																	$skills = explode('-' , $singlejob['required_skills']);
 																}
 															?>
+															<div class="items">
 																@foreach($skills as $skill)
-																	<br>
-																	<i class="fas fa-star"></i> {{$skill}}															
+																	<span> {{$skill}} </span>															
 																@endforeach
+															</div>
 														</div>
+														
 													</div>
 													
 													<table>

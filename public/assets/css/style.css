@@ -688,6 +688,10 @@ header .container > .row > div:nth-of-type(2) > div span i {
 
 /* End menu-links */
 
+.main {
+  min-height: 80vh;
+}
+
 /* starting banner */
 
 .banner {
@@ -2974,7 +2978,6 @@ footer .container .row > div a i {
 
 .current-employees-box .current-header .project_status > div {
   width: 100%;
-  max-width: 120px;
 }
 
 .current-employees-box .current-header > .row > div {
@@ -3069,12 +3072,37 @@ footer .container .row > div a i {
   color: #8A8A8A;
 }
 
-.current-employees-box .current-details .review span {
-  color: #464646;
+.current-employees-box .current-details .review {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 5px;
+  background: #fff;
 }
 
-.current-employees-box .current-details .review i {
-  color: #F9D936;
+.current-employees-box .current-details .review .review_head {
+  font-weight: bold;
+}
+
+.current-employees-box .current-details .review .items {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  -moz-column-gap: 1%;
+       column-gap: 1%;
+  margin: 10px 0 5px;
+}
+
+.current-employees-box .current-details .review .items span {
+  border-radius: 50px;
+  background-color: #007bff;
+  padding: 2px 15px;
+  color: #fff;
+  font-size: 13px;
+  border: 1px solid #013ab8;
+}
+
+.current-employees-box .current-details .padding-top {
+  padding-top: 20px;
 }
 
 .current-employees-box .current-details .current-performance {

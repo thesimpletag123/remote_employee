@@ -54,9 +54,18 @@
 										}
 									}
 							?>
-                                <label for="experience" class="form-label">Total Experience(in month)</label>
-                                <input type="number" name="experience_yr" id="experience_yr" placeholder="Year" min="0" class="form-control" value="{{$emp_exp_yr}}">
-								<input type="number" name="experience_month" id="experience_month" placeholder="Month" max="12" min="0" class="form-control" value="{{$emp_exp_month}}">
+                                <label for="experience" class="form-label">Total Experience</label>
+                                <div class="d-flex justify-content-between align-items-center g-3">
+									<div class="col pl-0 pr-2 d-flex align-items-center">
+										<label class="mb-0 pr-2">Year:</label>
+										<input  type="number" name="experience_yr" id="experience_yr" placeholder="Year" min="0" class="form-control" value="{{$emp_exp_yr}}">
+									
+									</div>
+									<div class="col pr-0 pl-2 d-flex align-items-center">
+										<label class="mb-0 pr-2">Month:</label>
+										<input type="number" name="experience_month" id="experience_month" placeholder="Month" max="12" min="0" class="form-control" value="{{$emp_exp_month}}">
+									</div>
+								</div>
 								
                             </div>
                             <div class="d-flex flex-column  mb-3">
