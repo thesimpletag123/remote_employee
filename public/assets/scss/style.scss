@@ -3167,3 +3167,7 @@ header{position: static;}
 .padd-160{
     padding-bottom: 160px;
 }
+
+.panelbox{
+    @include panelWrap();
+}

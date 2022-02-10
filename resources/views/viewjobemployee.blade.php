@@ -57,6 +57,7 @@
 									
 								
 								<div class="col-auto">
+								<div class="panelbox py-1 mb-3">
 								@if(isset($getjobupdatebyid))
 									@foreach($getjobupdatebyid as $jobupdate)
 										<div class="current-employees-box">
@@ -102,6 +103,7 @@
 										<b>No Updates available</b>		
 									</div>
 								@endif
+								</div>
 								</div>
 							</div>
 						</div>

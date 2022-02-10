@@ -3867,3 +3867,10 @@ header {
   padding-bottom: 160px;
 }
 
+.panelbox {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px;
+  background: #fff;
+}
+
