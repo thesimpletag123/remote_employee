@@ -336,7 +336,11 @@ class JobPostController extends Controller
 		
 		$job_title = $request->get('job_title');
 		$job_description = $request->get('job_desc');
-		$emp_skills = implode('-' , $request->get('emp_skills'));
+		if($request->get('my_skills') == ''){
+			$emp_skills = 'php';
+		} else {
+			$emp_skills = implode('-' , $request->get('my_skills'));
+		}
 		$job_extra_skills = $request->get('job_extra_skills');
 			if($job_extra_skills){
 				$emp_skills = $emp_skills. '-' . $job_extra_skills;

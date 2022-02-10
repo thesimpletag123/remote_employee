@@ -324,7 +324,7 @@ $("#emp_form1_next").click(function(){
 $("#emp_form2_next").click(function(){
 	//alert('test');
 
-	var emp_skills = $('#emp_skills').val();
+	var emp_skills = $('#my_skills').val();
 	var emp_extra_skills = $('#emp_extra_skills').val();
 	var exp_yr = $('#exp_yr').val();
 	var exp_month = $('#exp_month').val();
@@ -423,7 +423,7 @@ $("#emp_verify_btn").click(function(){
 
 $("#verify_fulltime_employer").click(function(){
 	var fulltime_job_headline = $('#fulltime_job_headline').val();
-	var fulltime_job_skills = $('#fulltime_job_skills').val();
+	var fulltime_job_skills = $('#my_skills').val();
 	var fulltime_job_extra_skill = $('#fulltime_job_extra_skill').val();
 	var fulltime_job_min = $('#fulltime_job_min').val();
 	var fulltime_job_max = $('#fulltime_job_max').val();
@@ -462,7 +462,7 @@ $("#verify_fulltime_employer").click(function(){
 
 $("#submit_full_project").click(function(){
 	var fulltime_job_headline = $('#fulltime_job_headline').val();
-	var fulltime_job_skills = $('#fulltime_job_skills').val();
+	var fulltime_job_skills = $('#my_skills').val();
 	var fulltime_job_extra_skill = $('#fulltime_job_extra_skill').val();
 	var fulltime_job_min = $('#fulltime_job_min').val();
 	var fulltime_job_max = $('#fulltime_job_max').val();

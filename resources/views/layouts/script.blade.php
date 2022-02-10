@@ -404,22 +404,27 @@ function CheckNameNEmail(){
 }
 
 // Landing page Employee modal next disabled - step 2
-$('#emp_skills').change(function() {
+$(document).on('click', '#my_skills option', function() {
 	CheckSkills();
+	//console.log('aaaaaaaaa');
+});
+$(document).on('click', '#my_new_skills option', function() {
+	CheckSkills();
+	//console.log('bbbb');
 });
 $('#emp_extra_skills').keyup(function() {
 	CheckSkills();
 });
 function CheckSkills(){
-	var emp_skills = $('#emp_skills').val();	
+	var my_skills = $('#my_skills').val();	
 	var emp_extra_skills = $('#emp_extra_skills').val();	
-	if(emp_skills == '' && emp_extra_skills == ''){
-		$('#emp_skills').css('border-color', 'red');
+	if(my_skills == '' && emp_extra_skills == ''){
+		$('#my_skills').css('border-color', 'red');
 		$('#emp_extra_skills').css('border-color', 'red');
 		$('#emp_form2_next').css('pointer-events', 'none');
 		$('#emp_form2_next').css('opacity', '0.35');
 	} else {
-		$('#emp_skills').css('border-color', '');
+		$('#my_skills').css('border-color', '');
 		$('#emp_extra_skills').css('border-color', '');
 		$('#emp_form2_next').css('pointer-events', '');
 		$('#emp_form2_next').css('opacity', '1');
@@ -474,7 +479,10 @@ var i = 1;
 		$('.swiper-button-next').css('pointer-events', '');
 		$('.swiper-button-next').css('opacity', '1');
 	});
-	$('#fulltime_job_skills').change(function() {
+	$(document).on('click', '#fulltime_job_skills option', function() {
+		CheckSkillEmployerPost()
+	});
+	$(document).on('click', '#fulltime_job_add_skills option', function() {
 		CheckSkillEmployerPost()
 	});
 	
@@ -735,9 +743,10 @@ $('.change_status').change(function(){
 			});
 	}
 	
-	// Multiselect Append and Remove Skills
+// Multiselect Append and Remove Skills
 	$(document).on('click', '#my_new_skills option', function() {
 	//$('#my_new_skills option').click(function(){
+		
 		var addskill = $(this).parent().val();
 		$("#my_skills").append('<option value="'+addskill+'" selected>'+addskill+'</option>');
 		$("#my_new_skills option[value='"+addskill+"']").remove();
@@ -747,6 +756,21 @@ $('.change_status').change(function(){
 			var removeskill = $(this).parent().val();
 			$("#my_new_skills").append('<option value="'+removeskill+'">'+removeskill+'</option>');
 			$("#my_skills option[value='"+removeskill+"']").remove();
+	});
+	
+// Multiselect Append and Remove Skills FOR FULL TIME JOB POST
+	$(document).on('click', '#fulltime_job_add_skills option', function() {
+	//$('#my_new_skills option').click(function(){
+		
+		var addskillft = $(this).parent().val();
+		$("#fulltime_job_skills").append('<option value="'+addskillft+'" selected>'+addskillft+'</option>');
+		$("#fulltime_job_add_skills option[value='"+addskillft+"']").remove();
+	});
+	$(document).on('click', '#fulltime_job_skills option', function() {
+	//$('#my_skills option').click(function(){
+			var removeskillft = $(this).parent().val();
+			$("#fulltime_job_add_skills").append('<option value="'+removeskillft+'">'+removeskillft+'</option>');
+			$("#fulltime_job_skills option[value='"+removeskillft+"']").remove();
 	});
 </script>
         

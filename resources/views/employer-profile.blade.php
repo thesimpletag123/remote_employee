@@ -170,12 +170,14 @@
 														
 													</div>
 													<div class="col-sm-2">
-														<div class="project_status">
+														<div class="project_status">										
 															@if($singlejob['project_status'] == 0)
-																<div class="btn btn-warning">Pending</div>
+																<div class="btn btn-warning">Todo</div>
 															@elseif($singlejob['project_status'] == 1)
-																<div class="btn btn-primary">Active</div>
+																<div class="btn btn-primary">In Progress</div>
 															@elseif($singlejob['project_status'] == 2)
+																<div class="btn btn-success">Testing</div>
+															@elseif($singlejob['project_status'] == 3)
 																<div class="btn btn-success">Completed</div>
 															@endif
 														</div>

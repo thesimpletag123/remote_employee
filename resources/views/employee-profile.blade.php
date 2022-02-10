@@ -86,6 +86,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
 			</div>
 			<div class="modal-body emp_rate_pop">
+			@if(isset($user->jobpost->id))
 			<form id="employeerateupdate" name="employeerateupdate" method="post"
                         action="{{route('employeerateupdate')}}">
 						@csrf
@@ -145,6 +146,9 @@
 						</div>	
 				</div>
 			</form>
+			@else
+				No Project assigned
+			@endif
 			</div>
 		</div>
 	</div>
@@ -163,54 +167,21 @@
                         @csrf
                         <input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
                         <div class="col-auto py-3">
-						<!-- <div class="d-flex flex-column  mb-3">
-                                <label for="email" class="form-label">My skills :</label>
-								<?php
-								//var_dump($skills);
-									$skill = null;												
-									$required_skills = $user->employee->skills;
-									$required_skills_array = [];
-									$required_skills_array = explode('-' , $required_skills);
-								
-								?>
-								<ul class="skill-wrapper">
-                                @if(is_array($skills))
-                                @foreach($skills as $skill)
-                                @if(in_array($skill , $required_skills_array))
-                                <li class="skill-tag"> {{$skill}} <a class="remove_skill">x</a></li>
-                                @endif
-                                @endforeach
-                                @else
-                                <li>No Skills</li>
-                                @endif
-								</ul>
-						</div> -->
-
-						<!-- <div class="d-flex flex-column  mb-3">
-							Add more Skills : <input type="checkbox" data-toggle="toggle" data-onstyle="primary"
-								data-on="Yes" data-off="No" id="toggle_skill_onoff_btn" data-style="slow">
-						</div> -->
 						<div class="d-flex flex-column  mb-3 toggle_skill_onoff_div">
-						<?php
-								//var_dump($skills);
-									$skill = null;												
-									$required_skills = $user->employee->skills;
-									$required_skills_array = [];
-									$required_skills_array = explode('-' , $required_skills);
-								
-								?>
+							<?php
+								$skill = null;												
+								$required_skills = $user->employee->skills;
+								$required_skills_array = [];
+								$required_skills_array = explode('-' , $required_skills);								
+							?>
 								<strong>Current Skills</strong>
 								<hr/>
 							<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
 								@if(isset($skills))
 									@foreach($skills as $value)
 										@if(in_array($value , $required_skills_array))
-										<option class="selected" value="{{$value}}" selected>{{$value}} </option>
+											<option class="selected" value="{{$value}}" selected>{{$value}} </option>
 										@endif
-
-										<!--@if(!in_array($value , $required_skills_array))
-										<option class="unselected" value="{{$value}}">{{$value}}</option>
-										@endif-->
 									@endforeach
 								@else
 								<option>No Skill</option>
@@ -222,20 +193,14 @@
 							<select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
 								@if(isset($skills))
 									@foreach($skills as $value)
-										<!--@if(in_array($value , $required_skills_array))
-										<option value="{{$value}}" selected>{{$value}} </option>
-										@endif-->
-
 										@if(!in_array($value , $required_skills_array))
-										<option class="unselected" value="{{$value}}">{{$value}}</option>
+											<option class="unselected" value="{{$value}}">{{$value}}</option>
 										@endif
 									@endforeach
 								@else
 								<option>No Skill</option>
 								@endif
-							</select>
- 
-							
+							</select>						
 						</div>
 						<div class="d-flex flex-column  mb-3">
 							<input type="submit" name="submit" class="btn btn-primary">
@@ -336,20 +301,23 @@
 
 							<div class="rate_budget">
 								@if(isset($user->jobpost->hourly_rate_min))
-								<div class="d-flex align-items-center justify-content-between">
-									<strong>Min rate :</strong>
-									<span>{{$user->jobpost->hourly_rate_min}}</span>
-								</div>
-								<div class="d-flex align-items-center justify-content-between">
-									<strong>Max Rate :</strong>
-									<span>{{$user->jobpost->hourly_rate_max}}</span>
-								</div>
+									<div class="d-flex align-items-center justify-content-between">
+										<strong>Min rate :</strong>
+										<span>{{$user->jobpost->hourly_rate_min}}</span>
+									</div>
+									<div class="d-flex align-items-center justify-content-between">
+										<strong>Max Rate :</strong>
+										<span>{{$user->jobpost->hourly_rate_max}}</span>
+									</div>
 								@elseif(isset($user->jobpost->project_budget))
-								<div class="d-flex align-items-center justify-content-between">
-									<strong>Budget</strong>
-									<span>{{$user->jobpost->project_budget}}</span>
-								</div>
-								
+									<div class="d-flex align-items-center justify-content-between">
+										<strong>Budget</strong>
+										<span>{{$user->jobpost->project_budget}}</span>
+									</div>								
+								@else
+									<div class="d-flex align-items-center justify-content-between">
+										<strong>No Project Assigned</strong>
+									</div>								
 								@endif
 							</div>
 						</div>
