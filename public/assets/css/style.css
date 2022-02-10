@@ -1196,7 +1196,7 @@ footer .container .row > div a i {
   padding: 0;
   width: 25px;
   height: 25px;
-  line-height: 25px;
+  line-height: 100%;
   text-align: center;
   font-weight: bold;
 }
@@ -1670,6 +1670,7 @@ footer .container .row > div a i {
   height: 80px;
   border-radius: 50%;
   margin-right: 20px;
+  overflow: hidden;
 }
 
 .modal-dashboard-employee .dashboard-header .dashboard-avatar img {
@@ -1679,15 +1680,29 @@ footer .container .row > div a i {
 }
 
 .modal-dashboard-employee .dashboard-header .dashboard-avatar span {
-  display: block;
-  width: 13px;
-  height: 13px;
-  background-color: #24D25E;
-  border-radius: 50%;
   position: absolute;
+  color: #ffffff;
   bottom: 0;
-  right: 15px;
-  border: 3px solid #ffffff;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  background: rgba(137, 137, 137, 0.35);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dashboard-employee .dashboard-header .dashboard-avatar span input {
+  font-size: 0;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
 }
 
 .modal-dashboard-employee .dashboard-header .dashboard-avatar-data h4 {
@@ -1782,6 +1797,7 @@ footer .container .row > div a i {
   height: 80px;
   border-radius: 50%;
   margin-right: 20px;
+  overflow: hidden;
 }
 
 .modal-profile-setting .dashboard-header .dashboard-avatar img {
@@ -1907,6 +1923,13 @@ footer .container .row > div a i {
 
 .modal-profile-setting .profile-setting-body .main-setting .skill-group {
   margin-bottom: 10px;
+}
+
+.modal-profile-setting .profile-setting-body .toggle_skill_onoff_div select {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px;
+  background: #fff;
 }
 
 /* End modal-profile-setting */
@@ -2418,19 +2441,16 @@ footer .container .row > div a i {
   list-style: none;
 }
 
-.parttime .container .parttime-slider .swiper-slide > .row {
-  margin-top: 100px;
-}
-
 .parttime .container .parttime-slider .swiper-slide > .row > div {
   padding: 0px 20px;
 }
 
 .parttime .container .parttime-slider .swiper-slide > .row > div h3 {
   color: #707070;
-  font-size: 30px;
+  font-size: 27px;
   text-align: left;
   margin-bottom: 10px;
+  margin-top: 15px;
 }
 
 @media (max-width: 576px) {
@@ -2518,7 +2538,7 @@ footer .container .row > div a i {
 }
 
 .parttime .container .parttime-slider .parttime-skills .row > div form {
-  padding: 30px 0;
+  padding: 0 0 30px;
 }
 
 .parttime .container .parttime-slider .parttime-skills .row > div form input[type=search] {
@@ -2846,6 +2866,7 @@ footer .container .row > div a i {
   height: 80px;
   border-radius: 50%;
   margin-right: 20px;
+  overflow: hidden;
 }
 
 .modal-dashboard-employer .dashboard-header .dashboard-avatar img {
@@ -2855,15 +2876,29 @@ footer .container .row > div a i {
 }
 
 .modal-dashboard-employer .dashboard-header .dashboard-avatar span {
-  display: block;
-  width: 13px;
-  height: 13px;
-  background-color: #24D25E;
-  border-radius: 50%;
   position: absolute;
+  color: #ffffff;
   bottom: 0;
-  right: 15px;
-  border: 3px solid #ffffff;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  background: rgba(137, 137, 137, 0.35);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dashboard-employer .dashboard-header .dashboard-avatar span input {
+  font-size: 0;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
 }
 
 .modal-dashboard-employer .dashboard-header .dashboard-avatar-data h4 {
@@ -2911,6 +2946,17 @@ footer .container .row > div a i {
 .modal-dashboard-employer .dashboard-header .settlink a:hover {
   background-color: transparent;
   color: #013AB8;
+}
+
+.modal-dashboard-employer .employer-dashboard-body .all_invoice {
+  padding: 15px 0;
+}
+
+.modal-dashboard-employer .employer-dashboard-body .all_invoice .dashboard-avatar-data {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px;
+  background: #fff;
 }
 
 .modal-dashboard-employer .employer-dashboard-body > .row > div:first-of-type {
@@ -2961,6 +3007,11 @@ footer .container .row > div a i {
 
 /* End modal-dashboard-employer */
 
+.gutter-1x {
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+
 .current-employees-box {
   margin: 10px auto;
 }
@@ -3010,6 +3061,7 @@ footer .container .row > div a i {
   height: 50px;
   border-radius: 50%;
   margin-right: 20px;
+  overflow: hidden;
 }
 
 .current-employees-box .current-header .dashboard-avatar img {
@@ -3019,15 +3071,29 @@ footer .container .row > div a i {
 }
 
 .current-employees-box .current-header .dashboard-avatar span {
-  display: block;
-  width: 13px;
-  height: 13px;
-  background-color: #24D25E;
-  border-radius: 50%;
   position: absolute;
+  color: #ffffff;
   bottom: 0;
-  right: 15px;
-  border: 3px solid #ffffff;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  background: rgba(137, 137, 137, 0.35);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-employees-box .current-header .dashboard-avatar span input {
+  font-size: 0;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
 }
 
 .current-employees-box .current-header .dashboard-avatar-data h4 {
@@ -3063,6 +3129,59 @@ footer .container .row > div a i {
   padding: 15px;
 }
 
+.current-employees-box .current-details .abt-emp {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px;
+  background: #fff;
+}
+
+.current-employees-box .current-details .abt-emp .abt-head {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  -moz-column-gap: 10px;
+  column-gap: 10px;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 10px;
+}
+
+.current-employees-box .current-details .abt-emp .abt-head i {
+  color: #fff;
+  padding: 5px;
+  background: #007bff;
+  width: 25px;
+  border-radius: 50px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+}
+
+.current-employees-box .current-details .abt-emp p {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+}
+
+.current-employees-box .current-details .abt-emp p i {
+  color: #fff;
+  padding: 5px;
+  background: #007bff;
+  width: 25px;
+  border-radius: 50px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+}
+
 .current-employees-box .current-details h6 {
   color: #464646;
   margin-bottom: 0;
@@ -3070,35 +3189,6 @@ footer .container .row > div a i {
 
 .current-employees-box .current-details p {
   color: #8A8A8A;
-}
-
-.current-employees-box .current-details .review {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px 10px 5px;
-  background: #fff;
-}
-
-.current-employees-box .current-details .review .review_head {
-  font-weight: bold;
-}
-
-.current-employees-box .current-details .review .items {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  -moz-column-gap: 1%;
-       column-gap: 1%;
-  margin: 10px 0 5px;
-}
-
-.current-employees-box .current-details .review .items span {
-  border-radius: 50px;
-  background-color: #007bff;
-  padding: 2px 15px;
-  color: #fff;
-  font-size: 13px;
-  border: 1px solid #013ab8;
 }
 
 .current-employees-box .current-details .padding-top {
@@ -3126,6 +3216,37 @@ footer .container .row > div a i {
     margin: auto;
     margin-top: 30px;
   }
+}
+
+.review {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px;
+  background: #fff;
+}
+
+.review .review_head {
+  font-weight: bold;
+}
+
+.review .items {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  -moz-column-gap: 1%;
+       column-gap: 1%;
+  margin: 10px 0 5px;
+  flex-wrap: wrap;
+}
+
+.review .items span {
+  border-radius: 50px;
+  background-color: #007bff;
+  padding: 2px 15px;
+  color: #fff;
+  font-size: 13px;
+  border: 1px solid #013ab8;
+  margin: 3px 0;
 }
 
 /*@media (max-width: 576px)
@@ -3237,18 +3358,6 @@ footer .container .row > div a i {
   margin-block: 3px;
   width: 100%;
   overflow: auto;
-}
-
-#emp_skills option,
-#fulltime_job_skills option {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  background-color: rgba(1, 58, 184, 0.3);
-  padding: 5px;
-  border-radius: 10px;
-  margin: 5px;
-  float: left;
 }
 
 #go_to_register_popup {
@@ -3723,10 +3832,38 @@ header {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  background-color: rgba(1, 58, 184, 0.3);
-  padding: 5px;
-  border-radius: 10px;
-  margin: 5px;
   float: left;
+  border-radius: 50px;
+  background-color: #007bff;
+  padding: 2px 15px;
+  color: #fff;
+  font-size: 13px;
+  border: 1px solid #013ab8;
+  margin: 3px 3px;
+}
+
+.modal_skill_main {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px;
+  background: #fff;
+}
+
+.modal_skill_main .modal_skill strong {
+  text-align: left;
+  border-bottom: 1px solid #f3f3f3;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal_skill_main .modal_skill select {
+  max-height: 85px;
+  background-color: #f3f3f3;
+  padding: 5px !important;
+  border-radius: 7px;
+}
+
+.padd-160 {
+  padding-bottom: 160px;
 }
 

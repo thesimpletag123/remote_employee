@@ -7,7 +7,10 @@
 					@else
 						<img id="user_image_previewsa" src="{{ url('assets/images/avtar.png') }}" alt="">						
 					@endif
-						<input type="file" name="user_image" id="user_image" class="fas fa-pen profile_img">
+						<span class="profile_img fa-solid fa-angles-up">
+					
+						<input type="file" name="user_image" id="user_image" >
+						</span>
 						
 					<!--<span class="activemark"></span>
 					<span class="editicon"><i class="fas fa-pen"></i></span>-->

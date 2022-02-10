@@ -74,7 +74,7 @@ select#emp_skills {
 									</div>
 									<table class="show_project_count table table-bordered">
 										<thead class="thead-dark">
-											<tr>
+											<tr class="bg-primary text-white">
 												<td colspan='2'><strong>Project Details</strong></td>
 											</tr>
 										</thead>
@@ -135,41 +135,43 @@ select#emp_skills {
 										  <label for="job_desc" class="form-label">Job Description</label>
 										  <textarea class="form-control" id="job_desc" name="job_desc" rows="3" required>{{$getjobbyid->project_description}}</textarea>
 										</div>
-<div class="d-flex flex-column  mb-3 toggle_skill_onoff_div">
-<?php 
-	$skill = null;												
-	$required_skills = $getjobbyid->required_skills;
-	$required_skills_array = [];
-	$required_skills_array = explode('-' , $required_skills);
-?>
-	<strong>Required Skills</strong>
-	<hr/>
-	<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
-		@if(isset($skills))
-			@foreach($skills as $value)
-				@if(in_array($value , $required_skills_array))
-					<option class="selected" value="{{$value}}" selected>{{$value}} </option>
-				@endif
-			@endforeach
-		@else
-		<option>No Skill</option>
-		@endif
-	</select>
-	
-	<strong>More Skills Available</strong>
-	<hr/>
-	<select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
-		@if(isset($skills))
-			@foreach($skills as $value)
-				@if(!in_array($value , $required_skills_array))
-					<option class="unselected" value="{{$value}}">{{$value}}</option>
-				@endif
-			@endforeach
-		@else
-		<option>No Skill</option>
-		@endif
-	</select>						
-</div>
+										<div class="col-lg-12 custom_div">
+											<div class="d-flex flex-column  mb-3 toggle_skill_onoff_div">
+												<?php 
+													$skill = null;												
+													$required_skills = $getjobbyid->required_skills;
+													$required_skills_array = [];
+													$required_skills_array = explode('-' , $required_skills);
+												?>
+													<strong>Required Skills</strong>
+													<hr/>
+													<select id="my_skills" class="skillCheckSelect" name="my_skills[]"  multiple>
+														@if(isset($skills))
+															@foreach($skills as $value)
+																@if(in_array($value , $required_skills_array))
+																	<option class="selected" value="{{$value}}" selected>{{$value}} </option>
+																@endif
+															@endforeach
+														@else
+														<option>No Skill</option>
+														@endif
+													</select>
+													
+													<strong class="mt-4">More Skills Available</strong>
+													<hr/>
+													<select id="my_new_skills" class="skillCheckSelect" name="my_new_skills[]"  multiple>
+														@if(isset($skills))
+															@foreach($skills as $value)
+																@if(!in_array($value , $required_skills_array))
+																	<option class="unselected" value="{{$value}}">{{$value}}</option>
+																@endif
+															@endforeach
+														@else
+														<option>No Skill</option>
+														@endif
+													</select>						
+												</div>
+										</div>
 										<div class="col-lg-12 custom_div">
 											<label for="job_title" class="form-label">Extra Skills</label>
 											<input type="text" class="form-control" id="job_extra_skills" name="job_extra_skills" placeholder="Enter if any Extra Skills required">

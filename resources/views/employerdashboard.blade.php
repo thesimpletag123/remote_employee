@@ -53,7 +53,6 @@ div#modal-dashboard-employer {
 													@else
 														<img src="{{$user->user_image}}" alt="image">
 													@endif
-													<!--<span></span>-->
 												</div>
 												<div class="dashboard-avatar-data">
 													<h4>{{$employerpost->job_title}}</h4>													
@@ -64,13 +63,13 @@ div#modal-dashboard-employer {
 											<div class="col-sm-3">
 												<div class="project_status">
 													@if($employerpost->project_status == 0)
-														<div class="btn btn-warning">Todo</div>
+														<div class="btn btn-warning rounded-pill">Todo</div>
 													@elseif($employerpost->project_status == 1)
-														<div class="btn btn-primary">In Progress</div>
+														<div class="btn btn-primary rounded-pill">In Progress</div>
 													@elseif($employerpost->project_status == 2)
-														<div class="btn btn-success">Testing</div>
+														<div class="btn btn-success rounded-pill">Testing</div>
 													@elseif($employerpost->project_status == 3)
-														<div class="btn btn-success">Completed</div>
+														<div class="btn btn-success rounded-pill">Completed</div>
 													@endif
 												</div>
 											</div>
@@ -233,7 +232,10 @@ div#modal-dashboard-employer {
 														<div class="one-line">
 															<!--<h4>{{$employee->job_title}}</h4>&nbsp; assigned to : &nbsp;--><h4>{{$employee->user->name}}</h4>
 														</div>
-														<div><i class="fas fa-clock"></i> <span>With us Since : {{$date }}</span></div>
+														
+														<div><i class="fa fa-tasks-alt"></i> {{$employee->job_title}}
+															
+															</div>
 
 													</div>
 												</div>
@@ -246,27 +248,28 @@ div#modal-dashboard-employer {
 										</div>
 										<div class="current-details">
 											<div class="row">
-												<div class="col-md">
-													<h5>About :: &nbsp;{{$employee->user->name}} </h5>
-													<p><i class="fas fa-align-justify"></i> Experience : {{$experience}}</p>
-													<div class="review">
-														<span>Key Skills</span>
+												<div class="col-12 d-flex align-items-stretch gutter-1x">
+													<div class="abt-emp col-xs-12 col-md-5">
+														<span class="abt-head"><i class="fa-solid fa-user-astronaut"></i>{{$employee->user->name}} </span>
+														<p class="mb-2"><i class="fas fa-clock"></i> <span>With us Since : {{$date }}</span></p>
+														<p class="m-0"><i class="fas fa-align-justify"></i> Experience : {{$experience}}</p>
+													</div>
+													<div class="review col-xs-12 col-md-7">
+														<span class="review_head">Employee Skills</span>
 														<?php 
 															$skillsets = null;
 															if($employee->employee->skills){
-																$skillsets = explode(',' , $employee->employee->skills);
+																$skillsets = explode('-' , $employee->employee->skills);
 															}
 														?>
+															<div class="items">
 															@foreach($skillsets as $skill)
-																<br>
-																<i class="fas fa-star"></i> {{$skill}}															
+																<span>{{$skill}}</span>															
 															@endforeach
+															</div>
 													</div>
 												</div>
-												<div class="col-md">
-													<h5>Assigned Project Name :: &nbsp;{{$employee->job_title}}</h5>
-													
-												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -285,22 +288,41 @@ div#modal-dashboard-employer {
 							</div>
 							
 							<!-- Tab 3 -->
-							<div id='all_invoice' class="complex part3" style="display: none;">
-								@if(isset($allinvoice))
-									@foreach($allinvoice as $invoice)
-								<?php $invoiceurl = $invoice->invoice_attachment; ?>
+							<div id='all_invoice' class="complex part3 all_invoice" style="display: none;">
+								
 									<div class="dashboard-avatar-data">
-										<strong>Invoice for: {{$invoice->user->name}}</strong>
-										<strong>Job Name: {{$invoice->job_title}}</strong>
-										<div> Invoice mailed to: {{$invoice->user->email}} <a href="{{URL::asset($invoiceurl)}}"> Download</a></div>
+										<table class="table table-bordered mb-0 rounded-pills">
+											<thead>
+											  <tr class="bg-primary text-white">
+												<th class="align-middle text-center" scope="align-middle"><i class="fa-solid fa-file-export"></i></th>
+												<th scope="col">Invoice for</th>
+												<th scope="col">Job Name</th>
+												<th scope="col">Invoice mailed to</th>
+												<th class="align-middle text-center" scope="col">Action</th>
+											  </tr>
+											</thead>
+											<tbody>
+												@if(isset($allinvoice))
+													@foreach($allinvoice as $invoice)
+												<?php $invoiceurl = $invoice->invoice_attachment; ?>
+											  <tr>
+												<th class="align-middle text-center"><i class="fa-solid fa-file-lines"></i></th>
+												<td class="align-middle">{{$invoice->user->name}}</td>
+												<td class="align-middle">{{$invoice->job_title}}</td>
+												<td class="align-middle">{{$invoice->user->email}}</td>
+												<td class="align-middle"><a class="rounded-pill btn btn-primary w-100" href="{{URL::asset($invoiceurl)}}"> Download</a></td>
+											  </tr>
+											  @endforeach
+												@else
+													<tr>
+														<td colspan="5" class="align-middle"><h5>No Invoice available</h5></td>
+													</tr>
+												@endif
+											</tbody>
+										  </table>
 									</div>
 									<br>
-									@endforeach
-								@else
-									<div class="dashboard-avatar-data">
-										<h5>No Invoice available</h5>
-									</div>
-								@endif
+									
 								
 								
 									<div class="modal show_invoice_popup" tabindex="-1" role="dialog">

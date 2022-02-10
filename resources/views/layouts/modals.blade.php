@@ -272,40 +272,39 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 									@csrf
 									
                                         <div class="d-flex flex-column  mb-3 toggle_skill_onoff_div">
-
-	
-	<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
-	<?php 
-		//$skills = [];
-		$required_skills_array = [];
-	?>
-		@if(isset($skills))
-			@foreach($skills as $value)
-				@if(in_array($value , $required_skills_array))
-				<option class="selected" value="{{$value}}" selected>{{$value}} </option>
-				@endif
-			@endforeach
-		@else
-		<option>No Skill</option>
-		@endif
-	</select>
-	
-	<strong>More Skills Available</strong>
-	<hr/>
-	<select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
-		@if(isset($skills))
-			@foreach($skills as $value)
-				<option class="unselected" value="{{$value}}">{{$value}}</option>
-			@endforeach
-		@else
-		<option>No Skill</option>
-		@endif
-	</select>
-	
-	
-	
-	
-</div>
+                                            <div class="modal_skill_main">
+                                                <div class="modal_skill">
+                                                    <strong>My Skills</strong>
+                                                    <select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
+                                                    <?php 
+                                                        //$skills = [];
+                                                        $required_skills_array = [];
+                                                    ?>
+                                                        @if(isset($skills))
+                                                            @foreach($skills as $value)
+                                                                @if(in_array($value , $required_skills_array))
+                                                                <option class="selected" value="{{$value}}" selected>{{$value}} </option>
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                        <option>No Skill</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                                <div class="modal_skill">
+                                                    <strong>More Skills Available</strong>
+                                                    <select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
+                                                        @if(isset($skills))
+                                                            @foreach($skills as $value)
+                                                                <option class="unselected" value="{{$value}}">{{$value}}</option>
+                                                            @endforeach
+                                                        @else
+                                                        <option>No Skill</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col"><label>Experience:</label></div>
@@ -691,49 +690,51 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                             
                             
                             <div class="swiper-slide parttime-skills">
-                                <div class="row">
+                                <div class="row padd-160">
                                     <div class="col-md">
                                         <h3>Great! What skills does <br> your work require?</h3>
                                         <div class="d-flex flex-column  mb-3 toggle_skill_onoff_div">
-<p>Popular skills for Search Engine Optimization</p>
-
-<?php 
-	$session_skill = [];
-		if(session('fulltime_job_skills')){
-			$session_skill = explode(',' , session('fulltime_job_skills'));
-		}
-?>
-@if(Route::is('employerdashboard'))
-	<?php $skills = $allskills; ?>
-@endif
-		<strong>Required Skills</strong>
-		<hr/>
-	<select id="fulltime_job_skills" name="fulltime_job_skills[]" style="width: 100%;" multiple>
-		@if(isset($skills))
-			@foreach($skills as $value)
-				@if(in_array($value , $session_skill))
-					<option class="selected" value="{{$value}}" selected>{{$value}} </option>
-				@endif
-			@endforeach
-		@else
-		<option>No Skill</option>
-		@endif
-	</select>
-	
-	<strong>More Skills Available</strong>
-	<hr/>
-	<select id="fulltime_job_add_skills" name="my_new_skills[]" style="width: 100%;" multiple>
-		@if(isset($skills))
-			@foreach($skills as $value)
-				@if(!in_array($value , $session_skill))
-					<option class="unselected" value="{{$value}}">{{$value}}</option>
-				@endif
-			@endforeach
-		@else
-		<option>No Skill</option>
-		@endif
-	</select>						
-</div>
+                                            <p>Popular skills for Search Engine Optimization</p>
+                                            <div class="modal_skill_main">
+                                            <?php 
+                                                $session_skill = [];
+                                                    if(session('fulltime_job_skills')){
+                                                        $session_skill = explode(',' , session('fulltime_job_skills'));
+                                                    }
+                                            ?>
+                                            @if(Route::is('employerdashboard'))
+                                                <?php $skills = $allskills; ?>
+                                            @endif
+                                                <div class="modal_skill">
+                                                    <strong>Required Skills</strong>
+                                                    <select id="fulltime_job_skills" name="fulltime_job_skills[]" style="width: 100%;" multiple>
+                                                        @if(isset($skills))
+                                                            @foreach($skills as $value)
+                                                                @if(in_array($value , $session_skill))
+                                                                    <option class="selected" value="{{$value}}" selected>{{$value}} </option>
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                        <option>No Skill</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                                <div class="modal_skill">
+                                                    <strong>More Skills Available</strong>
+                                                    <select id="fulltime_job_add_skills" name="my_new_skills[]" style="width: 100%;" multiple>
+                                                        @if(isset($skills))
+                                                            @foreach($skills as $value)
+                                                                @if(!in_array($value , $session_skill))
+                                                                    <option class="unselected" value="{{$value}}">{{$value}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                        <option>No Skill</option>
+                                                        @endif
+                                                    </select>
+                                                </div>	
+                                                </div>				
+                                            </div>
                                         <div>
                                             <form>
 												@if (session('fulltime_job_extra_skill'))

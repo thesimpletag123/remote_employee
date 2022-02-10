@@ -153,7 +153,7 @@
 										<div class="current-employees-box">
 											<div class="current-header">
 												<div class="row">
-													<div class="col-sm-8">
+													<div class="col-sm-7">
 													
 														<div class="dashboard-avatar">
 															@if($user->user_image == null)
@@ -169,16 +169,16 @@
 														</div>
 														
 													</div>
-													<div class="col-sm-2">
+													<div class="col-sm-3">
 														<div class="project_status">										
 															@if($singlejob['project_status'] == 0)
-																<div class="btn btn-warning">Todo</div>
+																<div class="btn btn-warning rounded-pill">Todo</div>
 															@elseif($singlejob['project_status'] == 1)
-																<div class="btn btn-primary">In Progress</div>
+																<div class="btn btn-primary rounded-pill">In Progress</div>
 															@elseif($singlejob['project_status'] == 2)
-																<div class="btn btn-success">Testing</div>
+																<div class="btn btn-success rounded-pill">Testing</div>
 															@elseif($singlejob['project_status'] == 3)
-																<div class="btn btn-success">Completed</div>
+																<div class="btn btn-success rounded-pill">Completed</div>
 															@endif
 														</div>
 													</div>

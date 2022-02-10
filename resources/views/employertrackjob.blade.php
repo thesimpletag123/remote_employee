@@ -74,7 +74,7 @@ select#emp_skills {
 		</div>
 		<table class="show_project_count table table-bordered">
 			<thead class="thead-dark">
-				<tr>
+				<tr class="bg-primary text-white">
 					<td colspan='2'><strong>Project Details</strong></td>
 				</tr>
 			</thead>
@@ -124,19 +124,20 @@ select#emp_skills {
 								@csrf
 									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
 									<input type="hidden" id="hidden_jobid" name="hidden_jobid" value="{{$getjobbyid->id}}">
-									<div class="col-auto">
-										<div class="col-lg-8 custom_div">
+									<div class="row">
+										<div class="col-lg-12 custom_div">
 											<label for="job_title" class="form-label">Job Title</label>
 											<input type="text" class="form-control" id="job_title" name="job_title" placeholder="Job Title here" readonly value="{{$getjobbyid->job_title}}">
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 										  <label for="job_desc" class="form-label">Job Description</label>
 										  <textarea class="form-control" id="job_desc" name="job_desc" rows="3" readonly>{{$getjobbyid->project_description}}</textarea>
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<div class="col-md-12 padding_none">
 												<label for="job_skills" class="form-label">Required Skills:</label>
 											</div>
+											<div class="review">
 											<?php
 												$skill = null;												
 												$required_skills = $getjobbyid->required_skills;
@@ -144,49 +145,50 @@ select#emp_skills {
 												$required_skills_array = explode('-' , $required_skills);
 											
 											?>
-											
+											<div class="items">
 												@if(is_array($required_skills_array))													
 													@foreach($required_skills_array as $skill)
-														<br>
-														<i class="fas fa-star"></i> {{$skill}}
+														<span>{{$skill}}</span>
 													@endforeach
 												@else
-													<option>No Skills required</option>
+													<span>No Skills required</span>
 												@endif                                                        
-											
+											</div>
 											
 										</div>
-											<?php 
-												$project_budget = $getjobbyid->project_budget;
-												$project_rate_min = $getjobbyid->hourly_rate_min;
-												$project_rate_max = $getjobbyid->hourly_rate_max;
-											?>
-										<div class="col-lg-8 custom_div">
-											@if( $project_budget != null )													
-												<div class="col-md-12">
-													<label for="job_budget" class="form-label">Project Budget :</label>
-												</div>
-												<input type="text" class="form-control" id="job_budget" name="job_budget" placeholder="Project Budget" value="{{$project_budget}}" readonly>
-											@endif
+										</div>
+										<?php 
+											$project_budget = $getjobbyid->project_budget;
+											$project_rate_min = $getjobbyid->hourly_rate_min;
+											$project_rate_max = $getjobbyid->hourly_rate_max;
+										?>
+										
+										@if( $project_budget != null )													
+										<div class="col-lg-12 custom_div">
+												<label for="job_budget" class="form-label">Project Budget :</label>
+											
+											<input type="text" class="form-control" id="job_budget" name="job_budget" placeholder="Project Budget" value="{{$project_budget}}" readonly>
+										</div>
+										@endif
 												
-										</div>
-										<div class="col-lg-8 custom_div">
+										
+										<div class="col-lg-12 custom_div">
 											@if( $project_rate_min != null )
-												<div class="col-md-12">
+												
 													<label for="job_budget" class="form-label">Project Minimum Rate :</label>
-												</div>
+											
 												<input type="text" class="form-control" id="project_rate_min" name="project_rate_min" placeholder="Project Minimum Rate" value="{{$project_rate_min}}" readonly>													
 											@endif
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											@if( $project_rate_max != null )
-												<div class="col-md-12">
+												
 													<label for="job_budget" class="form-label">Project Maximum Rate :</label>
-												</div>
+											
 												<input type="text" class="form-control" id="project_rate_max" name="project_rate_max" placeholder="Project Maximum Rate" value="{{$project_rate_max}}" readonly>													
 											@endif
 										</div>
-										<div class="col-lg-8 custom_div">
+										<div class="col-lg-12 custom_div">
 											<label for="job_deadline" class="form-label">Project Deadline</label>
 											<input type="date" class="form-control" id="job_deadline" name="job_deadline" placeholder="Project Deadline" readonly value="{{$getjobbyid->deadline}}" readonly>
 										</div>
