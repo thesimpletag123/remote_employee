@@ -292,7 +292,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                                     </select>
                                                 </div>
                                                 <div class="modal_skill">
-                                                    <strong>More Skills Available</strong>
+                                                    <strong>Skills Available</strong>
                                                     <select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
                                                         @if(isset($skills))
                                                             @foreach($skills as $value)
@@ -720,7 +720,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                                     </select>
                                                 </div>
                                                 <div class="modal_skill">
-                                                    <strong>More Skills Available</strong>
+                                                    <strong>Skills Available</strong>
                                                     <select id="fulltime_job_add_skills" name="my_new_skills[]" style="width: 100%;" multiple>
                                                         @if(isset($skills))
                                                             @foreach($skills as $value)
