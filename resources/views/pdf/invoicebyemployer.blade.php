@@ -16,7 +16,7 @@
                     <tr>
                         <td colspan="2"  valign="top" style="font-size:14px;line-height:18px;">
                             <p>Dear <strong>{{$requesteduser->name}}</strong>,</p>
-                            <p>Thank you for your continued partnership with H2H Technologies.</p>
+                            <p>Thank you for your continued partnership with Remote Employee.</p>
                             <p>We have submitted an ACH Request for the last billing period. For your convenience, we have included a 
                                 copy of the charges involved. Detailed transaction & reconciliation reports can be accessed from your 
                                 YouNegotiate account.</p>
@@ -53,15 +53,28 @@
                                     <th>Time(In Hour)</th>
                                     <th>Amount</th>
                                 </tr>
+<?php
+	$totaltime = 0;
+	$hourly_rate_max = $getjobbyid->hourly_rate_max;
+	$hourly_rate = explode(' ', $hourly_rate_max);
+?>
+@if(isset($getjobupdatebyid))
+	@foreach($getjobupdatebyid as $update)
+			<?php 
+				
+				$totaltime = $totaltime + $update->jobupdate_time;
+			?>
+	@endforeach
+@endif
                                 <tr>
                                     <td>{{$getjobbyid->job_title}}</td>
                                     <td>{{$getjobbyid->hourly_rate_max}}</td>
-                                    <td>2</td>
-                                    <td>$2.63</td>
+                                    <td>{{$totaltime}}</td>
+                                    <td><?php echo $hourly_rate[0]*$totaltime.' '.$hourly_rate[1]; ?></td>
                                 </tr>
 								<tr>
                                     <td align="center" colspan="3"><strong>Total</strong></td>
-                                    <td><strong>$2.63</strong></td>
+                                    <td><strong><?php echo $hourly_rate[0]*$totaltime.' '.$hourly_rate[1]; ?></strong></td>
                                 </tr>
                             </table>
                         </td>
@@ -93,8 +106,8 @@
                         <td style="height:100px;">
                             <p style="margin: 0;line-height: 1.5;">
                                 <strong>The Remote Employee</strong><br/>
-                                <strong>Site:</strong> <a href="https://h2htechnologies.com" style="text-decoration:none; color:#000" target="_blank">https://h2htechnologies.com</a><br/>
-                                <strong>Email:</strong> <a href="mailto:connect@h2htechnologies.com"  style="text-decoration:none; color:#000"> connect@h2htechnologies.com</a>
+                                <strong>Site:</strong> <a href="https://remoteemployees.com" style="text-decoration:none; color:#000" target="_blank">https://remoteemployees.com</a><br/>
+                                <strong>Email:</strong> <a href="mailto:connect@remoteemployees.com"  style="text-decoration:none; color:#000"> connect@remoteemployees.com</a>
                             </p>
                         </td>
                     </tr>

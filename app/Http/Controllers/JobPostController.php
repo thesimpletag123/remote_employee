@@ -439,9 +439,12 @@ class JobPostController extends Controller
 
 		$getempdetails = new Employee;
 		$getempbyid = $getempdetails->getemployedetails($getjobbyid->assigned_to_id);
-
+		
+		$getjobupdatebyidnew = new JobTracker;
+		$getjobupdatebyid = $getjobupdatebyidnew->GetJobUpdateByJobid($jobid);
+		
 		$filename = 'remoteemployee_invoice_'.time().'.pdf';
-		$data = ['requesteduser' => $requesteduser, 'getjobbyid' => $getjobbyid , 'getempbyid' => $getempbyid, 'email'=>$getempbyid->user->email, 'filename' => $filename];
+		$data = ['requesteduser' => $requesteduser, 'getjobbyid' => $getjobbyid , 'getempbyid' => $getempbyid, 'email'=>$getempbyid->user->email, 'filename' => $filename, 'getjobupdatebyid' => $getjobupdatebyid];
 
 		// Generate PDF
 		$pdf = PDF::loadView('pdf.invoicebyemployer', $data)->setPaper('a4', 'portrait');;

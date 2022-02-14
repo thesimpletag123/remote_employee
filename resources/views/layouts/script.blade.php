@@ -258,8 +258,9 @@ new WOW().init();
 				processData: false,
 				dataType: "json",
 				success: function( msg ) {
-				   // console.log( msg );
+				   console.log( msg );
 					$('#user_image_preview').attr('src',msg);
+					$('#user_image_previewas').attr('src',msg);
 					$('#user_image').val('');
 				}
 			});
