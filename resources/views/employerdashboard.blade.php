@@ -84,12 +84,13 @@ div#modal-dashboard-employer {
 										<div class="row">
 											<div class="col-md">
 												@if(isset($employerpost->project_budget))
-													<span>|Budget : {{$employerpost->project_budget}}|  </span>
+												<span class="rate_wrap"><span class="rate_head"><i class="fa-solid fa-square-poll-vertical"></i> Budget</span> <span class="rate_boxes"><i class="fa-solid fa-circle-down"></i>{{$employerpost->project_budget}}</span>  </span>
+												@elseif(isset($employerpost->hourly_rate_min))
+												<span class="rate_wrap"><span class="rate_head"><i class="fa-solid fa-square-poll-vertical"></i>Rate Per hour</span>  <span class="rate_boxes"><i class="fa-solid fa-circle-down"></i>{{$employerpost->hourly_rate_min}}</span> <i class="fa-solid fa-minus"></i> <span class="rate_boxes"><i class="fa-solid fa-circle-arrow-up"></i> {{$employerpost->hourly_rate_max}}</span></span>
 												@endif
-												@if(isset($employerpost->hourly_rate_min))
-													<span>|Rate Per hour:  Min{{$employerpost->hourly_rate_min}} - Max {{$employerpost->hourly_rate_max}}|</span>
+												@if (isset($employerpost->project_description) == '')
+												<p><i class="fa-brands fa-product-hunt"></i> {{$employerpost->project_description}}</p>
 												@endif
-												<p><i class="fas fa-align-justify"></i> {{$employerpost->project_description}}</p>
 												<div class="review">
 													<span class="review_head">Required Skills</span>
 													<?php 

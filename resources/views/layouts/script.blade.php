@@ -696,6 +696,7 @@ $('.change_status').change(function(){
 	function generate_invoice(jobid){
 		event.preventDefault(); // prevent form submit
 		//var form = event.target.form; // storing the form
+
 		swal({
 			  title: "Generate Invoice for this job?",
 			  text: "Invoice will be attached to this job.",
@@ -709,6 +710,7 @@ $('.change_status').change(function(){
 			},
 		function(isConfirm){
 		  if (isConfirm) {
+			$("#siteLoader").fadeIn('fast');
 			$.ajax({
 					type: "post",
 					data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
@@ -717,17 +719,20 @@ $('.change_status').change(function(){
 						var result = JSON.parse(data.success);
 						//alert(result);
 						if(result == 1){
+							$("#siteLoader").fadeOut('fast');
 							swal({
 								title: "Invoice Sent to email ID",
 								text: "Invoice will be attached to this job.",
 								type: "success"
-								});					
+								});	
+
 						}
 					}
 
 				});
 		  } else {
 			swal("Cancelled", "Invoice Generation TERMINATED :X", "error");
+			$("#siteLoader").hide();
 		  }
 		});		
 	}

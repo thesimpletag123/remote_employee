@@ -119,7 +119,11 @@ select#emp_skills {
 </div>
 							
 							<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
-								<h5>Track Job</h5>
+								
+									<div class="col-12">
+										<h5>Track Job</h5>
+									</div>
+								
 								<form id="employeetimeupdate" name="employeetimeupdate" method="post" action="{{route('employeetimeupdate')}}">
 								@csrf
 									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">

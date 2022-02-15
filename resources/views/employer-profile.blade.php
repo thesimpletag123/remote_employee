@@ -108,7 +108,10 @@
                         </div>
 
                         <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
-                            <h5>My Profile</h5>
+                           
+							<div class="col-auto">
+								<div class="col-12"><h5>My Profile</h5></div>
+							</div>
                             <form id="employerprofileupdate" name="employerprofileupdate" method="post"
                                 action="{{route('employerprofileupdate')}}" enctype="multipart/form-data">
                                 @csrf
@@ -196,11 +199,10 @@
 															<span>|Budget : {{$singlejob['project_budget']}}|  </span>
 														@endif
 														@if(isset($singlejob['hourly_rate_min']))
-															<span>|Rate Per hour:  Min{{$singlejob['hourly_rate_min']}} - Max {{$singlejob['hourly_rate_max']}}|</span>
+															<span class="rate_wrap"><span class="rate_head"><i class="fa-solid fa-square-poll-vertical"></i> Rate Per hour </span> <span class="rate_boxes"><i class="fa-solid fa-circle-down"></i> {{$singlejob['hourly_rate_min']}}</span> <i class="fa-solid fa-minus"></i> <span class="rate_boxes"><i class="fa-solid fa-circle-arrow-up"></i>  {{$singlejob['hourly_rate_max']}}</span></span>
 														@endif
 														<br>
-														<br>
-														<p><i class="fas fa-align-justify"></i> {{$singlejob['project_description']}}</p>
+														<p><i class="fa-brands fa-product-hunt"></i> {{$singlejob['project_description']}}</p>
 														<div class="review">
 															<span class="review_head">Required Skills</span>
 															<?php 

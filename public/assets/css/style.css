@@ -1677,6 +1677,8 @@ footer .container .row > div a i {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .modal-dashboard-employee .dashboard-header .dashboard-avatar span {
@@ -1697,12 +1699,14 @@ footer .container .row > div a i {
 .modal-dashboard-employee .dashboard-header .dashboard-avatar span input {
   font-size: 0;
   position: absolute;
-  z-index: 999;
+  z-index: 9999;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
 }
 
 .modal-dashboard-employee .dashboard-header .dashboard-avatar-data h4 {
@@ -1800,10 +1804,40 @@ footer .container .row > div a i {
   overflow: hidden;
 }
 
+.modal-profile-setting .dashboard-header .dashboard-avatar span {
+  position: absolute;
+  color: #ffffff;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  background: rgba(137, 137, 137, 0.35);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-profile-setting .dashboard-header .dashboard-avatar span input {
+  font-size: 0;
+  position: absolute;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
 .modal-profile-setting .dashboard-header .dashboard-avatar img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .modal-profile-setting .dashboard-header .dashboard-avatar .activemark {
@@ -1877,7 +1911,7 @@ footer .container .row > div a i {
 }
 
 .modal-profile-setting .profile-setting-body > .row > div h5 {
-  padding: 20px 0px 10px 10px;
+  padding: 20px 0 10px;
 }
 
 .modal-profile-setting .profile-setting-body .main-setting {
@@ -2873,6 +2907,8 @@ footer .container .row > div a i {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .modal-dashboard-employer .dashboard-header .dashboard-avatar span {
@@ -2893,12 +2929,14 @@ footer .container .row > div a i {
 .modal-dashboard-employer .dashboard-header .dashboard-avatar span input {
   font-size: 0;
   position: absolute;
-  z-index: 999;
+  z-index: 9999;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
 }
 
 .modal-dashboard-employer .dashboard-header .dashboard-avatar-data h4 {
@@ -3068,6 +3106,8 @@ footer .container .row > div a i {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .current-employees-box .current-header .dashboard-avatar span {
@@ -3088,12 +3128,14 @@ footer .container .row > div a i {
 .current-employees-box .current-header .dashboard-avatar span input {
   font-size: 0;
   position: absolute;
-  z-index: 999;
+  z-index: 9999;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
 }
 
 .current-employees-box .current-header .dashboard-avatar-data h4 {
@@ -3188,7 +3230,7 @@ footer .container .row > div a i {
 }
 
 .current-employees-box .current-details p {
-  color: #8A8A8A;
+  color: #6a6a6a;
 }
 
 .current-employees-box .current-details .padding-top {
@@ -3204,6 +3246,13 @@ footer .container .row > div a i {
 }
 
 .current-employees-box .current-details .current-performance select {
+  background: #fff url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODQgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuMC4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIyIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNMTkyIDM4NGMtOC4xODggMC0xNi4zOC0zLjEyNS0yMi42Mi05LjM3NWwtMTYwLTE2MGMtMTIuNS0xMi41LTEyLjUtMzIuNzUgMC00NS4yNXMzMi43NS0xMi41IDQ1LjI1IDBMMTkyIDMwNi44bDEzNy40LTEzNy40YzEyLjUtMTIuNSAzMi43NS0xMi41IDQ1LjI1IDBzMTIuNSAzMi43NSAwIDQ1LjI1bC0xNjAgMTYwQzIwOC40IDM4MC45IDIwMC4yIDM4NCAxOTIgMzg0eiIvPjwvc3ZnPg==) no-repeat !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-size: 8px !important;
+  background-position: right center !important;
+  padding-right: 22px !important;
   border-color: #ccc;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -3455,10 +3504,28 @@ section.parttime {
 .commentdiv,
 .mysidebardiv,
 .jobdiv {
-  border: 1px solid darkgray;
+  border: 1px solid #ced4da;
   margin-bottom: 10px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px 0 15px;
+}
+
+.sidebardatadiv .carousel-inner {
+  max-width: 85%;
+  margin: auto;
+}
+
+.sidebardatadiv button {
+  width: 25px;
+  height: 25px;
+  margin: auto;
+  background: #007bff;
+  opacity: 1;
+  outline: none;
+  border: none;
+  border-radius: 100px;
+  padding: 7px;
+  text-align: center;
 }
 
 .comment-show-hide-div,
@@ -3872,5 +3939,110 @@ header {
   border-radius: 8px;
   padding: 10px 10px 10px;
   background: #fff;
+}
+
+.rate_wrap {
+  padding: 10px 0;
+  border-radius: 6px;
+  display: inline-block;
+  color: #6a6a6a;
+  margin: 0 0 10px;
+}
+
+.rate_wrap .rate_head {
+  font-size: 16px;
+  font-weight: bold;
+  color: #6a6a6a;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.rate_wrap .rate_head i {
+  margin-right: 5px;
+}
+
+.rate_wrap .rate_boxes {
+  background: #dbdbdb;
+  padding: 6px 10px;
+  color: #606060;
+  margin: 0 0;
+}
+
+.rate_wrap .rate_boxes i {
+  margin-right: 5px;
+}
+
+/******** loader **********/
+
+/** page **/
+
+.cssloader {
+  padding-top: calc(45vh - 25px);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99999;
+  background: #000000e6;
+}
+
+/** loader **/
+
+.sh1 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 50px 0 0;
+  border-color: #464646 transparent transparent transparent;
+  margin: 0 auto;
+  -webkit-animation: shk1 1s ease-in-out infinite normal;
+          animation: shk1 1s ease-in-out infinite normal;
+}
+
+.sh2 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 50px 50px;
+  border-color: transparent transparent #ffffff transparent;
+  margin: -50px auto 0;
+  -webkit-animation: shk2 1s ease-in-out infinite alternate;
+          animation: shk2 1s ease-in-out infinite alternate;
+}
+
+/** animation starts here **/
+
+@-webkit-keyframes shk1 {
+  0% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes shk1 {
+  0% {
+    transform: rotate(-360deg);
+  }
+}
+
+@-webkit-keyframes shk2 {
+  0% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shk2 {
+  0% {
+    transform: rotate(360deg);
+  }
+}
+
+.lt {
+  color: #fff;
+  margin: 30px auto;
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 4px;
+  font-size: 17px;
 }
 

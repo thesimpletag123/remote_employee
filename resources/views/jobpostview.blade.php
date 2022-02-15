@@ -1,32 +1,59 @@
 @extends('layouts.master')
 @section('title', 'Job Update')
-@section('pagecss')
-<style>
-div#modal-profile-setting {
-    margin-top: 6%;
-}
-.modal-xl {
-    max-width: 80%;
-}
-input#job_max_rate, input#job_min_rate {
-    float: right;
-    width: 85%;
-}
-.padding_none {
-	padding-left: 0px;
-}
-select#emp_skills {
-    width: -webkit-fill-available;
-    overflow: auto;
-	width: -webkit-fill-available;
-    overflow: auto;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-}
-</style>
-@endsection
+
 @section('content')
 <!-- starting modal-profile-setting -->
+<div class="modal fade" id="job_view_mod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content">
+			<div class="modal-header d-flex justify-content-end">
+				
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+			</div>
+			<div class="modal-body emp_profile_pop">
+				<div id="view_status"  class="sidebardatadiv carousel slide" data-interval="false" data-ride="carousel">
+					<div class="carousel-inner">
+						<?php $i=0; ?>
+					@if(isset($getjobupdatebyid))
+						
+						@foreach($getjobupdatebyid as $jobupdate)
+							
+							<div class="mysidebardiv carousel-item <?php if($i == 1){ echo 'active';} ?>">
+								<div class="col-12 mb-3 text-center">
+									<h4><i class="fa-solid fa-circle-user mr-1"></i> <strong>{{$jobupdate->user->name}}</strong></h4>
+								</div>
+								<hr>
+								<div class="col-lg-12 mb-3 d-flex align-items-center justify-content-between">
+									<strong>Task Name :</strong><strong>{{$jobupdate->jobupdate_headline}}</strong>
+								</div>
+								<hr>
+								<div class="col-lg-12 mb-3 d-flex flex-wrap flex-column justify-content-between">
+									<strong>Task Description:</strong> 
+									<div>{{$jobupdate->jobupdate_description}}</div>
+								</div>
+								<hr>
+								<div class="col-lg-12 d-flex align-items-center justify-content-between">
+									<strong>Time worked:</strong> {{$jobupdate->jobupdate_time}} Hour
+								</div>			
+							</div>
+							<?php $i++; ?>
+						@endforeach
+					@endif
+					
+					</div>
+					<button class="carousel-control-prev" type="button" data-target="#view_status" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-target="#view_status" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					  </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="container">
 	<div class="modal-profile-setting">
 					
@@ -99,29 +126,15 @@ select#emp_skills {
 									</table>
 								
 								<hr>
-									<div class="sidebardatadiv">
-										@if(isset($getjobupdatebyid))
-											@foreach($getjobupdatebyid as $jobupdate)
-												<div class="mysidebardiv">
-													<b>By: {{$jobupdate->user->name}}</b>
-													<div class="col-lg-12 custom_div">
-														<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
-													</div>
-													<div class="col-lg-12 custom_div">
-														<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
-													</div>
-													<div class="col-lg-12 custom_div">
-														<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
-													</div>			
-												</div>
-											@endforeach
-										@endif
-									</div>
+									
 								</div>
 							</div>
 							
 							<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
-								<div class="col-12"><h5>Update your job</h5></div>
+								<div class="col-auto ">
+									<div class="col-12 d-flex align-items-center justify-content-between"><h5>Update your job</h5>
+									<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#job_view_mod">View all updates</button></div>
+								</div>
 								<form id="editjobrequest" name="editjobrequest" method="post" action="{{route('editjobrequest')}}">
 								@csrf
 									<input type="hidden" id="hidden_uid" name="hidden_uid" value="{{$user->id}}">
@@ -157,7 +170,7 @@ select#emp_skills {
 														@endif
 													</select>
 													
-													<strong class="mt-4">More Skills Available</strong>
+													<strong class="mt-4">Skills Available</strong>
 													<hr/>
 													<select id="my_new_skills" class="skillCheckSelect" name="my_new_skills[]"  multiple>
 														@if(isset($skills))
@@ -207,34 +220,48 @@ select#emp_skills {
 											
 										?>
 										<div class="col-lg-12 custom_div">
-											<div class="col-md-12 padding_none">
 												<label for="job_rate" class="form-label">Hourly Rate -Minimum</label>
+											
+											<div class="row">
+												<div class="col-sm-3 col-6 pl-0">
+													<select class="form-control" id="job_min_rate_currency" name ="job_min_rate_currency">
+														@if(isset($currencies))													
+															@foreach($currencies as $currency => $abbr)
+																<option value="{{$currency}}" <?php if($currency == $minratecurrency){echo "selected";}?>>{{$currency}}</option>
+															@endforeach
+														@else
+															<option>No Currency Available</option>
+														@endif                                                        
+													</select>
+												</div>
+												<div class="col-sm-9 col-6 px-0">
+													<input type="number" class="form-control" id="job_min_rate" name="job_min_rate" placeholder="Hourly Rate -Minimum" value="{{$minrate}}">
+												</div>
 											</div>
-											<select id="job_min_rate_currency" name ="job_min_rate_currency">
-												@if(isset($currencies))													
-													@foreach($currencies as $currency => $abbr)
-														<option value="{{$currency}}" <?php if($currency == $minratecurrency){echo "selected";}?>>{{$currency}}</option>
-													@endforeach
-												@else
-													<option>No Currency Available</option>
-												@endif                                                        
-											</select>
-											<input type="number" class="form-control" id="job_min_rate" name="job_min_rate" placeholder="Hourly Rate -Minimum" value="{{$minrate}}">
+											
 										</div>
 										<div class="col-lg-12 custom_div">
 											<div class="adjust-currency">
 												<label for="job_budget" class="form-label">Hourly Rate -Maximum</label>
 											</div>
-											<select id="job_max_rate_currency" name ="job_max_rate_currency">
-												@if(isset($currencies))													
-													@foreach($currencies as $currency => $abbr)
-														<option value="{{$currency}}" <?php if($currency == $maxratecurrency){echo "selected";}?>>{{$currency}}</option>
-													@endforeach
-												@else
-													<option>No Currency Available</option>
-												@endif                                                        
-											</select>
-											<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
+											<div class="row">
+												<div class="col-sm-3 col-6 pl-0">
+													<select class="form-control" id="job_max_rate_currency" name ="job_max_rate_currency">
+														@if(isset($currencies))													
+															@foreach($currencies as $currency => $abbr)
+																<option value="{{$currency}}" <?php if($currency == $maxratecurrency){echo "selected";}?>>{{$currency}}</option>
+															@endforeach
+														@else
+															<option>No Currency Available</option>
+														@endif                                                        
+													</select>
+												</div>
+												<div class="col-sm-9 col-6 px-0">
+													<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
+												</div>
+											</div>
+											
+											
 										</div>
 										
 										<div class="col-lg-12 custom_div">
