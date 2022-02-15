@@ -1,3 +1,4 @@
+
 </div>
         <!-- starting footer -->
         <footer>
@@ -40,7 +41,11 @@
             <i class="fa fa-angle-up fa-2x"></i>
         </div>
         <!-- End button-top -->
-		
+		<div class="cssloader" id="siteLoader" style="display:none">
+            <div class="sh1"></div>
+            <div class="sh2"></div>
+            <h4 class="lt">Please wait...</h4>
+        </div>
 	@include('layouts.script')
 	@yield('pagescript')
     </body>
