@@ -157,7 +157,8 @@ class HomeController extends Controller
 	{
 		$user = Auth::user();
 		$ifexsists = GenerateOtp::where('user_id', '=', $user->id)->first();
-		$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		//$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		$str_result = '0123456789';
 		$otp = substr(str_shuffle($str_result), 0, 5);
 
 		if ($ifexsists === null) {
