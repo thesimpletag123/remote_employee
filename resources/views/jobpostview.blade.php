@@ -132,8 +132,8 @@
 										</tr>
 										<tr>
 
-											<td>Total Posted Jobs</td>
-											<td>{{$i}}</td>
+											<td><strong>Total Posted Jobs</strong></td>
+											<td><strong>{{$i}}</strong></td>
 										</tr>
 
 									</table>
