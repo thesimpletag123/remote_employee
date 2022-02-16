@@ -69,7 +69,7 @@
 								
                             </div>
                             <div class="d-flex flex-column  mb-3">
-                                <input type="submit" name="submit" class="btn btn-primary">
+                                <input type="submit" name="submit" class="btn btn-primary" value="Update Profile">
                             </div>
                         </div>
                 </form>
@@ -366,7 +366,8 @@
 									@if(in_array($skill , $required_skills_array))
 
 										<?php 
-											$rand = rand(0,100);
+											//$rand = rand(0,100);
+											$rand = 60;
 										?>
 										<div class="skill-group">
 											<p>{{$skill}}</p>
@@ -392,7 +393,7 @@
 
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
                     
-					
+<?php $i=0; ?>						
 					<div class="col-sm-12">
 					<h5>Workspace</h5>
 					<div class="jopboard">
@@ -403,6 +404,7 @@
 									//echo 'User Name'.$user->id;
 									//echo "<br>";
 									//echo $singlejob['assigned_to_id'];
+									$i++;
 									?>								
 									<div class="jopboard-box">
 										<div class="row">
@@ -446,6 +448,15 @@
 									</div>	
 								@endif
 							@endforeach
+						@endif
+						@if($i == 0)
+							<div class="jopboard-box">
+								<div class="row">
+									<div class="col-sm-6 col-12">
+										<h4>You have no assigned Jobs</h4>
+									</div>
+								</div>
+							</div>
 						@endif
 					</div>
 					</div>

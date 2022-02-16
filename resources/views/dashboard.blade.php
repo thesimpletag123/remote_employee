@@ -77,7 +77,7 @@ $i++;
 							<div class="jopboard-box">
 								<div class="row">
 									<div class="col-sm-6 col-12">
-										<h4>No jobs assigned to you</h4>
+										<h4>You have no assigned Jobs</h4>
 									</div>
 								</div>
 							</div>
