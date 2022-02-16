@@ -41,6 +41,7 @@
 									$j = 0;
 									$k = 0;
 									$l = 0;
+									$m = 0;
 								?>
 								@if(isset($alljobslist))
 								@foreach($alljobslist as $singlejob)
@@ -55,6 +56,9 @@
 											}
 											if( $singlejob['project_status'] == 2){
 												$l++;
+											}
+											if( $singlejob['project_status'] == 3){
+												$m++;
 											}
 										?>
 									@endif
@@ -73,22 +77,26 @@
                                 </div>
 
                                 <table class="show_project_count table table-bordered">
-                                    <thead class="thead-dark">
+                                    <thead class="bg-primary thead-dark">
                                         <tr>
                                             <td colspan='2'><strong>Project Details</strong></td>
                                         </tr>
                                     </thead>
                                     <tr>
-                                        <td>Completed Jobs</td>
-                                        <td>{{$l}}</td>
+                                        <td>Todo Jobs</td>
+                                        <td>{{$j}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Active Jobs</td>
+                                        <td>In Progress Jobs</td>
                                         <td>{{$k}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Pending Jobs</td>
-                                        <td>{{$j}}</td>
+                                        <td>In Testing Jobs</td>
+                                        <td>{{$l}}</td>
+                                    </tr>
+									<tr>
+                                        <td>Completed Jobs</td>
+                                        <td>{{$m}}</td>
                                     </tr>
                                     <tr>
 

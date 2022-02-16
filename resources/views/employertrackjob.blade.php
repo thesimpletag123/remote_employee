@@ -42,6 +42,7 @@ select#emp_skills {
 			$j = 0;
 			$k = 0;
 			$l = 0;
+			$m = 0;
 		?>
 		@if(isset($alljobslist))
 			@foreach($alljobslist as $singlejob)
@@ -56,6 +57,9 @@ select#emp_skills {
 						}
 						if( $singlejob['project_status'] == 2){
 							$l++;
+						}
+						if( $singlejob['project_status'] == 3){
+							$m++;
 						}
 					?>
 				@endif
@@ -79,22 +83,26 @@ select#emp_skills {
 				</tr>
 			</thead>
 			<tr>
-				<td>Completed Jobs</td>
-				<td>{{$l}}</td>
-			</tr>
-			<tr>
-				<td>Active Jobs</td>
-				<td>{{$k}}</td>
-			</tr>
-			<tr>
-				<td>Pending Jobs</td>
-				<td>{{$j}}</td>
-			</tr>
-			<tr>
+				<td>Todo Jobs</td>
+					<td>{{$j}}</td>
+				</tr>
+				<tr>
+					<td>In Progress Jobs</td>
+					<td>{{$k}}</td>
+				</tr>
+				<tr>
+					<td>In Testing Jobs</td>
+					<td>{{$l}}</td>
+				</tr>
+				<tr>
+					<td>Completed Jobs</td>
+					<td>{{$m}}</td>
+				</tr>
+				<tr>
 
-				<td>Total Posted Jobs</td>
-				<td>{{$i}}</td>
-			</tr>
+					<td>Total Posted Jobs</td>
+					<td>{{$i}}</td>
+				</tr>
 
 		</table>
 	
