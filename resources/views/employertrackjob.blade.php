@@ -208,7 +208,11 @@ select#emp_skills {
 													<div class="row">
 														<div class="col-sm-12">
 															<div class="dashboard-avatar">
-																<img src="{{$update->user->user_image}}" alt="image">
+																@if($update->user->user_image != null)
+																	<img src="{{$update->user->user_image}}" alt="image">
+																@else
+																	<img src="{{url('assets/images/avtar.png')}}" alt="image">
+																@endif
 															</div>
 															<div class="dashboard-avatar-data">
 																<h4>{{$update->user->name}}</h4>													
