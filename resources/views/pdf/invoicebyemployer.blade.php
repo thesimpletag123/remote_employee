@@ -49,8 +49,13 @@
                             <table border="1" cellpadding="10" cellspacing="0" style="width:100%;font-size:14px;line-height:18px;">
                                 <tr style="background:#e0e0e0">
                                     <th>Work Details</th>
-                                    <th>Rate</th>
-                                    <th>Time(In Hour)</th>
+                                    @if($getjobbyid->project_budget != null)
+										<th colspan = "2">Budget </th>
+									@else
+										<th>Rate</th>
+										<th>Time(In Hour)</th>
+									@endif
+									
                                     <th>Amount</th>
                                 </tr>
 <?php
@@ -66,16 +71,28 @@
 			?>
 	@endforeach
 @endif
-                                <tr>
-                                    <td>{{$getjobbyid->job_title}}</td>
-                                    <td>{{$getjobbyid->hourly_rate_max}}</td>
-                                    <td>{{$totaltime}}</td>
-                                    <td><?php echo $hourly_rate[0]*$totaltime.' '.$hourly_rate[1]; ?></td>
-                                </tr>
-								<tr>
-                                    <td align="center" colspan="3"><strong>Total</strong></td>
-                                    <td><strong><?php echo $hourly_rate[0]*$totaltime.' '.$hourly_rate[1]; ?></strong></td>
-                                </tr>
+                                @if($getjobbyid->project_budget != null)
+									<tr>
+										<td>{{$getjobbyid->job_title}}</td>
+										<td colspan="2">Total Budget : {{$getjobbyid->project_budget}}</td>
+										<td>{{$getjobbyid->project_budget}}</td>
+									</tr>
+									<tr>
+										<td align="center" colspan="3"><strong>Total</strong></td>
+										<td><strong>{{$getjobbyid->project_budget}}</strong></td>
+									</tr>
+								@else
+									<tr>
+										<td>{{$getjobbyid->job_title}}</td>
+										<td>{{$getjobbyid->hourly_rate_max}}</td>
+										<td>{{$totaltime}}</td>
+										<td><?php echo $hourly_rate[0]*$totaltime.' '.$hourly_rate[1]; ?></td>
+									</tr>
+									<tr>
+										<td align="center" colspan="3"><strong>Total</strong></td>
+										<td><strong><?php echo $hourly_rate[0]*$totaltime.' '.$hourly_rate[1]; ?></strong></td>
+									</tr>
+								@endif
                             </table>
                         </td>
                     </tr>

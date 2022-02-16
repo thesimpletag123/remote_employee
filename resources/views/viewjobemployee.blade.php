@@ -57,53 +57,56 @@
 									
 								
 								<div class="col-auto">
-								<div class="panelbox py-1 mb-3">
 								@if(isset($getjobupdatebyid))
-									@foreach($getjobupdatebyid as $jobupdate)
-										<div class="current-employees-box">
-											<div class="current-header">
-												<div class="row">
-													<div class="col-sm-12">
-													
-														<div class="dashboard-avatar">
-															@if($jobupdate->user->user_image == null)
-																<img src="{{url('assets/images/avtar.png')}}" alt="image">
-															@else
-																<img src="{{$jobupdate->user->user_image}}" alt="image">
-															@endif
-															<!--<span></span>-->
-														</div>
-														<div class="dashboard-avatar-data">
-															<h4>{{$jobupdate->user->name}}</h4>													
-															<div>{{$jobupdate->user->email}}</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="current-details">
-												<div class="row">
-													<div class="col-md">
-														<div class="job_block">
-															<b><label>Description:</label></b> {{$jobupdate->jobupdate_description}}
-														</div>
-														<div class="job_block">
-															<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
-														</div>
-														<div class="job_block">
-															<b><label>Mail:</label></b> {{$jobupdate->jobupdate_headline}}
-														</div>
+									@if ( sizeof($getjobupdatebyid) )
+										<div class="panelbox py-1 mb-3">
+										@foreach($getjobupdatebyid as $jobupdate)
+											<div class="current-employees-box">
+												<div class="current-header">
+													<div class="row">
+														<div class="col-sm-12">
 														
+															<div class="dashboard-avatar">
+																@if($jobupdate->user->user_image == null)
+																	<img src="{{url('assets/images/avtar.png')}}" alt="image">
+																@else
+																	<img src="{{$jobupdate->user->user_image}}" alt="image">
+																@endif
+																<!--<span></span>-->
+															</div>
+															<div class="dashboard-avatar-data">
+																<h4>{{$jobupdate->user->name}}</h4>													
+																<div>{{$jobupdate->user->email}}</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="current-details">
+													<div class="row">
+														<div class="col-md">
+															<div class="job_block">
+																<b><label>Description:</label></b> {{$jobupdate->jobupdate_description}}
+															</div>
+															<div class="job_block">
+																<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
+															</div>
+															<div class="job_block">
+																<b><label>Mail:</label></b> {{$jobupdate->jobupdate_headline}}
+															</div>
+															
+														</div>
 													</div>
 												</div>
 											</div>
+										@endforeach
 										</div>
-									@endforeach
+									@endif
 								@else
 									<div class="mysidebardiva">
 										<b>No Updates available</b>		
 									</div>
 								@endif
-								</div>
+								
 								</div>
 							</div>
 						</div>

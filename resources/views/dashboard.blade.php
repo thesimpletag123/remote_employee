@@ -10,7 +10,7 @@
 		
 <input type="hidden" id="hidden_uid" value="{{$user->id}}">				
 @include('layouts.dashboardheader')
-					
+<?php $i=0; ?>					
 
 					<div class="jopboard px-3">
 						<h5>Job Board</h5>
@@ -24,6 +24,7 @@
 //echo 'User Name'.$user->id;
 //echo "<br>";
 //echo $singlejob['assigned_to_id'];
+$i++;
 ?>								
 									<div class="jopboard-box">
 										<div class="row">
@@ -71,6 +72,15 @@
 								
 							@endforeach
 						
+						@endif
+						@if($i == 0)
+							<div class="jopboard-box">
+								<div class="row">
+									<div class="col-sm-6 col-12">
+										<h4>No jobs assigned to you</h4>
+									</div>
+								</div>
+							</div>
 						@endif
 					</div>					
 				</div>

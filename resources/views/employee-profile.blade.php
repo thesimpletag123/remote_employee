@@ -94,53 +94,82 @@
 				<?php
 					$minrate = explode(' ',$user->jobpost->hourly_rate_min);
 					$maxrate = explode(' ',$user->jobpost->hourly_rate_max);
+					$budget = explode(' ',$user->jobpost->project_budget);
 				?>
 				<div>
-					<div class="d-flex flex-row flex-wrap align-items-center  mb-3">
-						
-						<label class="mb-0 col" for="range-1a"><b>Minimum rate:</b></label>
-						
-						<div class="col px-0">
-							<input type="text" class="form-control" id="minrate" name="minrate" value="{{$minrate[0]}}">
+					@if(isset($budget[0]) != null)
+						<div class="d-flex flex-row flex-wrap align-items-center  mb-3">
 							
+							<label class="mb-0 col" for="range-1a"><b>Project Budget:</b></label>
+							
+							<div class="col px-0">
+								<input type="text" class="form-control" id="budget_rare" name="budget_rate" value="{{$budget[0]}}">
+								
+							</div>
+							<div class="col pr-0">
+								<select id="budget_currency" class="form-control" name ="budget_currency">
+									@if(isset($currencies))													
+										@foreach($currencies as $currency => $abbr)
+											@if ($budget[1])
+												<option value="{{$currency}}" <?php if($budget[1] == $currency){echo "selected";}?>>{{$currency}}</option>
+											@else
+												<option value="{{$currency}}">{{$currency}}</option>
+											@endif
+										@endforeach
+									@else
+											<option value="INR">INR</option>
+									@endif                                                        
+								</select>
+							</div>
 						</div>
-						<div class="col pr-0">
-							<select id="minrate_currency" class="form-control" name ="minrate_currency">
-								@if(isset($currencies))													
-									@foreach($currencies as $currency => $abbr)
-										@if ($minrate[1])
-											<option value="{{$currency}}" <?php if($minrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
-										@else
-											<option value="{{$currency}}">{{$currency}}</option>
-										@endif
-									@endforeach
-								@else
-										<option value="INR">INR</option>
-								@endif                                                        
-							</select>
+					@else
+						<div class="d-flex flex-row flex-wrap align-items-center  mb-3">
+							
+							<label class="mb-0 col" for="range-1a"><b>Minimum rate:</b></label>
+							
+							<div class="col px-0">
+								<input type="text" class="form-control" id="minrate" name="minrate" value="{{$minrate[0]}}">
+								
+							</div>
+							<div class="col pr-0">
+								<select id="minrate_currency" class="form-control" name ="minrate_currency">
+									@if(isset($currencies))													
+										@foreach($currencies as $currency => $abbr)
+											@if ($minrate[1])
+												<option value="{{$currency}}" <?php if($minrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
+											@else
+												<option value="{{$currency}}">{{$currency}}</option>
+											@endif
+										@endforeach
+									@else
+											<option value="INR">INR</option>
+									@endif                                                        
+								</select>
+							</div>
 						</div>
-					</div>
-					<div class="d-flex flex-row flex-wrap align-items-center mb-3">
-						<label class="mb-0 col" for="range-1b"><b>Maximum Rate:</b></label>
-						<div class="col px-0">
-							<input type="text" class="form-control" id="maxrate" name="maxrate" value="{{$maxrate[0]}}">
+						<div class="d-flex flex-row flex-wrap align-items-center mb-3">
+							<label class="mb-0 col" for="range-1b"><b>Maximum Rate:</b></label>
+							<div class="col px-0">
+								<input type="text" class="form-control" id="maxrate" name="maxrate" value="{{$maxrate[0]}}">
+							</div>
+							<div class="col pr-0">
+								<select id="maxrate_currency" class="form-control" name ="maxrate_currency">
+									@if(isset($currencies))													
+										@foreach($currencies as $currency => $abbr)
+											@if ($maxrate[1])
+												<option value="{{$currency}}" <?php if($maxrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
+											@else
+												<option value="{{$currency}}">{{$currency}}</option>
+											@endif
+										@endforeach
+									@else
+											<option value="INR">INR</option>
+									@endif                                                        
+								</select>
+							</div>
 						</div>
-						<div class="col pr-0">
-							<select id="maxrate_currency" class="form-control" name ="maxrate_currency">
-								@if(isset($currencies))													
-									@foreach($currencies as $currency => $abbr)
-										@if ($maxrate[1])
-											<option value="{{$currency}}" <?php if($maxrate[1] == $currency){echo "selected";}?>>{{$currency}}</option>
-										@else
-											<option value="{{$currency}}">{{$currency}}</option>
-										@endif
-									@endforeach
-								@else
-										<option value="INR">INR</option>
-								@endif                                                        
-							</select>
-						</div>
-					</div>
+					@endif
+					
 					<div class="d-flex flex-column  mb-3">
 							<input type="submit" name="submit" class="btn btn-primary">
 						</div>	
@@ -300,7 +329,12 @@
 							
 
 							<div class="rate_budget">
-								@if(isset($user->jobpost->hourly_rate_min))
+								@if(isset($user->jobpost->project_budget))
+									<div class="d-flex align-items-center justify-content-between">
+										<strong>Budget</strong>
+										<span>{{$user->jobpost->project_budget}}</span>
+									</div>
+								@elseif(isset($user->jobpost->hourly_rate_min))									
 									<div class="d-flex align-items-center justify-content-between">
 										<strong>Min rate :</strong>
 										<span>{{$user->jobpost->hourly_rate_min}}</span>
@@ -308,12 +342,7 @@
 									<div class="d-flex align-items-center justify-content-between">
 										<strong>Max Rate :</strong>
 										<span>{{$user->jobpost->hourly_rate_max}}</span>
-									</div>
-								@elseif(isset($user->jobpost->project_budget))
-									<div class="d-flex align-items-center justify-content-between">
-										<strong>Budget</strong>
-										<span>{{$user->jobpost->project_budget}}</span>
-									</div>								
+									</div>									
 								@else
 									<div class="d-flex align-items-center justify-content-between">
 										<strong>No Project Assigned</strong>

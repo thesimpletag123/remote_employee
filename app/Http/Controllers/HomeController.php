@@ -324,14 +324,27 @@ class HomeController extends Controller
 	public function employeerateupdate(Request $request){
 		
 		$job_id = $request->job_id;
+		$budget = null;
+		$min = null;
+		$max = null;
 		
-		$minrate = $request->minrate;
-		$maxrate = $request->maxrate;
-		$minrate_currency = $request->minrate_currency;
-		$maxrate_currency = $request->maxrate_currency;
+		if($request->budget_rate != null){
+			$budgetrate = $request->budget_rate;
+			$budgetcurrency = $request->budget_currency;
+			$budget = $budgetrate.' '.$budgetcurrency;
+		} else {
+			$minrate = $request->minrate;
+			$maxrate = $request->maxrate;
+			$minrate_currency = $request->minrate_currency;
+			$maxrate_currency = $request->maxrate_currency;
+			$min = $minrate.' '.$minrate_currency;
+			$max = $maxrate.' '.$maxrate_currency;
+		}
+		
 		JobPost::where('id' , $job_id)->update([
-									'hourly_rate_min' => $minrate.' '.$minrate_currency,
-									'hourly_rate_max' => $maxrate.' '.$maxrate_currency
+									'hourly_rate_min' => $min,
+									'hourly_rate_max' => $max,
+									'project_budget' => $budget,
 									]);
 		
 

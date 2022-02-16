@@ -13,31 +13,36 @@
 			<div class="modal-body emp_profile_pop">
 				<div id="view_status"  class="sidebardatadiv carousel slide" data-interval="false" data-ride="carousel">
 					<div class="carousel-inner">
-						<?php $i=0; ?>
+						<?php $i=1; ?>
 					@if(isset($getjobupdatebyid))
-						
-						@foreach($getjobupdatebyid as $jobupdate)
-							
-							<div class="mysidebardiv carousel-item <?php if($i == 1){ echo 'active';} ?>">
-								<div class="col-12 mb-3 text-center">
-									<h4><i class="fa-solid fa-circle-user mr-1"></i> <strong>{{$jobupdate->user->name}}</strong></h4>
+						@if ( sizeof($getjobupdatebyid) )
+							@foreach($getjobupdatebyid as $jobupdate)
+								
+								<div class="mysidebardiv carousel-item <?php if($i == 1){ echo 'active';} ?>">
+									<div class="col-12 mb-3 text-center">
+										<h4><i class="fa-solid fa-circle-user mr-1"></i> <strong>{{$jobupdate->user->name}}</strong></h4>
+									</div>
+									<hr>
+									<div class="col-lg-12 mb-3 d-flex align-items-center justify-content-between">
+										<strong>Task Name :</strong><strong>{{$jobupdate->jobupdate_headline}}</strong>
+									</div>
+									<hr>
+									<div class="col-lg-12 mb-3 d-flex flex-wrap flex-column justify-content-between">
+										<strong>Task Description:</strong> 
+										<div>{{$jobupdate->jobupdate_description}}</div>
+									</div>
+									<hr>
+									<div class="col-lg-12 d-flex align-items-center justify-content-between">
+										<strong>Time worked:</strong> {{$jobupdate->jobupdate_time}} Hour
+									</div>			
 								</div>
-								<hr>
-								<div class="col-lg-12 mb-3 d-flex align-items-center justify-content-between">
-									<strong>Task Name :</strong><strong>{{$jobupdate->jobupdate_headline}}</strong>
-								</div>
-								<hr>
-								<div class="col-lg-12 mb-3 d-flex flex-wrap flex-column justify-content-between">
-									<strong>Task Description:</strong> 
-									<div>{{$jobupdate->jobupdate_description}}</div>
-								</div>
-								<hr>
-								<div class="col-lg-12 d-flex align-items-center justify-content-between">
-									<strong>Time worked:</strong> {{$jobupdate->jobupdate_time}} Hour
-								</div>			
+								<?php $i++; ?>
+							@endforeach
+						@else
+							<div class="mysidebardiv carousel-item active" style="text-align:center;">
+								No Update posted yet
 							</div>
-							<?php $i++; ?>
-						@endforeach
+						@endif
 					@endif
 					
 					</div>
@@ -219,50 +224,69 @@
 											}
 											
 										?>
-										<div class="col-lg-12 custom_div">
+										@if( $project_budget != null )
+											<div class="col-lg-12 custom_div">
+												<label for="job_rate" class="form-label">Project Budget</label>
+												<div class="row">
+													<div class="col-sm-3 col-6 pl-0">
+														<select class="form-control" id="project_budget_currency" name ="project_budget_currency" required>
+															@if(isset($currencies))													
+																@foreach($currencies as $currency => $abbr)
+																	<option value="{{$currency}}" <?php if($currency == $budgetcurrency){echo "selected";}?>>{{$currency}}</option>
+																@endforeach
+															@else
+																<option>No Currency Available</option>
+															@endif                                                        
+														</select>
+													</div>
+													<div class="col-sm-9 col-6 px-0">
+														<input type="number" class="form-control" id="project_budget" name="project_budget" placeholder="Project Budget" value="{{$budget}}" required>
+													</div>
+												</div>
+											</div>
+										@else
+											<div class="col-lg-12 custom_div">
 												<label for="job_rate" class="form-label">Hourly Rate -Minimum</label>
-											
-											<div class="row">
-												<div class="col-sm-3 col-6 pl-0">
-													<select class="form-control" id="job_min_rate_currency" name ="job_min_rate_currency">
-														@if(isset($currencies))													
-															@foreach($currencies as $currency => $abbr)
-																<option value="{{$currency}}" <?php if($currency == $minratecurrency){echo "selected";}?>>{{$currency}}</option>
-															@endforeach
-														@else
-															<option>No Currency Available</option>
-														@endif                                                        
-													</select>
+												<div class="row">
+													<div class="col-sm-3 col-6 pl-0">
+														<select class="form-control" id="job_min_rate_currency" name ="job_min_rate_currency">
+															@if(isset($currencies))													
+																@foreach($currencies as $currency => $abbr)
+																	<option value="{{$currency}}" <?php if($currency == $minratecurrency){echo "selected";}?>>{{$currency}}</option>
+																@endforeach
+															@else
+																<option>No Currency Available</option>
+															@endif                                                        
+														</select>
+													</div>
+													<div class="col-sm-9 col-6 px-0">
+														<input type="number" class="form-control" id="job_min_rate" name="job_min_rate" placeholder="Hourly Rate -Minimum" value="{{$minrate}}">
+													</div>
 												</div>
-												<div class="col-sm-9 col-6 px-0">
-													<input type="number" class="form-control" id="job_min_rate" name="job_min_rate" placeholder="Hourly Rate -Minimum" value="{{$minrate}}">
-												</div>
+												
 											</div>
-											
-										</div>
-										<div class="col-lg-12 custom_div">
-											<div class="adjust-currency">
-												<label for="job_budget" class="form-label">Hourly Rate -Maximum</label>
-											</div>
-											<div class="row">
-												<div class="col-sm-3 col-6 pl-0">
-													<select class="form-control" id="job_max_rate_currency" name ="job_max_rate_currency">
-														@if(isset($currencies))													
-															@foreach($currencies as $currency => $abbr)
-																<option value="{{$currency}}" <?php if($currency == $maxratecurrency){echo "selected";}?>>{{$currency}}</option>
-															@endforeach
-														@else
-															<option>No Currency Available</option>
-														@endif                                                        
-													</select>
+											<div class="col-lg-12 custom_div">
+												<div class="adjust-currency">
+													<label for="job_budget" class="form-label">Hourly Rate -Maximum</label>
 												</div>
-												<div class="col-sm-9 col-6 px-0">
-													<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
-												</div>
+												<div class="row">
+													<div class="col-sm-3 col-6 pl-0">
+														<select class="form-control" id="job_max_rate_currency" name ="job_max_rate_currency">
+															@if(isset($currencies))													
+																@foreach($currencies as $currency => $abbr)
+																	<option value="{{$currency}}" <?php if($currency == $maxratecurrency){echo "selected";}?>>{{$currency}}</option>
+																@endforeach
+															@else
+																<option>No Currency Available</option>
+															@endif                                                        
+														</select>
+													</div>
+													<div class="col-sm-9 col-6 px-0">
+														<input type="number" class="form-control" id="job_max_rate" name="job_max_rate" placeholder="Project Budget" value="{{$maxrate}}">
+													</div>
+												</div>										
 											</div>
-											
-											
-										</div>
+										@endif
 										
 										<div class="col-lg-12 custom_div">
 											<label for="job_deadline" class="form-label">Project Deadline</label>

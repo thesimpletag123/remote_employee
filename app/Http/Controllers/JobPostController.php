@@ -330,6 +330,7 @@ class JobPostController extends Controller
 	public function editjobrequest(Request $request){
 		$job_budget = null;
 		$job_min_rate = null;
+		$job_max_rate = null;
 		
 		$jobid = $request->get('hidden_jobid');
 		$userid = $request->get('hidden_uid');
@@ -347,17 +348,23 @@ class JobPostController extends Controller
 				$addnewjobskill = new Skills;
 				$newskill = $addnewjobskill->CheckAndUpdateSkill($job_extra_skills);
 			}
-		if($request->get('job_max_rate') != null){
-			$job_max_rate = $request->get('job_max_rate'). ' ' . $request->get('job_max_rate_currency');
-		}
-		if($request->get('job_min_rate') != null){
-			$job_min_rate = $request->get('job_min_rate'). ' ' .$request->get('job_min_rate_currency');
-		}
+			
+			if($request->get('project_budget') != null){
+				$job_budget = $request->get('project_budget'). ' ' . $request->get('project_budget_currency');
+			} else {
+				if($request->get('job_max_rate') != null){
+					$job_max_rate = $request->get('job_max_rate'). ' ' . $request->get('job_max_rate_currency');
+				}
+				if($request->get('job_min_rate') != null){
+					$job_min_rate = $request->get('job_min_rate'). ' ' .$request->get('job_min_rate_currency');
+				}
+			}
 		$job_deadline = $request->get('job_deadline');
 		
 		$updatejob = JobPost::where('id', $jobid)
 					->update([
 						'job_title' => $job_title, 
+						'project_budget' => $job_budget,
 						'required_skills' => $emp_skills,
 						'hourly_rate_min' => $job_min_rate,
 						'hourly_rate_max' => $job_max_rate,

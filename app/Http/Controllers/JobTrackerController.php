@@ -45,6 +45,9 @@ class JobTrackerController extends Controller
 		$user = Auth::user();
 		$date = Carbon::now($user->country);
 		
+		$skillsnew = new Skills();
+		$skills = $skillsnew->skillnames();
+		
 		$getjobwithidnew = new JobPost;
 		$getjobbyid = $getjobwithidnew->GetJobByID($jobid);
 		
@@ -54,6 +57,6 @@ class JobTrackerController extends Controller
 		$alljobsnew = new JobPost();
 		$alljobslist = $alljobsnew->GetAllJobsList();
 		
-		return view('employertrackjob', ['user' => $user, 'date' => $date, 'getjobbyid' => $getjobbyid, 'getjobupdatebyid' => $getjobupdatebyid, 'alljobslist' => $alljobslist]);
+		return view('employertrackjob', ['user' => $user, 'date' => $date, 'getjobbyid' => $getjobbyid, 'getjobupdatebyid' => $getjobupdatebyid, 'alljobslist' => $alljobslist, 'skills' => $skills]);
 	}
 }

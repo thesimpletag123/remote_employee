@@ -48,15 +48,21 @@ div#modal-dashboard-employer {
 											<div class="col-sm-7">
 											
 												<div class="dashboard-avatar">
-													@if($user->user_image == null)
+													@if($employerpost->assigned_to_id == null)
+														
 														<img src="{{url('assets/images/avtar.png')}}" alt="image">
 													@else
-														<img src="{{$user->user_image}}" alt="image">
+														@if($employerpost->user->user_image == null)
+															<img src="{{url('assets/images/avtar.png')}}" alt="image">
+														@else
+															<img src="{{$employerpost->user->user_image}}" alt="image">
+														@endif	
+														
 													@endif
 												</div>
 												<div class="dashboard-avatar-data">
 													<h4>{{$employerpost->job_title}}</h4>													
-													<div><i class="fas fa-clock"></i> <span>Created at : {{$date }}</span></div>
+													<div><i class="fas fa-clock"></i> <span>Job Posted On: {{$date }}</span></div>
 												</div>
 												
 											</div>
@@ -84,12 +90,49 @@ div#modal-dashboard-employer {
 										<div class="row">
 											<div class="col-md">
 												@if(isset($employerpost->project_budget))
-												<span class="rate_wrap"><span class="rate_head"><i class="fa-solid fa-square-poll-vertical"></i> Budget</span> <span class="rate_boxes"><i class="fa-solid fa-circle-down"></i>{{$employerpost->project_budget}}</span>  </span>
+													<?php
+														$total_budget = null;
+														$budget = explode(' ', $employerpost->project_budget);
+														$total_budget = number_format($budget[0]). ' '.$budget[1];
+													?>
+													<span class="rate_wrap">
+														<span class="rate_head">
+															<i class="fa-solid fa-square-poll-vertical"></i> Budget
+														</span> 
+														<span class="rate_boxes">
+															<i class="fa-solid fa-circle-down"></i>															
+															{{$total_budget}}
+														</span>
+													</span>
 												@elseif(isset($employerpost->hourly_rate_min))
-												<span class="rate_wrap"><span class="rate_head"><i class="fa-solid fa-square-poll-vertical"></i>Rate Per hour</span>  <span class="rate_boxes"><i class="fa-solid fa-circle-down"></i>{{$employerpost->hourly_rate_min}}</span> <i class="fa-solid fa-minus"></i> <span class="rate_boxes"><i class="fa-solid fa-circle-arrow-up"></i> {{$employerpost->hourly_rate_max}}</span></span>
+													<?php
+														$total_hourly_rate_min = null;
+														$total_hourly_rate_max = null;
+														
+														$hourly_rate_min = explode(' ', $employerpost->hourly_rate_min);
+														$total_hourly_rate_min = number_format($hourly_rate_min[0]). ' '.$hourly_rate_min[1];
+														
+														$hourly_rate_max = explode(' ', $employerpost->hourly_rate_max);
+														$total_hourly_rate_max = number_format($hourly_rate_max[0]). ' '.$hourly_rate_max[1];
+													?>
+													<span class="rate_wrap">
+														<span class="rate_head">
+															<i class="fa-solid fa-square-poll-vertical"></i>
+															Rate Per hour
+														</span>
+														<span class="rate_boxes">
+															<i class="fa-solid fa-circle-down"></i>
+															{{$total_hourly_rate_min}}
+														</span>
+														<i class="fa-solid fa-minus"></i>
+														<span class="rate_boxes">
+															<i class="fa-solid fa-circle-arrow-up"></i> 
+															{{$total_hourly_rate_max}}
+														</span>
+													</span>
 												@endif
 												@if (isset($employerpost->project_description) == '')
-												<p><i class="fa-brands fa-product-hunt"></i> {{$employerpost->project_description}}</p>
+													<p><i class="fa-brands fa-product-hunt"></i> {{$employerpost->project_description}}</p>
 												@endif
 												<div class="review">
 													<span class="review_head">Required Skills</span>
@@ -150,24 +193,26 @@ div#modal-dashboard-employer {
 														@endif
 													</div>
 													@endif
-												
-												<div class="current-performance">
-													<div class="d-flex justify-content-between align-items-center">
-													Change Status
-														<select name="change_status" class="change_status">
-															<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Todo</option>
-															<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>In Progress</option>
-															<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Testing</option>
-															<option value="3" <?php if($employerpost->project_status == 3){echo 'selected';}?>>Completed</option>
-														</select>
-														<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
-													</div>
-												</div>
-												@if($employerpost->project_status == 3)
+												@if($employerpost->assigned_to_username != null)
 													<div class="current-performance">
-														<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
-														<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success" style="width:100%;">Generate Invoice</button>
+														<div class="d-flex justify-content-between align-items-center">
+														Change Status
+															<select name="change_status" class="change_status">
+																<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Todo</option>
+																<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>In Progress</option>
+																<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Testing</option>
+																<option value="3" <?php if($employerpost->project_status == 3){echo 'selected';}?>>Completed</option>
+															</select>
+															<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
+														</div>
 													</div>
+												
+													@if($employerpost->project_status == 3)
+														<div class="current-performance">
+															<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
+															<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success" style="width:100%;">Generate Invoice</button>
+														</div>
+													@endif
 												@endif
 											</div>
 											<table>
@@ -305,15 +350,15 @@ div#modal-dashboard-employer {
 											<tbody>
 												@if(isset($allinvoice))
 													@foreach($allinvoice as $invoice)
-												<?php $invoiceurl = $invoice->invoice_attachment; ?>
-											  <tr>
-												<th class="align-middle text-center"><i class="fa-solid fa-file-lines"></i></th>
-												<td class="align-middle">{{$invoice->user->name}}</td>
-												<td class="align-middle">{{$invoice->job_title}}</td>
-												<td class="align-middle">{{$invoice->user->email}}</td>
-												<td class="align-middle"><a class="rounded-pill btn btn-primary w-100" href="{{URL::asset($invoiceurl)}}"> Download</a></td>
-											  </tr>
-											  @endforeach
+														<?php $invoiceurl = $invoice->invoice_attachment; ?>
+														<tr>
+															<th class="align-middle text-center"><i class="fa-solid fa-file-lines"></i></th>
+															<td class="align-middle">{{$invoice->user->name}}</td>
+															<td class="align-middle">{{$invoice->job_title}}</td>
+															<td class="align-middle">{{$invoice->user->email}}</td>
+															<td class="align-middle"><a class="rounded-pill btn btn-primary w-100" href="{{URL::asset($invoiceurl)}}"> Download</a></td>
+														</tr>
+													@endforeach
 												@else
 													<tr>
 														<td colspan="5" class="align-middle"><h5>No Invoice available</h5></td>
