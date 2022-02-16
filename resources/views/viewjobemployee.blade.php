@@ -85,13 +85,13 @@
 													<div class="row">
 														<div class="col-md">
 															<div class="job_block">
-																<b><label>Description:</label></b> {{$jobupdate->jobupdate_description}}
+																<strong><label>Description:</label></strong> <span>{{$jobupdate->jobupdate_description}}</span>
 															</div>
 															<div class="job_block">
-																<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}} Hour
+																<strong><label>Time worked:</label></strong> <span>{{$jobupdate->jobupdate_time}} Hour</span>
 															</div>
 															<div class="job_block">
-																<b><label>Mail:</label></b> {{$jobupdate->jobupdate_headline}}
+																<strong><label>Mail:</label></strong> <span>{{$jobupdate->jobupdate_headline}}</span>
 															</div>
 															
 														</div>
