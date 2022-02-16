@@ -208,11 +208,11 @@ select#emp_skills {
 													<div class="row">
 														<div class="col-sm-12">
 															<div class="dashboard-avatar">
-																<img src="http://127.0.0.1:8000/uploads/1645042355-PSFix_20171007_215025.jpeg" alt="image">
+																<img src="{{$update->user->user_image}}" alt="image">
 															</div>
 															<div class="dashboard-avatar-data">
-																<h4>Employee</h4>													
-																<div>emp2@gmail.com</div>
+																<h4>{{$update->user->name}}</h4>													
+																<div>{{$update->user->email}}</div>
 															</div>
 														</div>
 													</div>
