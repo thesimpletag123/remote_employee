@@ -2777,21 +2777,7 @@ a.social-icon img {
 .profile_img {
 	cursor: pointer;
 }
-.modal-profile-setting .modal-body .dashboard-header .settlink a {
-    display: block;
-    width: 200px;
-    margin: auto;
-    padding: 10px;
-    color: #ffffff;
-    background-color: #013AB8;
-    border: 1px solid #013AB8;
-    transition: all 0.35s ease-in-out;
-	text-align: center;
-}
-.modal-profile-setting .modal-body .dashboard-header .settlink a:hover {
-    background-color: transparent;
-    color: #013AB8;
-}
+
 section.parttime {
     z-index: 0 !important;
 }
@@ -3244,56 +3230,53 @@ header{position: static;}
 
 /******** loader **********/
 
-/** page **/
-.cssloader {
-    padding-top: calc(45vh - 25px);
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 99999;
-    background: #000000e6;
-}
+// .cssloader {
+//     padding-top: calc(45vh - 25px);
+//     position: fixed;
+//     left: 0;
+//     right: 0;
+//     top: 0;
+//     bottom: 0;
+//     z-index: 99999;
+//     background: #000000e6;
+// }
   
-  /** loader **/
-  .sh1 {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 50px 50px 0 0;
-    border-color: #464646 transparent transparent transparent;
-    margin: 0 auto;
-    animation: shk1 1s ease-in-out infinite normal;
-  }
+//   .sh1 {
+//     width: 0;
+//     height: 0;
+//     border-style: solid;
+//     border-width: 50px 50px 0 0;
+//     border-color: #464646 transparent transparent transparent;
+//     margin: 0 auto;
+//     animation: shk1 1s ease-in-out infinite normal;
+//   }
   
-  .sh2 {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 0 50px 50px;
-    border-color: transparent  transparent #ffffff transparent ;
-    margin: -50px auto 0;
-    animation: shk2 1s ease-in-out infinite alternate;
-  }
+//   .sh2 {
+//     width: 0;
+//     height: 0;
+//     border-style: solid;
+//     border-width: 0 0 50px 50px;
+//     border-color: transparent  transparent #ffffff transparent ;
+//     margin: -50px auto 0;
+//     animation: shk2 1s ease-in-out infinite alternate;
+//   }
   
-  /** animation starts here **/
-  @keyframes shk1 {
-    0% {
-      transform: rotate(-360deg);
-    }  
+//   @keyframes shk1 {
+//     0% {
+//       transform: rotate(-360deg);
+//     }  
     
-    100% {
-    }
-  }
+//     100% {
+//     }
+//   }
   
-  @keyframes shk2 {
-    0% {
-      transform: rotate(360deg);
-    }
-    100% {
-    }
-  }
+//   @keyframes shk2 {
+//     0% {
+//       transform: rotate(360deg);
+//     }
+//     100% {
+//     }
+//   }
   
 .lt {
     color: #fff;
@@ -3302,4 +3285,38 @@ header{position: static;}
     font-weight: 100;
     letter-spacing: 4px;
     font-size: 17px;
+}
+
+.cssloader{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 99999;
+    background: #000000e6;
+    align-items: center;
+    justify-content: center;
+}
+.main .container > div {
+    min-height: 77vh;
+}
+
+.dropdown-menu {
+    transform: translate3d(0px, 37px, 0px)!important;
+}
+
+.job_block{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 15px auto;
+    strong{
+        width: 200px;
+    }
+    span{
+        width: calc(100% - 200px);
+        text-align: left;
+        display: block;
+    }
 }

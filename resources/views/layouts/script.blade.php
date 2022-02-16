@@ -24,6 +24,29 @@
 <script>
 new WOW().init();
 
+(function($) {
+  $.fn.inputFilter = function(inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  };
+}(jQuery));
+
+$("#exp_month").inputFilter(function(value) {
+  return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 11); 
+});
+$("#experience_month").inputFilter(function(value) {
+  return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 11); 
+});
 
 //Open Modal for Employee and Employer in homepage with session
 	function init(){
@@ -710,7 +733,7 @@ $('.change_status').change(function(){
 			},
 		function(isConfirm){
 		  if (isConfirm) {
-			$("#siteLoader").fadeIn('fast');
+			$("#siteLoader").css('display','flex');
 			$.ajax({
 					type: "post",
 					data: { "_token": "{{ csrf_token() }}" , jobid:jobid},
@@ -719,7 +742,8 @@ $('.change_status').change(function(){
 						var result = JSON.parse(data.success);
 						//alert(result);
 						if(result == 1){
-							$("#siteLoader").fadeOut('fast');
+							//$("#siteLoader").fadeOut('fast');
+							$("#siteLoader").css('display','none');
 							swal({
 								title: "Invoice Sent to email ID",
 								text: "Invoice will be attached to this job.",

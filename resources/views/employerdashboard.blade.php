@@ -100,7 +100,7 @@ div#modal-dashboard-employer {
 															<i class="fa-solid fa-square-poll-vertical"></i> Budget
 														</span> 
 														<span class="rate_boxes">
-															<i class="fa-solid fa-circle-down"></i>															
+															<i class="fa-solid fa-coins"></i></i>															
 															{{$total_budget}}
 														</span>
 													</span>

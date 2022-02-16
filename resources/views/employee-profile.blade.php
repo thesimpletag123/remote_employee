@@ -63,7 +63,7 @@
 									</div>
 									<div class="col pr-0 pl-2 d-flex align-items-center">
 										<label class="mb-0 pr-2">Month:</label>
-										<input type="number" name="experience_month" id="experience_month" placeholder="Month" max="12" min="0" class="form-control" value="{{$emp_exp_month}}">
+										<input type="number" name="experience_month" id="experience_month" placeholder="Month" step="1" max="11" min="0" class="form-control" value="{{$emp_exp_month}}">
 									</div>
 								</div>
 								
@@ -97,7 +97,7 @@
 					$budget = explode(' ',$user->jobpost->project_budget);
 				?>
 				<div>
-					@if(isset($budget[0]) != null)
+					@if(isset($user->jobpost->project_budget) != null)
 						<div class="d-flex flex-row flex-wrap align-items-center  mb-3">
 							
 							<label class="mb-0 col" for="range-1a"><b>Project Budget:</b></label>
@@ -110,7 +110,7 @@
 								<select id="budget_currency" class="form-control" name ="budget_currency">
 									@if(isset($currencies))													
 										@foreach($currencies as $currency => $abbr)
-											@if ($budget[1])
+											@if(isset($budget[1]))
 												<option value="{{$currency}}" <?php if($budget[1] == $currency){echo "selected";}?>>{{$currency}}</option>
 											@else
 												<option value="{{$currency}}">{{$currency}}</option>

@@ -108,21 +108,7 @@ select#emp_skills {
 	
 	<hr>
 	
-		@foreach($getjobupdatebyid as $jobupdate)
-			<div class="mysidebardiv comment-show-hide-div" id="comment-{{$jobupdate->id}}">
-				<b>By: {{$jobupdate->user->name}}</b>
-				<div class="col-lg-12 custom_div">
-					<b><label>Headline :</label></b>{{$jobupdate->jobupdate_headline}}
-				</div>
-				<div class="col-lg-12 custom_div">
-					<b><label>My Work Description:</label></b> {{$jobupdate->jobupdate_description}}
-				</div>
-				<div class="col-lg-12 custom_div">
-					<b><label>Time worked:</label></b> {{$jobupdate->jobupdate_time}}
-				</div>			
-			</div>
-				
-		@endforeach
+		
 	</div>
 </div>
 							
@@ -208,35 +194,59 @@ select#emp_skills {
 										
 									</div>
 									<hr>
-									<div class="col-auto mother-commentdiv">
-										<?php
+									
+									<?php
 											$totaltime = 0;
 										?>
-										@if(isset($getjobupdatebyid))
-											<h5>Updates about this </h5>
+									<div class="col-auto">
+											<h5 class="pt-0">Updated Status</h5>
+										<div class="panelbox py-1 mb-3">
+											@if(isset($getjobupdatebyid))
 											@foreach($getjobupdatebyid as $update)
-												<div class="commentdiv" id="{{$update->id}}" onClick="show_comment_on_click(this.id)">
-													<div class="col-lg-8 custom_div">											
-														Headline : {{$update->jobupdate_headline}}
+											<div class="current-employees-box" id="{{$update->id}}">
+												<div class="current-header">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="dashboard-avatar">
+																<img src="http://127.0.0.1:8000/uploads/1645042355-PSFix_20171007_215025.jpeg" alt="image">
+															</div>
+															<div class="dashboard-avatar-data">
+																<h4>Employee</h4>													
+																<div>emp2@gmail.com</div>
+															</div>
+														</div>
 													</div>
-													<div class="col-lg-8 custom_div">
-														Time Worked : {{$update->jobupdate_time}} Hours
-													</div>
-													<?php 
-														
-														$totaltime = $totaltime + $update->jobupdate_time;
-													?>
 												</div>
+												<div class="current-details" style="display: none;">
+													<div class="row">
+														<div class="col-md">
+															<div class="job_block">
+																<strong><label>Headline:</label></strong> <span>{{$update->jobupdate_headline}}</span>
+															</div>
+															<div class="job_block">
+																<strong><label>My Work Description:</label></strong> <span>{{$update->jobupdate_description}}</span>
+															</div>
+															<div class="job_block">
+																<strong><label>Time worked:</label></strong> <span>{{$update->jobupdate_time}} Hours</span>
+															</div>
+															
+														</div>
+													</div>
+												</div>
+											</div>
+											<?php 		
+												$totaltime = $totaltime + $update->jobupdate_time;
+											?>
 											@endforeach
-										@endif
-											<br>
-												Total worked time : <?php echo $totaltime;?> Hours
+											@endif
 											
+										</div>
 									</div>
 								</form>
 								<br>
-								<div class="col-lg-8 custom_div">
+								<div class="d-flex justify-content-between flex-wrap align-items-center px-3">
 									<a href="{{route('employerdashboard')}}" class="btn btn-primary">Back to Dashboard</a>
+									<h5>Total worked time : <?php echo $totaltime;?> Hours</h5>
 								</div>
 							</div>
 							

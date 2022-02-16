@@ -32,7 +32,7 @@
 							Actions
 						</a>
 						@if($user->user_type == 'employer')
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 								
 								@if(Route::is('employerdashboard'))
 									<a class="dropdown-item" href="{{route('myprofile')}}">My Profile</a>
@@ -43,7 +43,7 @@
 								<a class="dropdown-item" href="#" onclick="open_jobpost_popup()">Post a new Job</a>
 							</div>
 						@else
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 								@if(Route::is('dashboard'))
 									<a class="dropdown-item" href="{{route('myprofile')}}">My Profile</a>
 								@else

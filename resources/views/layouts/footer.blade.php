@@ -42,9 +42,9 @@
         </div>
         <!-- End button-top -->
 		<div class="cssloader" id="siteLoader" style="display:none">
-            <div class="sh1"></div>
-            <div class="sh2"></div>
-            <h4 class="lt">Please wait...</h4>
+            {{-- <div class="sh1"></div>
+            <div class="sh2"></div> --}}
+            <img src="{{asset('assets/images/480px-Loader.gif') }}" />
         </div>
 	@include('layouts.script')
 	@yield('pagescript')
