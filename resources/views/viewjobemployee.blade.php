@@ -178,4 +178,4 @@ $('#job_min_rate_currency').on('change', function() {
 	}
 });
 </script>
-@endsection
+@endsection 
