@@ -177,5 +177,5 @@ $('#job_min_rate_currency').on('change', function() {
 		$('#job_budget_currency').val(job_min_rate_currency);
 	}
 });
-</script>
+</script> 
 @endsection 
