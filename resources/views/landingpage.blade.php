@@ -274,6 +274,8 @@
 		<script>
 			$('#submit_quick_project').prop('disabled', false);
 			$('.linkedin_login').hide();
+			$('.google-btn').hide();
+			$('a#social_linkindin_login_login').hide();
 		</script>			
 	@endif
 <script>
@@ -325,7 +327,7 @@ $("#emp_form2_next").click(function(){
 	//alert('test');
 
 	var emp_skills = $('#my_skills').val();
-	var emp_extra_skills = $('#emp_extra_skills').val();
+	//var emp_extra_skills = $('#emp_extra_skills').val();
 	var exp_yr = $('#exp_yr').val();
 	var exp_month = $('#exp_month').val();
 	
@@ -337,7 +339,7 @@ $("#emp_form2_next").click(function(){
 	}
 		fd.append('_token',CSRF_TOKEN);
 		fd.append('emp_skills',emp_skills);
-		fd.append('emp_extra_skills',emp_extra_skills);
+		//fd.append('emp_extra_skills',emp_extra_skills);
 		fd.append('exp_yr',exp_yr);
 		fd.append('exp_month',exp_month);
 	$.ajax({
@@ -352,11 +354,13 @@ $("#emp_form2_next").click(function(){
 						url:"{{url('sendmail')}}",
 						success: function(data){
 							//alert('done');
-							Swal.fire(
-								'OTP Sent!',
-								'OTP sent to your given mail ID, Please verify the OTP!',
-								'success'
-							)
+							swal({
+								title: "OTP Sent!",
+								text: "OTP sent to your given mail ID, Please verify the OTP!",
+								type: "success",
+								confirmButtonColor: '#3085d6',
+								confirmButtonText: 'ok!'
+							});
 						}
 					});
 

@@ -106,6 +106,8 @@ $("#experience_month").inputFilter(function(value) {
 					$('#submit_quick_project_disable').prop('disabled', false);
 					$('#modal-login').modal('hide');
 					$('.linkedin_login').hide();
+					$('.google-btn').hide();
+					$('a#social_linkindin_login_login').hide();
 					$('#social_linkindin_login_quick').hide();
 					$('#social_linkindin_login_full_n_part').hide();
 					$('.login_modal_pop_btn').hide();

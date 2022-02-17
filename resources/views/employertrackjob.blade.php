@@ -197,52 +197,65 @@ select#emp_skills {
 									
 									<?php
 											$totaltime = 0;
+											$i = 0;
 										?>
 									<div class="col-auto">
 											<h5 class="pt-0">Updated Status</h5>
 										<div class="panelbox py-1 mb-3">
-											@if(isset($getjobupdatebyid))
-											@foreach($getjobupdatebyid as $update)
-											<div class="current-employees-box" id="{{$update->id}}">
-												<div class="current-header">
-													<div class="row">
-														<div class="col-sm-12">
-															<div class="dashboard-avatar">
-																@if($update->user->user_image != null)
-																	<img src="{{$update->user->user_image}}" alt="image">
-																@else
-																	<img src="{{url('assets/images/avtar.png')}}" alt="image">
-																@endif
+											@if(isset($getjobupdatebyid))												
+												@foreach($getjobupdatebyid as $update)
+												<?php $i++; ?>
+												<div class="current-employees-box" id="{{$update->id}}">
+													<div class="current-header">
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="dashboard-avatar">
+																	@if($update->user->user_image != null)
+																		<img src="{{$update->user->user_image}}" alt="image">
+																	@else
+																		<img src="{{url('assets/images/avtar.png')}}" alt="image">
+																	@endif
+																</div>
+																<div class="dashboard-avatar-data">
+																	<h4>{{$update->user->name}}</h4>													
+																	<div>{{$update->user->email}}</div>
+																</div>
 															</div>
-															<div class="dashboard-avatar-data">
-																<h4>{{$update->user->name}}</h4>													
-																<div>{{$update->user->email}}</div>
+														</div>
+													</div>
+													<div class="current-details" style="display: none;">
+														<div class="row">
+															<div class="col-md">
+																<div class="job_block">
+																	<strong><label>Headline:</label></strong> <span>{{$update->jobupdate_headline}}</span>
+																</div>
+																<div class="job_block">
+																	<strong><label>My Work Description:</label></strong> <span>{{$update->jobupdate_description}}</span>
+																</div>
+																<div class="job_block">
+																	<strong><label>Time worked:</label></strong> <span>{{$update->jobupdate_time}} Hours</span>
+																</div>
+																
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="current-details" style="display: none;">
+												<?php 		
+													$totaltime = $totaltime + $update->jobupdate_time;
+												?>
+												@endforeach
+											@endif
+											@if($i == 0)
+											<div class="current-employees-box">
+												<div class="current-header">
 													<div class="row">
-														<div class="col-md">
-															<div class="job_block">
-																<strong><label>Headline:</label></strong> <span>{{$update->jobupdate_headline}}</span>
-															</div>
-															<div class="job_block">
-																<strong><label>My Work Description:</label></strong> <span>{{$update->jobupdate_description}}</span>
-															</div>
-															<div class="job_block">
-																<strong><label>Time worked:</label></strong> <span>{{$update->jobupdate_time}} Hours</span>
-															</div>
-															
+														<div class="col-sm-12">
+															<strong>No Update posted Yet</strong>
 														</div>
 													</div>
 												</div>
 											</div>
-											<?php 		
-												$totaltime = $totaltime + $update->jobupdate_time;
-											?>
-											@endforeach
-											@endif
+										@endif
 											
 										</div>
 									</div>

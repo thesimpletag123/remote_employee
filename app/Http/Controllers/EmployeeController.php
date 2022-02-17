@@ -140,7 +140,7 @@ class EmployeeController extends Controller
 		}
 		//var_dump($request->emp_skills);
 		//die();
-		if($request->emp_extra_skills){
+		if($request->emp_extra_skills != null){
 			$addnewjobskill = new Skills;
 			$newskill = $addnewjobskill->CheckAndUpdateSkill($request->emp_extra_skills);
 		}
@@ -151,12 +151,13 @@ class EmployeeController extends Controller
 		
 		Employee::where(['user_id' => $user->id])->update([
 													'skills' => $skills,
-													'extra_skills' => $request->emp_extra_skills,
+													'emp_assigned_to' => null,
 													'experience_in_month' => $experience_in_month,
 													'resume' => $filepath
 							]);
 		$ifexsists = GenerateOtp::where('user_id', '=', $user->id)->first();
-		$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		//$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		$str_result = '0123456789';
 		$otp = substr(str_shuffle($str_result), 0, 5);
 
 		if ($ifexsists === null) {

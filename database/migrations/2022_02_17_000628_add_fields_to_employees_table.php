@@ -14,7 +14,8 @@ class AddFieldsToEmployeesTable extends Migration
     public function up()
     {
         Schema::table('employees', function (Blueprint $table) {
-            $table->integer('emp_assigned_to')->nullable()->after('contact_no');
+            $table->dropColumn('extra_skills');
+			$table->integer('emp_assigned_to')->nullable()->after('skills');
         });
     }
 
