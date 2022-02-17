@@ -1495,9 +1495,16 @@ footer .container .row > div a i {
 .modal-employee-skills .modal-body .row > div form .form-group .custom-inpfile .repl-inpfile {
   position: absolute;
   width: 100%;
-  height: 100%;
-  text-align: center;
   cursor: pointer;
+  background: #007bff;
+  color: #fff;
+  text-align: center;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border-bottom: 1px solid #00438b;
 }
 
 .modal-employee-skills .modal-body .row > div form .form-group .custom-inpfile .repl-inpfile a {
@@ -1516,6 +1523,20 @@ footer .container .row > div a i {
   left: 0px;
   z-index: 3;
   cursor: pointer;
+}
+
+.modal-employee-skills .modal-body .row > div form .form-group .custom-inpfile input[type=file].fil {
+  opacity: 1;
+  bottom: -30px;
+  position: absolute;
+  height: 63px;
+  top: inherit;
+  color: #007bff;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  padding: 35px 91px 27px;
 }
 
 /* End modal-employee-skills */

@@ -332,7 +332,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                         <div class="form-group">
                                             <div class="custom-inpfile">
                                                 <div class="repl-inpfile">
-                                                    <input type="file" class="bluebtn" name="file" id="file">Upload Resume
+                                                    <input type="file" class="bluebtn fil" name="file" id="file">Upload Resume
 													
                                                 <?php if(isset($employeies['resume'])){
 													?>
@@ -396,11 +396,11 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col"><input class="otps" type="text" id="otp1"  maxlength="1" placeholder=""></div>
-                                                <div class="col"><input class="otps" type="text" id="otp2"  maxlength="1" placeholder=""></div>
-                                                <div class="col"><input class="otps" type="text" id="otp3"  maxlength="1" placeholder=""></div>
-                                                <div class="col"><input class="otps" type="text" id="otp4"  maxlength="1" placeholder=""></div>
-                                                <div class="col"><input class="otps" type="text" id="otp5"  maxlength="1" placeholder=""></div>
+                                                <div class="col"><input class="otps text-center" type="text" id="otp1"  maxlength="1" placeholder=""></div>
+                                                <div class="col"><input class="otps text-center" type="text" id="otp2"  maxlength="1" placeholder=""></div>
+                                                <div class="col"><input class="otps text-center" type="text" id="otp3"  maxlength="1" placeholder=""></div>
+                                                <div class="col"><input class="otps text-center" type="text" id="otp4"  maxlength="1" placeholder=""></div>
+                                                <div class="col"><input class="otps text-center" type="text" id="otp5"  maxlength="1" placeholder=""></div>
                                             </div>
 										</div>
                                         <div class="form-group">
