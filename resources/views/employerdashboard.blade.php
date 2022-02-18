@@ -27,7 +27,7 @@ div#modal-dashboard-employer {
 						<div class="col-lg-3 col-md-12 col-sm-12 col-12 px-0">
 							<ul class="employer-dashboard-menu">
 								<li class="tablinks active selected" data-class="part1" onclick="changetab(event, 'current_employee')">Current Jobs</li>
-								<li class="tablinks" data-class="part2" onclick="changetab(event, 'new_employee')">All Employees</li>
+								<li class="tablinks" data-class="part2" onclick="changetab(event, 'new_employee')">My Employees</li>
 								<li class="tablinks" data-class="part3" onclick="changetab(event, 'all_invoice')">View all Invoices</li>
 							</ul>
 							<!--<div class="uplogout"><a href="">Log out</a></div>-->
@@ -244,7 +244,8 @@ div#modal-dashboard-employer {
 							<div id='new_employee' class="complex part2" style="display: none;">
 								<h5>Employee List</h5>
 								
-								@if(isset($assignedemployee))
+								{{--@if(isset($assignedemployee))
+									<?php echo "aaaaaaaaaaa";?>
 									@foreach($assignedemployee as $employee)
 										@if($employee->posted_by_id == $user->id)
 										
@@ -321,6 +322,94 @@ div#modal-dashboard-employer {
 									</div>
 											@endif
 										@endif
+									@endforeach
+									
+								@else
+								
+									<div class="dashboard-avatar-data">
+										<h4>No jobs Available for you</h4>
+										<div><i class="fas fa-map-marker-alt"></i> <span>You are now loggedin as </span> - <span>{{$user->name}}</span></div>
+									</div>
+								
+								@endif --}}
+								
+								@if(isset($employeeavailable))
+									@foreach($employeeavailable as $employee)
+										<?php
+									//echo "1";
+											
+											
+											$newtime = strtotime($employee->user->created_at);
+											$date = date('M d, Y',$newtime);
+											
+											$exp_yr = floor($employee->experience_in_month/12);
+											$exp_month = $employee->experience_in_month%12;
+											$experience = $exp_yr. ' Year ' . $exp_month. ' Month';
+											//$experience = $date;
+										?>
+									<div class="current-employees-box">
+										<div class="current-header">
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="dashboard-avatar">
+														@if($employee->user->user_image == null)
+															<img src="{{url('assets/images/avtar.png')}}" alt="image">
+														@else
+															<img src="{{$employee->user->user_image}}" alt="image">
+														@endif
+														
+														<!--<span></span>-->
+													</div>
+													<div class="dashboard-avatar-data">
+														<div class="one-line">
+															<!--<h4>{{$employee->job_title}}</h4>&nbsp; assigned to : &nbsp;--><h4>{{$employee->user->name}}</h4>
+														</div>
+														
+														<div><i class="fa fa-tasks-alt"></i> @if($employee->contact_no != '')
+																								<strong>Phone:</strong>{{$employee->contact_no}} || 
+																							@endif 
+																								<strong>Email:</strong> {{$employee->user->email}}
+															
+															</div>
+
+													</div>
+												</div>
+												<div class="col-sm-2">
+													<div class="setticon">
+														<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="current-details">
+											<div class="row">
+												<div class="col-12 d-flex align-items-stretch gutter-1x">
+													<div class="abt-emp col-xs-12 col-md-5">
+														<span class="abt-head"><i class="fa-solid fa-user-astronaut"></i>{{$employee->user->name}} </span>
+														<p class="mb-2"><i class="fas fa-clock"></i> <span>With us Since : {{$date }}</span></p>
+														<p class="m-0"><i class="fas fa-align-justify"></i> Experience : {{$experience}}</p>
+													</div>
+													<div class="review col-xs-12 col-md-7">
+														<span class="review_head">Employee Skills</span>
+														<?php 
+															$skillsets = null;
+															if($employee->skills){
+																$skillsets = explode('-' , $employee->skills);
+															}
+														?>
+															<div class="items">
+															@foreach($skillsets as $skill)
+																<span>{{$skill}}</span>															
+															@endforeach
+															</div>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+											
+										
 									@endforeach
 									
 								@else

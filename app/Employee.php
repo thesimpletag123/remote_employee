@@ -44,7 +44,8 @@ class Employee extends Model
 	}
 	
 	public function AvailableEmployees(){
-		$result = Employee::where('is_verified',1)->get();
+		$user = Auth::user();
+		$result = Employee::where('is_verified',1)->where('emp_assigned_to', $user->id)->get();
 		//$result = User::where('user_type','employee')->get();
 		return $result;
 	}
