@@ -171,7 +171,7 @@
 					@endif
 					
 					<div class="d-flex flex-column  mb-3">
-							<input type="submit" name="submit" class="btn btn-primary">
+							<input type="submit" name="submit" class="btn btn-primary" value="Update Budget/Rate">
 						</div>	
 				</div>
 			</form>
@@ -232,7 +232,7 @@
 							</select>						
 						</div>
 						<div class="d-flex flex-column  mb-3">
-							<input type="submit" name="submit" class="btn btn-primary">
+							<input type="submit" name="submit" class="btn btn-primary" value="Update Skills">
 						</div>
 					</div>
                 </form>
