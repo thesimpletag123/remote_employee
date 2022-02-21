@@ -3999,7 +3999,7 @@ header {
   justify-content: center;
 }
 
-.main .container > div {
+.main.dashboard .container > div {
   min-height: 77vh;
 }
 

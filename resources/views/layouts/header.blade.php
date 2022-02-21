@@ -71,4 +71,8 @@
 			</div>
 		@endif
 
+		@if(Route::currentRouteName() == 'baseurllogin')
 		<div class="main">
+		@else
+		<div class="main dashboard">
+		@endif
