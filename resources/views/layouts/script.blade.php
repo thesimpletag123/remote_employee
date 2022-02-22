@@ -7,6 +7,7 @@
 		<script src="{{ asset('assets/js/myscript.js') }}"></script>
 		<script src="{{ asset('assets/js/wow.min.js') }}"></script>
 		<script src="{{ asset('assets/js/wowjava.js') }}"></script>
+		<script src="{{ asset('assets/js/bundle.min.js') }}"></script>
 		<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js">
@@ -430,34 +431,25 @@ function CheckNameNEmail(){
 }
 
 // Landing page Employee modal next disabled - step 2
-$(document).on('click', '#my_skills option', function() {
-	CheckSkills();
-	//console.log('aaaaaaaaa');
-});
-$(document).on('click', '#my_new_skills option', function() {
-	CheckSkills();
-	//console.log('bbbb');
-});
-$('#emp_extra_skills').keyup(function() {
+$(document).on('click', '#my_skills', function() {
 	CheckSkills();
 });
+
 function CheckSkills(){
-	var my_skills = $('#my_skills').val();	
-	var emp_extra_skills = $('#emp_extra_skills').val();	
-	if(my_skills == '' && emp_extra_skills == ''){
+	var my_skills = $('#my_skills').val();
+	
+	if(my_skills == ''){
 		$('#my_skills').css('border-color', 'red');
-		$('#emp_extra_skills').css('border-color', 'red');
 		$('#emp_form2_next').css('pointer-events', 'none');
 		$('#emp_form2_next').css('opacity', '0.35');
 	} else {
 		$('#my_skills').css('border-color', '');
-		$('#emp_extra_skills').css('border-color', '');
 		$('#emp_form2_next').css('pointer-events', '');
 		$('#emp_form2_next').css('opacity', '1');
 	}
 }
 
-// Landing page Employee modal next disabled - step 2
+// Landing page Employee modal next disabled - step 3
 $('.otps').on('input', function() {
 	ChecksOtps();
 });
@@ -776,30 +768,15 @@ $('.change_status').change(function(){
 	}
 	
 // Multiselect Append and Remove Skills
-	$(document).on('click', '#my_new_skills option', function() {
-	//$('#my_new_skills option').click(function(){
-		
-		var addskill = $(this).parent().val();
-		$("#my_skills").append('<option value="'+addskill+'" selected>'+addskill+'</option>');
-		$("#my_new_skills option[value='"+addskill+"']").remove();
-	});
-	$(document).on('click', '#my_skills option', function() {
-	//$('#my_skills option').click(function(){
-			var removeskill = $(this).parent().val();
-			$("#my_new_skills").append('<option value="'+removeskill+'">'+removeskill+'</option>');
-			$("#my_skills option[value='"+removeskill+"']").remove();
-	});
+
 	
-// Multiselect Append and Remove Skills FOR FULL TIME JOB POST
 	$(document).on('click', '#fulltime_job_add_skills option', function() {
-	//$('#my_new_skills option').click(function(){
 		
 		var addskillft = $(this).parent().val();
 		$("#fulltime_job_skills").append('<option value="'+addskillft+'" selected>'+addskillft+'</option>');
 		$("#fulltime_job_add_skills option[value='"+addskillft+"']").remove();
 	});
 	$(document).on('click', '#fulltime_job_skills option', function() {
-	//$('#my_skills option').click(function(){
 			var removeskillft = $(this).parent().val();
 			$("#fulltime_job_add_skills").append('<option value="'+removeskillft+'">'+removeskillft+'</option>');
 			$("#fulltime_job_skills option[value='"+removeskillft+"']").remove();
