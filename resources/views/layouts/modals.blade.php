@@ -259,7 +259,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
         
         <!-- starting modal-employee-skills -->
         <div class="modal fade modal-employee-skills" id="modal-employee-skills" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
@@ -275,128 +275,32 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                         <div class="d-flex flex-column  mb-3 toggle_skill_onoff_div">
                                             <div class="modal_skill_main">
                                                 <div class="modal_skill">
-                                                    <strong>My Skills</strong>
 													<span id="my_skills" name="my_skills[]"></span>
 													
-<style>
-.select-wrapper {
-  margin: auto;
-  max-width: 600px;
-  width: calc(100% - 40px);
-}
-.select-pure__select {
-  align-items: center;
-  background: #f9f9f8;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  box-sizing: border-box;
-  color: #363b3e;
-  cursor: pointer;
-  display: flex;
-  font-size: 16px;
-  font-weight: 500;
-  justify-content: left;
-  min-height: 44px;
-  padding: 5px 10px;
-  position: relative;
-  transition: 0.2s;
-  width: 100%;
-}
-.select-pure__options {
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  box-sizing: border-box;
-  color: #363b3e;
-  display: none;
-  left: 0;
-  max-height: 221px;
-  overflow-y: scroll;
-  position: absolute;
-  top: 50px;
-  width: 100%;
-  z-index: 5;
-}
-.select-pure__select--opened .select-pure__options {
-  display: block;
-}
-.select-pure__option {
-  background: #fff;
-  border-bottom: 1px solid #e4e4e4;
-  box-sizing: border-box;
-  height: 44px;
-  line-height: 25px;
-  padding: 10px;
-}
-.select-pure__option--selected {
-  color: #e4e4e4;
-  cursor: initial;
-  pointer-events: none;
-}
-.select-pure__option--hidden {
-  display: none;
-}
-.select-pure__selected-label {
-  background: #5e6264;
-  border-radius: 4px;
-  color: #fff;
-  cursor: initial;
-  display: inline-block;
-  margin: 5px 10px 5px 0;
-  padding: 3px 7px;
-}
-.select-pure__selected-label:last-of-type {
-  margin-right: 0;
-}
-.select-pure__selected-label i {
-  cursor: pointer;
-  display: inline-block;
-  margin-left: 7px;
-}
-.select-pure__selected-label i:hover {
-  color: #e4e4e4;
-}
-.select-pure__autocomplete {
-  background: #f9f9f8;
-  border-bottom: 1px solid #e4e4e4;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  box-sizing: border-box;
-  font-size: 16px;
-  outline: none;
-  padding: 10px;
-  width: 100%;
-}
-													</style>
-													
-													
-												
-<script>
-var allSkills = new Array();
-var required_skills_array = new Array();
-<?php
-$required_skills_array = [];
-	foreach($skills as $skill){	
-?>
-	allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
-<?php
-	}
-	foreach($required_skills_array as $rskill){	
-?>
-	required_skills_array.push({label:'<?php echo $rskill; ?>',value:'<?php echo $rskill; ?>'});
-<?php
-	}
-?>
-var instance = new SelectPure("#my_skills", {
-    options: allSkills,
-    multiple: true ,	
-    //value: required_skills_array,
-	icon: "fa fa-times",
-	onChange: value => { console.log(value); }
-});
-</script>
+                                                    <script>
+                                                        var allSkills = new Array();
+                                                        var required_skills_array = new Array();
+                                                        <?php
+                                                        $required_skills_array = [];
+                                                        foreach($skills as $skill){	
+                                                        ?>
+                                                        allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
+                                                        <?php
+                                                        }
+                                                        foreach($required_skills_array as $rskill){	
+                                                        ?>
+                                                        required_skills_array.push({label:'<?php echo $rskill; ?>',value:'<?php echo $rskill; ?>'});
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        var instance = new SelectPure("#my_skills", {
+                                                        options: allSkills,
+                                                        multiple: true ,	
+                                                        //value: required_skills_array,
+                                                        icon: "fa fa-times",
+                                                        onChange: value => { console.log(value); }
+                                                        });
+                                                    </script>
 													
                                                    
                                                 </div>

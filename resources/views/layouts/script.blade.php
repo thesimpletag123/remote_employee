@@ -781,6 +781,7 @@ $('.change_status').change(function(){
 			$("#fulltime_job_add_skills").append('<option value="'+removeskillft+'">'+removeskillft+'</option>');
 			$("#fulltime_job_skills option[value='"+removeskillft+"']").remove();
 	});
+	$(".select-pure__select").addClass("select-pure__select--opened");
 </script>
         
         <!-- End scripts -->
