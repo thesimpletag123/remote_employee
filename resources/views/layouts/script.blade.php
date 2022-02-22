@@ -436,10 +436,11 @@ $(document).on('click', '#my_skills', function() {
 });
 
 function CheckSkills(){
-	var my_skills = $('#my_skills').val();
+	var my_skills = instance.value();
+	
 	
 	if(my_skills == ''){
-		$('#my_skills').css('border-color', 'red');
+		$('#my_skills').css('border', '1px solid red');
 		$('#emp_form2_next').css('pointer-events', 'none');
 		$('#emp_form2_next').css('opacity', '0.35');
 	} else {

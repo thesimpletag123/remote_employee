@@ -327,7 +327,7 @@ $("#emp_form2_next").click(function(){
 	//alert('test');
 
 	var emp_skills = instance.value();
-	alert(emp_skills);
+	//alert(emp_skills);
 	//var emp_extra_skills = $('#emp_extra_skills').val();
 	var exp_yr = $('#exp_yr').val();
 	var exp_month = $('#exp_month').val();
