@@ -9,7 +9,7 @@
 @endsection
 @section('content')
 <!-- starting modal-profile-setting -->
-
+<script src="{{ asset('assets/js/bundle.min.js') }}"></script>
 
 <div class="modal fade" id="employee-profile-settings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-md">
@@ -201,35 +201,38 @@
 								$skill = null;												
 								$required_skills = $user->employee->skills;
 								$required_skills_array = [];
-								$required_skills_array = explode('-' , $required_skills);								
+								$required_skills_array = explode('-' , $required_skills);
+//dd($required_skills_array);								
 							?>
 								<strong>Current Skills</strong>
 								<hr/>
-							<select id="my_skills" name="my_skills[]" style="width: 100%;" multiple>
-								@if(isset($skills))
-									@foreach($skills as $value)
-										@if(in_array($value , $required_skills_array))
-											<option class="selected" value="{{$value}}" selected>{{$value}} </option>
-										@endif
-									@endforeach
-								@else
-								<option>No Skill</option>
-								@endif
-							</select>
-							
-							<strong>More Skills Available</strong>
-							<hr/>
-							<select id="my_new_skills" name="my_new_skills[]" style="width: 100%;" multiple>
-								@if(isset($skills))
-									@foreach($skills as $value)
-										@if(!in_array($value , $required_skills_array))
-											<option class="unselected" value="{{$value}}">{{$value}}</option>
-										@endif
-									@endforeach
-								@else
-								<option>No Skill</option>
-								@endif
-							</select>						
+								<span id="employee_skills" name="employee_skills[]"></span>
+													
+                                                    <script>
+                                                        var allSkills = new Array();
+                                                        var required_skills_push = new Array();
+                                                        <?php                                                        
+                                                        foreach($skills as $skill){                                                        
+														?>											
+															allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
+                                                        <?php
+                                                        }
+                                                        foreach($required_skills_array as $rskill){	
+                                                        ?>
+                                                        required_skills_push.push('<?php echo $rskill; ?>');
+                                                        <?php
+                                                        }
+                                                        ?>
+														//alert(required_skills_push);
+                                                        var instance = new SelectPure("#employee_skills", {
+                                                        options: allSkills,
+                                                        multiple: true ,	
+                                                        value: required_skills_push,
+                                                        icon: "fa fa-times",
+                                                        onChange: value => { console.log(value); }
+                                                        });
+                                                    </script>
+													
 						</div>
 						<div class="d-flex flex-column  mb-3">
 							<input type="submit" name="submit" class="btn btn-primary" value="Update Skills">

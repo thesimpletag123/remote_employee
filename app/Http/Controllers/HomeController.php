@@ -353,6 +353,7 @@ class HomeController extends Controller
 	}
 	
 	public function employeskillupdate(Request $request){
+		dd($request);
 		$user_id = $request->hidden_uid;
 		$user = User::find($user_id);
 		$allskills = $request->my_skills;

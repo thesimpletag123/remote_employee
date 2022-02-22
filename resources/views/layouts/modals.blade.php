@@ -707,34 +707,36 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                             @if(Route::is('employerdashboard'))
                                                 <?php $skills = $allskills; ?>
                                             @endif
-                                                <div class="modal_skill">
-                                                    <strong>Required Skills</strong>
-                                                    <select id="fulltime_job_skills" name="fulltime_job_skills[]" style="width: 100%;" multiple>
-                                                        @if(isset($skills))
-                                                            @foreach($skills as $value)
-                                                                @if(in_array($value , $session_skill))
-                                                                    <option class="selected" value="{{$value}}" selected>{{$value}} </option>
-                                                                @endif
-                                                            @endforeach
-                                                        @else
-                                                        <option>No Skill</option>
-                                                        @endif
-                                                    </select>
-                                                </div>
-                                                <div class="modal_skill">
-                                                    <strong>Skills Available</strong>
-                                                    <select id="fulltime_job_add_skills" name="my_new_skills[]" style="width: 100%;" multiple>
-                                                        @if(isset($skills))
-                                                            @foreach($skills as $value)
-                                                                @if(!in_array($value , $session_skill))
-                                                                    <option class="unselected" value="{{$value}}">{{$value}}</option>
-                                                                @endif
-                                                            @endforeach
-                                                        @else
-                                                        <option>No Skill</option>
-                                                        @endif
-                                                    </select>
-                                                </div>	
+
+<span id="fulltime_job_skills" name="fulltime_job_skills[]"></span>
+													
+<script>
+	var allSkills = new Array();
+	var selected_skills = new Array();
+	<?php
+	$selected_skills = [];
+	foreach($skills as $skill){	
+		if(in_array($skill , $session_skill)){
+	?>
+	selected_skills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
+		<?php }?>
+	allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
+	<?php
+	}
+	foreach($required_skills_array as $rskill){	
+	?>
+	required_skills_array.push({label:'<?php echo $rskill; ?>',value:'<?php echo $rskill; ?>'});
+	<?php
+	}
+	?>
+	var instance = new SelectPure("#fulltime_job_skills", {
+	options: allSkills,
+	multiple: true ,	
+	value: selected_skills,
+	icon: "fa fa-times",
+	onChange: value => { console.log(value); }
+	});
+</script>									
                                                 </div>				
                                             </div>
                                         <div>
