@@ -168,7 +168,7 @@ class JobPostController extends Controller
 	
 
 	public function submit_full_project(Request $request)
-	{	
+	{	$fulltime_job_skills = str_replace(',','-',$request->fulltime_job_skills);
 		$user = Auth::user();	
 		$updateuser = User::where(['id' => $user->id])->update(['is_verified' => true , 'user_type' => 'employer']);
 		$updateemp = Employee::where(['user_id' => $user->id])->update(['is_verified' => true]);
@@ -179,11 +179,12 @@ class JobPostController extends Controller
 			$newskill = $addnewjobskill->CheckAndUpdateSkill($request->fulltime_job_extra_skill);
 		}
 		
-		if(is_array($request->fulltime_job_skills)){
+		/*if(is_array($request->fulltime_job_skills)){
 			$fulltime_job_skills = implode('-', $request->fulltime_job_skills);
 		} else {
 			$fulltime_job_skills = $request->fulltime_job_skills;
-		}
+		}*/
+		$fulltime_job_skills = str_replace(',','-',$request->fulltime_job_skills);
 		$postjob = new JobPost;
 		
 		$postjob->job_title = $request->fulltime_job_headline;
@@ -337,11 +338,9 @@ class JobPostController extends Controller
 		
 		$job_title = $request->get('job_title');
 		$job_description = $request->get('job_desc');
-		if($request->get('my_skills') == ''){
-			$emp_skills = 'php';
-		} else {
-			$emp_skills = implode('-' , $request->get('my_skills'));
-		}
+		
+			$emp_skills = str_replace(',','-',$request->get('hidden_req_skills'));
+		
 		$job_extra_skills = $request->get('job_extra_skills');
 			if($job_extra_skills){
 				$emp_skills = $emp_skills. '-' . $job_extra_skills;

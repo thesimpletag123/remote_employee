@@ -332,11 +332,11 @@ div#modal-dashboard-employer {
 									</div>
 								
 								@endif --}}
-								
+								<?php $i = 0; ?>
 								@if(isset($employeeavailable))
 									@foreach($employeeavailable as $employee)
 										<?php
-									//echo "1";
+									$i++;
 											
 											
 											$newtime = strtotime($employee->user->created_at);
@@ -412,13 +412,19 @@ div#modal-dashboard-employer {
 										
 									@endforeach
 									
-								@else
-								
-									<div class="dashboard-avatar-data">
-										<h4>No jobs Available for you</h4>
-										<div><i class="fas fa-map-marker-alt"></i> <span>You are now loggedin as </span> - <span>{{$user->name}}</span></div>
-									</div>
-								
+								@endif
+								@if($i == 0)
+									<div class="current-employees-box">
+										<div class="current-header">
+											<div class="row">
+												<div class="col-sm-7">			
+													<div class="dashboard-avatar-data">
+														<Strong>No Employee alloted to you. Please Contact Administrator.</Strong>
+													</div>				
+												</div>
+											</div>
+										</div>
+									</div>							
 								@endif
 							</div>
 							

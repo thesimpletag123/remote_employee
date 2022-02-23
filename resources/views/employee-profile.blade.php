@@ -224,7 +224,7 @@
                                                         }
                                                         ?>
 														//alert(required_skills_push);
-                                                        var instance = new SelectPure("#employee_skills", {
+                                                        var employeeinstance = new SelectPure("#employee_skills", {
                                                         options: allSkills,
                                                         multiple: true ,	
                                                         value: required_skills_push,
@@ -232,10 +232,11 @@
                                                         onChange: value => { console.log(value); }
                                                         });
                                                     </script>
+								<input type="hidden" name="hidden_skills" id ="hidden_skills">
 													
 						</div>
 						<div class="d-flex flex-column  mb-3">
-							<input type="submit" name="submit" class="btn btn-primary" value="Update Skills">
+							<input type="button" id="submit_skills" class="btn btn-primary" value="Update Skills">
 						</div>
 					</div>
                 </form>
@@ -482,6 +483,17 @@
 @section('pagescript')
 <script>
 
+
+$(document).on('click', '#submit_skills', function() {
+	event.preventDefault();
+    var my_skills = employeeinstance.value();
+	
+	//console.log(my_skills);
+    $('#hidden_skills').val(my_skills);
+	//console.log($('#hidden_skills').val());
+    $( "#employeskillupdate" ).submit();
+    return false;
+});
 
 $('#maxrate_currency').on('change', function() {
 	var maxrate_currency = $('#maxrate_currency').val();

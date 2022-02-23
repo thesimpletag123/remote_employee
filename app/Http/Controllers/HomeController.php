@@ -353,12 +353,13 @@ class HomeController extends Controller
 	}
 	
 	public function employeskillupdate(Request $request){
-		dd($request);
+		//dd($request);
 		$user_id = $request->hidden_uid;
 		$user = User::find($user_id);
-		$allskills = $request->my_skills;
+		$allskills = $request->hidden_skills;
 		if($user->skills != $allskills){
-			$skills = implode('-',$allskills);
+			//$skills = implode('-',$allskills);
+			$skills = str_replace(',','-',$allskills);
 		} else {$skills = $allskills;}
 		//var_dump($allskills);
 		//die();

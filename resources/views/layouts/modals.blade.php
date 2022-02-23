@@ -712,31 +712,30 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 													
 <script>
 	var allSkills = new Array();
-	var selected_skills = new Array();
+	var session_skill = new Array();
 	<?php
 	$selected_skills = [];
 	foreach($skills as $skill){	
-		if(in_array($skill , $session_skill)){
+		
 	?>
-	selected_skills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
-		<?php }?>
 	allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
 	<?php
 	}
-	foreach($required_skills_array as $rskill){	
+	foreach($session_skill as $rskill){	
 	?>
-	required_skills_array.push({label:'<?php echo $rskill; ?>',value:'<?php echo $rskill; ?>'});
+	session_skill.push({label:'<?php echo $rskill; ?>',value:'<?php echo $rskill; ?>'});
 	<?php
 	}
 	?>
-	var instance = new SelectPure("#fulltime_job_skills", {
+	var fulltime_skills = new SelectPure("#fulltime_job_skills", {
 	options: allSkills,
 	multiple: true ,	
-	value: selected_skills,
+	value: session_skill,
 	icon: "fa fa-times",
 	onChange: value => { console.log(value); }
 	});
-</script>									
+</script>
+<input type ="hidden" name="hidden_fulltime_job_skills" id="hidden_fulltime_job_skills">
                                                 </div>				
                                             </div>
                                         <div>

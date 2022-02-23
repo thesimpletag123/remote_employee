@@ -177,7 +177,7 @@ $("#experience_month").inputFilter(function(value) {
 // Submit FullProject for Employer
 	$("#submit_full_project_disable").click(function(){
 			var fulltime_job_headline = $('#fulltime_job_headline').val();
-			var fulltime_job_skills = $('#fulltime_job_skills').val();
+			var fulltime_job_skills = $('#hidden_fulltime_job_skills').val();
 			var fulltime_job_extra_skill = $('#fulltime_job_extra_skill').val();
 			var fulltime_job_min = $('#fulltime_job_min').val();
 			var fulltime_job_max = $('#fulltime_job_max').val();
@@ -498,7 +498,7 @@ var i = 1;
 		$('.swiper-button-next').css('pointer-events', '');
 		$('.swiper-button-next').css('opacity', '1');
 	});
-	$(document).on('click', '#fulltime_job_skills option', function() {
+	$(document).on('click', '#fulltime_job_skills', function() {
 		CheckSkillEmployerPost()
 	});
 	$(document).on('click', '#fulltime_job_add_skills option', function() {
@@ -510,12 +510,13 @@ var i = 1;
 	});
 	
 	function CheckSkillEmployerPost(){
-		var fulltime_job_skills = $('#fulltime_job_skills').val();
-		var fulltime_job_extra_skill = $( "#fulltime_job_extra_skill" ).val();
-		if(fulltime_job_skills != '' || fulltime_job_extra_skill != ''){
+		checkSkill = fulltime_skills.value();
+		if(checkSkill != ''){
 			$('#fulltime_job_headline').css('border-color', '');
 			$('.swiper-button-next').css('pointer-events', '');
 			$('.swiper-button-next').css('opacity', '1');
+			$('#hidden_fulltime_job_skills').val(checkSkill);
+			
 		} else {
 			$('#fulltime_job_headline').css('border-color', 'red');
 			$('.swiper-button-next').css('pointer-events', 'none');

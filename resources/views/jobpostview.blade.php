@@ -3,6 +3,7 @@
 
 @section('content')
 <!-- starting modal-profile-setting -->
+<script src="{{ asset('assets/js/bundle.min.js') }}"></script>
 <div class="modal fade" id="job_view_mod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-md">
 		<div class="modal-content">
@@ -169,33 +170,34 @@
 													$required_skills_array = [];
 													$required_skills_array = explode('-' , $required_skills);
 												?>
-													<strong>Required Skills</strong>
-													<hr/>
-													<select id="my_skills" class="skillCheckSelect" name="my_skills[]"  multiple>
-														@if(isset($skills))
-															@foreach($skills as $value)
-																@if(in_array($value , $required_skills_array))
-																	<option class="selected" value="{{$value}}" selected>{{$value}} </option>
-																@endif
-															@endforeach
-														@else
-														<option>No Skill</option>
-														@endif
-													</select>
+													<span id="req_skills" name="req_skills[]"></span>
 													
-													<strong class="mt-4">Skills Available</strong>
-													<hr/>
-													<select id="my_new_skills" class="skillCheckSelect" name="my_new_skills[]"  multiple>
-														@if(isset($skills))
-															@foreach($skills as $value)
-																@if(!in_array($value , $required_skills_array))
-																	<option class="unselected" value="{{$value}}">{{$value}}</option>
-																@endif
-															@endforeach
-														@else
-														<option>No Skill</option>
-														@endif
-													</select>						
+                                                    <script>
+                                                        var allSkills = new Array();
+                                                        var required_skills_push = new Array();
+                                                        <?php                                                        
+                                                        foreach($skills as $skill){                                                        
+														?>											
+															allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
+                                                        <?php
+                                                        }
+                                                        foreach($required_skills_array as $rskill){	
+                                                        ?>
+                                                        required_skills_push.push('<?php echo $rskill; ?>');
+                                                        <?php
+                                                        }
+                                                        ?>
+														//alert(required_skills_push);
+                                                        var jobeditinstance = new SelectPure("#req_skills", {
+                                                        options: allSkills,
+                                                        multiple: true ,	
+                                                        value: required_skills_push,
+                                                        icon: "fa fa-times",
+                                                        onChange: value => { console.log(value); }
+                                                        });
+                                                    </script>
+											<input type="hidden" name="hidden_req_skills" id ="hidden_req_skills">
+																		
 												</div>
 										</div>
 										<div class="col-lg-12 custom_div">
@@ -302,7 +304,7 @@
 										</div>
 										
 										<div class="col-lg-12 custom_div">
-											<button type="submit" class="btn btn-primary">Update this Job</button>
+											<button type="submit" class="btn btn-primary" id="update_job">Update this Job</button>
 											<button id="{{$getjobbyid->id}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Delete this</button>
 										</div>
 									</div>
@@ -318,6 +320,14 @@
 
 @section('pagescript')
 <script>
+$(document).on('click', '#update_job', function() {
+    event.preventDefault();
+	var req_skills = jobeditinstance.value();
+	$('#hidden_req_skills').val(req_skills);
+    $( "#editjobrequest" ).submit();
+    return false;
+});
+
 $('#job_max_rate_currency').on('change', function() {
 	var job_max_rate_currency = $('#job_max_rate_currency').val();
 	var job_min_rate_currency = $('#job_min_rate_currency').val();
