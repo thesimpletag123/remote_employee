@@ -45,10 +45,10 @@ $(function(){
     
     //parttime popups
     $(".find-part-time-employee,.find-full-time-employee").click(function(){
-        $(".parttime").css({"top":"0px"});
+        $(".parttime").css('visibility','visible');
     });
     $(".parttime-slider-closebtn, .parttime-verifay").click(function(){
-        $(".parttime").css({"top":"-200vh"});
+        $(".parttime").css('visibility','hidden');
     });  
     
     

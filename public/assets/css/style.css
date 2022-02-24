@@ -2406,12 +2406,18 @@ footer .container .row > div a i {
 /* starting parttime */
 
 .parttime {
+  visibility: hidden;
   background: url(/images/parttime-bg.png?cfe67d0842fdf38d6c49a9f7268b162e);
-  height: 100vh;
-  position: absolute;
-  top: -200vh;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
   left: 0;
+  bottom: 0;
   z-index: 99999;
+  overflow-y: auto;
   transition: all 0.35s ease-in-out;
 }
 
@@ -2424,17 +2430,16 @@ footer .container .row > div a i {
 }
 
 .parttime .container {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .parttime .container .parttime-slider {
   background-color: #ffffff;
   width: 80%;
   margin: auto;
-  margin-bottom: 50px;
   height: 610px;
   position: relative;
 }

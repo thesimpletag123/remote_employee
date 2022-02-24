@@ -20,7 +20,7 @@
         <header>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg col-sm-3">
+                    <div class="col-lg col-sm-3 d-flex justify-content-center justify-content-sm-start">
                         <a href="{{url('/')}}"><img src="{{ asset('assets/images/main-logo.png') }}" alt="logo"></a>
                     </div>
                     <div class="col-lg col-sm-9">
