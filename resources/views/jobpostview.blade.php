@@ -188,13 +188,13 @@
                                                         }
                                                         ?>
 														//alert(required_skills_push);
-                                                        var jobeditinstance = new SelectPure("#req_skills", {
-                                                        options: allSkills,
-                                                        multiple: true ,	
-                                                        value: required_skills_push,
-                                                        icon: "fa fa-times",
-                                                        onChange: value => { console.log(value); }
-                                                        });
+															var jobeditinstance = new SelectPure("#req_skills", {
+															options: allSkills,
+															multiple: true ,	
+															value: required_skills_push,
+															icon: "fa fa-times",
+															onChange: value => { console.log(value); }
+															});
                                                     </script>
 											<input type="hidden" name="hidden_req_skills" id ="hidden_req_skills">
 																		

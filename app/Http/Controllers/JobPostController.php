@@ -50,7 +50,7 @@ class JobPostController extends Controller
 		
 		$quick_job_post = new JobPost;
 		$quick_job_post->job_title = "Quick Job Post by - ".$user->name;
-		$quick_job_post->required_skills = "Not Maintioned";
+		$quick_job_post->required_skills = "Not Mentioned";
 		$quick_job_post->hourly_rate_min = $quick_min_budget .' '. $quick_currency;
 		$quick_job_post->hourly_rate_max = $quick_max_budget .' '. $quick_currency;
 		$quick_job_post->project_description = $quick_project_desc;
