@@ -175,7 +175,8 @@
                                                     <script>
                                                         var allSkills = new Array();
                                                         var required_skills_push = new Array();
-                                                        <?php                                                        
+                                                        <?php
+														$required_skills_array = [];
                                                         foreach($skills as $skill){                                                        
 														?>											
 															allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
@@ -187,14 +188,15 @@
                                                         <?php
                                                         }
                                                         ?>
-														//alert(required_skills_push);
-															var jobeditinstance = new SelectPure("#req_skills", {
-															options: allSkills,
-															multiple: true ,	
-															value: required_skills_push,
-															icon: "fa fa-times",
-															onChange: value => { console.log(value); }
-															});
+														
+                                                        var jobeditinstance = new SelectPure("#req_skills", {
+                                                        options: allSkills,
+                                                        multiple: true ,	
+                                                        value: required_skills_push,
+                                                        icon: "fa fa-times",
+                                                        onChange: value => { console.log(value); }
+                                                        });
+														
                                                     </script>
 											<input type="hidden" name="hidden_req_skills" id ="hidden_req_skills">
 																		
