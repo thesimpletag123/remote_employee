@@ -926,7 +926,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 													<br>
 													<br>
 													<div class="form-group" >
-														<input type="button" id="submit_full_project_disable" value="submit" class="btn btn-primary" style="width:100%;" disabled>
+														<input type="button" id="submit_full_project_disable" value="Submit" class="btn btn-primary" style="width:100%;" disabled>
 													</div>
 												@endif
                                             </form>

@@ -1959,14 +1959,24 @@ footer{
 
 /* starting parttime */
 .parttime{
+    visibility:hidden;
     background: url(../images/parttime-bg.png);
     @extend %cover-background;
-    height: 100vh;
-    position: absolute;
-    top: -200vh;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
     left: 0;
+    bottom: 0;
     z-index: 99999;
+    overflow-y: auto;
     transition: $main-transition;
+    @media (max-width:991px){
+        height: 100%;
+        top: -200%;
+    }
     @media (max-width: 992px){
         -webkit-background-size: cover !important;
         -moz-background-size: cover !important;
@@ -1976,15 +1986,15 @@ footer{
         height: auto;
     }
     .container{
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        //position: relative;
+        height: 100%;
         .parttime-slider{
             background-color: $whcolor;
             width: 80%;
             margin: auto;
-            margin-bottom: 50px;
             height: 610px;
             position: relative;
             @media (max-width: 769px){
