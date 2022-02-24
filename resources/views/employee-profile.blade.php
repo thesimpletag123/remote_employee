@@ -204,8 +204,6 @@
 								$required_skills_array = explode('-' , $required_skills);
 //dd($required_skills_array);								
 							?>
-								<strong>Current Skills</strong>
-								<hr/>
 								<span id="employee_skills" name="employee_skills[]"></span>
 													
                                                     <script>

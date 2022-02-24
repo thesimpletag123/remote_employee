@@ -3428,6 +3428,7 @@ footer .container .row > div a i {
   margin-block: 3px;
   width: 100%;
   overflow: auto;
+  display: block;
 }
 
 #go_to_register_popup {
@@ -3918,6 +3919,17 @@ header {
   border-radius: 8px;
   padding: 10px 10px 10px;
   background: #fff;
+  overflow: hidden;
+  height: 265px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.modal_skill_main::-webkit-scrollbar {
+  display: none;
 }
 
 .modal_skill_main .modal_skill strong {

@@ -2778,6 +2778,7 @@ footer{
     margin-block: 3px;
 	width: 100%;
 	overflow: auto;
+    display: block;
 }
 
 #go_to_register_popup {
@@ -3196,6 +3197,14 @@ header{position: static;}
 
 .modal_skill_main{
     @include panelWrap();
+    overflow: hidden;
+    height: 265px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar{
+        display: none;
+    }
     .modal_skill{
         strong{
             text-align: left;
