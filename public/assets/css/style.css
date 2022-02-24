@@ -2421,13 +2421,6 @@ footer .container .row > div a i {
   transition: all 0.35s ease-in-out;
 }
 
-@media (max-width: 991px) {
-  .parttime {
-    height: 100%;
-    top: -200%;
-  }
-}
-
 @media (max-width: 992px) {
   .parttime {
     background-size: cover !important;
