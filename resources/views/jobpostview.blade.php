@@ -168,7 +168,10 @@
 													$skill = null;												
 													$required_skills = $getjobbyid->required_skills;
 													$required_skills_array = [];
-													$required_skills_array = explode('-' , $required_skills);
+													
+													if($required_skills != ''){
+														$required_skills_array = explode('-' , $required_skills);
+													}
 												?>
 													<span id="req_skills" name="req_skills[]"></span>
 													
@@ -176,7 +179,7 @@
                                                         var allSkills = new Array();
                                                         var required_skills_push = new Array();
                                                         <?php
-														$required_skills_array = [];
+														
                                                         foreach($skills as $skill){                                                        
 														?>											
 															allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
@@ -188,7 +191,7 @@
                                                         <?php
                                                         }
                                                         ?>
-														
+														//console.log(required_skills_push);
                                                         var jobeditinstance = new SelectPure("#req_skills", {
                                                         options: allSkills,
                                                         multiple: true ,	

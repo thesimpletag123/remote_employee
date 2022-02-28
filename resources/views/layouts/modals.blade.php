@@ -74,17 +74,17 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                         <div class="row">
                                             <div class="col">
 											@if (session('quick_min_budget'))
-												<input type="number" placeholder="$ Min " name="quick_min_budget" id="quick_min_budget" value="{{session('quick_min_budget')}}" required>
+												<input type="number" placeholder="Min " name="quick_min_budget" id="quick_min_budget" value="{{session('quick_min_budget')}}" required>
 											@else
-												<input type="number" placeholder="$ Min " name="quick_min_budget" id="quick_min_budget" required>
+												<input type="number" placeholder="Min " name="quick_min_budget" id="quick_min_budget" required>
 											@endif
 											</div>
 											
                                             <div class="col">
 												@if (session('quick_max_budget'))
-													<input type="number" placeholder="$ Max" name="quick_max_budget" id="quick_max_budget" value="{{session('quick_max_budget')}}" required>
+													<input type="number" placeholder="Max" name="quick_max_budget" id="quick_max_budget" value="{{session('quick_max_budget')}}" required>
 												@else
-													<input type="number" placeholder="$ Max" name="quick_max_budget" id="quick_max_budget" required>
+													<input type="number" placeholder="Max" name="quick_max_budget" id="quick_max_budget" required>
 												@endif
 											</div>
                                             <div class="col">
@@ -785,17 +785,17 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                                         <div class="row">
                                                             <div class="col">
 																@if (session('fulltime_job_min'))
-																	<input type="number" id="fulltime_job_min" placeholder="$ Min " value="{{session('fulltime_job_min')}}">
+																	<input type="number" id="fulltime_job_min" placeholder="Min " value="{{session('fulltime_job_min')}}">
 																@else
-																	<input type="number" id="fulltime_job_min" placeholder="$ Min ">
+																	<input type="number" id="fulltime_job_min" placeholder="Min ">
 																@endif
 																
 															</div>
                                                             <div class="col">
 																@if (session('fulltime_job_max'))
-																	<input type="number" id="fulltime_job_max" placeholder="$ Max" value="{{session('fulltime_job_max')}}">
+																	<input type="number" id="fulltime_job_max" placeholder="Max" value="{{session('fulltime_job_max')}}">
 																@else
-																	<input type="number" id="fulltime_job_max" placeholder="$ Max">
+																	<input type="number" id="fulltime_job_max" placeholder="Max">
 																@endif
 																
 															</div>

@@ -36,10 +36,15 @@ class Skills extends Model
 	}
 	
 	public function CheckAndUpdateSkill($request){
-		$post = Skills::firstOrCreate(
+		$skills = Skills::firstOrCreate(
         [
             'skill_name'             => $request,
             'skill_type'             => 'UserDefined',
         ]);
+		if($skills->wasRecentlyCreated == false){
+			return 'Skills Updated.';
+		} else {
+			return 'Skills Created.';
+		}
 	}
 }

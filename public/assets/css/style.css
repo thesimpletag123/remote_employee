@@ -4228,4 +4228,8 @@ header {
 .select-pure__select .select-pure__options .select-pure__option.select-pure__option--selected {
   display: none;
 }
-
+.invalid {
+    color: #e85347;
+    font-size: 11px;
+    font-style: italic;
+}
