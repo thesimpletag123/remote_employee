@@ -22,7 +22,7 @@ class CreateJobRequestsTable extends Migration
             $table->integer('to_userid');
             $table->string('to_username');
             $table->boolean('is_accept')->default('0');
-            $table->string('comment')->nullable();;
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

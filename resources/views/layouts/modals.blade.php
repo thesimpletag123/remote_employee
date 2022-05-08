@@ -503,6 +503,21 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 						</div>
 						<form method="POST" action="{{ route('register') }}" id="reg_popup_form">
                         @csrf
+						
+							<div class="form-group row">
+								<i class="fas fa-user" ></i>
+								<select name="user_type" id="user_type" class="form-control" required autofocus style="padding-left: 35px;">
+									<option selected disabled>Select a user Type</option>
+									<option value="employer">I am a Employer</option>
+									<option value="employee">I am a Employee</option>
+								</select >
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
 
 							<div class="form-group row">
 								<i class="fas fa-user" ></i>

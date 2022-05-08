@@ -636,20 +636,24 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 // Registration Validation before Submit	
 	$( "#reg_button_for_validation" ).click(function() {
 		event.preventDefault();
+		$('#user_type').css('border-color', '');
 		$('#name').css('border-color', '');
 		$('#email').css('border-color', '');
 		$('#password').css('border-color', '');
 		$('#password-confirm').css('border-color', '');
 		
+		$('#user_type').removeClass("shakeing");		
 		$('#name').removeClass("shakeing");		
 		$('#email').removeClass("shakeing");		
 		$('#password').removeClass("shakeing");		
 		$('#password-confirm').removeClass("shakeing");
+		var user_type = $('#user_type').val();
 		var name = $('#name').val();
 		var email = $('#email').val();
 		var password = $('#password').val();
 		var repassword = $('#password-confirm').val();
-		if(name != '' && email != '' && password != '' && repassword != ''){
+		
+		if(user_type !='' && name != '' && email != '' && password != '' && repassword != ''){
 			if (password === repassword){
 				$("#reg_popup_form").submit();
 			} else {
@@ -659,6 +663,10 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 				$( '#password-confirm' ).addClass( "shakeing" );
 			}
 		} else {
+			if(user_type == ''){
+				$('#user_type').css('border-color', 'red');
+				$( '#user_type' ).addClass( "shakeing" );
+			}
 			if(name == ''){
 				$('#name').css('border-color', 'red');
 				$( '#name' ).addClass( "shakeing" );
@@ -677,8 +685,27 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 			}
 		}
 	});
-	
 
+// Registration DeActive otherfields if UserType Not selected
+	$('#user_type').css('border-color', 'red');
+	$('#reg_button_for_validation').attr('disabled','disabled');
+	$('#name').attr('disabled','disabled');
+	$('#email').attr('disabled','disabled');
+	$('#password').attr('disabled','disabled');
+	$('#password-confirm').attr('disabled','disabled');
+	$('#user_type').change(function(){
+	var user_type = $('#user_type').val();
+		if(user_type !=''){
+			$('#reg_button_for_validation').removeAttr('disabled');
+			$('#name').removeAttr('disabled');
+			$('#email').removeAttr('disabled');
+			$('#password').removeAttr('disabled');
+			$('#password-confirm').removeAttr('disabled');
+		} else {
+			$('#user_type').css('border-color', 'red');
+			$( '#user_type' ).addClass( "shakeing" );
+		}
+	});
 // Change or Update project status for employer
 $('.change_status').change(function(){
 	

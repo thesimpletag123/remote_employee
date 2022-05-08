@@ -17,13 +17,17 @@ Route::get('/clear', function() {
     Artisan::call('config:clear');
     Artisan::call('config:cache');
     Artisan::call('view:clear');
+    Artisan::call('route:clear');
     return "Cleared!";
 });
 
 Route::get('/', 'EmployeeController@baseurllogin')->name('baseurllogin');
 
 Auth::routes();
-
+Route::get('login', [
+  'as' => 'login',
+  'uses' => 'EmployeeController@baseurllogin'
+]);
 	Route::post('emp1_submit', 'EmployeeController@emp1_submit')->name('emp1_submit');
 	Route::post('emp2_submit', 'EmployeeController@emp2_submit')->name('emp2_submit');
 	Route::post('emp_otp_verify', 'EmployeeController@emp_otp_verify')->name('emp_otp_verify');
