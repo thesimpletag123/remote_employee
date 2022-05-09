@@ -40,6 +40,6 @@ return [
         'client_secret' => '3TqgkGUP2CCJAmwU',
         //'redirect' => 'http://localhost:8000/auth/linkedin/callback'
         'redirect' => 'https://204.236.175.219/auth/linkedin/callback'
-	],
+	], 
 
 ];
