@@ -636,7 +636,7 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 // Registration Validation before Submit	
 	$( "#reg_button_for_validation" ).click(function() {
 		event.preventDefault();
-		$('#user_type').css('border-color', '');
+		//$('#user_type').css('border-color', '');
 		$('#name').css('border-color', '');
 		$('#email').css('border-color', '');
 		$('#password').css('border-color', '');
@@ -664,7 +664,7 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 			}
 		} else {
 			if(user_type == ''){
-				$('#user_type').css('border-color', 'red');
+				//$('#user_type').css('border-color', 'red');
 				$( '#user_type' ).addClass( "shakeing" );
 			}
 			if(name == ''){
@@ -687,7 +687,7 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 	});
 
 // Registration DeActive otherfields if UserType Not selected
-	$('#user_type').css('border-color', 'red');
+	//$('#user_type').css('border-color', 'red');
 	$('#reg_button_for_validation').attr('disabled','disabled');
 	$('#name').attr('disabled','disabled');
 	$('#email').attr('disabled','disabled');
@@ -702,7 +702,7 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 			$('#password').removeAttr('disabled');
 			$('#password-confirm').removeAttr('disabled');
 		} else {
-			$('#user_type').css('border-color', 'red');
+			//$('#user_type').css('border-color', 'red');
 			$( '#user_type' ).addClass( "shakeing" );
 		}
 	});

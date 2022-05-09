@@ -574,8 +574,10 @@ header{
 
 /* starting banner */
 .banner{
-    background-color: $blcolor;
+    //background-color: $blcolor;
+    background:$blcolor url(../images/bannerbg1.jpg) no-repeat center center fixed;
     padding: 100px 0px 50px 0px;
+    background-size: cover;
     @media (max-width: 769px){
         height: auto;
         padding: 170px 0px 50px 0px;
@@ -725,7 +727,9 @@ header{
 
 /* starting findtelent */
 .findtelent{
-    background-color: #464646;
+    //background-color: #464646;
+    background:#464646 url(../images/findworkbg1.jpg) no-repeat center center fixed;
+    background-size: cover;
     .container{
         @extend %main-paddcont;
         .main-heading{
@@ -839,7 +843,9 @@ header{
 
 /* starting haveproject */
 .haveproject{
-    background-color: $blcolor;
+    //background-color: $blcolor;
+    background:$blcolor url(../images/pexels-fauxels-3183197.jpg) no-repeat center center fixed;
+    background-size: cover;
     .container{
         @extend %main-paddcont;
         text-align: center;
@@ -2906,13 +2912,18 @@ button {
 	color: #DBDBDC;
 	font-size: 14px;
 }
-.form-group input#name {
+.form-group input#name, .form-group select#user_type {
     background-color: #1c1c1c;
-	color: #fff;
-	font-size: 1rem;
+    color: #fff;
+    font-size: 1rem;
     font-weight: 400;
-    line-height: 1.5;    
+    line-height: 1.5;
+    border: 1px solid #ced4da;
 }
+.form-group input[disabled="disabled"] {
+    opacity: 0.5;
+    filter: blur(1px);
+} 
 .toggle_skill_onoff_div {
 	display: none;
 }

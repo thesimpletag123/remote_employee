@@ -505,7 +505,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                         @csrf
 						
 							<div class="form-group row">
-								<i class="fas fa-user" ></i>
+								<i class="fa-solid fa-user-gear"></i>
 								<select name="user_type" id="user_type" class="form-control" required autofocus style="padding-left: 35px;">
 									<option selected disabled>Select a user Type</option>
 									<option value="employer">I am a Employer</option>
@@ -556,7 +556,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							</div>
 
 							<div class="form-group">
-								<a class="toggle_login_reg_btn" id="go_to_login_popup"> Already a member </a>
+								<a href="javascript:void(0)" class="toggle_login_reg_btn" id="go_to_login_popup"> Already a member </a>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary" id="reg_button_for_validation">
