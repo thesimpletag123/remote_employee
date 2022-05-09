@@ -695,8 +695,9 @@ header .container > .row > div:nth-of-type(2) > div span i {
 /* starting banner */
 
 .banner {
-  background-color: #000000;
+  background: #000000 url(/images/bannerbg1.jpg?40a08792f51df4060cfba26f50f1fabd) no-repeat center center fixed;
   padding: 100px 0px 50px 0px;
+  background-size: cover;
 }
 
 @media (max-width: 769px) {
@@ -894,7 +895,8 @@ header .container > .row > div:nth-of-type(2) > div span i {
 /* starting findtelent */
 
 .findtelent {
-  background-color: #464646;
+  background: #464646 url(/images/findworkbg1.jpg?f7d731626f400dbc64c957581768716e) no-repeat center center fixed;
+  background-size: cover;
 }
 
 .findtelent .container .main-heading {
@@ -1050,7 +1052,8 @@ header .container > .row > div:nth-of-type(2) > div span i {
 /* starting haveproject */
 
 .haveproject {
-  background-color: #000000;
+  background: #000000 url(/images/pexels-fauxels-3183197.jpg?8fbb6dfcb2f766b7b84d961ee306dc29) no-repeat center center fixed;
+  background-size: cover;
 }
 
 .haveproject .container {
@@ -3593,12 +3596,19 @@ section.parttime {
   font-size: 14px;
 }
 
-.form-group input#name {
+.form-group input#name,
+.form-group select#user_type {
   background-color: #1c1c1c;
   color: #fff;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  border: 1px solid #ced4da;
+}
+
+.form-group input[disabled=disabled] {
+  opacity: 0.5;
+  filter: blur(1px);
 }
 
 .toggle_skill_onoff_div {
@@ -4228,8 +4238,4 @@ header {
 .select-pure__select .select-pure__options .select-pure__option.select-pure__option--selected {
   display: none;
 }
-.invalid {
-    color: #e85347;
-    font-size: 11px;
-    font-style: italic;
-}
+

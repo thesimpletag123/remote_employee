@@ -10,7 +10,7 @@
 		
 <input type="hidden" id="hidden_uid" value="{{$user->id}}">				
 @include('layouts.dashboardheader')
-<?php $i=0; ?>					
+<?php $i=0; ?>	 				
 
 					<div class="jopboard px-3">
 						<h5>Job Board</h5>
