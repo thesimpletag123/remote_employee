@@ -17,3 +17,4 @@ package.json
 /bootstrap
 /storage
 /DB Backup
+config/services.php
