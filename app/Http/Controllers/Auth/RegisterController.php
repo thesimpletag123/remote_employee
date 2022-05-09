@@ -34,9 +34,15 @@ class RegisterController extends Controller
 	{
 		$user=Auth::user();
 		if($user->is_verified == true){
-			return '/dashboard';
+			 if($user->user_type == 'employee') {
+				return '/dashboard'; 
+			}
 		} else {
-			return '/home';
+			if($user->user_type == 'employer'){
+				return '/employerdashboard'; 
+			} else {
+				return '/home';
+			}
 		}
 	}
     //protected $redirectTo = RouteServiceProvider::HOME;

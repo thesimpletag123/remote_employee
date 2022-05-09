@@ -36,13 +36,15 @@ class LoginController extends Controller
 	{
 		$user=Auth::user();
 		if($user->is_verified == true){
-			if($user->user_type == 'employer'){
-				return '/employerdashboard'; 
-			} else if($user->user_type == 'employee') {
+			 if($user->user_type == 'employee') {
 				return '/dashboard'; 
 			}
 		} else {
-			return '/home';
+			if($user->user_type == 'employer'){
+				return '/employerdashboard'; 
+			} else {
+				return '/home';
+			}
 		}
 	}
 	
