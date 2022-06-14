@@ -91,9 +91,7 @@
 													if( $singlejob['project_status'] == 2){
 														$l++;
 													}
-													if( $singlejob['project_status'] == 3){
-														$m++;
-													}
+													
 												?>
 											@endif
 										@endforeach
@@ -124,13 +122,10 @@
 											<td>{{$k}}</td>
 										</tr>
 										<tr>
-											<td>In Testing Jobs</td>
+											<td>Completed Jobs</td>
 											<td>{{$l}}</td>
 										</tr>
-										<tr>
-											<td>Completed Jobs</td>
-											<td>{{$m}}</td>
-										</tr>
+										
 										<tr>
 
 											<td><strong>Total Posted Jobs</strong></td>
@@ -310,7 +305,7 @@
 										
 										<div class="col-lg-12 custom_div">
 											<button type="submit" class="btn btn-primary" id="update_job">Update this Job</button>
-											<button id="{{$getjobbyid->id}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Delete this</button>
+											<button id="{{$getjobbyid->id}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Close</button>
 										</div>
 									</div>
 								</form>

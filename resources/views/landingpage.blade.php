@@ -221,7 +221,7 @@
             <div class="container">
                 <h3 class="wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">HAVE A PROJECT <br>IN MIND?</h3>
                 <h6 class="wow fadeInUpBig" data-wow-duration=".55s" data-wow-offset="60">Get in touch with us today</h6>
-                <a href="" class="wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">Talk to us</a>
+                <a href="tel: +14242561744" class="wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">Talk to us</a>
             </div>
         </section>
         <!-- End haveproject -->

@@ -57,9 +57,6 @@
 											if( $singlejob['project_status'] == 2){
 												$l++;
 											}
-											if( $singlejob['project_status'] == 3){
-												$m++;
-											}
 										?>
 									@endif
 								@endforeach
@@ -83,20 +80,16 @@
                                         </tr>
                                     </thead>
                                     <tr>
-                                        <td>Todo Jobs</td>
+                                        <td>Open Jobs</td>
                                         <td>{{$j}}</td>
                                     </tr>
                                     <tr>
                                         <td>In Progress Jobs</td>
                                         <td>{{$k}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>In Testing Jobs</td>
-                                        <td>{{$l}}</td>
-                                    </tr>
+                                    </tr>                              
 									<tr>
                                         <td>Completed Jobs</td>
-                                        <td>{{$m}}</td>
+                                        <td>{{$l}}</td>
                                     </tr>
                                     <tr>
 
@@ -186,9 +179,7 @@
 																<div class="btn btn-warning rounded-pill">Todo</div>
 															@elseif($singlejob['project_status'] == 1)
 																<div class="btn btn-primary rounded-pill">In Progress</div>
-															@elseif($singlejob['project_status'] == 2)
-																<div class="btn btn-success rounded-pill">Testing</div>
-															@elseif($singlejob['project_status'] == 3)
+															@elseif($singlejob['project_status'] == 2)												
 																<div class="btn btn-success rounded-pill">Completed</div>
 															@endif
 														</div>
@@ -234,7 +225,7 @@
 													
 													<div class="col-md-12 padding-top">
 														<a href="{{route('editjobview' , $singlejob['id'])}}" class="btn btn-primary">Edit</a>
-														<button id="{{$singlejob['id']}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Delete</button>
+														<button id="{{$singlejob['id']}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Close</button>
 														
 														<a href="{{route('trackjob' , $singlejob['id'])}}" class="btn btn-success">Track</a>
 													</div>

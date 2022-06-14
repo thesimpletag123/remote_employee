@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LocationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/clear', function() {
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
@@ -22,6 +23,7 @@ Route::get('/clear', function() {
 });
 
 Route::get('/', 'EmployeeController@baseurllogin')->name('baseurllogin');
+Route::post('submit_project_as_guest', 'JobPostController@submit_project_as_guest')->name('submit_project_as_guest');
 
 Auth::routes();
 Route::get('login', [
@@ -31,6 +33,8 @@ Route::get('login', [
 	Route::post('emp1_submit', 'EmployeeController@emp1_submit')->name('emp1_submit');
 	Route::post('emp2_submit', 'EmployeeController@emp2_submit')->name('emp2_submit');
 	Route::post('emp_otp_verify', 'EmployeeController@emp_otp_verify')->name('emp_otp_verify');
+	
+	
 	
 
 ## Social Login
@@ -48,7 +52,8 @@ Route::get('login', [
 	Route::post('unset_popup_sessions', 'JobPostController@unset_popup_sessions')->name('unset_popup_sessions');
 	Route::post('check_login_before_submit', 'Auth\LoginController@check_login_before_submit')->name('check_login_before_submit');
 	
-
+	### IP Config
+	Route::get('checkandupdateipdetails', 'IpConfigController@CheckAndUpdateIpDetails')->name('checkandupdateipdetails');
 Route::middleware(['auth'])->group(function () {
 	Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 	Route::get('/home', 'HomeController@index')->name('home');
@@ -66,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('jobpost_to_db', 'JobPostController@jobpost_to_db')->name('jobpost_to_db');
 	Route::post('submit_full_project', 'JobPostController@submit_full_project')->name('submit_full_project');
 	
+	
 	Route::post('assign_job_to_emp', 'JobPostController@assign_job_to_emp')->name('assign_job_to_emp');
 	Route::get('myprofile', 'HomeController@myprofile')->name('myprofile');
 	Route::post('change_project_status', 'JobPostController@change_project_status')->name('change_project_status');
@@ -78,8 +84,10 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('employeeprofileupdate', 'HomeController@employeeprofileupdate')->name('employeeprofileupdate');
 		Route::post('employeerateupdate', 'HomeController@employeerateupdate')->name('employeerateupdate');
 		Route::get('sendmail', 'SendMailController@sendmail')->name('sendmail');
+		Route::get('sendmailwithuserid', 'SendMailController@sendmailwithuserid')->name('sendmailwithuserid');
+		Route::get('sendwelcomemail', 'SendMailController@SendWelcomeMail')->name('SendWelcomeMail');
 		Route::post('employeskillupdate', 'HomeController@employeskillupdate')->name('employeskillupdate');
-		
+		Route::post('verifyuser', 'HomeController@verifyuser')->name('verifyuser');
 	});
 	Route::middleware(['isEmployer'])->group(function () {
 		Route::get('employerdashboard', 'JobPostController@employerdashboard')->name('employerdashboard');

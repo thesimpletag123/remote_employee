@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Http\Controllers\IpConfigController;
+use App\Http\Controllers\JobPostGuestController;
 
 class LoginController extends Controller
 {
@@ -35,6 +37,16 @@ class LoginController extends Controller
 	protected function redirectTo()
 	{
 		$user=Auth::user();
+		
+		$ipconfig = new IpConfigController;
+		//$ipCheckAndUpdate = $ipconfig->CheckAndUpdateIpDetails(request()->ip());
+		//$ipCheckAndUpdate = $ipconfig->CheckAndUpdateIpDetails(request()->getClientIp());
+		//$ipCheckAndUpdate = $ipconfig->CheckAndUpdateIpDetails('66.102.0.3');		
+		$ipCheckAndUpdate = $ipconfig->CheckAndUpdateIpDetails('103.59.73.220');		
+		
+		$moveJobs = new JobPostGuestController;
+		$moveJobsToUser = $moveJobs->checkTempAndMoveToJobpost();
+		
 		if($user->is_verified == true){
 			 if($user->user_type == 'employee') {
 				return '/dashboard'; 
@@ -87,7 +99,7 @@ class LoginController extends Controller
 			if( Hash::check( $password, $ifexsists->password) )
 			{ 
 				$data['success'] = 1;
-
+				
 				return response()->json($data);
 			} else {
 				$data['success'] = 0;

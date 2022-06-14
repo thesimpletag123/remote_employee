@@ -17,20 +17,49 @@ use Auth;
 class SendMailController extends Controller
 {
     public function sendmail(){
-	$user = Auth::user();
-	$getotp = GenerateOtp::where('user_id' , $user->id)->first();
+		$user = Auth::user();
+		$getotp = GenerateOtp::where('user_id' , $user->id)->first();
+		
+		if($getotp->otp_purpose == 'Verifying Employe'){
+			$details = [
+				'title' => 'OTP for login Remote Employee',
+				'username' => $user->name,
+				'otp' => $getotp->otp
+				];
+
+			\Mail::to($user->email)->send(new \App\Mail\SendOtp($details));
+			}
+		return true;
+	}
 	
-	if($getotp->otp_purpose == 'Verifying Employe'){
+	public function sendmailwithuserid($userid){
+		$user = User::find($userid);
+		$getotp = GenerateOtp::where('user_id' , $user->id)->first();
+		
+		if($getotp->otp_purpose == 'Verifying Employe'){
+			$details = [
+				'title' => 'OTP for login Remote Employee',
+				'username' => $user->name,
+				'otp' => $getotp->otp
+				];
+
+			\Mail::to($user->email)->send(new \App\Mail\SendOtp($details));
+			}
+		return true;
+	}
+	public function SendWelcomeMail(){
+		$user = Auth::user();	
 		$details = [
-			'title' => 'OTP for login Remote Employee',
+			'title' => 'Welcome to Remote Employee',
 			'username' => $user->name,
-			'otp' => $getotp->otp
+			
 			];
 
-		\Mail::to($user->email)->send(new \App\Mail\SendOtp($details));
-		}
-	return true;
+		\Mail::to($user->email)->send(new \App\Mail\SendWelcomeMail($details));
+			
+		return true;
 	}
+	
 	
 	public function sendinvoicemail(Request $request){
 	$jobid = $request->jobid;

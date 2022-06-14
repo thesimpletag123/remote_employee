@@ -162,7 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
-		
+		Stevebauman\Location\LocationServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -231,7 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 		'PDF' => Barryvdh\DomPDF\Facade::class,
-		
+		'Location' => Stevebauman\Location\Facades\Location::class,
 
     ],
 

@@ -11,6 +11,7 @@ use App\Employee;
 use App\Skills;
 use App\User;
 use App\JobPost;
+use App\JobPostGuest;
 use App\JobRequest;
 use App\JobTracker;
 use Auth;
@@ -224,6 +225,64 @@ class JobPostController extends Controller
 		return response()->json($data);		
 		
 	}
+	
+	public function submit_project_as_guest(Request $request)
+	{
+		//$sessionid = Session::getId();
+		$ip = request()->ip();
+		//dd($sessionid);
+		$fulltime_job_skills = str_replace(',','-',$request->fulltime_job_skills);
+			$postjob = new JobPostGuest;
+		
+		if($request->fulltime_job_headline != ''){
+			if($request->fulltime_job_extra_skill){
+				$addnewjobskill = new Skills;
+				$newskill = $addnewjobskill->CheckAndUpdateSkill($request->fulltime_job_extra_skill);
+			}
+			$fulltime_job_skills = str_replace(',','-',$request->fulltime_job_skills);
+			
+			
+			$postjob->job_title = $request->fulltime_job_headline;
+			
+			
+			if($fulltime_job_skills){
+					if($request->fulltime_job_extra_skill){
+						$postjob->required_skills = $fulltime_job_skills.'-'.$request->fulltime_job_extra_skill;
+					} else {
+						$postjob->required_skills = $fulltime_job_skills;
+					}
+			} else {
+				$postjob->required_skills = $request->fulltime_job_extra_skill;
+			}
+			
+			if($request->fulltime_job_min){
+				$postjob->hourly_rate_min = $request->fulltime_job_min.' '.$request->fulltime_job_currency_minmax;
+			}
+			if($request->fulltime_job_max){
+					$postjob->hourly_rate_max = $request->fulltime_job_max.' '.$request->fulltime_job_currency_minmax;
+			}
+			if($request->fulltime_job_budget){
+					$postjob->project_budget = $request->fulltime_job_budget.' '.$request->fulltime_project_budget_currency;
+			}
+			$postjob->project_description = $request->fulltime_job_desc_minmax.$request->fulltime_job_desc_budget;
+			
+		} else {
+			$postjob->job_title = "Quick Job Post by - GuestUser";
+			$postjob->required_skills = "Not Mentioned";
+			$postjob->hourly_rate_min = $request->quick_min_budget .' '. $request->quick_currency;
+			$postjob->hourly_rate_max = $request->quick_max_budget .' '. $request->quick_currency;
+			$postjob->project_description = $request->quick_project_desc;			
+		}
+			$postjob->posted_by_ip = $ip;
+			$postjob->save();
+		
+		$data['success'] = 1;
+		$data['message'] = 'Job Posted Sucessfully as Guest';
+
+		return response()->json($data);		
+		
+	}
+	
 	public function employerdashboard(){
 		$user = Auth::user();
 		$date = Carbon::now($user->country);

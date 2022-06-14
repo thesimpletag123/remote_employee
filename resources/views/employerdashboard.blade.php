@@ -36,7 +36,7 @@ div#modal-dashboard-employer {
 							<div id='current_employee' class="complex part1">
 								<h5>Current Jobs</h5>
 								
-								@if(isset($employerposts))
+								@if(!$employerposts->isEmpty())
 									@foreach($employerposts as $employerpost)
 									<?php
 										$newtime = strtotime($employerpost->created_at);
@@ -71,10 +71,8 @@ div#modal-dashboard-employer {
 													@if($employerpost->project_status == 0)
 														<div class="btn btn-warning rounded-pill">Todo</div>
 													@elseif($employerpost->project_status == 1)
-														<div class="btn btn-primary rounded-pill">In Progress</div>
+														<div class="btn btn-primary rounded-pill">In Progress</div>													
 													@elseif($employerpost->project_status == 2)
-														<div class="btn btn-success rounded-pill">Testing</div>
-													@elseif($employerpost->project_status == 3)
 														<div class="btn btn-success rounded-pill">Completed</div>
 													@endif
 												</div>
@@ -151,12 +149,12 @@ div#modal-dashboard-employer {
 											</div>
 											<div class="col-md">
 												
-													@if($employerpost->project_status != 3)
+													@if($employerpost->project_status != 2)
 													<div class="current-performance">
 														@if($employerpost->assigned_to_id == null)
 														<div class="d-flex justify-content-between align-items-center">
 														<h6>Not assigned yet</h6>
-														<div class="btn-group">
+														{{--<div class="btn-group">
 															<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
 																		<option>--Select to assign--</option>
 																@if(isset($employeeavailable))
@@ -167,7 +165,7 @@ div#modal-dashboard-employer {
 																		<option> No Employee Available </option>
 																@endif
 															</select>
-														</div>
+														</div>--}}
 														</div>
 														@else
 
@@ -175,7 +173,7 @@ div#modal-dashboard-employer {
 															<h6>Assigned to: </h6>
 															{{$employerpost->assigned_to_username}}
 															</div>
-															<div class="d-flex justify-content-between align-items-center">
+															{{--<div class="d-flex justify-content-between align-items-center">
 																<h6>Re-assign to:</h6>
 																<div class="btn-group">
 																	<select id="employeeavailable_assign-{{$employerpost->id}}" name="employeeavailable_assign" class="employeeavailable_assign">
@@ -189,7 +187,7 @@ div#modal-dashboard-employer {
 																		@endif
 																	</select>
 																</div>
-															</div>
+															</div>--}}
 														@endif
 													</div>
 													@endif
@@ -200,14 +198,13 @@ div#modal-dashboard-employer {
 															<select name="change_status" class="change_status">
 																<option value="0" <?php if($employerpost->project_status == 0){echo 'selected';}?>>Todo</option>
 																<option value="1" <?php if($employerpost->project_status == 1){echo 'selected';}?>>In Progress</option>
-																<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Testing</option>
-																<option value="3" <?php if($employerpost->project_status == 3){echo 'selected';}?>>Completed</option>
+																<option value="2" <?php if($employerpost->project_status == 2){echo 'selected';}?>>Completed</option>
 															</select>
 															<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
 														</div>
 													</div>
 												
-													@if($employerpost->project_status == 3)
+													@if($employerpost->project_status == 2)
 														<div class="current-performance">
 															<input type="hidden" id="project_id" name="project_id" value="{{$employerpost->id}}">
 															<button id="{{$employerpost->id}}" onClick="generate_invoice(this.id)" class="btn btn-success" style="width:100%;">Generate Invoice</button>
@@ -221,7 +218,7 @@ div#modal-dashboard-employer {
 											
 											<div class="col-md-12 padding-top">
 												<a href="{{route('editjobview' , $employerpost->id)}}" class="btn btn-primary">Edit</a>
-												<button id="{{$employerpost->id}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Delete</button>
+												<button id="{{$employerpost->id}}" onClick="reply_click(this.id)" class="btn btn-danger deletejob">Close</button>
 												
 												<a href="{{route('trackjob' , $employerpost->id)}}" class="btn btn-success">Track</a>
 											</div>
@@ -233,8 +230,18 @@ div#modal-dashboard-employer {
 								@else
 								
 									<div class="dashboard-avatar-data">
-										<h4>No jobs Available for you</h4>
-										<div><i class="fas fa-map-marker-alt"></i> <span>You are now loggedin as </span> - <span>{{$user->name}}</span></div>
+										<div class="current-employees-box">
+										<div class="current-header">
+											<div class="row">
+												<div class="col-sm-7">			
+													<div class="dashboard-avatar-data">
+														<Strong>No jobs Available for you</Strong> 
+													</div>				
+												</div>
+											</div>
+										</div>
+									</div>
+										<a class="btn btn-primary" href="#" onclick="open_jobpost_popup()">Post a new Job</a>
 									</div>
 								
 								@endif
@@ -419,7 +426,7 @@ div#modal-dashboard-employer {
 											<div class="row">
 												<div class="col-sm-7">			
 													<div class="dashboard-avatar-data">
-														<Strong>No Employee alloted to you. Please Contact Administrator.</Strong>
+														<Strong>Not connected to any employees</Strong>
 													</div>				
 												</div>
 											</div>
@@ -443,7 +450,8 @@ div#modal-dashboard-employer {
 											  </tr>
 											</thead>
 											<tbody>
-												@if(isset($allinvoice))
+												
+												@if(!$allinvoice->isEmpty())
 													@foreach($allinvoice as $invoice)
 														<?php $invoiceurl = $invoice->invoice_attachment; ?>
 														<tr>
@@ -456,7 +464,13 @@ div#modal-dashboard-employer {
 													@endforeach
 												@else
 													<tr>
-														<td colspan="5" class="align-middle"><h5>No Invoice available</h5></td>
+														<td colspan="5" class="align-middle" style="text-align:center;">
+															<div class="current-employees-box">
+																<div class="current-header">
+																	<Strong>No Invoice to show at the moment!</Strong> 
+																</div>	
+															</div>	
+														</td>
 													</tr>
 												@endif
 											</tbody>

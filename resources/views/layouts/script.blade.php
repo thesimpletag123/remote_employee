@@ -26,6 +26,7 @@
 new WOW().init();
 
 (function($) {
+	checkQuickJobpostFields();
   $.fn.inputFilter = function(inputFilter) {
     return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
       if (inputFilter(this.value)) {
@@ -51,6 +52,7 @@ $("#experience_month").inputFilter(function(value) {
 
 //Open Modal for Employee and Employer in homepage with session
 	function init(){
+		
 		var popup = '<?php echo Session("popup_type"); ?>';
 		
 		if(popup == 'quick_project'){
@@ -65,7 +67,85 @@ $("#experience_month").inputFilter(function(value) {
 				data: { "_token": "{{ csrf_token() }}" }
 			}); 
 	}
+
+//Check QuickJobpost validation on initialize 14.06.2022
+	function checkQuickJobpostFields(){
+		var quick_project_desc = $('#quick_project_desc').val();
+		var quick_min_budget = $('#quick_min_budget').val();
+		var quick_max_budget = $('#quick_max_budget').val();
 		
+		if(quick_project_desc == '' || quick_min_budget == '' || quick_max_budget == '' ){
+			$('#submit_quickproject_temp').css('pointer-events', 'none');
+			$('#submit_quickproject_temp').css('opacity', '0.35');
+			$('#submit_quick_project_disable').css('pointer-events', 'none');
+			$('#submit_quick_project_disable').css('opacity', '0.35');
+			
+			if(quick_project_desc == '' ){
+				$('#quick_project_desc').css('border-color', 'red');
+				$( '#quick_project_desc' ).addClass( "shakeing" );
+			} else {
+				$('#quick_project_desc').css('border-color', '');
+				$( '#quick_project_desc' ).removeClass("shakeing");
+			}
+			if(quick_min_budget == '' ){
+				$('#quick_min_budget').css('border-color', 'red');
+				$( '#quick_min_budget' ).addClass( "shakeing" );
+
+			} else {				
+				$('#quick_min_budget').css('border-color', '');
+				$( '#quick_min_budget' ).removeClass("shakeing");
+			}
+			if(quick_max_budget == '' ){
+				$('#quick_max_budget').css('border-color', 'red');
+				$( '#quick_max_budget' ).addClass( "shakeing" );
+
+			} else {
+				if(parseInt(quick_max_budget) > parseInt(quick_min_budget)){
+					$('#quick_max_budget').css('border-color', '');
+					$( '#quick_max_budget' ).removeClass("shakeing");
+				} else {
+					$('#quick_max_budget').css('border-color', 'red');
+					$( '#quick_max_budget' ).addClass( "shakeing" );
+				}
+				
+			}
+			
+
+		} else {
+				$('#quick_project_desc').css('border-color', '');
+				$('#quick_min_budget').css('border-color', '');			
+
+				$('#quick_project_desc').removeClass("shakeing");
+				$('#quick_min_budget').removeClass("shakeing");
+				
+			if(parseInt(quick_max_budget) > parseInt(quick_min_budget)){
+					$('#quick_max_budget').css('border-color', '');
+					$( '#quick_max_budget' ).removeClass("shakeing");
+					$('#submit_quickproject_temp').css('pointer-events', '');
+					$('#submit_quickproject_temp').css('opacity', '1');
+					$('#submit_quick_project_disable').css('pointer-events', '');
+					$('#submit_quick_project_disable').css('opacity', '1');
+				} else {
+					$('#quick_max_budget').css('border-color', 'red');
+					$( '#quick_max_budget' ).addClass( "shakeing" );
+					$('#submit_quickproject_temp').css('pointer-events', 'none');
+					$('#submit_quickproject_temp').css('opacity', '0.35');
+					$('#submit_quick_project_disable').css('pointer-events', 'none');
+					$('#submit_quick_project_disable').css('opacity', '0.35');
+				}
+			}
+		}
+	$( "#quick_project_desc" ).keyup(function() {	
+		checkQuickJobpostFields();
+	});
+	$( "#quick_min_budget" ).keyup(function() {
+		checkQuickJobpostFields();
+	});
+	$( "#quick_max_budget" ).keyup(function() {	
+		checkQuickJobpostFields();
+	});
+	
+
 // Signout Function
 	function signOut() {		
 		var auth2 = gapi.auth2.getAuthInstance();
@@ -204,7 +284,63 @@ $("#experience_month").inputFilter(function(value) {
 			
 			
 		});
-			
+
+
+
+// Submit Project for Guest employers
+	$("#submit_fullproject_temp").click(function(){
+		submit_projects_as_guest();
+	});
+	$("#submit_quickproject_temp").click(function(){
+		submit_projects_as_guest();
+	});
+	function submit_projects_as_guest(){
+		var fulltime_job_headline = $('#fulltime_job_headline').val();
+		var fulltime_job_skills = $('#hidden_fulltime_job_skills').val();
+		var fulltime_job_extra_skill = $('#fulltime_job_extra_skill').val();
+		var fulltime_job_min = $('#fulltime_job_min').val();
+		var fulltime_job_max = $('#fulltime_job_max').val();
+		var fulltime_job_currency_minmax = $('#fulltime_job_currency_minmax').val();
+		var fulltime_job_budget = $('#fulltime_job_budget').val();
+		var fulltime_project_budget_currency = $('#fulltime_project_budget_currency').val();
+		var fulltime_job_desc_minmax = $('#fulltime_job_desc_minmax').val();
+		var fulltime_job_desc_budget = $('#fulltime_job_desc_budget').val();
+		var quick_project_desc = $('#quick_project_desc').val();
+		var quick_min_budget = $('#quick_min_budget').val();
+		var quick_max_budget = $('#quick_max_budget').val();
+		var quick_currency = $('#quick_currency').val();
+		
+		$.ajax({
+			type: "post",
+			data: { "_token": "{{ csrf_token() }}" , fulltime_job_headline:fulltime_job_headline , fulltime_job_skills:fulltime_job_skills, fulltime_job_extra_skill:fulltime_job_extra_skill, fulltime_job_min:fulltime_job_min, fulltime_job_max:fulltime_job_max, fulltime_job_currency_minmax:fulltime_job_currency_minmax, fulltime_job_budget:fulltime_job_budget, fulltime_project_budget_currency:fulltime_project_budget_currency, fulltime_job_desc_minmax:fulltime_job_desc_minmax, fulltime_job_desc_budget:fulltime_job_desc_budget, quick_project_desc:quick_project_desc, quick_min_budget:quick_min_budget, quick_max_budget:quick_max_budget, quick_currency:quick_currency},
+			//url: "{{url('submit_full_project')}}",
+			url: "{{url('submit_project_as_guest')}}",
+			success: function( data ) {
+				var result = JSON.parse(data.success);
+				//alert(result);
+				if(result == 1){
+					swal({
+							title: "Congratulation",
+							text: "New Job has been posted Successfully, Please login/Register now to validate this job!",
+							type: "success",
+							confirmButtonColor: '#3085d6',
+							confirmButtonText: 'ok!'
+						},function(){
+							
+							$('.parttime').css('visibility', 'hidden');
+							$('#modal-quick-project').modal('hide');
+							$('#modal-login').modal('show');
+						});
+					
+					
+					//alert('Job posted Successfully');
+					//window.location.href = "{{url('employerdashboard')}}";						
+				}
+			}
+
+		});
+	}	
+		
 // LinkedIn button Redirect
 	$("#linkedin_btn").click(function(){
 		
@@ -324,13 +460,13 @@ $("#experience_month").inputFilter(function(value) {
 		event.preventDefault(); // prevent form submit
 		var form = event.target.form; // storing the form
 				swal({
-				  title: "Are you sure to delete this JOB?",
-				  text: "This job will be removed from Database",
+				  title: "Are you sure to close this JOB?",
+				  text: "Closed Jobs are not visible to any users, But will be in Database",
 				  type: "warning",
 				  showCancelButton: true,
 				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "Yes, Delete it  !",
-				  cancelButtonText: "No, Don't Delete  !",		  
+				  confirmButtonText: "Yes, close it  !",
+				  cancelButtonText: "No, Don't close  !",		  
 				  closeOnConfirm: false,
 				  closeOnCancel: false
 				},
@@ -693,7 +829,7 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 	$('#email').attr('disabled','disabled');
 	$('#password').attr('disabled','disabled');
 	$('#password-confirm').attr('disabled','disabled');
-	$('#user_type').change(function(){
+	$('input[name="user_type"]:radio').change(function () {
 	var user_type = $('#user_type').val();
 		if(user_type !=''){
 			$('#reg_button_for_validation').removeAttr('disabled');
@@ -811,6 +947,47 @@ $('.change_status').change(function(){
 			$("#fulltime_job_skills option[value='"+removeskillft+"']").remove();
 	});
 	$(".select-pure__select").addClass("select-pure__select--opened");
+	
+	
+//OTP validation from header
+$("#verifyotpfromhead").click(function(){
+
+	
+	var otp = $('#headerotp').val();
+	var hidden_uid = $('#hidden_uid').val();
+	
+	var CSRF_TOKEN = "{{ csrf_token() }}";
+	var fd = new FormData();
+		fd.append('_token',CSRF_TOKEN);
+		fd.append('otp',otp);
+		fd.append('user_id',hidden_uid);
+	$.ajax({
+			url:"{{url('verifyuser')}}",
+			method: "post",
+			data: fd,
+			contentType: false,
+			processData: false,
+			dataType: "json",
+			success: function(data){				
+					swal({
+						title: "Verified Successfully!",
+						text: "You have sucessfully completed OTP verification.",
+						type: "success",
+						confirmButtonColor: '#3085d6',
+						confirmButtonText: 'ok!'
+					});
+				window.location.reload();
+			}
+		});
+
+});
+	
+	
+	
+	
+	
+	
+	
 </script>
         
         <!-- End scripts -->

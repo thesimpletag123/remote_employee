@@ -4,7 +4,7 @@
                 <table border="1" cellpadding="20" cellspacing="0" style="width:100%;">
                     <tr>
                         <td align="center" valign="top">
-                            <!--<img src="{{URL::asset('assets/images/logo-icon.png')}}" style="max-width: 110px;display:table-cell;" />-->
+                            <!--<img src="{{URL::asset('assets/images/main-logo.png')}}" style="max-width: 110px;display:table-cell;" />-->
                         </td>
                     </tr>
                 </table>

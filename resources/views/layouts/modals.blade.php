@@ -130,7 +130,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 											
 										</div>
 										<div class="form-group" >
-											<input type="submit" id="submit_quick_project_disable" value="submit" class="btn btn-primary" style="width:100%;" disabled>
+											<input type="button" id="submit_quickproject_temp" value="Submit as Guest" class="btn btn-primary" style="width:100%;">
 										</div>
 									@endif
                                 </form>
@@ -497,7 +497,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 					</div>
 					<div class="modal-body">
 						<div>
-							<img src="{{ asset('assets/images/logo-icon.png') }}" alt="image" />
+							<img src="{{ asset('assets/images/main-logo.png') }}" alt="image" />
 							<h4>Welcome to Remote Employee</h4>
 							<p>Register your account</p>
 						</div>
@@ -506,12 +506,21 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 						
 							<div class="form-group row">
 								<i class="fa-solid fa-user-gear"></i>
-								<select name="user_type" id="user_type" class="form-control" required autofocus style="padding-left: 35px;">
+								{{--<select name="user_type" id="user_type" class="form-control" required autofocus style="padding-left: 35px;">
 									<option selected disabled>Select a user Type</option>
 									<option value="employer">I am a Employer</option>
 									<option value="employee">I am a Employee</option>
-								</select >
-
+								</select >--}}
+								<div class="col-md-12">
+									<div class="col-sm-6" style="float:left;">
+										<input type="radio" name="user_type" value="employer">
+										<label for="employer" style="color: #fff;">I am an Employer</label>
+									</div>
+									<div class="col-sm-6" style="float:right;">
+										<input type="radio" name="user_type" value="employee">
+										<label for="employee" style="color: #fff;">I am an Employee</label>
+									</div>
+								</div>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -595,7 +604,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 					</div>
 					<div class="modal-body">
 						<div>
-							<img src="{{ asset('assets/images/logo-icon.png') }}" alt="image" />
+							<img src="{{ asset('assets/images/main-logo.png') }}" alt="image" />
 							<h4>Welcome back</h4>
 							<p>Enter your credentials to access your account</p>
 						</div>
@@ -781,12 +790,12 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                         <p>You will have the option to create milestones which divide your project into manageable phase.</p>
                                         <ul>
                                             <li class="selected" data-class="hourly-rate" id="hourly_rate_radio">
-                                                <span class="dot"><span></span></span>
+                                                <i class="fa-solid fa-check"></i>
                                                 <i class="far fa-clock"></i>
                                                 <h6>Hourly  rate</h6>
                                             </li>
                                             <li data-class="project-budget" id="project_budget_radio">
-                                                <span class="dot"><span></span></span>
+                                                <i class="fa-solid fa-check"></i>
                                                 <i class="fas fa-tags"></i>
                                                 <h6>Project  budget</h6>
                                             </li>
@@ -901,7 +910,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 										@endif
                                         <div class="modal-employee-card">
                                             <form>
-                                                <div class="form-group">
+											{{--<div class="form-group">
 													<div class="progress-modal">
 														<div class="pie-wrapper progress-full">
 															<span class="label">90<em>%</em></span>
@@ -911,18 +920,23 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 															</div>  
 														</div>
 													</div>
-												</div>
-                                                
-                                                
+												</div>--}}
+												{{--
+												@if (Route::has('register'))
+													<a href="" data-bs-toggle="modal" data-bs-target="#modal-register" class="reg_modal_pop_btn btn btn-primary">Register</a>
+												@endif
+                                                @if (Route::has('login'))
+													<a href="" data-bs-toggle="modal" data-bs-target="#modal-login" class="login_modal_pop_btn btn btn-primary">Login</a>
+                                                @endif--}}
 												@if (Auth::check())
 													
-													<br>
-													<br>
-													<br>
+													
 													<div class="form-group">
 														<input type="button" id="submit_full_project_disable" value="submit" class="btn btn-primary" style="width:100%;">
 													</div>
 												@else
+													
+													
 													<div class="form-group">
 														<div class="d-flex align-items-center justify-content-between">
                                                             <div class="google-btn">
@@ -938,10 +952,12 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                                             </a> 
                                                         </div> 
 													</div>
-													<br>
-													<br>
-													<div class="form-group" >
+													
+													{{--<div class="form-group" >
 														<input type="button" id="submit_full_project_disable" value="Submit" class="btn btn-primary" style="width:100%;" disabled>
+													</div>--}}
+													<div class="form-group" >
+														<input type="button" id="submit_fullproject_temp" value="Submit as Guest" class="btn btn-primary" style="width:100%;">
 													</div>
 												@endif
                                             </form>

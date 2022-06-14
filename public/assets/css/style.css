@@ -2998,7 +2998,7 @@ footer .container .row > div a i {
   text-align: center;
 }
 
-.modal-dashboard-employer .dashboard-header .settlink a {
+/*.modal-dashboard-employer .dashboard-header .settlink a {
   display: block;
   width: 200px;
   margin: auto;
@@ -3007,7 +3007,7 @@ footer .container .row > div a i {
   background-color: #013AB8;
   border: 1px solid #013AB8;
   transition: all 0.35s ease-in-out;
-}
+}*/
 
 .modal-dashboard-employer .dashboard-header .settlink a:hover {
   background-color: transparent;
@@ -4237,5 +4237,12 @@ header {
 
 .select-pure__select .select-pure__options .select-pure__option.select-pure__option--selected {
   display: none;
+}
+.parttime .container .parttime-slider .parttime-hourlyrate > .row > div ul li.selected i {
+	color: #007aff
+}
+li#hourly_rate_radio, li#project_budget_radio {
+    min-height: 100px;
+    color: antiquewhite;
 }
 

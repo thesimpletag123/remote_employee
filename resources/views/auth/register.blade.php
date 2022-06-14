@@ -25,7 +25,7 @@ a.reg_modal_pop_btn {
 				</div>
 				<div class="modal-body">
 					<div>
-						<img src="{{ asset('assets/images/logo-icon.png') }}" alt="image" />
+						<img src="{{ asset('assets/images/main-logo.png') }}" alt="image" />
 						<h4>Welcome to Remote Employee</h4>
 						<p>Register your account</p>
 					</div>

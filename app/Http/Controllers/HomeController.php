@@ -300,10 +300,10 @@ class HomeController extends Controller
 		} else {
 			$newskillset = $mypreviousskills;
 		}*/
-		User::where('id' , $user->id)->update(['name' => $name]); 
+		//User::where('id' , $user->id)->update(['name' => $name]); 
 		Employee::where('user_id', $user->id)
 					->update([
-					'full_name' => $name, 
+					//'full_name' => $name, 
 					'contact_no' => $contact,
 					'experience_in_month' => $experience,
 					]);
@@ -367,5 +367,35 @@ class HomeController extends Controller
 		
 		return redirect()->back()->with('success', 'Your Skill Set has Updated.');
 		
+	}
+	
+	public function verifyuser(Request $request){
+		$user = Auth::user();
+		
+		$getotp = GenerateOtp::where('user_id', '=', $user->id)->first();
+		//var_dump($getotp);
+			$otp_in_db = $getotp->otp;
+			
+			$Otp_entered = $request->otp;
+			
+			if($otp_in_db == $Otp_entered){
+				$updateuser = User::where(['id' => $user->id])->update(['is_verified' => true]);
+				$updateemp = Employee::where(['user_id' => $user->id])->update(['is_verified' => true]);
+				$deletedfromotp = GenerateOtp::where('user_id', $user->id)->delete();
+				
+				$data['success'] = 1;
+				$data['message'] = 'Verified Sucessfully';
+				
+				$sendmail = new SendMailController;
+				$sending = $sendmail->sendwelcomemail();
+				
+				return response()->json($data);
+				
+			} else {
+				$data['success'] = 2;
+				$data['message'] = 'OTP verification Failed.. please retry';
+
+				return response()->json($data);
+			}
 	}
 }
