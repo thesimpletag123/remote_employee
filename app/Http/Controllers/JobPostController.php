@@ -20,7 +20,8 @@ use Mail;
 use Carbon\Carbon;
 use Session;
 use Storage;
-
+use DB;
+use DataTables;
 class JobPostController extends Controller
 {
     public function jobpostview(){
@@ -323,7 +324,223 @@ class JobPostController extends Controller
 		return view('employerdashboard', ['user' => $user, 'date' => $date, 'currencies' => $currencies, 'allskills' => $allskills, 'skills'=>$skills,  'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
 
 	}
+	public function admindashboard(Request $request){
+		$user = Auth::user();
+		$date = Carbon::now($user->country);
+		
+		$availablejob = new JobPost;
+		$employerposts = $availablejob->GetJobsOfEmployer($user->id);
+		
+		$currencynew = new CurrencyType();
+		$currencies = $currencynew->currencyList();
+
+		$skillsnew = new Skills();
+		$allskills = $skillsnew->skillnames();
+		
+		$skillsnew2 = new Skills();
+		$skills = $skillsnew2->skillnames();
+		
+		$allinvoicenew = new JobPost;
+		$allinvoice = $allinvoicenew->GetInvoiceWithDetails();
+		
+		$employeeavailablenew = new Employee;
+		$employeeavailable = $employeeavailablenew->AvailableEmployees();
+		
+		
+		$useremployees = User::all();
+		
+		$assignedemployeenew = new JobPost;
+		$assignedemployee = $assignedemployeenew->AssignedEmployees();
+		
+		/*foreach ($assignedemployee as $skill){
+			print_r ($skill->user->name);
+			echo "=================";
+			echo "<br>";
+			echo "<br>";
+		}
+		die();*/
+		//$employee=DB::select('select * from users where user_type="employee"');
+		
+		$employer=DB::select('select * from users where user_type="employer"');
+		
+
+
+
+		$userEmail = Auth::user()->email; 
+		$data = DB::select('select * from users where email="'.$userEmail .'"');
+		//$user =User::all();
+	 //dd($data);
+	 
+	 if ($request->ajax()) {
+		   $data = DB::select('select * from users where user_type="employee"');
+		   return Datatables::of($data)
+			   ->addIndexColumn()
+			    
+			   ->addColumn('action', function($row){
+				   $actionBtn='<a href="javascript:void(0)" id="'.$row->id.'" class="edit btn btn-info list-inline-item btn-sm"><i class="fa fa-edit"></i></a>';
+				   
+				   $actionBtn=$actionBtn.'<a href="javascript:void(0)" id="'.$row->id.'" class="delete btn btn-danger list-inline-item btn-sm"><i class="fa fa-trash"></i></a>';
+				   return $actionBtn;
+			   })
+				
+			   ->rawColumns(['action'])
+			   ->make(true);
+	   }
+
+		return view('superadmindashboard', ['data' => $data, 'user' => $user, 'date' => $date, 'currencies' => $currencies, 'allskills' => $allskills, 'skills'=>$skills,  'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
+
+	}
 	
+	public function employer(Request $request){
+		$user = Auth::user();
+		$date = Carbon::now($user->country);
+		
+		$availablejob = new JobPost;
+		$employerposts = $availablejob->GetJobsOfEmployer($user->id);
+		
+		$currencynew = new CurrencyType();
+		$currencies = $currencynew->currencyList();
+
+		$skillsnew = new Skills();
+		$allskills = $skillsnew->skillnames();
+		
+		$skillsnew2 = new Skills();
+		$skills = $skillsnew2->skillnames();
+		
+		$allinvoicenew = new JobPost;
+		$allinvoice = $allinvoicenew->GetInvoiceWithDetails();
+		
+		$employeeavailablenew = new Employee;
+		$employeeavailable = $employeeavailablenew->AvailableEmployees();
+		
+		
+		$useremployees = User::all();
+		
+		$assignedemployeenew = new JobPost;
+		$assignedemployee = $assignedemployeenew->AssignedEmployees();
+		
+		/*foreach ($assignedemployee as $skill){
+			print_r ($skill->user->name);
+			echo "=================";
+			echo "<br>";
+			echo "<br>";
+		}
+		die();*/
+		//$employee=DB::select('select * from users where user_type="employee"');
+		
+		$employer=DB::select('select * from users where user_type="employer"');
+		
+
+
+
+		 
+
+	   $userEmail = Auth::user()->name; 
+	   $data = DB::select('select * from users where name="'.$userEmail .'"');
+
+	   if ($request->ajax()) {
+		$data = DB::select('select * from users where user_type="employer"');
+		return Datatables::of($data)
+			->addIndexColumn()
+			 
+			->addColumn('action', function($row){
+				$actionBtn='<a href="javascript:void(0)" id="'.$row->id.'" class="edit btn btn-info list-inline-item btn-sm"><i class="fa fa-edit"></i></a>';
+				
+				$actionBtn=$actionBtn.'<a href="javascript:void(0)" id="'.$row->id.'" class="delete btn btn-danger list-inline-item btn-sm"><i class="fa fa-trash"></i></a>';
+				return $actionBtn;
+			})
+			 
+			->rawColumns(['action'])
+			->make(true);
+	}
+
+
+	    
+
+
+		return view('superadmindashboard', ['data' => $data, 'user' => $user, 'date' => $date, 'currencies' => $currencies, 'allskills' => $allskills, 'skills'=>$skills,  'employerposts' => $employerposts, 'employeeavailable' => $employeeavailable , 'useremployees' => $useremployees, 'allinvoice' => $allinvoice, 'assignedemployee' => $assignedemployee]);
+
+	}
+	
+//EDIT ADMIN SHOE
+public function editemployeehow($id)
+{
+	//$data= Product::where('id',$id)->get();
+	//return view('admin.editproduct',compact('data'));
+	if(request()->ajax())
+	  {
+		  $data = user::findOrFail($id);
+		  return response()->json(['result' => $data]);
+	  }
+	
+}
+//ADD ADMIN EDIT REQUEST//
+public function updateemployee(Request $request)
+{ 
+	
+	  $form_data = array(
+		  'name'    =>  $request->name,
+		  'email'     =>  $request->email,
+		  'phone'     =>  $request->phone,
+	  );
+ 
+	  user::whereId($request->hidden_id)->update($form_data);
+
+	  return response()->json(['success' => 'Data is successfully updated']);
+	
+	  
+  }
+//ADMIN DELETE REQUEST//
+function employeedelete($id)
+{   
+ 
+	$softDelete =User::findOrFail($id);
+	//dd($softDelete);
+	$softDelete->delete();
+	//return redirect('alladmin')->with('message', 'Products are success inserted !');
+	return  response()->json(['status'=>'Data deleted succesfully']);
+}
+
+
+//EDIT ADMIN SHOE
+public function editemployershow($id)
+{
+	//$data= Product::where('id',$id)->get();
+	//return view('admin.editproduct',compact('data'));
+	if(request()->ajax())
+	  {
+		  $data = user::findOrFail($id);
+		  return response()->json(['result' => $data]);
+	  }
+	
+}
+//ADD ADMIN EDIT REQUEST//
+public function updateemployer(Request $request)
+{ 
+	
+	  $form_data = array(
+		  'name'    =>  $request->name,
+		  'email'     =>  $request->email,
+		  'phone'     =>  $request->phone,
+	  );
+ 
+	  user::whereId($request->hidden_id)->update($form_data);
+
+	  return response()->json(['success' => 'Data is successfully updated']);
+	
+	  
+  }
+//ADMIN DELETE REQUEST//
+function employerdelete($id)
+{   
+ 
+	$softDelete =User::findOrFail($id);
+	//dd($softDelete);
+	$softDelete->delete();
+	//return redirect('alladmin')->with('message', 'Products are success inserted !');
+	return  response()->json(['status'=>'Data deleted succesfully']);
+}
+
 	public function assign_job_to_emp(Request $request){
 		$jobid = $request->jobid;
 		$empid = $request->empid;
@@ -543,5 +760,9 @@ class JobPostController extends Controller
 		$data = $getjobbyid['invoice_attachment'];
 		
 		return response()->json($data);
+	}
+	public function allemployee()
+	{
+		return view('allemployeelist');
 	}
 }

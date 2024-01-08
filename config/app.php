@@ -162,7 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
-		Stevebauman\Location\LocationServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,6 +233,7 @@ return [
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 		'PDF' => Barryvdh\DomPDF\Facade::class,
 		'Location' => Stevebauman\Location\Facades\Location::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

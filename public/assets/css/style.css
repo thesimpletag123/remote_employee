@@ -1302,6 +1302,8 @@ footer .container .row > div a i {
 .modal-quick-project .modal-body > .row > div form .form-group select {
   padding: 3px;
   border-color: #8A8A8A;
+  color: #8A8A8A;
+  
 }
 
 .modal-quick-project .modal-body > .row > div form .form-group input[type=email] {
@@ -1377,13 +1379,13 @@ footer .container .row > div a i {
   margin: auto;
 }
 
-.modal-employee .modal-body > .row > div form .form-group select {
+.modal-employee .modal-body > .row > div form .form-group select  {
   width: 100%;
   padding: 5px;
   border-color: #8A8A8A;
-  border-color: #013AB8;
+  border-color:  #8A8A8A;
   border-radius: 30px;
-  color: #013AB8;
+  color:  #8A8A8A;
 }
 
 .modal-employee .modal-body > .row > div form .form-group input[type=text],
@@ -1393,21 +1395,21 @@ footer .container .row > div a i {
   width: 100%;
   border: none;
   border-bottom: 1px solid #8A8A8A;
-  color: #000000;
+  color:#8A8A8A;
 }
 
 .modal-employee .modal-body > .row > div form .form-group input[type=text]::-moz-placeholder, .modal-employee .modal-body > .row > div form .form-group input[type=email]::-moz-placeholder, .modal-employee .modal-body > .row > div form .form-group input[type=number]::-moz-placeholder {
-  color: #013AB8;
+  color: #7c7c7c;
 }
 
 .modal-employee .modal-body > .row > div form .form-group input[type=text]:-ms-input-placeholder, .modal-employee .modal-body > .row > div form .form-group input[type=email]:-ms-input-placeholder, .modal-employee .modal-body > .row > div form .form-group input[type=number]:-ms-input-placeholder {
-  color: #013AB8;
+  color: #7c7c7c;
 }
 
 .modal-employee .modal-body > .row > div form .form-group input[type=text]::placeholder,
 .modal-employee .modal-body > .row > div form .form-group input[type=email]::placeholder,
 .modal-employee .modal-body > .row > div form .form-group input[type=number]::placeholder {
-  color: #013AB8;
+  color:  #7c7c7c;
 }
 
 /* End modal-employee */
@@ -1445,7 +1447,7 @@ footer .container .row > div a i {
 .modal-employee-skills .modal-body .row > div form .form-group button {
   padding: 3px 10px;
   color: #ffffff;
-  background-color: rgba(1, 58, 184, 0.3);
+  background-color: rgba(186, 187, 189, 0.3);
   border: 0;
   border-radius: 30px;
   font-size: 13px;
@@ -1465,24 +1467,24 @@ footer .container .row > div a i {
 }
 
 .modal-employee-skills .modal-body .row > div form .form-group input[type=text]::-moz-placeholder {
-  color: #013AB8;
+  color: #8A8A8A;
 }
 
 .modal-employee-skills .modal-body .row > div form .form-group input[type=text]:-ms-input-placeholder {
-  color: #013AB8;
+  color: #8A8A8A;
 }
 
 .modal-employee-skills .modal-body .row > div form .form-group input[type=text]::placeholder {
-  color: #013AB8;
+  color: #8A8A8A;
 }
 
 .modal-employee-skills .modal-body .row > div form .form-group select {
   width: 100%;
   padding: 5px;
   border-color: #8A8A8A;
-  border-color: #013AB8;
+  border-color: #8A8A8A;
   border-radius: 30px;
-  color: #013AB8;
+  color: #686869;
 }
 
 .modal-employee-skills .modal-body .row > div form .form-group .custom-inpfile {
@@ -2067,7 +2069,10 @@ footer .container .row > div a i {
   color: #DBDBDC;
   font-size: 14px;
 }
-
+.modal-login .modal-body form .form-group.form-control input[type=email1]::placeholder {
+  color: #0e0e14;
+  font-size: 14px;
+}
 .modal-login .modal-body form .form-group i {
   left: 10px;
   color: #013AB8;
@@ -3418,12 +3423,12 @@ footer .container .row > div a i {
 /* linkedin account: https://www.linkedin.com/in/ahmed-fawzy-mohamed-48a771202 */
 
 .custom_input {
-  width: 100%;
+  width: 50%;
   padding: 5px;
   border-color: #8A8A8A;
-  border-color: #013AB8;
+  border-color: #8A8A8A;
   border-radius: 30px;
-  color: #013AB8;
+  color: #8A8A8A;
 }
 
 #emp_skills,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use App\User;
 use App\Employee;
 use App\IpConfig;
@@ -12,10 +13,11 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\IpConfigController;
 use App\Http\Controllers\JobPostGuestController;
-
+use App\schedule_free_consulting;
 class RegisterController extends Controller
 {
     /*
@@ -138,4 +140,37 @@ class RegisterController extends Controller
 		
 		return $insertuser;
     }
+    function scheduleFreeConsulting(Request $request)
+	{
+		   //$request->validate();
+		$request->validate([
+		'name'=>'required',
+		'email'=>'required',
+		
+		]);
+		if($request->isMethod('post'))
+       { 
+        $data = $request->all();
+        //echo "<pre>";print_r($data);die;
+        $userCount = user::where('email',$data['email'])->first();
+        if($userCount==true)
+        {
+            return redirect()->back()->with('flash_message_error','Email is already exist');
+        }
+        else
+        {  
+               $password=0;
+               $user = new schedule_free_consulting;
+              // $user->id= $userId;
+               $user->user_type=$data['user_type'];
+			   $user->name=$data['name'];
+               $user->email=$data['email'];
+               $user->phone=$data['phone'];
+               //$user->password=$password;
+               $user->last_login_ip = request()->getClientIp();
+               $user->save();
+               return redirect('')->with('status', 'Ajax Form Data Has Been validated and store into database');
+	     }
+        }
+	}
 }

@@ -14,8 +14,8 @@ use App\JobPost;
 use App\Skills;
 use App\User;
 use Auth;
-
-
+use DB;
+use App\Professionals;
 class EmployeeController extends Controller
 {
 	public function emp1_submit(Request $request)
@@ -201,6 +201,11 @@ class EmployeeController extends Controller
 		$currencynew = new CurrencyType();
 		$currencies = $currencynew->currencyList();
 
+		$professional=Professionals::get();
+		foreach($professional as $professionalFiled)
+	  {
+		  $name[]=$professionalFiled->professional_field;
+	  }
 		//$employeenew = new Employee();
 		//$employeies = $employeenew->employeeList();
 		$employeies = null;
@@ -213,6 +218,43 @@ class EmployeeController extends Controller
 			//echo "aaaa";
 			//var_dump($skills);
 
-		return view('landingpage', ['user' => $user, 'countries' =>$countries, 'currencies' =>$currencies, 'employeies' =>$employeies, 'professional_fields' =>$professional_fields, 'skills' =>$skills ] );
+		return view('landingpage', ['user' => $user, 'countries' =>$countries, 'name' =>$name , 'currencies' =>$currencies, 'employeies' =>$employeies, 'professional_fields' =>$professional_fields, 'skills' =>$skills ] );
+	}
+	public function countryNameCode(Request $request)
+	{
+		$ids = $request->country_name;
+		$dataID = DB::select('select country_code from countries where country_name="'.$ids.'"');
+		foreach($dataID as $menu)
+	   {
+		   $selectmenuId=$menu->country_code;
+		   
+	   } 
+		
+		return json_encode( compact( 'selectmenuId'));
+		
+	}
+	public function valiedEmailCheck(Request $request)
+	{
+		$valiedEmail = $request->emp_email;
+		$email = DB::select('select email from users where email="'.$valiedEmail.'"');
+		if($email==true)
+        {
+			 
+			$data='Email is already exist ';
+        }
+		return json_encode( compact( 'data'));
+		
+	}
+	public function emailCheck(Request $request)
+	{
+		$valiedEmail = $request->emp_email;
+		$email = DB::select('select email from users where email="'.$valiedEmail.'"');
+		if($email==true)
+        {
+			 
+			$data='Email is already exist ';
+        }
+		return json_encode( compact( 'data'));
+		 
 	}
 }

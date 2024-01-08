@@ -1,5 +1,5 @@
-        <!-- starting scripts -->
-		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+         <!-- starting scripts -->
+		 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 		<script src="{{ asset('assets/js/jquery.mixitup.js') }}"></script>
 		<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
@@ -21,7 +21,12 @@
 		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js" integrity="sha512-g16L6hyoieygYYZrtuzScNFXrrbJo/lj9+1AYsw+0CYYYZ6lx5J3x9Yyzsm+D37/7jMIGh0fDqdvyYkNWbuYuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA="crossorigin="anonymous"></script>
+      
+
+
+	 
+    
 <script>
 new WOW().init();
 
@@ -81,30 +86,30 @@ $("#experience_month").inputFilter(function(value) {
 			$('#submit_quick_project_disable').css('opacity', '0.35');
 			
 			if(quick_project_desc == '' ){
-				$('#quick_project_desc').css('border-color', 'red');
-				$( '#quick_project_desc' ).addClass( "shakeing" );
-			} else {
 				$('#quick_project_desc').css('border-color', '');
-				$( '#quick_project_desc' ).removeClass("shakeing");
+				$( '#quick_project_desc' ).addClass( "" );
+			} else {
+				$('#quick_project_desc').css('border-color', 'green');
+				$( '#quick_project_desc' ).removeClass("");
 			}
 			if(quick_min_budget == '' ){
-				$('#quick_min_budget').css('border-color', 'red');
-				$( '#quick_min_budget' ).addClass( "shakeing" );
+				$('#quick_min_budget').css('border-color', '');
+				$( '#quick_min_budget' ).addClass( "" );
 
 			} else {				
-				$('#quick_min_budget').css('border-color', '');
-				$( '#quick_min_budget' ).removeClass("shakeing");
+				$('#quick_min_budget').css('border-color', 'green');
+				$( '#quick_min_budget' ).removeClass("");
 			}
 			if(quick_max_budget == '' ){
-				$('#quick_max_budget').css('border-color', 'red');
-				$( '#quick_max_budget' ).addClass( "shakeing" );
+				$('#quick_max_budget').css('border-color', '');
+				$( '#quick_max_budget' ).addClass( "" );
 
 			} else {
 				if(parseInt(quick_max_budget) > parseInt(quick_min_budget)){
-					$('#quick_max_budget').css('border-color', '');
-					$( '#quick_max_budget' ).removeClass("shakeing");
+					$('#quick_max_budget').css('border-color', 'green');
+					$( '#quick_max_budget' ).removeClass("");
 				} else {
-					$('#quick_max_budget').css('border-color', 'red');
+					$('#quick_max_budget').css('border-color', '');
 					$( '#quick_max_budget' ).addClass( "shakeing" );
 				}
 				
@@ -198,7 +203,18 @@ $("#experience_month").inputFilter(function(value) {
 			});
 		});
 	}
-			
+	//hide and show google and linkedin after login
+	$(document).ready(function(){ 
+    x = $("#scheduleFreeConsulting").text().trim(); 
+    if ( !!x) { 
+        $("#linkedin").hide(); 
+        $("#google").hide(); 
+    } 
+    else { 
+        $("#linkedin").show(); 
+        $("#google").show(); 
+    } 
+});		
 // Quick Job post using LinkedIn			
 	$("#social_linkindin_login_quick").click(function(){
 		var popup = 'quick_project';
@@ -549,23 +565,65 @@ CheckNameNEmail();
 $('#emp_email').keyup(function() {
 CheckNameNEmail();
 });
+$('#emp_country').keyup(function() {
+CheckNameNEmail();
+});
+$('#emp_phone_no').keyup(function() {
+CheckNameNEmail();
+});
+$('#emp_professional_fields').keyup(function() {
+CheckNameNEmail();
+});
+ 
 function CheckNameNEmail(){
 	var emp_name = $('#emp_name').val();
 	var emp_email = $('#emp_email').val();
-	if(emp_email != '' && emp_name != ''){
-		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-	  if(regex.test(emp_email)) {
-		$('#emp_email').css('border-color', '');
+	var emp_country = $('#emp_country option:selected').val();
+	var emp_phone_no = $('#emp_phone_no').val();
+	var phone= $('input[name="emp_phone_no"]').mask('000-000-0000').val(); 
+	var emp_professional_fields =  $('#emp_professional_fields option:selected').val();
+$(function() {
+  $('#emp_name, #emp_email, #emp_country, #emp_professional_fields,#emp_phone_no').on('keyup change',function() {
+    if ($('#emp_name').val() == '' || $('#emp_email').val() == '' || $('#emp_country').val() == '' || $('#emp_phone_no').val() == ''|| $('#emp_professional_fields').val() == '') {
+		//$('#emp_email').css('border-color', 'red');
+		$('#emp_form1_next').css('pointer-events', 'none');
+	    $('#emp_form1_next').css('opacity', '0.35');
+    } else {
+		$('#emp_email').css('border-color', ''); 
 		$('#emp_form1_next').css('pointer-events', '');
 		$('#emp_form1_next').css('opacity', '1');
-	  }  else {
-		$('#emp_email').css('border-color', 'red');
-		$('#emp_form1_next').css('pointer-events', 'none');
-		$('#emp_form1_next').css('opacity', '0.35');
-		}
-	}
-}
+    }
+  });
+})
+}	 
+/*$(document).ready(function(){
+  
+  $("#emp_phone_no").on("blur", function(){
+        var mobNum = $(this).val();
+        var filter = /^\d*(?:\.\d{1,2})?$/;
 
+          if (filter.test(mobNum)) {
+            if(mobNum.length==10){
+                  alert("valid");
+            
+             } else {
+                alert('Please put 10  digit mobile number');
+				$('#emp_form1_next').css('pointer-events', 'none');
+	            $('#emp_form1_next').css('opacity', '0.35');
+                return false;
+              }
+            }
+            else {
+				alert('Please put 10  digit mobile number');
+				$('#emp_form1_next').css('pointer-events', 'none');
+	            $('#emp_form1_next').css('opacity', '0.35');
+                return false;
+              return false;
+           }
+    
+  });
+  
+});	*/ 
 // Landing page Employee modal next disabled - step 2
 $(document).on('click', '#my_skills', function() {
 	CheckSkills();
@@ -573,9 +631,32 @@ $(document).on('click', '#my_skills', function() {
 
 function CheckSkills(){
 	var my_skills = instance.value();
+	alert(my_skills);
 	
-	
-	if(my_skills == ''){
+	var exp_yr = $('#exp_yr').val();
+	//alert(exp_yr);
+	var exp_month = $('#exp_month').val();
+	//alert(exp_month);
+	var file = $('#file').val();
+	//alert();
+	 
+$(function() {
+  $('#exp_yr, #exp_month, #file').on('keyup change',function() {
+    if ($('#exp_yr').val() == '' || $('#exp_month').val() == '' || $('#file').val() == '') {
+		//$('#exp_yr').css('border-color', 'red');
+		$('#emp_form2_next').css('pointer-events', 'none');
+	    $('#emp_form2_next').css('opacity', '0.35');
+    } else {
+		$('#exp_yr').css('border-color', ''); 
+		$('#emp_form2_next').css('pointer-events', '');
+		$('#emp_form2_next').css('opacity', '1');
+    }
+  });
+})
+
+
+
+	/*if(my_skills == ''){
 		$('#my_skills').css('border', '1px solid red');
 		$('#emp_form2_next').css('pointer-events', 'none');
 		$('#emp_form2_next').css('opacity', '0.35');
@@ -583,7 +664,7 @@ function CheckSkills(){
 		$('#my_skills').css('border-color', '');
 		$('#emp_form2_next').css('pointer-events', '');
 		$('#emp_form2_next').css('opacity', '1');
-	}
+	}*/
 }
 
 // Landing page Employee modal next disabled - step 3
@@ -768,7 +849,87 @@ check = $("#toggle_skill_onoff_btn").is(":checked");
 
 			});
 	});
-	
+	// Schedule Free Consulting Validation before Submit	
+	$( "#scheduleFreeConsulting_button_for_validation" ).click(function() {
+		event.preventDefault();
+		//$('#user_type').css('border-color', '');
+		$('#name1').css('border-color', '');
+		$('#email1').css('border-color', '');
+		$('#phone1').css('border-color', '');
+		//$('#calendly').css('border-color', ''); 
+		
+		$('#user_type').removeClass("shakeing");		
+		$('#name1').removeClass("shakeing");		
+		$('#email1').removeClass("shakeing");		
+		$('#phone1').removeClass("shakeing");		
+		//$('#calendly').removeClass("shakeing");
+		var user_type = $('#user_type').val();
+		var name = $('#name1').val();
+		var email = $('#email1').val();
+		var phone = $('#phone1').val();
+		//var calendly = $('#calendly').val();
+		
+		if(user_type !='' && name != '' && email != '' && phone != ''){
+			 
+				$("#scheduleFreeConsulting_popup_form").submit();
+			 
+		} else {
+			if(user_type == ''){
+				//$('#user_type').css('border-color', 'red');
+				$( '#user_type' ).addClass( "shakeing" );
+			}
+			if(name == ''){
+				$('#name1').css('border-color', 'red');
+				$( '#name1' ).addClass( "shakeing" );
+			}
+			if(email == ''){
+				$('#email1').css('border-color', 'red');
+				$( '#email1' ).addClass( "shakeing" );
+			}
+			if(phone == ''){
+				$('#phone1').css('border-color', 'red');
+				$( '#phone1' ).addClass( "shakeing" );
+			}
+			if(calendly == ''){
+				$('#calendly').css('border-color', 'red');
+				$( '#calendly' ).addClass( "shakeing" );
+			}
+
+			$('input[name="phone"]').mask('000-000-0000');  
+		}
+	});
+
+// Schedule Free Consulting DeActive otherfields if UserType Not selected
+	//$('#user_type').css('border-color', 'red');
+	$('#scheduleFreeConsulting_button_for_validation').attr('disabled','disabled');
+	$('#name1').attr('disabled','disabled');
+	$('#email1').attr('disabled','disabled');
+	$('#phone1').attr('disabled','disabled');
+	$('#calendly').attr('hidden','hidden');
+	$('input[name="user_type"]:radio').change(function () {
+	var user_type = $('#user_type').val();
+		if(user_type !=''){
+			$('#scheduleFreeConsulting_button_for_validation').removeAttr('disabled');
+			$('#name1').removeAttr('disabled');
+			$('#email1').removeAttr('disabled');
+			$('#phone1').removeAttr('disabled');
+		} else {
+			//$('#user_type').css('border-color', 'red');
+			$( '#user_type' ).addClass( "shakeing" );
+			$('#calendly').attr('hidden','hidden');
+		}
+		$('input[name="phone"]').mask('000-000-0000');  
+	});
+	$('input[name="phone"]').change(function () {
+	var phone = $('#phone1').val();
+		if(phone !=''){
+			$('#calendly').removeAttr('hidden'); 
+		} 
+		else{
+			$('#calendly').attr('hidden','hidden');
+		}
+		$('input[name="phone"]').mask('000-000-0000');  
+	});
 // Registration Validation before Submit	
 	$( "#reg_button_for_validation" ).click(function() {
 		event.preventDefault();
@@ -983,11 +1144,10 @@ $("#verifyotpfromhead").click(function(){
 });
 	
 	
-	
-	
-	
-	
-	
+$(document).ready(function(){
+    $('.alert-success').fadeIn().delay(10000).fadeOut();
+      });
+	  
 </script>
         
         <!-- End scripts -->

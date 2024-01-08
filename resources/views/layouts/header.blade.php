@@ -35,7 +35,7 @@
 							@if (Route::has('login'))
 								<div class="top-right links">
 									@auth
-										<a href="#" target="_blank">Schedule Free Consulting</a>
+										<a href="#" target="_blank"data-bs-toggle="modal" id="scheduleFreeConsulting"data-bs-target="#modal-scheduleFreeConsulting" class="scheduleFreeConsulting_modal_pop_btn">Schedule Free Consulting</a>
 										 @if( Request::path() == '/' || Request::path() == '/home')
 											@if($user->user_type == 'employer') 
 												<a class="home_btn" href="{{ url('/employerdashboard') }}">Dashboard</a>
@@ -48,7 +48,7 @@
 										
 										<a class="logout_btn" href="{{url('logout')}}" onclick="signOut();">Logout</a>
 									@else
-										<a href="#" target="_blank">Schedule Free Consulting</a>
+										<a href="#" data-bs-toggle="modal" data-bs-target="#modal-scheduleFreeConsulting" class="scheduleFreeConsulting_modal_pop_btn"target="_blank">Schedule Free Consulting</a>
 										<a href="" data-bs-toggle="modal" data-bs-target="#modal-login" class="login_modal_pop_btn">Login</a>
 
 										@if (Route::has('register'))
@@ -72,7 +72,7 @@
 				</div>
 			</div>
 		@endif
-
+		 
 		@if(Route::currentRouteName() == 'baseurllogin')
 		<div class="main">
 		@else

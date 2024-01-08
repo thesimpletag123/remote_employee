@@ -51,7 +51,12 @@ class LoginController extends Controller
 			 if($user->user_type == 'employee') {
 				return '/dashboard'; 
 			}
-		} else {
+		} elseif($user->user_type == 'admin'){
+			 
+				return '/admindashboard'; 
+			 
+		}
+		else {
 			if($user->user_type == 'employer'){
 				return '/employerdashboard'; 
 			} else {

@@ -14,11 +14,11 @@ class SocialAuthController extends Controller
 {
 
 // Google Social Login
-   public function redirectToGoogle()
+  /* public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
-    }
-	
+    }*/
+	/*
     public function handleGoogleCallback()
     {
         try {    
@@ -54,17 +54,17 @@ class SocialAuthController extends Controller
         } catch (Exception $e) {
             dd($e->getMessage());
         }
-    }
+    }*/
 
 
 // LinkedIn Social Login
 	
-	public function linkedinredirect()
+	/*public function linkedinredirect()
     {
         return Socialite::driver('linkedin')->redirect();
-    }
+    }*/
 
-    public function linkedincallback()
+   /* public function linkedincallback()
     {
         try {
             $linkdinUser = Socialite::driver('linkedin')->user();
@@ -91,23 +91,23 @@ class SocialAuthController extends Controller
 			/*if($existUser->is_verified == true){
 					return redirect('/dashboard'); 
 			} else {*/
-				return redirect()->to('/');
+				//return redirect()->to('/');
 			//}
 			/*$data['success'] = 1;
 			$data['message'] = 'Logged In..';
 
 			return response()->json($data);*/
-        }
+     /*   }
         catch (Exception $e) {
 			$data['success'] = 2;
 			$data['message'] = 'Failed! Please Retry';
 
 			return response()->json($data);
         }
-    }	
+    }*/	
 	
 	
-	public function signin_using_google_popup(Request $request){
+/*	public function signin_using_google_popup(Request $request){
 		$gprofileid = $request->gprofileid;
 		$gname = $request->gname;
 		$gimage = $request->gimage;
@@ -151,5 +151,50 @@ class SocialAuthController extends Controller
 				return response()->json($data);
 			}
 		}
+	}*/
+	public function loginWithGoogle(Request $request)
+    {
+        return Socialite::driver('google')->redirect();
+    }
+	public function callBackFromGoogle()
+    {
+		try {    
+		$user = Socialite::driver('google')->stateless()->user();
+		$existUser = User::where('email', $user->email)->first();
+		if($existUser){
+			if(!$existUser->google_id){					
+				$userupdate = User::find($existUser->id);
+				$userupdate->google_id = $user->id;
+				$userupdate->save();
+			}
+			Auth::login($existUser);
+			if($existUser->is_verified == true){
+				if($existUser->user_type == 'employer'){
+					return redirect('/employerdashboard'); 
+				} else {
+				return redirect('/dashboard'); 
+				}
+			} else {
+				return redirect('/home');
+			}
+		}else{
+			$phone= 0000000000;
+		 	$newUser = new User;
+			$newUser->name =  $user->name;
+			$newUser->email = $user->email;
+			$newUser->google_id =  $user->id;
+            $newUser->last_login_ip =  request()->getClientIp();
+            $newUser->password = Hash::make('password');
+			$newUser->phone = $phone;
+            $newUser->save();
+
+			Auth::login($newUser);     
+			return redirect('/home');
+		}    
 	}
+			 
+			catch (\Throwable $th) {
+			   dd('something want wrong!'.$th->getMessage());
+			}
+    }
 }

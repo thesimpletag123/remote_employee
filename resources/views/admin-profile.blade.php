@@ -252,6 +252,6 @@
 
 @section('pagescript')
 <script>
-$('#name').removeAttr('disabled');
+
 </script>
 @endsection

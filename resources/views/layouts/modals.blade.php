@@ -1,4 +1,4 @@
- <?php
+<?php
 if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 	$origin = $_SERVER["HTTP_ORIGIN"];
 	$allowed_origins = array(
@@ -18,6 +18,8 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 }
 
 ?>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script src="{{ asset('assets/js/bundle.min.js') }}"></script>
  <!-- starting modal-employer -->
         <div class="modal fade modal-employer" id="modal-employer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,6 +91,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 											</div>
                                             <div class="col">
                                                 <select id="quick_currency" name ="quick_currency">
+                                                 <option value="option">Option</option>
 													@if(isset($currencies))													
 														@foreach($currencies as $currency => $abbr)
 															@if (session('quick_max_budget'))
@@ -114,19 +117,18 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 									@else
 										<div class="form-group">
 											
-											<div class="d-flex align-items-center justify-content-between">
-                                                <div class="google-btn">
-                                                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                                                    <div class="google-sign">
-                                                        <i class="fab fa-google"></i>
-                                                        Sign In
-                                                    </div>
-                                                </div>
-                                                <a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login">
-                                                    <i class="fab fa-linkedin-in"></i>
-                                                    Sign In
-                                                </a> 
-                                            </div> 
+                                        <div class="d-flex align-items-center justify-content-between">
+                                      
+                                      <a href="{{route('loginWithGoogle') }}" class="social-icon g-signin google-sign bg-danger">
+                                          <i class="fab fa-google bg-danger"></i>
+                                          Sign In
+                                      </a>
+                                      <a href="{{route('loginWithLinkedin') }}" class="social-icon g-signin google-sign bg-info">
+                                       
+                                      <i class="fab fa-linkedin-in"></i>
+                                         Sign In
+                                      </a> 
+                                      </div>   
 											
 										</div>
 										<div class="form-group" >
@@ -177,23 +179,28 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                         </div>
                                         <div class="form-group">
 											
-												<input type="text" name="name" id="emp_name" placeholder="Enter Your Name">
+												<input type="text" name="emp_fname" id="emp_name" placeholder="Enter Your Name">
                                         </div>
                                         <div class="form-group">
 											@if (Auth::check())
 												@if(isset($user->email))
-													<input type="email" name="email" id="emp_email" readonly value="{{$user->email}}">
+													<input type="email" name="emp_email" id="emp_email" readonly value="{{$user->email}}">
 												@else
-													<input type="email" name="email" id="emp_email">
+													<input type="email" name="emp_email" id="emp_email">
 												@endif
 											@else
-												<input type="email" name="email" id="emp_email" placeholder="Enter Your Email ID">
+												<input type="email" name="emp_email" pattern="[^ @]*@[^ @]*" id="emp_email" placeholder="Enter Your Email ID" requird>
 											@endif
                                         </div>
+                                        <div class="alert alert-danger alert-block" style="display:none">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong> {{ Session::get('success') }}</strong>
+                                            </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-3">
-                                                    <select id="emp_country" name ="emp_country">
+                                                    <select id="emp_country" name ="emp_country" onclick="myFunction()">
+                                                    <option value="">Option</option>
 														@if(isset($countries))													
 															@foreach($countries as $country => $abbr)
 																<option value="{{$abbr}}">{{$country}}</option>
@@ -210,21 +217,16 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 													$emp_contact_no = $employeies['contact_no'];
 												}
 												?>
-                                                <div class="col-3"><input type="number" name="" placeholder="+91" id="emp_phone_ext"></div>
-                                                <div class="col-6"><input type="number" value="" placeholder="Contact number" id="emp_phone_no"></div>
+                                                <div class="col-3"><input type="text" name="emp_phone_ext" placeholder="+00" id="emp_phone_ext"></div>
+                                                <div class="col-6"><input type="text" name="emp_phone_no" placeholder="Contact number" id="emp_phone_no" required></div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <select id="emp_professional_fields">
-											<?php 
-												$emp_professional_field = null;
-												if(isset($employeies['professional_field'])){
-													$emp_professional_field = $employeies['professional_field'];
-												}
-												?>
+                                            <select id="emp_professional_fields"name ="emp_professional_fields">
+                                            <option value="">Select Professional</option>
 											@if(isset($professional_fields))
 												@foreach($professional_fields as $value)
-													<option value="{{$value}}" <?php if($emp_professional_field ==$value){echo "selected";}?> >{{$value}}</option>
+													<option  value="{{$value}}">{{$value}}</option>
 												@endforeach
 											@else
 													<option>No Professional Fields Available</option>
@@ -323,11 +325,11 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 													}
 												}												
 												?>
-                                                <div class="col">
-													<input type="number" name="exp_yr" id="exp_yr" placeholder="Year" min="0" class="custom_input" value="{{$emp_exp_yr}}">
+                                                <div class="col"> 
+                                                Year <input type="number" name="exp_yr" id="exp_yr" placeholder="Year" min="0" class="custom_input" value="{{$emp_exp_yr}}">
 												</div>
-												<div class="col">
-													<input type="number" name="exp_month" id="exp_month" placeholder="Month" max="12" min="0" class="custom_input" value="{{$emp_exp_month}}">
+												<div class="col"> 
+                                                Month <input type="number" name="exp_month" id="exp_month" placeholder="Month" max="12" min="0" class="custom_input" value="{{$emp_exp_month}}">
 												</div>
                                             </div>
                                         </div>
@@ -483,9 +485,122 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
         <!-- End modal-employee-VARIFICATION FAILED -->
         
         
+        <!-- starting modal-Schedule Free Consulting -->
+        <div class="modal fade modal-login" id="modal-scheduleFreeConsulting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"style="margin-left: 450px;"></i></button>
+					</div>
+					<div class="modal-body">
+						<div>
+							<img src="{{ asset('assets/images/main-logo.png') }}" alt="image" />
+							<h4>Welcome to Remote Employee</h4>
+							<p>Schedule Free Consulting</p>
+						</div>
+						<form method="POST" action="{{ route('scheduleFreeConsulting') }}" id="scheduleFreeConsulting_popup_form">
+                         
+                        @csrf
+						
+							<div class="form-group row">
+								<i class="fa-solid fa-user-gear"></i>
+								{{--<select name="user_type" id="user_type" class="form-control" required autofocus style="padding-left: 35px;">
+									<option selected disabled>Select a user Type</option>
+									<option value="employer">I am a Employer</option>
+									<option value="employee">I am a Employee</option>
+								</select >--}}
+								<div class="col-md-12">
+									<div class="col-sm-6" style="float:left;">
+										<input type="radio" name="user_type" value="employer">
+										<label for="employer" style="color: #fff;">I am an Employer</label>
+									</div>
+									<div class="col-sm-6" style="float:right;">
+										<input type="radio" name="user_type" value="employee">
+										<label for="employee" style="color: #fff;">I am an Employee</label>
+									</div>
+								</div>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
+
+							<div class="form-group row">
+								<i class="fas fa-user" ></i>
+								<input id="name1" type="text" class="form-control @error('name') is-invalid @enderror bg-dark text-white" name="name" value="{{ old('name') }}" required autocomplete="name" Placeholder="Enter Your Name" autofocus style="padding-left: 35px;">
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
+
+							<div class="form-group row">
+								<i class="fas fa-envelope" ></i>
+								<input id="email1" type="email1" class="form-control freeShudel @error('email') is-invalid @enderror bg-dark text-white" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your Email" style="padding-left: 35px;">
+
+								@error('email')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+							<div class="form-group row">
+								<i class="fas fa-phone" ></i>
+								<input id="phone1"type="text" class="form-control @error('phone') is-invalid @enderror bg-dark text-white" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Type Phone Number" style="padding-left: 35px;">
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
+                            <div class="form-group row">
+								<i class="" ></i>
+                                <!-- Calendly link widget begin -->
+                                <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/drdanial/the-remote-employee'});return false;">
+                                <button id="calendly" type="button" name="calendly" class="form-control bg-info text-white"style="padding-left:10px;">
+                                Schedule Free Consulting Schedule time with me</button>
+                                 </a>
+                                <!-- Calendly link widget end -->
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
+
+							 
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary" id="scheduleFreeConsulting_button_for_validation">
+                                    {{ __('Schedule Free Consulting') }}
+                                </button>
+							</div>
+							<div class="form-group">
+								 
+                            <div class="d-flex align-items-center justify-content-between">
+                                      
+                                      <a href="{{route('loginWithGoogle') }}" id="google"class="social-icon g-signin google-sign bg-danger">
+                                          <i class="fab fa-google bg-danger"></i>
+                                          Sign In
+                                      </a>
+                                      <a href="{{route('loginWithLinkedin') }}" id="linkedin"class="social-icon g-signin google-sign bg-info">
+                                       
+                                      <i class="fab fa-linkedin-in"></i>
+                                         Sign In
+                                      </a> 
+                              </div>          
+							</div>						
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End modal-Schedule Free Consulting --> 
         
-        
-        
+         
         
 		
 		<!-- starting modal-register -->
@@ -575,17 +690,16 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 							<div class="form-group">
 								 
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <div class="google-btn">
-                                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                                        <div class="google-sign">
-                                            <i class="fab fa-google"></i>
+                                      
+                                        <a href="{{route('loginWithGoogle') }}" class="social-icon g-signin google-sign bg-danger">
+                                            <i class="fab fa-google bg-danger"></i>
                                             Sign In
-                                        </div>
-                                    </div>
-                                    <a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login">
+                                        </a>
+                                        <a href="{{route('loginWithLinkedin') }}" class="social-icon g-signin google-sign bg-info">
+                                         
                                         <i class="fab fa-linkedin-in"></i>
-                                        Sign In
-                                    </a> 
+                                           Sign In
+                                        </a> 
                                 </div>          
 							</div>						
 						</form>
@@ -652,19 +766,18 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								@endif
 							</div>
 							<div class="form-group">
-								<div class="d-flex align-items-center justify-content-between">
-                                    <div class="google-btn">
-                                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                                        <div class="google-sign">
-                                            <i class="fab fa-google"></i>
-                                            Sign In
-                                        </div>
-                                    </div>
-                                    <a href="{{ url('auth/linkedin/redirect') }}" class="social-icon" id="social_linkindin_login_login">
-                                        <i class="fab fa-linkedin-in"></i>
-                                        Sign In
-                                    </a> 
-                                </div>             
+                            <div class="d-flex align-items-center justify-content-between">
+                                      
+                                      <a href="{{route('loginWithGoogle') }}" class="social-icon g-signin google-sign bg-danger">
+                                          <i class="fab fa-google bg-danger"></i>
+                                          Sign In
+                                      </a>
+                                      <a href="{{route('loginWithLinkedin') }}" class="social-icon g-signin google-sign bg-info">
+                                       
+                                      <i class="fab fa-linkedin-in"></i>
+                                         Sign In
+                                      </a> 
+                              </div>            
 							</div>	
 						</form>
 					</div>
@@ -1244,3 +1357,68 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
             </div>
         </div>
         <!-- End modal-dashboard-employer -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA="crossorigin="anonymous"></script>
+<script>
+$(document).ready(function () {
+$('input[name="phone"]').mask('000-000-0000'); 
+$("#emp_country").click(function () {
+var country_name = this.value;
+//alert(country_name);
+var token = $('meta[name="csrf-token"]').attr('content');
+$.ajax({
+type: "post",
+dataType:'json',
+data: { "_token": "{{ csrf_token() }}" , 
+     "country_name":country_name
+    },
+url: "{{url('countrynamecode')}}",
+success: function(data) {
+//alert(data.selectmenuId);
+$("#emp_phone_ext").val(data.selectmenuId);
+}
+});
+
+});
+});
+$(document).ready(function () {
+$("#emp_phone_no").click(function () {
+//var country_name = this.value;
+//alert(country_name);
+var emp_email = document.getElementById("emp_email").value; 
+        //document.getElementById("demo").innerHTML = x; 
+        //alert(emp_email);
+var token = $('meta[name="csrf-token"]').attr('content');
+$.ajax({
+type: "get",
+dataType:'json',
+data: { "_token": "{{ csrf_token() }}" , emp_email:emp_email},
+url: "{{url('valiedEmailCheck')}}",
+            success: function (data) {
+            console.log('data', data);
+            $(".alert-danger").css("display", "block");
+            $(".alert-danger").append("<P>Email is already exist");
+        } 
+});
+});
+});
+
+function myFunction() { 
+       /// var valiedEmail = document.getElementById("emp_email").value; 
+        //document.getElementById("demo").innerHTML = x; 
+       // alert(valiedEmail);
+        //var token = $('meta[name="csrf-token"]').attr('content');
+$.ajax({
+type: "post",
+dataType:'json',
+//data: { "_token": "{{ csrf_token() }}" , valiedEmail:emp_email},
+//url: "{{url('valiedEmailCheck')}}",
+success: function(data) {
+//alert(data.selectmenuId);
+$("#emp_phone_ext").val(data.selectmenuId);
+}
+});
+
+    }
+    </script>

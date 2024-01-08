@@ -2,7 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocationController;
-/*
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\Auth\EmployeeController;
+use App\Http\Controllers\Auth\SuperAdminController;
+/*  
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -30,22 +35,31 @@ Route::get('login', [
   'as' => 'login',
   'uses' => 'EmployeeController@baseurllogin'
 ]);
+
 	Route::post('emp1_submit', 'EmployeeController@emp1_submit')->name('emp1_submit');
 	Route::post('emp2_submit', 'EmployeeController@emp2_submit')->name('emp2_submit');
 	Route::post('emp_otp_verify', 'EmployeeController@emp_otp_verify')->name('emp_otp_verify');
-	
+	Route::post('countrynamecode', 'EmployeeController@countryNameCode')->name('countryNameCode');
+	Route::get('valiedEmailCheck', 'EmployeeController@valiedEmailCheck')->name('valiedEmailCheck');
+	Route::get('emailCheck', 'EmployeeController@emailCheck')->name('emailCheck');
+	//Route::get('/admin', 'EmployeeController@admin')->name('admin');
+	//Route::get('/allEmployee', 'SuperAdminController@allEmployee')->name('allEmployee');
+	//Route::get('/allEmployer', 'SuperAdminController@allEmployer')->name('allEmployer');
+##Schedule Free Consulting	
+	Route::post('scheduleFreeConsulting', 'Auth\RegisterController@scheduleFreeConsulting')->name('scheduleFreeConsulting');
 	
 	
 
 ## Social Login
 	### 1. Google
-	Route::get('auth/google', 'Auth\SocialAuthController@redirectToGoogle');
-	Route::get('auth/google/callback', 'Auth\SocialAuthController@handleGoogleCallback');
-	Route::post('signin_using_google_popup', 'Auth\SocialAuthController@signin_using_google_popup');
+	 
+	Route::get('auth/google', 'Auth\SocialAuthController@loginWithGoogle')->name('loginWithGoogle');
+	Route::any('auth/google/callback', 'Auth\SocialAuthController@callBackFromGoogle')->name('callBackFromGoogle');
 
 	### 2. LinkedIn
-	Route::get('auth/linkedin/redirect', 'Auth\SocialAuthController@linkedinredirect');
-	Route::get('auth/linkedin/callback', 'Auth\SocialAuthController@linkedincallback');
+	 
+	Route::get('auth/linkedin', 'Auth\SocialAuthController@loginWithLinkedin')->name('loginWithLinkedin');
+	Route::any('auth/linkedin/callback', 'Auth\SocialAuthController@callBackFromLinkedin')->name('callBackFromLinkedin');
 	
 	### 3. Session Set for PopUp Jobpost
 	Route::post('setsession_for_popups', 'JobPostController@setsession_for_popups')->name('setsession_for_popups');
@@ -57,8 +71,17 @@ Route::get('login', [
 Route::middleware(['auth'])->group(function () {
 	Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('admindashboard', 'JobPostController@admindashboard')->name('admindashboard');
+	Route::get('editemployeehow/{id}','JobPostController@editemployeehow')->name('editemployeehow');
+	Route::post('updateemployee','JobPostController@updateemployee')->name('updateemployee');
+	Route::get('employeedelete/{id}','JobPostController@employeedelete')->name('employeedelete');
 	
-	
+	Route::get('employer', 'JobPostController@employer')->name('employer');
+	Route::get('editemployershow/{id}','JobPostController@editemployershow')->name('editemployershow');
+	Route::post('updateemployer','JobPostController@updateemployer')->name('updateemployer');
+	Route::get('employerdelete/{id}','JobPostController@employerdelete')->name('employerdelete');
+
+
 	Route::get('profilesetting/{id}', 'HomeController@profilesetting')->name('profilesetting');
 	Route::post('update_profile_img', 'HomeController@update_profile_img')->name('update_profile_img');
 	Route::post('update_employer_role', 'HomeController@update_employer_role')->name('update_employer_role');
@@ -78,6 +101,7 @@ Route::middleware(['auth'])->group(function () {
 	
 	Route::middleware(['isEmployee'])->group(function () {
 		Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
+		 
 		Route::get('update_job_by_employee/{id}', 'JobPostController@viewjobemployee')->name('update_job_by_employee');
 		Route::get('viewjobemployee/{id}', 'JobPostController@viewjobemployee')->name('viewjobemployee');
 		Route::post('employeetimeupdate', 'JobTrackerController@employeetimeupdate')->name('employeetimeupdate');
@@ -88,6 +112,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get('sendwelcomemail', 'SendMailController@SendWelcomeMail')->name('SendWelcomeMail');
 		Route::post('employeskillupdate', 'HomeController@employeskillupdate')->name('employeskillupdate');
 		Route::post('verifyuser', 'HomeController@verifyuser')->name('verifyuser');
+		 
 	});
 	Route::middleware(['isEmployer'])->group(function () {
 		Route::get('employerdashboard', 'JobPostController@employerdashboard')->name('employerdashboard');
