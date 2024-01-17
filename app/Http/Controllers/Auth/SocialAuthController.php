@@ -59,12 +59,12 @@ class SocialAuthController extends Controller
 
 // LinkedIn Social Login
 	
-	/*public function linkedinredirect()
+	public function linkedinredirect()
     {
         return Socialite::driver('linkedin')->redirect();
-    }*/
+    }
 
-   /* public function linkedincallback()
+    public function linkedincallback()
     {
         try {
             $linkdinUser = Socialite::driver('linkedin')->user();
@@ -91,20 +91,20 @@ class SocialAuthController extends Controller
 			/*if($existUser->is_verified == true){
 					return redirect('/dashboard'); 
 			} else {*/
-				//return redirect()->to('/');
+				return redirect()->to('/');
 			//}
 			/*$data['success'] = 1;
 			$data['message'] = 'Logged In..';
 
 			return response()->json($data);*/
-     /*   }
+        }
         catch (Exception $e) {
 			$data['success'] = 2;
 			$data['message'] = 'Failed! Please Retry';
 
 			return response()->json($data);
         }
-    }*/	
+    }		
 	
 	
 /*	public function signin_using_google_popup(Request $request){

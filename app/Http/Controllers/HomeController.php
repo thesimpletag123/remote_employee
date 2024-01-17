@@ -11,6 +11,7 @@ use App\Employee;
 use App\JobPost;
 use App\Skills;
 use App\User;
+use App\Paymentgetway;
 use Auth;
 use Carbon\Carbon;
 
@@ -398,4 +399,34 @@ class HomeController extends Controller
 				return response()->json($data);
 			}
 	}
+/*	public function paymentgateway(Request $request)
+	{
+		\Stripe\Stripe::setApiKey('sk_test_51O1UfBSHgIHKyEcDDlqjDfBBySV585eKFhdVgGiR3kthEgGyK45syhtb9WUiq3TkWrirVtQhYeoaOnR9ZcrN4AmW00To6jkFKV');
+        		
+		$amount = 100;
+		$amount *= 100;
+        $amount = (int) $amount;
+        
+        $payment_intent = \Stripe\PaymentIntent::create([
+			'description' => 'Stripe Test Payment',
+			'amount' => $amount,
+			'currency' => 'INR',
+			'description' => 'Payment From Codehunger',
+			'payment_method_types' => ['card'],
+		]);
+		$intent = $payment_intent->client_secret;
+dd($intent );
+die();
+		return view('layouts.modals',compact('intent'));
+
+		    $data = $request->all();
+		    $employee = new Paymentgetway;
+			$employee->user_type = $data['user_type'];
+			$employee->name = $data['name'];
+			$employee->email = $data['email'];
+			$employee->phone = $data['phone'];
+			$employee->money = $data['money'];
+			$employee->save();
+
+	}*/
 }

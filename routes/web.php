@@ -58,8 +58,8 @@ Route::get('login', [
 
 	### 2. LinkedIn
 	 
-	Route::get('auth/linkedin', 'Auth\SocialAuthController@loginWithLinkedin')->name('loginWithLinkedin');
-	Route::any('auth/linkedin/callback', 'Auth\SocialAuthController@callBackFromLinkedin')->name('callBackFromLinkedin');
+	Route::get('auth/linkedin', 'Auth\SocialAuthController@linkedinredirect')->name('loginWithLinkedin');
+	Route::any('auth/linkedin/callback', 'Auth\SocialAuthController@linkedincallback')->name('callBackFromLinkedin');
 	
 	### 3. Session Set for PopUp Jobpost
 	Route::post('setsession_for_popups', 'JobPostController@setsession_for_popups')->name('setsession_for_popups');
