@@ -28,6 +28,10 @@ Route::get('/clear', function() {
 });
 
 Route::get('/', 'EmployeeController@baseurllogin')->name('baseurllogin');
+Route::get('service', 'EmployeeController@service')->name('service');
+Route::get('aboutus', 'EmployeeController@aboutus')->name('aboutus');
+Route::get('contactus', 'EmployeeController@contactus')->name('contactus');
+Route::post('contactus', 'EmployeeController@contactususer')->name('contactususer');
 Route::post('submit_project_as_guest', 'JobPostController@submit_project_as_guest')->name('submit_project_as_guest');
 
 Auth::routes();
@@ -42,7 +46,11 @@ Route::get('login', [
 	Route::post('countrynamecode', 'EmployeeController@countryNameCode')->name('countryNameCode');
 	Route::get('valiedEmailCheck', 'EmployeeController@valiedEmailCheck')->name('valiedEmailCheck');
 	Route::get('emailCheck', 'EmployeeController@emailCheck')->name('emailCheck');
-	//Route::get('/admin', 'EmployeeController@admin')->name('admin');
+
+	//Route::get('service', 'HomeController@service')->name('service');
+	//Route::get('aboutus', 'HomeController@aboutus')->name('aboutus');
+	//Route::get('whyus', 'HomeController@whyus')->name('whyus');
+	//Route::get('contact', 'HomeController@contact')->name('contact');
 	//Route::get('/allEmployee', 'SuperAdminController@allEmployee')->name('allEmployee');
 	//Route::get('/allEmployer', 'SuperAdminController@allEmployer')->name('allEmployer');
 ##Schedule Free Consulting	
@@ -58,8 +66,8 @@ Route::get('login', [
 
 	### 2. LinkedIn
 	 
-	Route::get('auth/linkedin', 'Auth\SocialAuthController@linkedinredirect')->name('loginWithLinkedin');
-	Route::any('auth/linkedin/callback', 'Auth\SocialAuthController@linkedincallback')->name('callBackFromLinkedin');
+	Route::get('auth/linkedin', 'Auth\SocialAuthController@loginWithLinkedin')->name('loginWithLinkedin');
+	Route::any('auth/linkedin/callback', 'Auth\SocialAuthController@callBackFromLinkedin')->name('callBackFromLinkedin');
 	
 	### 3. Session Set for PopUp Jobpost
 	Route::post('setsession_for_popups', 'JobPostController@setsession_for_popups')->name('setsession_for_popups');
@@ -75,7 +83,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('editemployeehow/{id}','JobPostController@editemployeehow')->name('editemployeehow');
 	Route::post('updateemployee','JobPostController@updateemployee')->name('updateemployee');
 	Route::get('employeedelete/{id}','JobPostController@employeedelete')->name('employeedelete');
-	
+
+	//Route::get('valiedEmailCheckotp', 'EmployeeController@valiedEmailCheckotp')->name('valiedEmailCheckotp');
+
 	Route::get('employer', 'JobPostController@employer')->name('employer');
 	Route::get('editemployershow/{id}','JobPostController@editemployershow')->name('editemployershow');
 	Route::post('updateemployer','JobPostController@updateemployer')->name('updateemployer');
@@ -108,6 +118,8 @@ Route::middleware(['auth'])->group(function () {
 		Route::post('employeeprofileupdate', 'HomeController@employeeprofileupdate')->name('employeeprofileupdate');
 		Route::post('employeerateupdate', 'HomeController@employeerateupdate')->name('employeerateupdate');
 		Route::get('sendmail', 'SendMailController@sendmail')->name('sendmail');
+		Route::get('sendmailotp', 'SendMailController@sendmailotp')->name('sendmailotp');
+		Route::post('userempotpverify', 'SendMailController@userempotpverify')->name('userempotpverify');
 		Route::get('sendmailwithuserid', 'SendMailController@sendmailwithuserid')->name('sendmailwithuserid');
 		Route::get('sendwelcomemail', 'SendMailController@SendWelcomeMail')->name('SendWelcomeMail');
 		Route::post('employeskillupdate', 'HomeController@employeskillupdate')->name('employeskillupdate');

@@ -15,6 +15,7 @@ use App\Skills;
 use App\User;
 use Auth;
 use DB;
+use App\Contactususers;
 use App\Professionals;
 class EmployeeController extends Controller
 {
@@ -256,5 +257,62 @@ class EmployeeController extends Controller
         }
 		return json_encode( compact( 'data'));
 		 
+	}
+	/*public function valiedEmailCheckotp(Request $request)
+	{
+       $email=$request->emailotp;
+	   $user = Auth::user('email',$email);
+	   
+	   $ifexsists = GenerateOtp::where('user_id', '=', $user->id)->first();
+	   //dd($ifexsists);
+		//$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		$str_result = '0123456789';
+		$otp = substr(str_shuffle($str_result), 0, 5);
+
+		if ($ifexsists === null) {
+			$otpgenerate = new GenerateOtp; 
+			$otpgenerate->user_id = $user->id;
+			$otpgenerate->otp = $otp;
+			$otpgenerate->otp_purpose = 'Verifying Employe';
+			$otpgenerate->save();
+		} else {
+			GenerateOtp::where(['user_id' => $user->id])->update(['otp' => $otp]);
+		}		
+		//return response()->json($data);
+	   //dd($email);
+	}*/
+	public function service(Request $request)
+	{
+		return view('service');
+	}
+	public function aboutus(Request $request)
+	{
+		return view('aboutus');
+	}
+	public function contactus(Request $request)
+	{
+		return view('contactus');
+	}
+	public function contactususer(Request $request)
+	{
+		$request->validate([
+			'name'=>'required',
+			'email'=>'required',
+			'phone'=>'required',
+			 
+			]);
+		if($request->isMethod('post'))
+       { 
+               $data = $request->all();
+               $contact = new Contactususers;
+               $contact->name=$data['name'];
+               $contact->email=$data['email'];
+               $contact->phone=$data['phone'];
+               $contact->message=$data['message']; 
+			   //dd($contact);
+               $contact->save();
+               return redirect('contactus')->with('success', 'Contact Us successfull!!');
+	     
+        }
 	}
 }
