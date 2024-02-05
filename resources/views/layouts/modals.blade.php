@@ -284,10 +284,12 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                                                         var required_skills_array = new Array();
                                                         <?php
                                                         $required_skills_array = [];
-                                                        foreach($skills as $skill){	
-                                                        ?>
-                                                        allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
-                                                        <?php
+                                                        if(isset($skills) && count($skills) > 0){
+                                                            foreach($skills as $skill){	
+                                                            ?>
+                                                            allSkills.push({label:'<?php echo $skill; ?>',value:'<?php echo $skill; ?>'});
+                                                            <?php
+                                                            }
                                                         }
                                                         foreach($required_skills_array as $rskill){	
                                                         ?>
@@ -620,7 +622,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                         @csrf
 						
 							<div class="form-group row">
-								<i class="fa-solid fa-user-gear"></i>
+								
 								{{--<select name="user_type" id="user_type" class="form-control" required autofocus style="padding-left: 35px;">
 									<option selected disabled>Select a user Type</option>
 									<option value="employer">I am a Employer</option>
@@ -679,10 +681,10 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Re-Type Password">
 							</div>
 
-							<div class="form-group">
+							<div class="form-group" style="text-align:left;">
 								<a href="javascript:void(0)" class="toggle_login_reg_btn" id="go_to_login_popup"> Already a member </a>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="text-align:left;">
 								<button type="submit" class="btn btn-primary" id="reg_button_for_validation">
                                     {{ __('Register') }}
                                 </button>
@@ -747,20 +749,20 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
 								@enderror
 							</div>
 
-							<div class="form-group">
-								<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> <span class="text-white">Remember me</span>
+							<div class="form-group" style="text-align: left; margin-left: 20px;">
+								<span class="text-white"> <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} > Remember me</span>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="text-align: left;">
 								<button type="submit" id="login_button_for_validation" class="btn btn-primary">
 									{{ __('Login') }}
 								</button>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="text-align: left;">
 								<a class="toggle_login_reg_btn" id="go_to_register_popup"> Not a Member Yet? </a>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="text-align: left;">
 								@if (Route::has('password.request'))
-								<a class="btn btn-link" href="{{ route('password.request') }}">
+								<a href="{{ route('password.request') }}">
 									{{ __('Forgot Your Password?') }}
 								</a>
 								@endif

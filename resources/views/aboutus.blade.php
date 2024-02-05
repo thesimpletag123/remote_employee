@@ -11,7 +11,6 @@
 		<meta name="google-signin-client_id" content="548697632443-e8k8jltgggkl7vqj97iudua56jftqdaf.apps.googleusercontent.com">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Services Section</title>
     <!-- Font Awesome CDN-->
     <link
       rel="stylesheet"
@@ -24,7 +23,7 @@
     />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css" />
-        <title>@yield('title') || {{ config('app.name') }}</title>
+        <title>About Us || {{ config('app.name') }}</title>
         <!-- for animation -->
         @include('layouts.css')
 		@yield('pagecss')		
@@ -80,7 +79,7 @@ p {
   background-color: #2c7bfe;
   position: absolute;
   
-  font-size: 30px;
+  font-size: 60px;
   height: 2.5em;
   width: 2.5em;
   color: #ffffff;
@@ -153,7 +152,7 @@ p {
 		@if(Route::currentRouteName() == 'baseurllogin')
 		<div class="main">
 		@else
-		<div class="main dashboard">
+		<div class="main dashboard" style="margin-top:125px;">
 		@endif
 
   <!-- starting modal-Schedule Free Consulting -->
@@ -475,130 +474,55 @@ p {
             </div>
         </div>
        
-        <div style=" padding-top:50px;"></div>        
-                    
-        <div class="col-12">
-          <div class="text">
-            <h2 class="text-center">Our Mission</h2>
-              <p style="text-align: justify;">
-              Provide remote employees and remote teams to Businesses, Entrepereneurs, Starups, Innovative & Emerginh Companies in the world to help them boost.<br>
-              Empowering businesses through seamless outsourcing, we strive to be the catalyst for success in 
-              an ever-evolving business landscape. Our mission is to provide innovative, cost-effective, and 
-              tailored outsourcing solutions that allow our clients to concentrate on their core competencies 
-              while we handle the rest.
-              </p>
-          </div>
+        <div style=" padding-top:50px;"></div>           
+        <h2 class="text-center">Our Mission</h2>
+        <div style=" padding-top:50px;"></div>
 
-          <div style=" padding-top:50px;"></div>
+        <div class="row">
+	        <div class="col-sm-6 col-md-6" style="padding-left:90px;">
+	          <div class="text">
+	            		<p style="text-align: justify;">
+			              Provide remote employees and remote teams to Businesses, Entrepereneurs, Starups, Innovative & Emerginh Companies in the world to help them boost.<br>
+			              Empowering businesses through seamless outsourcing, we strive to be the catalyst for success in an ever-evolving business landscape. Our mission is to provide innovative, cost-effective, and tailored outsourcing solutions that allow our clients to concentrate on their core competencies while we handle the rest.
+	              		</p>
+	            </div>
+	              	
+	        </div>
+	        <div class="col-sm-6 col-md-6">
+	            <div class="icon-wrapper" style="margin-left:30%;">
+                    <i class="fa-solid fa-bullseye" style="padding-top:45px;padding-left: 45px;"></i>
+                </div>
+	        </div>
+	    </div>
 
-          <div class="text">
-            <h2 class="text-center">Who We Are</h2>
-            <p class="" style="text-align: justify;">
-            Established with a passion for driving efficiency and fostering growth, 
-            TheRemoteEmployee.com is a team of dedicated professionals with diverse expertise.
-            From virtual assistants for outsource customer service,  
-            IT consulting and process automation to implement AI and beyond, 
-            our talented pool of specialists is committed to delivering exceptional results.
-            </p>
-          </div>
-        </div>
+        <div style=" padding-top:50px;"></div>
+        <h2 class="text-center">Who We Are</h2>
+        <div style=" padding-top:50px;"></div>
+
+        <div class="row">
+        	<div class="col-sm-6 col-md-6">
+	            <div class="icon-wrapper" style="margin-left:30%;">
+                    <i class="fa-solid fa-question-circle" style="padding-top:45px;padding-left: 45px;"></i>
+                </div>
+	        </div>
+	        <div class="col-sm-6 col-md-6" style="padding-right:90px;">
+	          <div class="text">
+	            		<p style="text-align: justify;">
+			              	Established with a passion for driving efficiency and fostering growth, 
+				            TheRemoteEmployee.com is a team of dedicated professionals with diverse expertise.
+				            From virtual assistants for outsource customer service,  
+				            IT consulting and process automation to implement AI and beyond, 
+				            our talented pool of specialists is committed to delivering exceptional results.
+	              		</p>
+	            </div>	
+	        </div>
+	    </div>
         
         <div style=" padding-top:50px;"></div>
 
-        <div class="text">
-            <h2 class="text-center">What Sets Us Apart</h2><br>
-            </div>
-            <div class="row">
-              <div class="col-xs-6 col-md-3"> 
-                  <div class="column">
-                      <div class="card">
-                          <div class="icon-wrapper" style="margin-left:55px;">
-                          <i class="fa-solid fa-chart-pie" style=" padding-top:24px;"></i>
-                          </div>
-                          <div style=" padding-top:100px;">
-                          <h5>Client-Centric Approach</h5>
-                          </div>
-                          <p class="text-center">
-                          At TheRemoteEmployee.com, your success is our priority. 
-                          We take the time to understand your unique challenges, 
-                          goals, and vision to tailor outsourcing solutions that 
-                          align with your business objectives. 
-                          </p>
-                      </div>
-                  </div>
-              </div>   
-              <div class="col-xs-6 col-md-3"> 
-                  <div class="column">
-                      <div class="card">
-                          <div class="icon-wrapper" style="margin-left:55px;">
-                          <i class="fa-solid fa-network-wired"  style="padding-top:24px;"></i>
-                          </div>
-                          <div style=" padding-top:100px;">
-                          <h5>Global Talent Network</h5>
-                          </div>
-                          <p class="text-center">
-                          Our extensive network of skilled professionals spans the globe. 
-                          By tapping into this diverse talent pool, we ensure that you 
-                          have access to the right skills and resources needed to 
-                          propel your business forward. 
-                          </p>
-                      </div>
-                  </div>
-              </div> 
-              <div class="col-xs-6 col-md-3"> 
-                  <div class="column">
-                      <div class="card">
-                          <div class="icon-wrapper" style="margin-left:55px;">
-                          <i class="fa-solid fa-microchip" style="padding-top:24px;"></i>
-                          </div>
-                          <div style=" padding-top:100px;">
-                          <h5>Innovation and Technology</h5>
-                          </div>
-                          <p class="text-center">
-                          Staying ahead in a digital world is crucial.
-                           We leverage cutting-edge technologies and innovative 
-                           approaches to continuously enhance the efficiency and 
-                           effectiveness of our outsourcing services. 
-                          </p>
-                      </div>
-                  </div>
-              </div> 
-              <div class="col-xs-6 col-md-3"> 
-                  <div class="column">
-                      <div class="card">
-                          <div class="icon-wrapper" style="margin-left:55px;">
-                          <i class="fa-regular fa-star" style="padding-top:24px;"></i>
-                          </div>
-                          <div style=" padding-top:100px;">
-                          <h5>Commitment to Quality</h5>
-                          </div>
-                          <p class="text-center">
-                          Quality is non-negotiable at TheRemoteEmployee.com. 
-                          We adhere to stringent quality control processes to 
-                          deliver services that meet the highest industry standards,
-                           ensuring your satisfaction and success.
-                          </p>
-                      </div>
-                  </div>
-              </div>                  
-            </div>
-
-            <div style=" padding-top:50px;"></div>
-             
-            <div class="container">
-                <h2 class="text-center">Our Values </h2>
-                     <p class="text-center"><i class="fa-solid fa-sun" style="margin-left:10px;font-size:13px;color: black;"></i> Integrity:<br> We conduct our business with honesty, transparency, and ethical practices.</p>
-                	<p class="text-center"><i class="fa-solid fa-sun" style="margin-left:10px;font-size:13px;color: black;"></i>     Collaboration:<br> We believe in the power of collaboration and work closely with our clients to achieve shared goals.</p>
-                	<p class="text-center"><i class="fa-solid fa-sun" style="margin-left:10px;font-size:13px;color: black;"></i>     Continuous Improvement:<br> Embracing change and proactively seeking ways to improve, we stay at the forefront of industry trends and best practices</p>
-                
-            </div>
-                
-            <div style="padding-bottom:30px;"></div>
-             
-      </div>
-    </div>
-
-                                </div> 
+         	</div>
+    	</div>
+                </div> 
 			</div>					
 		</div>
 	</div>
@@ -611,7 +535,7 @@ p {
                         <a href="{{route('service')}}">Services</a>
                         <a href="{{route('aboutus')}}">About Us</a>
                         <a href="{{route('contactus')}}">Contact Us</a>
-                         
+                        <a href="{{route('whoweare')}}">Who We Are</a>
                     </div>
                     <div class="col-lg-2 col-md col-sm-6 col-6 wow fadeInUpBig" data-wow-duration=".5s" data-wow-offset="60">
                         <a href="" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>

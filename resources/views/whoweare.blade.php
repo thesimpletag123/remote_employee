@@ -23,91 +23,88 @@
     />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css" />
-        <title>Services || {{ config('app.name') }}</title>
+        <title>Who We Are || {{ config('app.name') }}</title>
         <!-- for animation -->
         @include('layouts.css')
 		@yield('pagecss')		
     </head>
-    <style>
-     	{
-		  padding: 0;
-		  margin: 0;
-		  box-sizing: border-box;
-		  font-family: "Poppins", sans-serif;
-		}
-		section {
-		  height: 100vh;
-		  width: 100%;
-		  display: grid;
-		  place-items: center;
-		}
-		.row {
-		  display: flex;
-		  flex-wrap: wrap;
-		}
-		.column {
-		  width: 100%;
-		  padding: 0 1em 1em 1em;
-		  text-align: center;
-		}
-		.card {
-		  width: 250px;
-		  height: 350px;
-		  padding: 2em 1.5em;
-		  background: linear-gradient(#ffffff 50%, #2c7bfe 50%);
-		  background-size: 100% 200%;
-		  background-position: 0 2.5%;
-		  border-radius: 5px;
-		  box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
-		  cursor: pointer;
-		  transition: 0.5s;
-		}
-		h3 {
-		  font-size: 20px;
-		  font-weight: 270;
-		  color: #1f194c;
-		  margin: 1em 0;
-		  
-		}
-		p {
-		  color: #575a7b;
-		  font-size: 15px;
-		  line-height: 1.6;
-		  letter-spacing: 0.03em;
-		}
-		.icon-wrapper {
-		  background-color: #2c7bfe;
-		  position: absolute;
-		  
-		  font-size: 30px;
-		  height: 2.5em;
-		  width: 2.5em;
-		  color: #ffffff;
-		  border-radius: 50%;
-		 
-		   
-		   
-		}
-		.card:hover {
-		  background-position: 0 100%;
-		}
-		.card:hover .icon-wrapper {
-		  background-color: #ffffff;
-		  color: #2c7bfe;
-		}
-		.card:hover h3 {
-		  color: #ffffff;
-		}
-		.card:hover h6 {
-		  color: #ffffff;
-		}
-		.card:hover p{
-		  color: #f0f0f0;
-		}
+    <style> 
+   {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+section {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.column {
+  width: 100%;
+  padding: 0 1em 1em 1em;
+  text-align: center;
+}
+.card {
+  width: 250px;
+  height: 410px;
+  padding: 2em 1.5em;
+  background: linear-gradient(#ffffff 50%,);
+  background-size: 100% 200%;
+  background-position: 0 2.5%;
+  border-radius: 5px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: 0.5s;
+}
+h3 {
+  font-size: 20px;
+  font-weight: 270;
+  color: #1f194c;
+  margin: 1em 0;
+  
+}
+p {
+  color: #575a7b;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+.icon-wrapper {
+  background-color: #2c7bfe;
+  position: absolute;
+  
+  font-size: 30px;
+  height: 2.5em;
+  width: 2.5em;
+  color: #ffffff;
+  border-radius: 50%;
+ 
+   
+   
+}
 
-    </style>
-    
-    <body>
+.card-values {
+    width: 100%;
+    min-height: 30px !important;
+    padding: 2em 1.5em;
+    background: linear-gradient(#ffffff 50%,);
+    background-size: 100% 200%;
+    background-position: 0 2.5%;
+    border-radius: 5px;
+    box-shadow: 0 0 35px rgb(0 0 0 / 12%);
+    cursor: pointer;
+    transition: 0.5s;
+}
+ 
+ 
+</style>
+<body>
         <!-- starting header -->
         <header>
             <div class="container">
@@ -475,78 +472,115 @@
 <!-- starting modal-dashboard-employee -->
 <div class="container">
 	<div class="modal-dashboard-employee">
-		<div class="jopboard-box">
+        
+        <div style=" padding-top:50px;"></div>
+
+        <div class="text">
+            <h2 class="text-center">Who We Are</h2><br>
+            </div>
             <div class="row">
-                <div class="col-sm-6 col-12">
-                    <h1> SERVICES</h1>
-                </div>
-                <div class="col-sm-6 col-12">
-                </div>   
+              <div class="col-xs-6 col-md-3"> 
+                  <div class="column">
+                      <div class="card">
+                          <div class="icon-wrapper" style="margin-left:55px;">
+                          <i class="fa-solid fa-chart-pie" style=" padding-top:24px;"></i>
+                          </div>
+                          <div style=" padding-top:100px;">
+                          <h5>Client-Centric Approach</h5>
+                          </div>
+                          <p class="text-center">
+                          At TheRemoteEmployee.com, your success is our priority. 
+                          We take the time to understand your unique challenges, 
+                          goals, and vision to tailor outsourcing solutions that 
+                          align with your business objectives. 
+                          </p>
+                      </div>
+                  </div>
+              </div>   
+              <div class="col-xs-6 col-md-3"> 
+                  <div class="column">
+                      <div class="card">
+                          <div class="icon-wrapper" style="margin-left:55px;">
+                          <i class="fa-solid fa-network-wired"  style="padding-top:24px;"></i>
+                          </div>
+                          <div style=" padding-top:100px;">
+                          <h5>Global Talent Network</h5>
+                          </div>
+                          <p class="text-center">
+                          Our extensive network of skilled professionals spans the globe. 
+                          By tapping into this diverse talent pool, we ensure that you 
+                          have access to the right skills and resources needed to 
+                          propel your business forward. 
+                          </p>
+                      </div>
+                  </div>
+              </div> 
+              <div class="col-xs-6 col-md-3"> 
+                  <div class="column">
+                      <div class="card">
+                          <div class="icon-wrapper" style="margin-left:55px;">
+                          <i class="fa-solid fa-microchip" style="padding-top:24px;"></i>
+                          </div>
+                          <div style=" padding-top:100px;">
+                          <h5>Innovation and Technology</h5>
+                          </div>
+                          <p class="text-center">
+                          Staying ahead in a digital world is crucial.
+                           We leverage cutting-edge technologies and innovative 
+                           approaches to continuously enhance the efficiency and 
+                           effectiveness of our outsourcing services. 
+                          </p>
+                      </div>
+                  </div>
+              </div> 
+              <div class="col-xs-6 col-md-3"> 
+                  <div class="column">
+                      <div class="card">
+                          <div class="icon-wrapper" style="margin-left:55px;">
+                          <i class="fa-regular fa-star" style="padding-top:24px;"></i>
+                          </div>
+                          <div style=" padding-top:100px;">
+                          <h5>Commitment to Quality</h5>
+                          </div>
+                          <p class="text-center">
+                          Quality is non-negotiable at TheRemoteEmployee.com. 
+                          We adhere to stringent quality control processes to 
+                          deliver services that meet the highest industry standards,
+                           ensuring your satisfaction and success.
+                          </p>
+                      </div>
+                  </div>
+              </div>                  
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-md-3"> 
-                <div class="column">
-                    <div class="card">
-                        <div class="icon-wrapper" style="margin-left:55px;">
-                        <i class="fa-solid fa-chart-pie" style="padding-top:24px;"></i>
-                        </div>
-                        <div style=" padding-top:100px;">
-                        <h6>Virtual assistant to hire partime or fulltime remote employee </h6>
-                        </div>
-                        <p>
-                        Virtual Assistant to hire partime or fulltime remote employees to help you with all the Administrative Tasks, Research, Bookkeeping and more. Free Up your time
-                        </p>
-                    </div>
+
+            <div style=" padding-top:50px;"></div>
+             
+            <div class="container">
+                <h2 class="text-center">Our Values </h2>
+                <div class="card-values">
+                     <h5 class="text-center"><i class="fa-solid fa-circle-check" style="margin-left:10px;font-size:13px;color: black;"></i> Integrity: We conduct our business with honesty, transparency, and ethical practices.</h5>
+                 </div>
+
+                 
+
+                 <div class="card-values">
+                	<h5 class="text-center"><i class="fa-solid fa-circle-check" style="margin-left:10px;font-size:13px;color: black;"></i> Collaboration: We believe in the power of collaboration and work closely with our clients to achieve shared goals.</h5>
                 </div>
+
+                
+
+                <div class="card-values">
+                	<h5 class="text-center"><i class="fa-solid fa-circle-check" style="margin-left:10px;font-size:13px;color: black;"></i> Continuous Improvement: Embracing change and proactively seeking ways to improve, we stay at the forefront of industry trends and best practices</h5>
+                </div>
+                
             </div>
-           <div class="col-xs-6 col-md-3"> 
-              <div class="column">
-                <div class="card">
-                    <div class="icon-wrapper" style="margin-left:55px;">
-                    <i class="fa-solid fa-sitemap" style="padding-top:24px;"></i>
-                    </div>
-                    <div style=" padding-top:100px;">
-                    <h6>Customer support</h6>
-                    </div>
-                    <p>
-                    Outsource your customer care services to save cost and increase bottom line profit merchant.
-                    We specialise both in technical and non technical support .
-                    </p>
-                </div>
-              </div>
-            </div>
-           <div class="col-xs-6 col-md-3">
-                <div class="column">
-                    <div class="card">
-                        <div class="icon-wrapper" style="margin-left:55px;">
-                        <i class="fa-solid fa-user-group" style="padding-top:24px;"></i>
-                        </div>
-                        <div style=" padding-top:100px;">
-                        <h6>Remote teams</h6>
-                        </div>
-                        <p>
-                        Get free consulting sessions with industry experts to improve your backend processes and be more efficient
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <div class="column">
-                <div class="card">
-                    <div class="icon-wrapper" style="margin-left:55px;">
-                    <i class="fa fa-cogs" style="padding-top:24px;" aria-hidden="true"></i>
-                    </div>
-                    <div style=" padding-top:100px;">
-                    <h6>Process automation</h6>
-                    </div>
-                    <p>
-                    Build a team remotely upto one fifth of current cost to help you run your operations
-                    </p>
-                </div>
-                </div>
-            </div>
-        </div> 
+                
+            <div style="padding-bottom:30px;"></div>
+             
+      </div>
+    </div>
+
+                                </div> 
 			</div>					
 		</div>
 	</div>
@@ -557,14 +591,15 @@
                 <div class="row">
                     <div class="col-lg-2 col-md col-sm-6 col-6 wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">
                         <a href="{{route('service')}}">Services</a>
-                        <a href="{{route('aboutus')}}">About us</a>
+                        <a href="{{route('aboutus')}}">About Us</a>
                         <a href="{{route('contactus')}}">Contact Us</a>
                         <a href="{{route('whoweare')}}">Who We Are</a>
+                         
                     </div>
                     <div class="col-lg-2 col-md col-sm-6 col-6 wow fadeInUpBig" data-wow-duration=".5s" data-wow-offset="60">
-                        <a href="https://youtube.com/channel/UCJufvVVE_wPhYquwjrFi2Qw" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-                        <a href="https://twitter.com/TREmployee" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-                        <a href="https://www.linkedin.com/in/theremote-employee-6427492a2/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
                     </div>
                     <div class="col-lg-5 col-md col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">
                         <p>Subscribe to our newsletter</p>
@@ -581,11 +616,7 @@
                 </div>
             </div>
         </footer>
-        <!-- End footer -->
-        
-        
-			
-			
+        <!-- End footer -->			
 			
         
         <!-- starting button-top -->

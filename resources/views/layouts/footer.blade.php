@@ -5,9 +5,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md col-sm-6 col-6 wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">
-                        <a href="/aboutus">About Us</a>
-                        <a href="/contactus">Contact</a>
-                        <a href="">Terms &amp; Conditions</a>
+                        <a href="{{route('service')}}">Services</a>
+                        <a href="{{route('aboutus')}}">About us</a>
+                        <a href="{{route('contactus')}}">Contact Us</a>
+                        <a href="{{route('whoweare')}}">Who We Are</a>
                     </div>
                     <div class="col-lg-2 col-md col-sm-6 col-6 wow fadeInUpBig" data-wow-duration=".5s" data-wow-offset="60">
                         <a href="https://youtube.com/channel/UCJufvVVE_wPhYquwjrFi2Qw" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>

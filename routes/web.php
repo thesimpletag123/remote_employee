@@ -30,6 +30,7 @@ Route::get('/clear', function() {
 Route::get('/', 'EmployeeController@baseurllogin')->name('baseurllogin');
 Route::get('service', 'EmployeeController@service')->name('service');
 Route::get('aboutus', 'EmployeeController@aboutus')->name('aboutus');
+Route::get('whoweare', 'EmployeeController@whoweare')->name('whoweare');
 Route::get('contactus', 'EmployeeController@contactus')->name('contactus');
 Route::post('contactus', 'EmployeeController@contactususer')->name('contactususer');
 Route::post('submit_project_as_guest', 'JobPostController@submit_project_as_guest')->name('submit_project_as_guest');

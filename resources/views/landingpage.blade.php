@@ -53,7 +53,6 @@
                                 <div class="row mainbox">
                                     <div class="col-lg-5 col-md">
                                         <div class="leftsidebox">
-                                            <h6>Lorem Ipsum is simply dummy text</h6>
                                             <h1>WORK... <br> <span>MANAGE...</span> <br> FROM YOUR <br> OWN SPACE </h1>
                                             
 												<div class="row">
@@ -83,7 +82,6 @@
                                 <div class="row mainbox">
                                     <div class="col-lg-5 col-md">
                                         <div class="leftsidebox">
-                                            <h6>Lorem Ipsum is simply dummy text</h6>
                                             <h1>WORK... <br> <span>PROGRAMING...</span> <br> FROM YOUR <br> OWN SPACE </h1>
                                             
 												<div class="row">
@@ -113,7 +111,6 @@
                                 <div class="row mainbox">
                                     <div class="col-lg-5 col-md">
                                         <div class="leftsidebox">
-                                            <h6>Lorem Ipsum is simply dummy text</h6>
                                             <h1>WORK... <br> <span>SOCIALMED...</span> <br> FROM YOUR <br> OWN SPACE </h1>
                                             
 												<div class="row">
@@ -143,8 +140,7 @@
                                 <div class="row mainbox">
                                     <div class="col-lg-5 col-md">
                                         <div class="leftsidebox">
-                                            <h6>Lorem Ipsum is simply dummy text</h6>
-                                            <h1>WORK... <br> <span>MOBILEAPP...</span> <br> FROM YOUR <br> OWN SPACE </h1>
+                                            <h1>WORK... <br> <span>COLLABORAATE...</span> <br> FROM YOUR <br> OWN SPACE </h1>
                                             
 												<div class="row">
 													@if (Auth::check())
@@ -173,7 +169,6 @@
                                 <div class="row mainbox">
                                     <div class="col-lg-5 col-md">
                                         <div class="leftsidebox">
-                                            <h6>Lorem Ipsum is simply dummy text</h6>
                                             <h1>WORK... <br> <span>MARKETING...</span> <br> FROM YOUR <br> OWN SPACE </h1>
                                             
 												<div class="row">
@@ -221,7 +216,7 @@
             <div class="container">
                 <h3 class="wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">HAVE A PROJECT <br>IN MIND?</h3>
                 <h6 class="wow fadeInUpBig" data-wow-duration=".55s" data-wow-offset="60">Get in touch with us today</h6>
-                <a href="tel: +14242561744" class="wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">Talk to us</a>
+                <a href="tel: +91 968-121-5646" class="wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">Talk to us</a>
             </div>
         </section>
         <!-- End haveproject -->
@@ -233,30 +228,40 @@
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the  1500s, when an unknown printer took a galley</p>
                 </div>
                 <div class="row">
-                    <div class="col-md col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">
+                    <div class="col-md-3 col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".25s" data-wow-offset="60">
                         <div class="mainbox">
-                            <h4>Lorem Ipsum is simply</h4>
-                            <p>Lorem Ipsum is simply</p>
+                            <h4>Customer Support</h4>
+                            <p>Outsource your customer care services to save cost and increase bottom line profit merchant. We specialise both in technical and non technical support .</p>
                             <a href="">
                                 <i class="fas fa-angle-right fa-2x"></i>
                                 <i class="fas fa-angle-double-right fa-2x"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="col-md col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".5s" data-wow-offset="60">
+                    <div class="col-md-3 col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".5s" data-wow-offset="60">
                         <div class="mainbox">
-                            <h4>Lorem Ipsum is simply</h4>
-                            <p>Lorem Ipsum is simply</p>
+                            <h4>Remote Teams</h4>
+                            <p>Build a team remotely upto one fifth of current cost to help you run your operations </p>
                             <a href="">
                                 <i class="fas fa-angle-right fa-2x"></i>
                                 <i class="fas fa-angle-double-right fa-2x"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="col-md col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">
+                    <div class="col-md-3 col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">
                         <div class="mainbox">
-                            <h4>Lorem Ipsum is simply</h4>
-                            <p>Lorem Ipsum is simply</p>
+                            <h4>Process Automation</h4>
+                            <p>Get free consulting sessions with industry experts to improve your backend processes and be more efficient.</p>
+                            <a href="">
+                                <i class="fas fa-angle-right fa-2x"></i>
+                                <i class="fas fa-angle-double-right fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-12 wow fadeInUpBig" data-wow-duration=".75s" data-wow-offset="60">
+                        <div class="mainbox">
+                            <h4>Virtual Assistant</h4>
+                            <p>Virtual Assistant to hire partime or fulltime remote employees to help you with all the Administrative Tasks, Research, Bookkeeping and more. Free Up your time</p>
                             <a href="">
                                 <i class="fas fa-angle-right fa-2x"></i>
                                 <i class="fas fa-angle-double-right fa-2x"></i>
