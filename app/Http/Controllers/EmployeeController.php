@@ -302,18 +302,18 @@ class EmployeeController extends Controller
 			 
 			]);
 		if($request->isMethod('post'))
-	       { 
-	               $data = $request->all();
-	               $contact = new Contactususers;
-	               $contact->name=$data['name'];
-	               $contact->email=$data['email'];
-	               $contact->phone=$data['phone'];
-	               $contact->message=$data['message']; 
-				   //dd($contact);
-	               $contact->save();
-	               return redirect('contactus')->with('success', 'Contact Us successfull!!');
+	    { 
+           $data = $request->all();
+           $contact = new Contactususers;
+           $contact->name=$data['name'];
+           $contact->email=$data['email'];
+           $contact->phone=$data['phone'];
+           $contact->message=$data['message']; 
+		   //dd($contact);
+           $contact->save();
+           return redirect('contactus')->with('success', 'Thank You for Contacting Us!!');
 		     
-	        }
+	    }
 	}
 	public function whoweare(){
 		return view('whoweare');

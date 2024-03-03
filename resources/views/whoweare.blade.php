@@ -26,7 +26,11 @@
         <title>Who We Are || {{ config('app.name') }}</title>
         <!-- for animation -->
         @include('layouts.css')
-		@yield('pagecss')		
+		@yield('pagecss')
+
+		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+		
     </head>
     <style> 
    {

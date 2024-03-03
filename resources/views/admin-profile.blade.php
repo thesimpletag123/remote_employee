@@ -26,7 +26,7 @@
 @endsection
 @section('content')
 <!-- starting modal-profile-setting -->
-<div class="container">
+<div class="container" style="margin-top:120px;">
 	<div class="modal-profile-setting" >
 
                 <input type="hidden" id="hidden_uid" value="{{$user->id}}">

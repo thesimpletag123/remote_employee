@@ -26,7 +26,11 @@
         <title>About Us || {{ config('app.name') }}</title>
         <!-- for animation -->
         @include('layouts.css')
-		@yield('pagecss')		
+		@yield('pagecss')
+
+		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+		
     </head>
     <style> 
    {
@@ -481,17 +485,17 @@ p {
         <div class="row">
 	        <div class="col-sm-6 col-md-6" style="padding-left:90px;">
 	          <div class="text">
-	            		<p style="text-align: justify;">
+	            		<h5 style="text-align: justify;font-weight: 500;">
 			              Provide remote employees and remote teams to Businesses, Entrepereneurs, Starups, Innovative & Emerginh Companies in the world to help them boost.<br>
 			              Empowering businesses through seamless outsourcing, we strive to be the catalyst for success in an ever-evolving business landscape. Our mission is to provide innovative, cost-effective, and tailored outsourcing solutions that allow our clients to concentrate on their core competencies while we handle the rest.
-	              		</p>
+	              		</h5>
 	            </div>
 	              	
 	        </div>
 	        <div class="col-sm-6 col-md-6">
-	            <div class="icon-wrapper" style="margin-left:30%;">
-                    <i class="fa-solid fa-bullseye" style="padding-top:45px;padding-left: 45px;"></i>
-                </div>
+	            
+                    <img src="/images/our_mission.jpg" style="width:90%;border-radius: 10px;">
+                
 	        </div>
 	    </div>
 
@@ -501,19 +505,17 @@ p {
 
         <div class="row">
         	<div class="col-sm-6 col-md-6">
-	            <div class="icon-wrapper" style="margin-left:30%;">
-                    <i class="fa-solid fa-question-circle" style="padding-top:45px;padding-left: 45px;"></i>
-                </div>
+	            <img src="/images/who_we_are.jpg" style="width:90%;border-radius: 10px;margin-left: 25px;">
 	        </div>
 	        <div class="col-sm-6 col-md-6" style="padding-right:90px;">
 	          <div class="text">
-	            		<p style="text-align: justify;">
+	            		<h5 style="text-align: justify;">
 			              	Established with a passion for driving efficiency and fostering growth, 
 				            TheRemoteEmployee.com is a team of dedicated professionals with diverse expertise.
 				            From virtual assistants for outsource customer service,  
 				            IT consulting and process automation to implement AI and beyond, 
 				            our talented pool of specialists is committed to delivering exceptional results.
-	              		</p>
+	              		</h5>
 	            </div>	
 	        </div>
 	    </div>

@@ -77,16 +77,10 @@
 				</div>
 				<div class="dashboard-avatar-data">
 					<h4>{{$user->name}}</h4>
-					@if($user->is_verified == 1)
-					<div class="user-verified-batch">
-						<span class="verify-tag" data-bs-toggle="modal" data-bs-target="#verify-user-popup">
-							<i class="fas fa-check-circle" style="color:#fff;"> Verified User </i>
-						</span>
-					</div>
-					@elseif($user->is_verified == 0)
+					@if($user->is_verified == 0)
 					<div class="user-unverified-batch">
 						<span class="verify-tag" data-bs-toggle="modal" data-bs-target="#verify-user-popup">
-							<i class="fas fa-square-xmark" style="color:#fff;"> UnVerified User </i> 
+							<i class="fas fa-square-xmark" style="color:#464646;"> UnVerified User </i> 
 						</span>
 					</div>
 					@endif

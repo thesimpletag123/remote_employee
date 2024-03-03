@@ -28,95 +28,79 @@ div#modal-dashboard-employer {
 							<ul class="employer-dashboard-menu">
 								<li class="tablinks active selected" data-class="part1" onclick="changetab(event, 'current_employee')">Employee</li>
 								<li class="tablinks" data-class="part2" onclick="changetab(event, 'current_employer')">Employeer</li>
-								<li class="tablinks" data-class="part3" onclick="changetab(event, 'all_invoice')">View all Invoices</li>
+								<li class="tablinks" data-class="part3" onclick="changetab(event, 'all_invoice')">View All Invoices</li>
 							</ul>
 							<!--<div class="uplogout"><a href="">Log out</a></div>-->
 						</div>
 						<div class="col-lg-9 col-md-12 col-sm-12 col-12">
 							<div id='current_employee' class="complex part1">
 								<div class="current-employees-box">
-									<div class="current-header">
-										<div class="row">
-											<div class="col-sm-7">
-											<h5>All Employee List</h5> 
-												<div class="dashboard-avatar">
-													 
-												</div>
-											</div>
-											<div class="col-sm-3">	
-											</div>
-											<div class="col-sm-2" style="float:right;">
-												<div class="setticon">
-													<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="current-details">
+									<h5>All Employee List</h5>
+									<div class="">
 										<div class="row">
 										<div class="col-12 table-responsive">
-        <br />
-            <table class="table table-striped table-bordered user_datatable"> 
-                <thead>
-                    <tr>
-                        <th>
-						ID<br>
-						<input type="text" class="from-control filter-input" placeholder="search id" data-column="0" style="width:100px;">
-						</th>
-                        <th>
-						Name
-						<br>
-						<input type="text" class="from-control filter-input" placeholder="search name" data-column="1" style="width:100px;">
-						</th>
-						<th>
-						Phone<br>
-						<input type="text" class="from-control filter-input" placeholder="search phone" data-column="3" style="width:100px;">
-						</th>
-						<th>
-						Email<br>
-						<input type="text" class="from-control filter-input" placeholder="search email" data-column="4" style="width:100px;">
-						</th>
-						 
-                        <th width="150px">Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
+        									<br />
+									            <table class="table table-striped table-bordered user_datatable"> 
+									                <thead>
+									                    <tr>
+									                        <th>
+															ID<br>
+															<input type="text" class="from-control filter-input" placeholder="search id" data-column="0" style="width:100px;">
+															</th>
+									                        <th>
+															Name
+															<br>
+															<input type="text" class="from-control filter-input" placeholder="search name" data-column="1" style="width:100px;">
+															</th>
+															<th>
+															Phone<br>
+															<input type="text" class="from-control filter-input" placeholder="search phone" data-column="3" style="width:100px;">
+															</th>
+															<th>
+															Email<br>
+															<input type="text" class="from-control filter-input" placeholder="search email" data-column="4" style="width:100px;">
+															</th>
+															 
+									                        <th width="150px">Action</th>
+									                    </tr>
+									                </thead>
+									                <tbody></tbody>
+									            </table>
+									        </div>
+									    </div>
  
-    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        <form method="post" id="sample_form" enctype="multipart/form-data"class="form-horizontal">
-            <div class="modal-body">
-                <span id="form_result"></span>
-                <div class="form-group">
-                     <label for="name">Admin Name</label>
-					<input type="text" class="form-control" name="name" id="employer_name" value="" placeholder="Name">
-                </div>
-                <div class="form-group">
-                     <label for="email">Admin Email</label>
-					<input type="text" class="form-control" name="email" id="employer_email" value="" >
-                </div>
-				 
-				<div class="form-group">
-                     <label for="phone">Admin Phone</label>
-					<input type="number" class="form-control" name="phone" id="phone" value="" placeholder="Phone">
-                </div> 
-                <input type="hidden" name="action" id="action" value="Add" />
-                <input type="hidden" name="hidden_id" id="hidden_id" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="submit" name="action_button" id="action_button" value="Update" class="btn btn-info" />
-            </div>
-        </form>  
-        </div>
-        </div>
-    </div>
+					    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+					        <div class="modal-dialog">
+					        <div class="modal-content">
+					        <form method="post" id="sample_form" enctype="multipart/form-data"class="form-horizontal">
+					            <div class="modal-body">
+					                <span id="form_result"></span>
+					                <div class="form-group">
+					                     <label for="name">User Name</label>
+										<input type="text" class="form-control" name="name" id="employer_name" value="" placeholder="Name">
+					                </div>
+					                <div class="form-group">
+					                     <label for="email">User Email</label>
+										<input type="text" class="form-control" name="email" id="employer_email" value="" >
+					                </div>
+									 
+									<div class="form-group">
+					                     <label for="phone">User Phone</label>
+										<input type="number" class="form-control" name="phone" id="phone" value="" placeholder="Phone">
+					                </div> 
+					                <input type="hidden" name="action" id="action" value="Add" />
+					                <input type="hidden" name="hidden_id" id="hidden_id" />
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					                <input type="submit" name="action_button" id="action_button" value="Update" class="btn btn-info" />
+					            </div>
+					        </form>  
+					        </div>
+					        </div>
+					    </div>
  
-    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    					<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
         <form method="post" id="sample_form" class="form-horizontal">
@@ -142,87 +126,71 @@ div#modal-dashboard-employer {
 							<!-- Tab 2 -->
 							<div id='current_employer' class="complex part2" style="display: none;">
 							<div class="current-employees-box">
-									<div class="current-header">
+									<h5>All Employer List</h5>
+									<div class="">
 										<div class="row">
-											<div class="col-sm-7">
-											<h5>All Employer List</h5> 
-												<div class="dashboard-avatar">
-													 
-												</div>
-											</div>
-											<div class="col-sm-3">	
-											</div>
-											<div class="col-sm-2" style="float:right;">
-												<div class="setticon">
-													<span><i class="fas fa-ellipsis-h fa-2x"></i></span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="current-details">
-										<div class="row">
-										<div class="col-12 table-responsive">
-        <br />
-            <table class="table table-striped table-bordered employer_datatable"> 
-                <thead>
-                    <tr>
-                        <th>
-						Employer ID<br>
-						<input type="text" class="from-control filter-input" placeholder="search id" data-column="0" style="width:100px;">
-						</th>
-                        <th>
-						Employer Name
-						<br>
-						<input type="text" class="from-control filter-input" placeholder="search name" data-column="1" style="width:100px;">
-						</th>
-						 
-						<th>
-						Employer Phone<br>
-						<input type="text" class="from-control filter-input" placeholder="search phone" data-column="3" style="width:100px;">
-						</th>
-						<th>
-						Employer Email<br>
-						<input type="text" class="from-control filter-input" placeholder="search email" data-column="4" style="width:100px;">
-						</th>
-						 
-                        <th width="100px">Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
+											<div class="col-12 table-responsive">
+									        <br />
+									            <table class="table table-striped table-bordered employer_datatable"> 
+									                <thead>
+									                    <tr>
+									                        <th>
+															Employer ID<br>
+															<input type="text" class="from-control filter-input" placeholder="search id" data-column="0" style="width:100px;">
+															</th>
+									                        <th>
+															Employer Name
+															<br>
+															<input type="text" class="from-control filter-input" placeholder="search name" data-column="1" style="width:100px;">
+															</th>
+															 
+															<th>
+															Employer Phone<br>
+															<input type="text" class="from-control filter-input" placeholder="search phone" data-column="3" style="width:100px;">
+															</th>
+															<th>
+															Employer Email<br>
+															<input type="text" class="from-control filter-input" placeholder="search email" data-column="4" style="width:100px;">
+															</th>
+															 
+									                        <th width="100px">Action</th>
+									                    </tr>
+									                </thead>
+									                <tbody></tbody>
+									            </table>
+									        </div>
+									    </div>
  
-    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        <form method="post" id="sample_form" enctype="multipart/form-data"class="form-horizontal">
-            <div class="modal-body">
-                <span id="form_result"></span>
-                <div class="form-group">
-                     <label for="name">Employer Name</label>
-					<input type="text" class="form-control" name="name" id="employer_name" value="" placeholder="Name">
-                </div>
-                <div class="form-group">
-                     <label for="email">Employer Email</label>
-					<input type="text" class="form-control" name="email" id="employer_email" value="" readonly>
-                </div>
-				 
-				<div class="form-group">
-                     <label for="phone">Employer Phone</label>
-					<input type="number" class="form-control" name="phone" id="phone" value="" placeholder="Phone">
-                </div> 
-                <input type="hidden" name="action" id="action" value="Add" />
-                <input type="hidden" name="hidden_id" id="hidden_id" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="submit" name="action_button" id="action_button" value="Update" class="btn btn-info" />
-            </div>
-        </form>  
-        </div>
-        </div>
-    </div>
+					    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+					        <div class="modal-dialog">
+					        <div class="modal-content">
+					        <form method="post" id="sample_form" enctype="multipart/form-data"class="form-horizontal">
+					            <div class="modal-body">
+					                <span id="form_result"></span>
+					                <div class="form-group">
+					                     <label for="name">Employer Name</label>
+										<input type="text" class="form-control" name="name" id="employer_name" value="" placeholder="Name">
+					                </div>
+					                <div class="form-group">
+					                     <label for="email">Employer Email</label>
+										<input type="text" class="form-control" name="email" id="employer_email" value="" readonly>
+					                </div>
+									 
+									<div class="form-group">
+					                     <label for="phone">Employer Phone</label>
+										<input type="number" class="form-control" name="phone" id="phone" value="" placeholder="Phone">
+					                </div> 
+					                <input type="hidden" name="action" id="action" value="Add" />
+					                <input type="hidden" name="hidden_id" id="hidden_id" />
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					                <input type="submit" name="action_button" id="action_button" value="Update" class="btn btn-info" />
+					            </div>
+					        </form>  
+					        </div>
+					        </div>
+					    </div>
  
     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -413,7 +381,7 @@ div#modal-dashboard-employer {
 
 $(document).on('click', '.edit', function(event){
         event.preventDefault(); 
-        var id = $(this).attr('id'); alert(id);
+        var id = $(this).attr('id');
 		//alert(id);
         $('#form_result').html('');
  
@@ -487,7 +455,7 @@ var id;
 	 $('.button').click(function (e){
 		 e.preventDefault();
 		 var softdelete=$(this).closest("tr").find(".softdelete_id").val();
-		 alert(softdelete);
+		 
 		 swal({
 			  title: "Are you sure?",
 			  text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -607,18 +575,9 @@ $(function () {
 	   });
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
    $(document).on('click', '.edit', function(event){
 		   event.preventDefault(); 
-		   var id = $(this).attr('id'); alert(id);
+		   var id = $(this).attr('id');
 		   //alert(id);
 		   $('#form_result').html('');
 	

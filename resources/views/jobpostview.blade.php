@@ -60,7 +60,7 @@
 		</div>
 	</div>
 </div>
-<div class="container">
+<div class="container" style="">
 	<div class="modal-profile-setting">
 					
 					<input type="hidden" id="hidden_uid" value="{{$user->id}}">

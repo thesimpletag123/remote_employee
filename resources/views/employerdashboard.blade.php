@@ -14,7 +14,7 @@ div#modal-dashboard-employer {
 </style>
 @endsection
 @section('content')
-<div class="container">
+<div class="container" style="margin-top:120px;">
 	<div class="modal-dashboard-employer">
 
 <input type="hidden" id="hidden_uid" value="{{$user->id}}">				
@@ -343,7 +343,7 @@ div#modal-dashboard-employer {
 								@if(isset($employeeavailable))
 									@foreach($employeeavailable as $employee)
 										<?php
-									$i++;
+											$i++;
 											
 											
 											$newtime = strtotime($employee->user->created_at);

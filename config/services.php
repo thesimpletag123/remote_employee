@@ -32,14 +32,14 @@ return [
 	'google' => [
         'client_id' => '548697632443-e8k8jltgggkl7vqj97iudua56jftqdaf.apps.googleusercontent.com', //USE FROM FACEBOOK DEVELOPER ACCOUNT
         'client_secret' => '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', //USE FROM FACEBOOK DEVELOPER ACCOUNT
-        'redirect' => 'http://localhost:8000/auth/google/callback'
-        //'redirect' => 'https://204.236.175.219/auth/google/callback'
+        //'redirect' => 'http://localhost:8000/auth/google/callback'
+        'redirect' => 'https://204.236.175.219/auth/google/callback'
     ],
 	'linkedin' => [
         'client_id' => '867sx3is9mutqi',
         'client_secret' => '3TqgkGUP2CCJAmwU',
-        'redirect' => 'http://localhost:8000/auth/linkedin/callback'
-        //'redirect' => 'https://204.236.175.219/auth/linkedin/callback'
+        //'redirect' => 'http://localhost:8000/auth/linkedin/callback'
+        'redirect' => 'https://204.236.175.219/auth/linkedin/callback'
 	],
 
 ];

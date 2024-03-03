@@ -76,5 +76,5 @@
 		@if(Route::currentRouteName() == 'baseurllogin')
 		<div class="main">
 		@else
-		<div class="main dashboard">
+		<div class="main dashboard" style="margin-top:125px;">
 		@endif

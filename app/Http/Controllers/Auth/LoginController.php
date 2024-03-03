@@ -51,18 +51,18 @@ class LoginController extends Controller
 			 if($user->user_type == 'employee') {
 				return '/dashboard'; 
 			}
-		} elseif($user->user_type == 'admin'){
-			 
-				return '/admindashboard'; 
-			 
-		}
-		else {
-			if($user->user_type == 'employer'){
-				return '/employerdashboard'; 
-			} else {
-				return '/home';
+			elseif($user->user_type == 'employer'){
+					return '/employerdashboard'; 
+				 
+			} elseif($user->user_type == 'admin'){
+				 
+					return '/admindashboard'; 
+				 
 			}
-		}
+			else {			
+					return '/home';
+			}
+		} 
 	}
 	
 	/*public function redirectTo() {

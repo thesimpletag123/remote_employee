@@ -17,6 +17,8 @@ class Contactususers extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'contactususers';
+    
      protected $fillable = [
         'name',
         'email',

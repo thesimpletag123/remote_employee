@@ -448,7 +448,7 @@ if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
                     <div class="modal-body">
                         <div>
                             <img src="{{ asset('assets/images/varifyed-icon.png') }}" alt="image">
-                            <h5>Verifyed</h5>
+                            <h5>Verified</h5>
                         </div>
                         <div>
                             <p>An email confirmation sent to your provided mail id <br> in which you can get your ID &amp; temporary password. </p>
